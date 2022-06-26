@@ -16,7 +16,7 @@ import model.Havaalani;
 import model.Rezervasyon;
 
 @WebServlet(urlPatterns = {"/ucussorgulama", "/admin/rezervasyonliste", "/admin/rezervasyoniptal", "/rezervasyonsorgulama", "/rezervasyonolustur", "/rezervasyonislemlerim", "/gosterrezervasyonislemlerim", "/rezervasyonguncelle", "/reziptal"})
-public class RezervasyonServlet extends HttpServlet {
+public class ReservationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private HavaalaniDAO havaalaniDAO;

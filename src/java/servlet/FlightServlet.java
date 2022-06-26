@@ -19,7 +19,7 @@ import model.Ucus;
 
 @WebServlet(urlPatterns = {"/admin/ucussil", "/admin/ucusolustur", "/admin/gosterucusolustur", "/admin/guncelucusliste", "/admin/gecmisucusliste", "/admin/ucusguncelle", "/admin/gosterucusguncelle"})
 
-public class UcusServlet extends HttpServlet {
+public class FlightServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private UcusDAO ucusDAO;

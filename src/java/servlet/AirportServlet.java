@@ -17,7 +17,7 @@ import model.Havaalani_ulke;
 
 @WebServlet(urlPatterns = {"/admin/havaalaniliste", "/admin/havaalaniekle", "/admin/gosterhavaalaniekle", "/admin/havaalanisil", "/admin/havaalaniguncelle", "/admin/gosterhavaalaniguncelle"})
 
-public class HavaalaniServlet extends HttpServlet{
+public class AirportServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private HavaalaniDAO havaalaniDAO;
 

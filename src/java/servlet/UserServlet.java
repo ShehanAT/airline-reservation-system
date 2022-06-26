@@ -24,7 +24,7 @@ import model.Kullanici;
 
 @WebServlet(urlPatterns = {"/uyeol", "/gosteruyeol", "/sifremiunuttum", "/gostersifremiunuttum", "/giris", "/gostergiris", "/cikis", "/admin/giris", "/admin/gostergiris", "/admin/kullaniciliste", "/admin/adminekle", "/admin/gosteradminekle", "/admin/kullanicisil", "/admin/adminguncelle", "/admin/gosteradminguncelle", "/profil", "/profilguncelle", "/sifreguncelle", "/hesapsil", "/admin/cikis", "/admin/bilgilerim"})
 
-public class KullaniciServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private KullaniciDAO kullaniciDAO;

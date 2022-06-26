@@ -21,7 +21,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 @WebServlet(urlPatterns = {"/admin/firmaliste", "/admin/firmaekle", "/admin/gosterfirmaekle", "/admin/firmasil", "/admin/firmaguncelle", "/admin/gosterfirmaguncelle"})
 
-public class FirmaServlet extends HttpServlet {
+public class BusinessServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private FirmaDAO firmaDAO;
 

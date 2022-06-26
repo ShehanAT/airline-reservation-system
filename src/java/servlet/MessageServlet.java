@@ -17,7 +17,7 @@ import model.Mesaj;
 
 @WebServlet(urlPatterns = {"/admin/mesajliste", "/admin/mesajsil", "/iletisim", "/gostermesajekle"})
 
-public class MesajServlet extends HttpServlet {
+public class MessageServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private MesajDAO mesajDAO;

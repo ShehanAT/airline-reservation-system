@@ -18,7 +18,7 @@ import model.Rezervasyon;
 
 @WebServlet(urlPatterns = {"/ucakbileti", "/admin/panel"})
 
-public class AnasayfalarServlet extends HttpServlet{
+public class HomepagerServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private HavaalaniDAO havaalaniDAO;
     private RezervasyonDAO rezervasyonDAO;
