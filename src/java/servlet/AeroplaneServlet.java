@@ -140,21 +140,21 @@ public class AeroplaneServlet extends HttpServlet {
         }
     }
 
-    private void gosterucakguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updateToShow(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../ucakbileti");
         } else {
-            int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
-            int firma_id = Integer.parseInt(request.getParameter("firma_id"));
-            int ucak_koltuk = Integer.parseInt(request.getParameter("ucak_koltuk"));
-            String ucak_ad = new String((request.getParameter("ucak_ad")).getBytes("ISO-8859-1"), "UTF-8");
-            Ucak ucak = new Ucak(ucak_id, ucak_ad, ucak_koltuk, firma_id);
-            ucakDAO.ucakguncelle(ucak);
-            response.sendRedirect("ucakliste");
+            int flight_id = Integer.parseInt(request.getParameter("flight_id"));
+            int business_id = Integer.parseInt(request.getParameter("business_id"));
+            int airplane_seat = Integer.parseInt(request.getParameter("airplane_seat"));
+            String airplane_name = new String((request.getParameter("aircraft_name")).getBytes("ISO-8859-1"), "UTF-8");
+            Aeroplane ucak = new Aeroplane(airplane_id, airplane_name, airplane_seat, business_id);
+            ucakDAO.updatePlane(ucak);
+            response.sendRedirect("flight_list");
         }
     }
 }
