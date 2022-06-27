@@ -19,10 +19,10 @@ import model.Havaalani_sehir;
 public class Airport_CityServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private Havaalani_sehirDAO havaalani_sehirDAO;
+    private Airport_CityDAO airportCityDAO;
 
     public void init() {
-        havaalani_sehirDAO = new Havaalani_sehirDAO();
+        airport_cityDAO = new Airport_CityDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

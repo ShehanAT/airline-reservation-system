@@ -146,14 +146,14 @@ public class AeroplaneServlet extends HttpServlet {
         if ((Integer) session.getAttribute("user_authorization") == null) {
             response.sendRedirect("login");
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
-            response.sendRedirect("../ucakbileti");
+            response.sendRedirect("../flight_ticket");
         } else {
             int flight_id = Integer.parseInt(request.getParameter("flight_id"));
             int business_id = Integer.parseInt(request.getParameter("business_id"));
             int airplane_seat = Integer.parseInt(request.getParameter("airplane_seat"));
             String airplane_name = new String((request.getParameter("aircraft_name")).getBytes("ISO-8859-1"), "UTF-8");
-            Aeroplane ucak = new Aeroplane(airplane_id, airplane_name, airplane_seat, business_id);
-            ucakDAO.updatePlane(ucak);
+            Aeroplane plane = new Aeroplane(airplane_id, airplane_name, airplane_seat, business_id);
+            planeDAO.updatePlane(plane);
             response.sendRedirect("flight_list");
         }
     }
