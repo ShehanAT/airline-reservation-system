@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Havaalani;
-import model.Havaalani_sehir;
+import model.AirportCity;
 import model.Havaalani_ulke;
 
 @WebServlet(urlPatterns = {"/admin/havaalaniliste", "/admin/havaalaniekle", "/admin/gosterhavaalaniekle", "/admin/havaalanisil", "/admin/havaalaniguncelle", "/admin/gosterhavaalaniguncelle"})
@@ -82,7 +82,7 @@ public class AirportServlet extends HttpServlet{
         }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
             response.sendRedirect("../ucakbileti");
         }else{
-            List<Havaalani_sehir> havaalanisehir = havaalaniDAO.havaalanisehir();
+            List<AirportCity> havaalanisehir = havaalaniDAO.havaalanisehir();
             request.setAttribute("havaalanisehir", havaalanisehir);
             List<Havaalani_ulke> havaalaniulke = havaalaniDAO.havaalaniulke();
             request.setAttribute("havaalaniulke", havaalaniulke);
@@ -100,10 +100,10 @@ public class AirportServlet extends HttpServlet{
             response.sendRedirect("../ucakbileti");
         }else{
             int havaalani_ulke_id = Integer.parseInt(request.getParameter("havaalani_ulke_id"));
-            int havaalani_sehir_id = Integer.parseInt(request.getParameter("havaalani_sehir_id"));
+            int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));
             String havaalani_ad = new String((request.getParameter("havaalani_ad")).getBytes("ISO-8859-1"), "UTF-8");
             String havaalani_kod = new String((request.getParameter("havaalani_kod")).getBytes("ISO-8859-1"), "UTF-8");
-            Havaalani yenihavaalani = new Havaalani(havaalani_ulke_id, havaalani_sehir_id, havaalani_ad, havaalani_kod);
+            Havaalani yenihavaalani = new Havaalani(havaalani_ulke_id, airportCity_id, havaalani_ad, havaalani_kod);
             havaalaniDAO.havaalaniekle(yenihavaalani);
             response.sendRedirect("havaalaniliste");
         }
@@ -133,7 +133,7 @@ public class AirportServlet extends HttpServlet{
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             Havaalani havaalani = havaalaniDAO.havaalanisec(id);
-            List<Havaalani_sehir> havaalanisehir = havaalaniDAO.havaalanisehir();
+            List<AirportCity> havaalanisehir = havaalaniDAO.havaalanisehir();
             request.setAttribute("havaalanisehir", havaalanisehir);
             List<Havaalani_ulke> havaalaniulke = havaalaniDAO.havaalaniulke();
             request.setAttribute("havaalaniulke", havaalaniulke);
@@ -152,11 +152,11 @@ public class AirportServlet extends HttpServlet{
             response.sendRedirect("../ucakbileti");
         }else{
             int havaalani_id = Integer.parseInt(request.getParameter("havaalani_id"));
-            int havaalani_sehir_id = Integer.parseInt(request.getParameter("havaalani_sehir_id"));
+            int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));
             int havaalani_ulke_id = Integer.parseInt(request.getParameter("havaalani_ulke_id"));
             String havaalani_ad = new String((request.getParameter("havaalani_ad")).getBytes("ISO-8859-1"), "UTF-8");
             String havaalani_kod = new String((request.getParameter("havaalani_kod")).getBytes("ISO-8859-1"), "UTF-8");
-            Havaalani havaalani = new Havaalani(havaalani_id, havaalani_ulke_id, havaalani_sehir_id, havaalani_ad, havaalani_kod);
+            Havaalani havaalani = new Havaalani(havaalani_id, havaalani_ulke_id, airportCity_id, havaalani_ad, havaalani_kod);
             havaalaniDAO.havaalaniguncelle(havaalani);
             response.sendRedirect("havaalaniliste");
         }
