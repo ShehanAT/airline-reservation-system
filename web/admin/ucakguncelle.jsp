@@ -16,15 +16,15 @@
                                     <input type="text" class="form-control" id="ucak_ad" name="ucak_ad" placeholder="Uçak Adı" value="<c:out value='${ucak.ucak_ad}' />" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="firma_id">Uçak Firması</label>
-                                    <select class="form-control" id="firma_id" name="firma_id" required>
-                                        <c:forEach var="firma" items="${firma}">
+                                    <label for="company_id">Uçak Firması</label>
+                                    <select class="form-control" id="company_id" name="company_id" required>
+                                        <c:forEach var="company" items="${company}">
                                             <c:choose>
-                                            <c:when test= "${firma.firma_id == ucak.firma_id}">
-                                                <option value="<c:out value='${firma.firma_id}' />" selected><c:out value='${firma.firma_ad}' /></option>
+                                            <c:when test= "${company.company_id == ucak.company_id}">
+                                                <option value="<c:out value='${company.company_id}' />" selected><c:out value='${company.company_name}' /></option>
                                             </c:when>
                                             <c:otherwise>
-                                                <option value="<c:out value='${firma.firma_id}' />"><c:out value='${firma.firma_ad}' /></option>
+                                                <option value="<c:out value='${company.company_id}' />"><c:out value='${company.company_name}' /></option>
                                             </c:otherwise>
                                             </c:choose>
                                         </c:forEach>

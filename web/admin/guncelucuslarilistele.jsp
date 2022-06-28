@@ -56,7 +56,7 @@
                                 <td><c:out value="${guncelucusliste.flight_date}" /></td>
                                 <td><c:out value="${guncelucusliste.flight_hour}" /></td>
                                 <td><c:out value="${guncelucusliste.flight_time}" /></td>
-                                <td><c:out value="${guncelucusliste.firma_ad}" /></td>
+                                <td><c:out value="${guncelucusliste.company_name}" /></td>
                                 <td><c:out value="${guncelucusliste.ucak_ad}" /></td>
                                 <td><c:out value="${guncelucusliste.flight_fare}" /></td>
                                 <td>

@@ -48,7 +48,7 @@
                                 <td><c:out value="${gecmisucusliste.flight_date}" /></td>
                                 <td><c:out value="${gecmisucusliste.flight_hour}" /></td>
                                 <td><c:out value="${gecmisucusliste.flight_time}" /></td>
-                                <td><c:out value="${gecmisucusliste.firma_ad}" /></td>
+                                <td><c:out value="${gecmisucusliste.company_name}" /></td>
                                 <td><c:out value="${gecmisucusliste.ucak_ad}" /></td>
                                 <td><c:out value="${gecmisucusliste.flight_fare}" /></td>
                                 <td>

@@ -1,15 +1,15 @@
 package model;
 
 public class Company{
-    protected int firma_id;
+    protected int company_id;
     protected String company_name;
     protected String company_logo;
 
     public Company() {
     }
 
-    public Company(int firma_id, String company_name) {
-        this.firma_id = firma_id;
+    public Company(int company_id, String company_name) {
+        this.company_id = company_id;
         this.company_name = company_name;
     }
 
@@ -18,30 +18,30 @@ public class Company{
         this.company_logo = company_logo;
     }
 
-    public Company(int firma_id, String company_name, String company_logo) {
-        this.firma_id = firma_id;
+    public Company(int company_id, String company_name, String company_logo) {
+        this.company_id = company_id;
         this.company_name = company_name;
         this.company_logo = company_logo;
     }
 
     public Company(String company_name) {
-        this.company_name = firma_ad;
+        this.company_name = company_name;
     }
     
     public int getFirma_id() {
-        return firma_id;
+        return company_id;
     }
 
-    public void setFirma_id(int firma_id) {
-        this.firma_id = firma_id;
+    public void setFirma_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public String getFirma_ad() {
-        return firma_ad;
+        return company_name;
     }
 
-    public void setFirma_ad(String firma_ad) {
-        this.firma_ad = firma_ad;
+    public void setFirma_ad(String company_name) {
+        this.company_name = company_name;
     }
 
     public String getCompany_logo() {

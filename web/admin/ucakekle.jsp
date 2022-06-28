@@ -15,10 +15,10 @@
                                     <input type="text" class="form-control" id="ucak_ad" name="ucak_ad" placeholder="Uçak Adı" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="firma_id">Uçak Firması</label>
-                                    <select class="form-control" id="firma_id" name="firma_id" required>
-                                        <c:forEach var="firma" items="${firma}">
-                                        <option value="<c:out value='${firma.firma_id}' />"><c:out value="${firma.firma_ad}" /></option>
+                                    <label for="company_id">Uçak Firması</label>
+                                    <select class="form-control" id="company_id" name="company_id" required>
+                                        <c:forEach var="company" items="${company}">
+                                        <option value="<c:out value='${company.company_id}' />"><c:out value="${company.company_name}" /></option>
                                         </c:forEach>
                                     </select>
                                 </div>

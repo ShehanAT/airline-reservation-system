@@ -7,10 +7,10 @@ public class Ucus {
     protected String flight_date;
     protected String flight_hour;
     protected String flight_time;
-    protected int firma_id;
+    protected int company_id;
     protected int ucak_id;
     protected double flight_fare;
-    protected String firma_ad;
+    protected String company_name;
     protected String ucak_ad;
     protected String ucus_kalkis;
     protected String ucus_varis;
@@ -18,37 +18,37 @@ public class Ucus {
     public Ucus() {
     }
 
-    public Ucus(int flight_id, int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int firma_id, int ucak_id, double flight_fare) {
+    public Ucus(int flight_id, int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int company_id, int ucak_id, double flight_fare) {
         this.flight_id = flight_id;
         this.flight_departure_id = flight_departure_id;
         this.end_heir_id = end_heir_id;
         this.flight_date = flight_date;
         this.flight_hour = flight_hour;
         this.flight_time = flight_time;
-        this.firma_id = firma_id;
+        this.company_id = company_id;
         this.ucak_id = ucak_id;
         this.flight_fare = flight_fare;
     }
 
-    public Ucus(int flight_id, String flight_date, String flight_hour, String flight_time, double flight_fare, String firma_ad, String ucak_ad, String ucus_kalkis, String ucus_varis) {
+    public Ucus(int flight_id, String flight_date, String flight_hour, String flight_time, double flight_fare, String company_name, String ucak_ad, String ucus_kalkis, String ucus_varis) {
         this.flight_id = flight_id;
         this.flight_date = flight_date;
         this.flight_hour = flight_hour;
         this.flight_time = flight_time;
         this.flight_fare = flight_fare;
-        this.firma_ad = firma_ad;
+        this.company_name = company_name;
         this.ucak_ad = ucak_ad;
         this.ucus_kalkis = ucus_kalkis;
         this.ucus_varis = ucus_varis;
     }
 
-    public Ucus(int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int firma_id, int ucak_id, double flight_fare) {
+    public Ucus(int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int company_id, int ucak_id, double flight_fare) {
         this.flight_departure_id = flight_departure_id;
         this.end_heir_id = end_heir_id;
         this.flight_date = flight_date;
         this.flight_hour = flight_hour;
         this.flight_time = flight_time;
-        this.firma_id = firma_id;
+        this.company_id = company_id;
         this.ucak_id = ucak_id;
         this.flight_fare = flight_fare;
     }
@@ -102,11 +102,11 @@ public class Ucus {
     }
 
     public int getFirma_id() {
-        return firma_id;
+        return company_id;
     }
 
-    public void setFirma_id(int firma_id) {
-        this.firma_id = firma_id;
+    public void setFirma_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public int getUcak_id() {
@@ -126,11 +126,11 @@ public class Ucus {
     }
 
     public String getFirma_ad() {
-        return firma_ad;
+        return company_name;
     }
 
-    public void setFirma_ad(String firma_ad) {
-        this.firma_ad = firma_ad;
+    public void setFirma_ad(String company_name) {
+        this.company_name = company_name;
     }
 
     public String getUcak_ad() {

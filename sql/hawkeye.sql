@@ -38,12 +38,12 @@ CREATE TABLE `cevap` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `firma`
+-- Tablo için tablo yapısı `company`
 --
 
-CREATE TABLE `firma` (
-  `firma_id` int(11) NOT NULL,
-  `firma_ad` varchar(100) NOT NULL,
+CREATE TABLE `company` (
+  `company_id` int(11) NOT NULL,
+  `company_name` varchar(100) NOT NULL,
   `company_logo` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -157,7 +157,7 @@ CREATE TABLE `ucak` (
   `ucak_id` int(11) NOT NULL,
   `ucak_ad` varchar(500) NOT NULL,
   `ucak_koltuk` int(10) NOT NULL,
-  `firma_id` int(11) NOT NULL
+  `company_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -173,7 +173,7 @@ CREATE TABLE `flight` (
   `flight_date` date NOT NULL,
   `flight_hour` time NOT NULL,
   `flight_time` varchar(50) NOT NULL,
-  `firma_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
   `ucak_id` int(11) NOT NULL,
   `flight_fare` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -189,10 +189,10 @@ ALTER TABLE `cevap`
   ADD PRIMARY KEY (`cevap_id`);
 
 --
--- Tablo için indeksler `firma`
+-- Tablo için indeksler `company`
 --
-ALTER TABLE `firma`
-  ADD PRIMARY KEY (`firma_id`);
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`company_id`);
 
 --
 -- Tablo için indeksler `airport`
@@ -253,10 +253,10 @@ ALTER TABLE `cevap`
   MODIFY `cevap_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Tablo için AUTO_INCREMENT değeri `firma`
+-- Tablo için AUTO_INCREMENT değeri `company`
 --
-ALTER TABLE `firma`
-  MODIFY `firma_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+ALTER TABLE `company`
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `havaalani`

@@ -40,10 +40,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="firma_id">Company Name</label>
-                        <select class="form-control" id="firma_id" name="firma_id" required>
-                            <c:forEach var="firma" items="${firma}">
-                                <option value="<c:out value='${firma.firma_id}' />"><c:out value="${firma.company_name}" /></option>
+                        <label for="company_id">Company Name</label>
+                        <select class="form-control" id="company_id" name="company_id" required>
+                            <c:forEach var="company" items="${company}">
+                                <option value="<c:out value='${company.company_id}' />"><c:out value="${company.company_name}" /></option>
                             </c:forEach>
                         </select>
                     </div>

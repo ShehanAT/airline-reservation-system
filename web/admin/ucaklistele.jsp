@@ -34,7 +34,7 @@
                             <tr>
                                 <td><c:out value="${ucak.ucak_id}" /></td>
                                 <td><c:out value="${ucak.ucak_ad}" /></td>
-                                <td><c:out value="${ucak.firma_ad}" /></td>
+                                <td><c:out value="${ucak.company_name}" /></td>
                                 <td><c:out value="${ucak.ucak_koltuk}" /></td>
                                 <td>
                                     <a href="ucakguncelle?id=<c:out value='${ucak.ucak_id}' />">

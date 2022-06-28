@@ -140,7 +140,7 @@ public class BusinessServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            Company yenifirma = new Company(company_name, company_logo);
+            Company yenicompany = new Company(company_name, company_logo);
             companyDAO.addCompany(yenifirma);
             response.sendRedirect("companyList");
         }       
@@ -155,9 +155,9 @@ public class BusinessServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
-            Company firma = companyDAO.firmasec(id);
+            Company company = companyDAO.firmasec(id);
             RequestDispatcher dispatcher = request.getRequestDispatcher("companyUpdate.jsp");
-            request.setAttribute("firma", firma);
+            request.setAttribute("company", company);
             dispatcher.forward(request, response);
         }
         
@@ -174,7 +174,7 @@ public class BusinessServlet extends HttpServlet {
             String logo = null;
             String company_logo = null;
             String company_name = null;
-            int firma_id = 0;
+            int company_id = 0;
 
             response.setContentType("text/html; charset=UTF-8");
             boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
@@ -205,9 +205,9 @@ public class BusinessServlet extends HttpServlet {
                                 logo = fileItem.getString("UTF-8");
                             }
                         }
-                        if (firma_id == 0) {
-                            if (fileItem.getFieldName().equals("firma_id")) {
-                                firma_id = Integer.parseInt(fileItem.getString());
+                        if (company_id == 0) {
+                            if (fileItem.getFieldName().equals("company_id")) {
+                                company_id = Integer.parseInt(fileItem.getString());
                             }
                         }
                     } else {
@@ -222,8 +222,8 @@ public class BusinessServlet extends HttpServlet {
             }
             File f = new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + logo);
             f.delete();
-            Company firma = new Company(firma_id, company_name, company_logo);
-            companyDAO.companyUpdate(firma);
+            Company company = new Company(company_id, company_name, company_logo);
+            companyDAO.companyUpdate(company);
             response.sendRedirect("companyList");
         }
     }
@@ -236,11 +236,11 @@ public class BusinessServlet extends HttpServlet {
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            int firma_id = Integer.parseInt(request.getParameter("id"));
+            int company_id = Integer.parseInt(request.getParameter("id"));
             String company_logo = request.getParameter("logo");
             File f = new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + company_logo);
             f.delete();
-            companyDAO.deleteCompany(firma_id);
+            companyDAO.deleteCompany(company_id);
             response.sendRedirect("companyList");
         }        
     }

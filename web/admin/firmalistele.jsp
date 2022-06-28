@@ -28,16 +28,16 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="firma" items="${companyList}">
+                        <c:forEach var="company" items="${companyList}">
                             <tr>                                          
-                                <td><c:out value="${firma.firma_id}" /></td>
-                                <td><c:out value="${firma.company_name}" /></td>
-                                <td><img width="100px" height="100px" class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${firma.company_logo}' />"></td>
+                                <td><c:out value="${company.company_id}" /></td>
+                                <td><c:out value="${company.company_name}" /></td>
+                                <td><img width="100px" height="100px" class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${company.company_logo}' />"></td>
                             <td>
-                                <a href="companyUpdate?id=<c:out value='${firma.firma_id}' />">
+                                <a href="companyUpdate?id=<c:out value='${company.company_id}' />">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                 </a>
-                                <a href="deleteCompany?id=<c:out value='${firma.firma_id}' />&logo=<c:out value='${firma.company_logo}' />">
+                                <a href="deleteCompany?id=<c:out value='${company.company_id}' />&logo=<c:out value='${company.company_logo}' />">
                                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                 </a>
                             </td>

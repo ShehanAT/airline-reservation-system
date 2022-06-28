@@ -10,11 +10,11 @@
             </div>
             <div class="card-body">
                 <form class="form" action="showCompanyUpdate" method="post"  autocomplete="off" enctype="multipart/form-data">
-                    <input type="hidden" name="firma_id" id="firma_id" value="<c:out value='${firma.firma_id}' />" />
-                    <input type="hidden" name="logo" id="logo" value="<c:out value='${firma.company_logo}' />" />
+                    <input type="hidden" name="company_id" id="company_id" value="<c:out value='${company.company_id}' />" />
+                    <input type="hidden" name="logo" id="logo" value="<c:out value='${company.company_logo}' />" />
                     <div class="form-group">
-                        <label for="firma_ad">Ad</label>
-                        <input type="text" class="form-control" id="firma_ad" name="firma_ad" placeholder="Company Adı" value="<c:out value='${firma.firma_ad}' />" required>
+                        <label for="company_name">Ad</label>
+                        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Adı" value="<c:out value='${company.company_name}' />" required>
                     </div>
                     <div class="form-group">   
                         <label for="company_logo">Logo</label>

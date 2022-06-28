@@ -121,8 +121,8 @@ public class FlightServlet extends HttpServlet {
             List<Airport> airport = ucusDAO.airport();
             request.setAttribute("airport", airport);
 
-            List<Company> firma = ucusDAO.firma();
-            request.setAttribute("firma", firma);
+            List<Company> company = ucusDAO.company();
+            request.setAttribute("company", company);
 
             List<Ucak> ucak = ucusDAO.ucak();
             request.setAttribute("ucak", ucak);
@@ -145,11 +145,11 @@ public class FlightServlet extends HttpServlet {
             String flight_date = request.getParameter("flight_date");
             String flight_hour = request.getParameter("flight_hour");
             String flight_time = request.getParameter("flight_time");
-            int firma_id = Integer.parseInt(request.getParameter("firma_id"));
+            int company_id = Integer.parseInt(request.getParameter("company_id"));
             int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
             double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
 
-            Ucus yeniucus = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, firma_id, ucak_id, flight_fare);
+            Ucus yeniucus = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, ucak_id, flight_fare);
             Boolean sonuc = ucusDAO.ucuskontrol(yeniucus);
             if (sonuc == false) {
                 response.sendRedirect("guncelucusliste?durum=basarisiz");
@@ -170,8 +170,8 @@ public class FlightServlet extends HttpServlet {
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Ucus ucus = ucusDAO.ucussec(id);
-            List<Company> firma = ucusDAO.firma();
-            request.setAttribute("firma", firma);
+            List<Company> company = ucusDAO.company();
+            request.setAttribute("company", company);
             List<Ucak> ucak = ucusDAO.ucak();
             request.setAttribute("ucak", ucak);
             List<Airport> airport = ucusDAO.airport();
@@ -196,10 +196,10 @@ public class FlightServlet extends HttpServlet {
             String flight_date = request.getParameter("flight_date");
             String flight_hour = request.getParameter("flight_hour");
             String flight_time = request.getParameter("flight_time");
-            int firma_id = Integer.parseInt(request.getParameter("firma_id"));
+            int company_id = Integer.parseInt(request.getParameter("company_id"));
             int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
             Double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
-            Ucus ucus = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, firma_id, ucak_id, flight_fare);
+            Ucus ucus = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, ucak_id, flight_fare);
             ucusDAO.ucusguncelle(ucus);
             response.sendRedirect("guncelucusliste");
         }

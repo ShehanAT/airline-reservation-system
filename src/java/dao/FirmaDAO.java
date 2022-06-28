@@ -16,11 +16,11 @@ public class CompanyDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";    
 
-    private static final String FIRMA_INSERT = "INSERT INTO firma (company_name, company_logo) VALUES (?, ?);";
-    private static final String FIRMA_SELECT_ALL = "select * from firma;";
-    private static final String FIRMA_DELETE = "delete from firma where firma_id = ?;";
-    private static final String FIRMA_SELECT_ID = "select * from firma where firma_id=?;";
-    private static final String FIRMA_UPDATE = "update firma set company_name = ?, company_logo=? where firma_id = ?;";
+    private static final String FIRMA_INSERT = "INSERT INTO company (company_name, company_logo) VALUES (?, ?);";
+    private static final String FIRMA_SELECT_ALL = "select * from company;";
+    private static final String FIRMA_DELETE = "delete from company where company_id = ?;";
+    private static final String FIRMA_SELECT_ID = "select * from company where company_id=?;";
+    private static final String FIRMA_UPDATE = "update company set company_name = ?, company_logo=? where company_id = ?;";
     
     public CompanyDAO() {}
     
@@ -40,28 +40,28 @@ public class CompanyDAO {
     }
     
     public List<Company> companyList() {
-        List<Company> firmalar = new ArrayList<> ();
+        List<Company> companylar = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int firma_id = rs.getInt("firma_id");
+                int company_id = rs.getInt("company_id");
                 String company_name = rs.getString("company_name");
                 String company_logo = rs.getString("company_logo");
-                firmalar.add(new Company(firma_id, company_name, company_logo));
+                companies.add(new Company(company_id, company_name, company_logo));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return firmalar;
+        return companies;
     }       
     
-    public void addCompany(Company firma) throws SQLException {
+    public void addCompany(Company company) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_INSERT)) {
-            preparedStatement.setString(1, firma.getFirma_ad());
-            preparedStatement.setString(2, firma.getFirma_logo());
+            preparedStatement.setString(1, company.getFirma_ad());
+            preparedStatement.setString(2, company.getFirma_logo());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -78,7 +78,7 @@ public class CompanyDAO {
     }
     
     public Company firmasec(int id) {
-        Company firma = null;
+        Company company = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ID);) {
             preparedStatement.setInt(1, id);
@@ -86,20 +86,20 @@ public class CompanyDAO {
             while (rs.next()) {
                 String company_name = rs.getString("company_name");
                 String company_logo = rs.getString("company_logo");
-                firma = new Company(id, company_name, company_logo);
+                company = new Company(id, company_name, company_logo);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return firma;
+        return company;
     }  
     
-    public boolean companyUpdate(Company firma) throws SQLException {
+    public boolean companyUpdate(Company company) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(FIRMA_UPDATE);) {
-            statement.setString(1, firma.getFirma_ad());           
-            statement.setString(2, firma.getFirma_logo());
-            statement.setInt(3, firma.getFirma_id());
+            statement.setString(1, company.getFirma_ad());
+            statement.setString(2, company.getFirma_logo());
+            statement.setInt(3, company.getFirma_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;

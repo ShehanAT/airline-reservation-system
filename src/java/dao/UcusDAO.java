@@ -20,26 +20,26 @@ public class UcusDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCUS_INSERT ="INSERT INTO ucus (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, firma_id, ucak_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
-    private static final String FIRMA_SELECT_ALL = "select * from firma;";
+    private static final String UCUS_INSERT ="INSERT INTO ucus (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, ucak_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
+    private static final String FIRMA_SELECT_ALL = "select * from company;";
     private static final String HAVAALANI_SELECT_ALL = "select * from airport;";
     private static final String UCAK_SELECT_ALL = "select * from ucak;";
-    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, firma.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
+    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
                                 "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
-                                "INNER JOIN  firma ON (firma.firma_id = flight.firma_id)\n" +
+                                "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date >= ? ;";
     
-    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, firma.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
+    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
                                 "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
-                                "INNER JOIN  firma ON (firma.firma_id = flight.firma_id)\n" +
+                                "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date < ? ;";
     private static final String UCUS_DELETE = "delete from ucus where flight_id = ?;";
     private static final String UCUS_SELECT_ID = "SELECT * FROM ucus  where flight_id=?;";
-    private static final String UCUS_UPDATE = "update ucus set flight_departure_id = ?, end_heir_id=?, flight_date=?, flight_hour=?, flight_time=?, firma_id=?, ucak_id=?, flight_fare=? where flight_id = ?;";
+    private static final String UCUS_UPDATE = "update ucus set flight_departure_id = ?, end_heir_id=?, flight_date=?, flight_hour=?, flight_time=?, company_id=?, ucak_id=?, flight_fare=? where flight_id = ?;";
     private static final String UCUS_KONTROL = "select * from ucus as u \n" +
                                 "join ucak as k on k.ucak_id=u.ucak_id\n" +
                                 "where u.ucak_id=? and u.flight_date=? and ((u.flight_hour BETWEEN ? AND ?) or (ADDTIME(u.flight_hour, u.flight_time) BETWEEN ? AND ?));";
@@ -102,10 +102,10 @@ public class UcusDAO {
                 String flight_date = rs.getString("flight_date");
                 String flight_hour = rs.getString("flight_hour");
                 String flight_time = rs.getString("flight_time");
-                int firma_id = rs.getInt("firma_id");
+                int company_id = rs.getInt("company_id");
                 int ucak_id = rs.getInt("ucak_id");
                 Double flight_fare = rs.getDouble("flight_fare");
-                ucus = new Ucus(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,firma_id,ucak_id,flight_fare);
+                ucus = new Ucus(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,company_id,ucak_id,flight_fare);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -232,20 +232,20 @@ public class UcusDAO {
         return ucuslar;
     } 
     
-    public List<Company> firma() {
-        List<Company> firma = new ArrayList<> ();
+    public List<Company> company() {
+        List<Company> company = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int firma_id = rs.getInt("firma_id");
+                int company_id = rs.getInt("company_id");
                 String company_name = rs.getString("company_name");
-                firma.add(new Company(firma_id, company_name));
+                company.add(new Company(company_id, company_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return firma;
+        return company;
     }
     
     public List<Ucak> ucak() {

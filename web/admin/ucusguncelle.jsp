@@ -54,15 +54,15 @@
                         <input type="time" class="form-control" id="flight_time" name="flight_time" value="<c:out value='${flight.flight_time}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="firma_id">Company Name</label>
-                        <select class="form-control" id="firma_id" name="firma_id" required>
-                            <c:forEach var="firma" items="${firma}">
+                        <label for="company_id">Company Name</label>
+                        <select class="form-control" id="company_id" name="company_id" required>
+                            <c:forEach var="company" items="${company}">
                                 <c:choose>
-                                    <c:when test= "${firma.firma_id == flight.firma_id}">
-                                        <option value="<c:out value='${firma.firma_id}' />" selected><c:out value='${firma.company_name}' /></option>
+                                    <c:when test= "${company.company_id == flight.company_id}">
+                                        <option value="<c:out value='${company.company_id}' />" selected><c:out value='${company.company_name}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${firma.firma_id}' />"><c:out value='${firma.company_name}' /></option>
+                                        <option value="<c:out value='${company.company_id}' />"><c:out value='${company.company_name}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>

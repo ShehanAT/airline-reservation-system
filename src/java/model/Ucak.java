@@ -4,7 +4,7 @@ public class Ucak {
     int ucak_id;
     String ucak_ad;
     int ucak_koltuk;
-    int firma_id;
+    int company_id;
     String company_name;
 
     public Ucak() {
@@ -15,17 +15,17 @@ public class Ucak {
         this.ucak_ad = ucak_ad;
     }
 
-    public Ucak(String ucak_ad, int ucak_koltuk, int firma_id) {
+    public Ucak(String ucak_ad, int ucak_koltuk, int company_id) {
         this.ucak_ad = ucak_ad;
         this.ucak_koltuk = ucak_koltuk;
-        this.firma_id = firma_id;
+        this.company_id = company_id;
     }
     
-    public Ucak(int ucak_id, String ucak_ad, int ucak_koltuk, int firma_id) {
+    public Ucak(int ucak_id, String ucak_ad, int ucak_koltuk, int company_id) {
         this.ucak_id = ucak_id;
         this.ucak_ad = ucak_ad;
         this.ucak_koltuk = ucak_koltuk;
-        this.firma_id = firma_id;
+        this.company_id = company_id;
     }
 
     public Ucak(int ucak_id, String ucak_ad, int ucak_koltuk, String company_name) {
@@ -60,11 +60,11 @@ public class Ucak {
     }
 
     public int getFirma_id() {
-        return firma_id;
+        return company_id;
     }
 
-    public void setFirma_id(int firma_id) {
-        this.firma_id = firma_id;
+    public void setFirma_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public String getFirma_ad() {

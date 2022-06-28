@@ -84,8 +84,8 @@ public class AeroplaneServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Company> firma = ucakDAO.firma();
-            request.setAttribute("firma", firma);
+            List<Company> company = ucakDAO.company();
+            request.setAttribute("company", company);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucakekle.jsp");
             dispatcher.forward(request, response);
         }
@@ -99,10 +99,10 @@ public class AeroplaneServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int firma_id = Integer.parseInt(request.getParameter("firma_id"));
+            int company_id = Integer.parseInt(request.getParameter("company_id"));
             String ucak_ad = new String((request.getParameter("ucak_ad")).getBytes("ISO-8859-1"), "UTF-8");
             int ucak_koltuk = Integer.parseInt(request.getParameter("ucak_koltuk"));
-            Ucak yeniucak = new Ucak(ucak_ad, ucak_koltuk, firma_id);
+            Ucak yeniucak = new Ucak(ucak_ad, ucak_koltuk, company_id);
             ucakDAO.ucakekle(yeniucak);
             response.sendRedirect("ucakliste");
         }
@@ -132,8 +132,8 @@ public class AeroplaneServlet extends HttpServlet {
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Ucak ucak = ucakDAO.ucaksec(id);
-            List<Company> firma = ucakDAO.firma();
-            request.setAttribute("firma", firma);
+            List<Company> company = ucakDAO.company();
+            request.setAttribute("company", company);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucakguncelle.jsp");
             request.setAttribute("ucak", ucak);
             dispatcher.forward(request, response);

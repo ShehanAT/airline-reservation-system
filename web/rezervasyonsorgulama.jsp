@@ -37,7 +37,7 @@
                 <h5 class="card-header text-center" style="background-color: #F1F2F8">REZERVASYON BİLGİLERİ</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${rezervasyonbilgi.company_logo}' />" style="width: 1.5em"> <c:out value='${rezervasyonbilgi.firma_ad}' /> - <c:out value='${rezervasyonbilgi.ucak_ad}' /></h5>
+                        <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${rezervasyonbilgi.company_logo}' />" style="width: 1.5em"> <c:out value='${rezervasyonbilgi.company_name}' /> - <c:out value='${rezervasyonbilgi.ucak_ad}' /></h5>
                         <h5 class="card-title">PNR NUMARASI : <span class="text-white bg-dark"><c:out value='${rezervasyon.pnr_no}' /></span></h5>
                     </div>
                     <div class="d-flex justify-content-between">

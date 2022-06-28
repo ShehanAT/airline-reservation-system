@@ -19,11 +19,11 @@
             HAVAYOLU FİRMASI
         </div>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#firma" aria-expanded="true" aria-controls="firma">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#company" aria-expanded="true" aria-controls="company">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Firma İşlemleri</span>
             </a>
-            <div id="firma" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="company" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="addCompany">Firma Ekle</a>
                     <a class="collapse-item" href="companyList">Firmaları Listele</a>

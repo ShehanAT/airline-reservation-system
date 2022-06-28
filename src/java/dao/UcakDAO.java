@@ -17,11 +17,11 @@ public class UcakDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCAK_SELECT_ALL = "SELECT ucak_id, ucak_ad, ucak_koltuk, firma.firma_ad FROM ucak INNER JOIN firma ON ucak.firma_id=firma.firma_id;";
-    private static final String FIRMA_SELECT_ALL ="select * from firma;";
-    private static final String UCAK_INSERT ="INSERT INTO ucak (ucak_ad, ucak_koltuk, firma_id) VALUES (?,?,?);";
+    private static final String UCAK_SELECT_ALL = "SELECT ucak_id, ucak_ad, ucak_koltuk, company.company_name FROM ucak INNER JOIN company ON ucak.company_id=company.company_id;";
+    private static final String FIRMA_SELECT_ALL ="select * from company;";
+    private static final String UCAK_INSERT ="INSERT INTO ucak (ucak_ad, ucak_koltuk, company_id) VALUES (?,?,?);";
     private static final String UCAK_DELETE = "delete from ucak where ucak_id = ?;";
-    private static final String UCAK_UPDATE = "update ucak set ucak_ad = ?, ucak_koltuk=?, firma_id=? where ucak_id = ?;";
+    private static final String UCAK_UPDATE = "update ucak set ucak_ad = ?, ucak_koltuk=?, company_id=? where ucak_id = ?;";
     private static final String UCAK_SELECT_ID = "SELECT * FROM ucak  where ucak_id=?;";
     
     public UcakDAO() {}
@@ -50,8 +50,8 @@ public class UcakDAO {
                 int ucak_id = rs.getInt("ucak_id");
                 String ucak_ad = rs.getString("ucak_ad");
                 int ucak_koltuk = rs.getInt("ucak_koltuk");
-                String firma_ad = rs.getString("firma_ad");
-                ucaklar.add(new Ucak(ucak_id, ucak_ad, ucak_koltuk, firma_ad));
+                String company_name = rs.getString("company_name");
+                ucaklar.add(new Ucak(ucak_id, ucak_ad, ucak_koltuk, company_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -68,21 +68,21 @@ public class UcakDAO {
         return silinenSatir;
     }
     
-    public List<Company> firma() {
+    public List<Company> company() {
 
-        List<Company> firma = new ArrayList<> ();
+        List<Company> company = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int firma_id = rs.getInt("firma_id");
-                String firma_ad = rs.getString("firma_ad");               
-                firma.add(new Company(firma_id, firma_ad));
+                int company_id = rs.getInt("company_id");
+                String company_name = rs.getString("company_name");
+                company.add(new Company(company_id, company_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return firma;
+        return company;
     }
     
     public void ucakekle(Ucak ucak) throws SQLException {  
@@ -120,8 +120,8 @@ public class UcakDAO {
             while (rs.next()) {
                 String ucak_ad = rs.getString("ucak_ad");
                 int ucak_koltuk = rs.getInt("ucak_koltuk");
-                int firma_id = rs.getInt("firma_id");
-                ucak = new Ucak(id, ucak_ad, ucak_koltuk, firma_id);
+                int company_id = rs.getInt("company_id");
+                ucak = new Ucak(id, ucak_ad, ucak_koltuk, company_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
