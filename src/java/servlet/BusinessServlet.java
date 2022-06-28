@@ -67,10 +67,10 @@ public class BusinessServlet extends HttpServlet {
     private void firmaliste(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             List<Firma> firmaliste = firmaDAO.firmalistele();
             request.setAttribute("firmaliste", firmaliste);
@@ -82,10 +82,10 @@ public class BusinessServlet extends HttpServlet {
     private void firmaekle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             RequestDispatcher dispatcher = request.getRequestDispatcher("firmaekle.jsp");      
         dispatcher.forward(request, response);
@@ -95,10 +95,10 @@ public class BusinessServlet extends HttpServlet {
     private void gosterfirmaekle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             String firma_logo = null;
             String firma_ad = null;
@@ -149,10 +149,10 @@ public class BusinessServlet extends HttpServlet {
     private void firmaguncelle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             Firma firma = firmaDAO.firmasec(id);
@@ -166,10 +166,10 @@ public class BusinessServlet extends HttpServlet {
     private void gosterfirmaguncelle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             String logo = null;
             String firma_logo = null;
@@ -231,10 +231,10 @@ public class BusinessServlet extends HttpServlet {
     private void firmasil(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int firma_id = Integer.parseInt(request.getParameter("id"));
             String firma_logo = request.getParameter("logo");

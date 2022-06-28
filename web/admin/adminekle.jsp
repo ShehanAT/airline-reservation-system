@@ -10,20 +10,20 @@
             <div class="card-body">
                 <form class="form" action="gosteradminekle" method="post" autocomplete="off">
                     <div class="form-group">
-                        <label for="kullanici_ad">Ad</label>
-                        <input type="text" class="form-control" id="kullanici_ad" name="kullanici_ad" placeholder="Ad" required>
+                        <label for="user_ad">Ad</label>
+                        <input type="text" class="form-control" id="user_ad" name="user_ad" placeholder="Ad" required>
                     </div>
                     <div class="form-group">
-                        <label for="kullanici_soyad">Soyad</label>
-                        <input type="text" class="form-control" id="kullanici_soyad" name="kullanici_soyad" placeholder="Soyad"  required>
+                        <label for="user_soyad">Soyad</label>
+                        <input type="text" class="form-control" id="user_soyad" name="user_soyad" placeholder="Soyad"  required>
                     </div>
                     <div class="form-group">
-                        <label for="kullanici_email">Email</label>
-                        <input type="text" class="form-control" id="kullanici_email" name="kullanici_email" placeholder="Email" required>
+                        <label for="user_email">Email</label>
+                        <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <label for="kullanici_sifre">Şifre</label>
-                        <input type="password" class="form-control" id="kullanici_sifre" name="kullanici_sifre" placeholder="Şifre" required>
+                        <label for="user_sifre">Şifre</label>
+                        <input type="password" class="form-control" id="user_sifre" name="user_sifre" placeholder="Şifre" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Ekle</button>

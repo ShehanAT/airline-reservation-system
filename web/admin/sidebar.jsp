@@ -95,7 +95,7 @@
             KULLANICI
         </div>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kullanici" aria-expanded="true" aria-controls="kullanici">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="kullanici">
                 <i class="fas fa-fw fa-users-cog"></i>
                 <span>Kullanıcı İşlemleri</span>
             </a>

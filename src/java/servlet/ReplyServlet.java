@@ -65,10 +65,10 @@ public class ReplyServlet extends HttpServlet {
     private void cevapliste(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             List<Cevap> cevapliste = cevapDAO.cevaplistele();
             request.setAttribute("cevapliste", cevapliste);
@@ -80,10 +80,10 @@ public class ReplyServlet extends HttpServlet {
     private void cevapincele(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int cevap_id = Integer.parseInt(request.getParameter("id"));
             Cevap cevap = cevapDAO.cevapincele(cevap_id);
@@ -96,10 +96,10 @@ public class ReplyServlet extends HttpServlet {
     private void cevapsil(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int cevap_id = Integer.parseInt(request.getParameter("id"));
             cevapDAO.cevapsil(cevap_id);
@@ -110,10 +110,10 @@ public class ReplyServlet extends HttpServlet {
     private void mesajcevapla(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             mesajDAO.mesajokunma(id);
@@ -127,10 +127,10 @@ public class ReplyServlet extends HttpServlet {
     private void gostermesajcevapla(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession sessionn = request.getSession();
-        if ((Integer) sessionn.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) sessionn.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) sessionn.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) sessionn.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int mesaj_id = Integer.parseInt(request.getParameter("mesaj_id"));
             String mesaj_email = request.getParameter("mesaj_email");

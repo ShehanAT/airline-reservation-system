@@ -17,18 +17,18 @@ public class KullaniciDAO {
     private final String jdbcPassword = "123456";    
     
     private static final String KULLANICI_INSERT = "INSERT INTO kullanicilar" +
-            "  (kullanici_ad, kullanici_soyad, kullanici_email, kullanici_sifre, kullanici_yetki) VALUES " +
+            "  (user_ad, user_soyad, user_email, user_sifre, user_authorization) VALUES " +
         " (?, ?, ?, ?,"+1+");";
-    private static final String KULLANICI_SELECT_ID = "select * from kullanicilar where kullanici_id=?;";
-    private static final String KULLANICI_DELETE = "delete from kullanicilar where kullanici_id = ?;";
-    private static final String KULLANICI_SELECT_EMAIL = "select * from kullanicilar where kullanici_email = ?;";
+    private static final String KULLANICI_SELECT_ID = "select * from kullanicilar where user_id=?;";
+    private static final String KULLANICI_DELETE = "delete from kullanicilar where user_id = ?;";
+    private static final String KULLANICI_SELECT_EMAIL = "select * from kullanicilar where user_email = ?;";
     private static final String KULLANICI_SELECT_ALL = "select * from kullanicilar;";
-    private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from kullanicilar where kullanici_email = ? and kullanici_sifre = ?;";
-    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO kullanicilar (kullanici_ad, kullanici_soyad, kullanici_email, kullanici_sifre, kullanici_yetki) VALUES (?,?,?,?,"+2+");";
-    private static final String KULLANICI_UPDATE = "update kullanicilar set kullanici_ad = ?, kullanici_soyad = ?, kullanici_email = ?, kullanici_sifre = ? where kullanici_id = ?;";
-    private static final String PROFIL_UPDATE = "update kullanicilar set kullanici_ad = ?, kullanici_soyad = ?, kullanici_email = ? where kullanici_id = ?;";
-    private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from kullanicilar where kullanici_email = ? and kullanici_sifre = ? and kullanici_yetki=2;";
-    private static final String SIFRE_KONTROL_SELECT = "select * from kullanicilar where kullanici_id=? and kullanici_sifre=?;";
+    private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_sifre = ?;";
+    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO kullanicilar (user_ad, user_soyad, user_email, user_sifre, user_authorization) VALUES (?,?,?,?,"+2+");";
+    private static final String KULLANICI_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ?, user_sifre = ? where user_id = ?;";
+    private static final String PROFIL_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ? where user_id = ?;";
+    private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_sifre = ? and user_authorization=2;";
+    private static final String SIFRE_KONTROL_SELECT = "select * from kullanicilar where user_id=? and user_sifre=?;";
     private static final String SIFRE_UPDATE = "update kullanicilar set kullanici_sifre = ? where kullanici_id = ?;";
     private static final String HESAP_DELETE = "delete from kullanicilar where kullanici_id = ?;";
     public KullaniciDAO() {}
@@ -58,8 +58,8 @@ public class KullaniciDAO {
                 String kullanici_ad = rs.getString("kullanici_ad");
                 String kullanici_soyad = rs.getString("kullanici_soyad");
                 String kullanici_email = rs.getString("kullanici_email");
-                int kullanici_yetki = rs.getInt("kullanici_yetki");
-                uyeler.add(new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, kullanici_yetki));
+                int user_authorization = rs.getInt("user_authorization");
+                uyeler.add(new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, user_authorization));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -281,8 +281,8 @@ public class KullaniciDAO {
                 int kullanici_id = rs.getInt("kullanici_id");
                 String kullanici_ad = rs.getString("kullanici_ad");
                 String kullanici_soyad = rs.getString("kullanici_soyad");
-                int kullanici_yetki = rs.getInt("kullanici_yetki");
-                kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, kullanici_yetki);
+                int user_authorization = rs.getInt("user_authorization");
+                kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, user_authorization);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -306,8 +306,8 @@ public class KullaniciDAO {
                 int kullanici_id = rs.getInt("kullanici_id");
                 String kullanici_ad = rs.getString("kullanici_ad");
                 String kullanici_soyad = rs.getString("kullanici_soyad");
-                int kullanici_yetki = rs.getInt("kullanici_yetki");
-                kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, admin_email, kullanici_yetki);
+                int user_authorization = rs.getInt("user_authorization");
+                kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, admin_email, user_authorization);
             }
         } catch (SQLException e) {
             printSQLException(e);

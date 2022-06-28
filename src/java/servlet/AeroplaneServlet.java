@@ -64,10 +64,10 @@ public class AeroplaneServlet extends HttpServlet {
     private void ucakliste(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             List<Ucak> ucakliste = ucakDAO.ucaklistele();
             request.setAttribute("ucakliste", ucakliste);
@@ -79,10 +79,10 @@ public class AeroplaneServlet extends HttpServlet {
     private void ucakekle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             List<Firma> firma = ucakDAO.firma();
             request.setAttribute("firma", firma);
@@ -94,10 +94,10 @@ public class AeroplaneServlet extends HttpServlet {
     private void gosterucakekle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int firma_id = Integer.parseInt(request.getParameter("firma_id"));
             String ucak_ad = new String((request.getParameter("ucak_ad")).getBytes("ISO-8859-1"), "UTF-8");
@@ -111,10 +111,10 @@ public class AeroplaneServlet extends HttpServlet {
     private void ucaksil(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int ucak_id = Integer.parseInt(request.getParameter("id"));
             ucakDAO.ucaksil(ucak_id);
@@ -125,10 +125,10 @@ public class AeroplaneServlet extends HttpServlet {
     private void ucakguncelle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Ucak ucak = ucakDAO.ucaksec(id);

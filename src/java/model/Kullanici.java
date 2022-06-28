@@ -7,7 +7,7 @@ public class Kullanici {
     protected String kullanici_soyad;
     protected String kullanici_email;
     protected String kullanici_sifre;
-    protected int kullanici_yetki;
+    protected int user_authorization;
 
     public Kullanici() {
     }
@@ -30,36 +30,36 @@ public class Kullanici {
         this.kullanici_sifre = kullanici_sifre;
     }
 
-    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, int kullanici_yetki) {
+    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, int user_authorization) {
         this.kullanici_ad = kullanici_ad;
         this.kullanici_soyad = kullanici_soyad;
         this.kullanici_email = kullanici_email;
-        this.kullanici_yetki = kullanici_yetki;
+        this.user_authorization = user_authorization;
     }
 
-    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre, int kullanici_yetki) {
+    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre, int user_authorization) {
         this.kullanici_ad = kullanici_ad;
         this.kullanici_soyad = kullanici_soyad;
         this.kullanici_email = kullanici_email;
         this.kullanici_sifre = kullanici_sifre;
-        this.kullanici_yetki = kullanici_yetki;
+        this.user_authorization = user_authorization;
     }
 
-    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, int kullanici_yetki) {
+    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, int user_authorization) {
         this.kullanici_id = kullanici_id;
         this.kullanici_ad = kullanici_ad;
         this.kullanici_soyad = kullanici_soyad;
         this.kullanici_email = kullanici_email;
-        this.kullanici_yetki = kullanici_yetki;
+        this.user_authorization = user_authorization;
     }
 
-    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre, int kullanici_yetki) {
+    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre, int user_authorization) {
         this.kullanici_id = kullanici_id;
         this.kullanici_ad = kullanici_ad;
         this.kullanici_soyad = kullanici_soyad;
         this.kullanici_email = kullanici_email;
         this.kullanici_sifre = kullanici_sifre;
-        this.kullanici_yetki = kullanici_yetki;
+        this.user_authorization = user_authorization;
     }
 
     public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre) {
@@ -117,11 +117,11 @@ public class Kullanici {
     }
 
     public int getKullanici_yetki() {
-        return kullanici_yetki;
+        return user_authorization;
     }
 
-    public void setKullanici_yetki(int kullanici_yetki) {
-        this.kullanici_yetki = kullanici_yetki;
+    public void setKullanici_yetki(int user_authorization) {
+        this.user_authorization = user_authorization;
     }
     
     

@@ -58,10 +58,10 @@ public class MessageServlet extends HttpServlet {
     private void mesajliste(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             List<Mesaj> mesajliste = mesajDAO.mesajlistele();
             request.setAttribute("mesajliste", mesajliste);
@@ -73,10 +73,10 @@ public class MessageServlet extends HttpServlet {
     private void mesajsil(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int mesaj_id = Integer.parseInt(request.getParameter("id"));
             mesajDAO.mesajsil(mesaj_id);

@@ -90,21 +90,21 @@ CREATE TABLE `havaalani_ulke` (
 --
 
 CREATE TABLE `kullanicilar` (
-  `kullanici_id` int(11) NOT NULL,
-  `kullanici_ad` varchar(100) DEFAULT NULL,
-  `kullanici_soyad` varchar(100) DEFAULT NULL,
-  `kullanici_email` varchar(100) DEFAULT NULL,
-  `kullanici_sifre` varchar(100) DEFAULT NULL,
-  `kullanici_yetki` int(11) DEFAULT 1
+  `user_id` int(11) NOT NULL,
+  `user_ad` varchar(100) DEFAULT NULL,
+  `user_soyad` varchar(100) DEFAULT NULL,
+  `user_email` varchar(100) DEFAULT NULL,
+  `user_sifre` varchar(100) DEFAULT NULL,
+  `user_authorization` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `kullanicilar`
 --
 
-INSERT INTO `kullanicilar` (`kullanici_id`, `kullanici_ad`, `kullanici_soyad`, `kullanici_email`, `kullanici_sifre`, `kullanici_yetki`) VALUES
+INSERT INTO `kullanicilar` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `user_sifre`, `user_authorization`) VALUES
 (3, 'Kullanıcı', 'Admin', 'admin@hawkeye.com', '123456', 2),
-(4, 'Kullanıcı', 'Üye', 'kullanici@hawkeye.com', '123456', 1);
+(4, 'Kullanıcı', 'Üye', 'user@hawkeye.com', '123456', 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +133,7 @@ CREATE TABLE `rezervasyon` (
   `rezervasyon_id` int(11) NOT NULL,
   `rezervasyon_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
   `ucus_id` int(11) NOT NULL,
-  `kullanici_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `pnr_no` varchar(11) NOT NULL DEFAULT '45645',
   `yolcu_ad` varchar(500) NOT NULL,
   `yolcu_soyad` varchar(500) NOT NULL,
@@ -216,7 +216,7 @@ ALTER TABLE `havaalani_ulke`
 -- Tablo için indeksler `kullanicilar`
 --
 ALTER TABLE `kullanicilar`
-  ADD PRIMARY KEY (`kullanici_id`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Tablo için indeksler `mesaj`

@@ -1,7 +1,7 @@
 <%@ include file = "header.jsp" %>
 <section class="text-center mb-5">
     <form class="form-signin" action="gostergiris" method="post">
-        <a href="ucakbileti">
+        <a href="flight_ticket">
             <img class="mt-3 mb-5" src="assets/images/logo.png" alt="" width="300" height="50">
         </a>
         <h1 class="h3 mb-3 font-weight-600">Tekrar Hoş Geldiniz</h1>

@@ -78,10 +78,10 @@ public class Airport_CityServlet extends HttpServlet {
     private void addCity(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("addCity.jsp");
             dispatcher.forward(request, response);
@@ -91,12 +91,12 @@ public class Airport_CityServlet extends HttpServlet {
     private void showAddCity(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
-            String airportCityName = new String((request.getParameter("airportCit_ad")).getBytes("ISO-8859-1"), "UTF-8");
+            String airportCityName = new String((request.getParameter("airportCity_name")).getBytes("ISO-8859-1"), "UTF-8");
             AirportCity newCity = new AirportCity(airportCityName);
             airportCityDAO.addCity(newCity);
             response.sendRedirect("cityList");
@@ -106,10 +106,10 @@ public class Airport_CityServlet extends HttpServlet {
     private void sehirsil(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int airportCity_id = Integer.parseInt(request.getParameter("id"));
             airportCityDAO.sehirsil(airportCity_id);
@@ -120,10 +120,10 @@ public class Airport_CityServlet extends HttpServlet {
     private void updateCity(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             AirportCity sehir = airportCityDAO.sehirsec(id);
@@ -136,10 +136,10 @@ public class Airport_CityServlet extends HttpServlet {
     private void showCityUpdate(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));
             String airportCityName = new String((request.getParameter("airportCityName")).getBytes("ISO-8859-1"), "UTF-8");

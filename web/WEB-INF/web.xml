@@ -8,7 +8,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>ucakbileti</welcome-file>
+        <welcome-file>flight_ticket</welcome-file>
     </welcome-file-list>
     
     <jsp-config>

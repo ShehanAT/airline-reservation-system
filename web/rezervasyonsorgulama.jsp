@@ -10,11 +10,11 @@
                         <form action="rezervasyonsorgulama" method="post" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
                             <div class="search_item">
                                 <div>PNR Numaranız</div>
-                                <input type="text" name="pnr_no" id="pnr_no" class="search_input" value="<c:out value='${rezervasyongiris.pnr_no}' />" required="required">
+                                <input type="text" name="pnr_no" id="pnr_no" class="search_input" value="<c:out value='${reservationLogin.pnr_no}' />" required="required">
                             </div>
                             <div class="search_item">
                                 <div>Soyadınız</div>
-                                <input type="text" name="yolcu_soyad" id="yolcu_soyad" class="search_input" value="<c:out value='${rezervasyongiris.yolcu_soyad}' />" required="required">
+                                <input type="text" name="yolcu_soyad" id="yolcu_soyad" class="search_input" value="<c:out value='${reservationLogin.yolcu_soyad}' />" required="required">
                             </div>
                             <button class="search_button">Yeniden Sorgula</button>
                         </form>

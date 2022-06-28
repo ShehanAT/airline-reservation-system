@@ -2,7 +2,7 @@
 
 <section class="text-center">
     <form class="form-signin" action="gosteruyeol" method="POST" name="UyeOl" onsubmit="return UyeolKontrol()">
-        <a href="ucakbileti">
+        <a href="flight_ticket">
             <img class="mt-3 mb-5" src="assets/images/logo.png" alt="" width="300" height="50">
         </a>
         <h1 class="h3 mb-3 font-weight-600">Kayıt Olun</h1>
@@ -36,7 +36,7 @@
         <button class="btn btn-lg btn-warning btn-block shadow-none" type="submit">Kayıt Ol</button>
 
         <div class="mt-3 mb-3">
-            <span>Zaten üye misin ? </span><a href="giris" class="text-decoration-none" style="color: #FF7F00">Giriş Yap</a>
+            <span>Zaten üye misin ? </span><a href="login" class="text-decoration-none" style="color: #FF7F00">Giriş Yap</a>
         </div>
     </form>
 </section>

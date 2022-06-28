@@ -10,22 +10,22 @@
             </div>
             <div class="card-body">
                 <form class="form" action="gosteradminguncelle" method="post" autocomplete="off">
-                    <input type="hidden" name="kullanici_id" id="kullanici_id" value="<c:out value='${kullanici.kullanici_id}' />" />
+                    <input type="hidden" name="user_id" id="user_id" value="<c:out value='${user.user_id}' />" />
                     <div class="form-group">
-                        <label for="kullanici_ad">Ad</label>
-                        <input type="text" class="form-control" id="kullanici_ad" name="kullanici_ad" placeholder="Ad" value="<c:out value='${kullanici.kullanici_ad}' />" required>
+                        <label for="user_ad">Ad</label>
+                        <input type="text" class="form-control" id="user_ad" name="user_ad" placeholder="Ad" value="<c:out value='${user.user_ad}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="kullanici_soyad">Soyad</label>
-                        <input type="text" class="form-control" id="kullanici_soyad" name="kullanici_soyad" placeholder="Soyad" value="<c:out value='${kullanici.kullanici_soyad}' />" required>
+                        <label for="user_soyad">Soyad</label>
+                        <input type="text" class="form-control" id="user_soyad" name="user_soyad" placeholder="Soyad" value="<c:out value='${user.user_soyad}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="kullanici_email">Email</label>
-                        <input type="text" class="form-control" id="kullanici_email" name="kullanici_email" placeholder="Email" value="<c:out value='${kullanici.kullanici_email}' />" required>
+                        <label for="user_email">Email</label>
+                        <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Email" value="<c:out value='${user.user_email}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="kullanici_sifre">Şifre</label>
-                        <input type="password" class="form-control" id="kullanici_sifre" name="kullanici_sifre" placeholder="Şifre" value="<c:out value='${kullanici.kullanici_sifre}' />" required>
+                        <label for="user_sifre">Şifre</label>
+                        <input type="password" class="form-control" id="user_sifre" name="user_sifre" placeholder="Şifre" value="<c:out value='${user.user_sifre}' />" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Güncelle</button>

@@ -40,14 +40,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="kullanici" items="${kullaniciliste}">
+                        <c:forEach var="user" items="${userliste}">
                             <tr>
-                                <td><c:out value="${kullanici.kullanici_id}" /></td>
+                                <td><c:out value="${user.kullanici_id}" /></td>
                                 <td><c:out value="${kullanici.kullanici_ad}" /></td>
                                 <td><c:out value="${kullanici.kullanici_soyad}" /></td>
                                 <td><c:out value="${kullanici.kullanici_email}" /></td>
                                 <c:choose>
-                                    <c:when test= "${kullanici.kullanici_yetki == 1}">
+                                    <c:when test= "${kullanici.user_authorization == 1}">
                                         <td>Üye</td>
                                     </c:when>
                                     <c:otherwise>
@@ -55,7 +55,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <td>
-                                    <c:if test="${kullanici.kullanici_yetki > 1}">
+                                    <c:if test="${kullanici.user_authorization > 1}">
                                         <a href="adminguncelle?id=<c:out value='${kullanici.kullanici_id}' />">
                                             <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                         </a>

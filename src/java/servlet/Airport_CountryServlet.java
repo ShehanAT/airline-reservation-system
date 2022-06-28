@@ -62,10 +62,10 @@ public class Airport_CountryServlet extends HttpServlet {
     private void ulkeliste(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             List<Havaalani_ulke> ulkeliste = havaalani_ulkeDAO.ulkelistele();
             request.setAttribute("ulkeliste", ulkeliste);
@@ -77,10 +77,10 @@ public class Airport_CountryServlet extends HttpServlet {
     private void ulkeekle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("ulkeekle.jsp");
             dispatcher.forward(request, response);
@@ -90,10 +90,10 @@ public class Airport_CountryServlet extends HttpServlet {
     private void gosterulkeekle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             String havaalani_ulke_ad = new String((request.getParameter("havaalani_ulke_ad")).getBytes("ISO-8859-1"), "UTF-8");
             Havaalani_ulke yeniulke = new Havaalani_ulke(havaalani_ulke_ad);
@@ -105,10 +105,10 @@ public class Airport_CountryServlet extends HttpServlet {
     private void ulkeguncelle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Havaalani_ulke ulke = havaalani_ulkeDAO.ulkesec(id);
@@ -121,10 +121,10 @@ public class Airport_CountryServlet extends HttpServlet {
     private void gosterulkeguncelle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int havaalani_ulke_id = Integer.parseInt(request.getParameter("havaalani_ulke_id"));
             String havaalani_ulke_ad = new String((request.getParameter("havaalani_ulke_ad")).getBytes("ISO-8859-1"), "UTF-8");
@@ -137,10 +137,10 @@ public class Airport_CountryServlet extends HttpServlet {
     private void ulkesil(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        } else if ((Integer) session.getAttribute("kullanici_yetki") != 2) {
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        } else if ((Integer) session.getAttribute("user_authorization") != 2) {
+            response.sendRedirect("../flight_ticket");
         } else {
             int havaalani_ulke_id = Integer.parseInt(request.getParameter("id"));
             havaalani_ulkeDAO.ulkesil(havaalani_ulke_id);

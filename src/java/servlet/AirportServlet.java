@@ -62,10 +62,10 @@ public class AirportServlet extends HttpServlet{
     private void havaalaniliste(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             List<Havaalani> havaalaniliste = havaalaniDAO.havaalaniliste();
             request.setAttribute("havaalaniliste", havaalaniliste);
@@ -77,10 +77,10 @@ public class AirportServlet extends HttpServlet{
     private void havaalaniekle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             List<AirportCity> havaalanisehir = havaalaniDAO.havaalanisehir();
             request.setAttribute("havaalanisehir", havaalanisehir);
@@ -94,10 +94,10 @@ public class AirportServlet extends HttpServlet{
     private void gosterhavaalaniekle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int havaalani_ulke_id = Integer.parseInt(request.getParameter("havaalani_ulke_id"));
             int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));
@@ -112,10 +112,10 @@ public class AirportServlet extends HttpServlet{
     private void havaalanisil(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int havaalani_id = Integer.parseInt(request.getParameter("id"));
             havaalaniDAO.havaalanisil(havaalani_id);
@@ -126,10 +126,10 @@ public class AirportServlet extends HttpServlet{
     private void havaalaniguncelle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             Havaalani havaalani = havaalaniDAO.havaalanisec(id);
@@ -146,10 +146,10 @@ public class AirportServlet extends HttpServlet{
     private void gosterhavaalaniguncelle(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-            response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-            response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+            response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+            response.sendRedirect("../flight_ticket");
         }else{
             int havaalani_id = Integer.parseInt(request.getParameter("havaalani_id"));
             int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));

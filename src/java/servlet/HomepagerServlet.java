@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import model.Havaalani;
 import model.Rezervasyon;
 
-@WebServlet(urlPatterns = {"/ucakbileti", "/admin/panel"})
+@WebServlet(urlPatterns = {"/flight_ticket", "/admin/panel"})
 
 public class HomepagerServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
@@ -38,8 +38,8 @@ public class HomepagerServlet extends HttpServlet{
        
         try {
             switch (action) {              
-                case "/ucakbileti":
-                    ucakbileti(request, response);
+                case "/flight_ticket":
+                    flight_ticket(request, response);
                     break; 
                 case "/admin/panel":
                     panel(request, response);
@@ -50,7 +50,7 @@ public class HomepagerServlet extends HttpServlet{
         }
     }
 
-    private void ucakbileti(HttpServletRequest request, HttpServletResponse response)
+    private void flight_ticket(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         List<Havaalani> havaalaniliste = havaalaniDAO.havaalaniliste();
         request.setAttribute("havaalaniliste", havaalaniliste);
@@ -61,10 +61,10 @@ public class HomepagerServlet extends HttpServlet{
     private void panel(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
-        if ((Integer) session.getAttribute("kullanici_yetki") == null) {
-                response.sendRedirect("giris");
-        }else if((Integer) session.getAttribute("kullanici_yetki") != 2){
-                response.sendRedirect("../ucakbileti");
+        if ((Integer) session.getAttribute("user_authorization") == null) {
+                response.sendRedirect("login");
+        }else if((Integer) session.getAttribute("user_authorization") != 2){
+                response.sendRedirect("../flight_ticket");
         }else{
             List<Rezervasyon> rezervasyon = rezervasyonDAO.rezervasyonsayisi();
             request.setAttribute("rezervasyon", rezervasyon);
