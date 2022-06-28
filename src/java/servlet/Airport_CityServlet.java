@@ -103,7 +103,7 @@ public class Airport_CityServlet extends HttpServlet {
         }
     }
 
-    private void sehirsil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteCity(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -111,8 +111,8 @@ public class Airport_CityServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int airportCity_id = Integer.parseInt(request.getParameter("id"));
-            airportCityDAO.sehirsil(airportCity_id);
+            int airportCity_id = Integer.parseInt(request.getParameter( "id"));
+            airportCityDAO.deleteCity(airportCity_id);
             response.sendRedirect("cityList");
         }
     }
@@ -126,9 +126,9 @@ public class Airport_CityServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            AirportCity sehir = airportCityDAO.sehirsec(id);
+            AirportCity city = airportCityDAO.chooseCity(id);
             RequestDispatcher dispatcher = request.getRequestDispatcher("updateCity.jsp");
-            request.setAttribute("sehir", sehir);
+            request.setAttribute("city", city);
             dispatcher.forward(request, response);
         }
     }
@@ -143,8 +143,8 @@ public class Airport_CityServlet extends HttpServlet {
         } else {
             int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));
             String airportCityName = new String((request.getParameter("airportCityName")).getBytes("ISO-8859-1"), "UTF-8");
-            AirportCity sehir = new AirportCity(airportCity_id, airportCityName);
-            airportCityDAO.updateCity(sehir);
+            AirportCity city = new AirportCity(airportCity_id, airportCityName);
+            airportCityDAO.updateCity(city);
             response.sendRedirect("cityList");
         }
     }

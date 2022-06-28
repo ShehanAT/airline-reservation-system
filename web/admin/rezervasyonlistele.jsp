@@ -55,12 +55,12 @@
                                     </div>
                                     <div class="modal-body">
                                         <p style="color:#FF7F00">Uçuş Bilgileri</p>
-                                        <p><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value="${rezervasyon.firma_logo}" />" style="width: 1.5em"> <c:out value="${rezervasyon.firma_ad}" /> - <c:out value="${rezervasyon.ucak_ad}" /></p>
+                                        <p><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value="${rezervasyon.company_logo}" />" style="width: 1.5em"> <c:out value="${rezervasyon.company_name}" /> - <c:out value="${rezervasyon.ucak_ad}" /></p>
                                             <p><b>PNR No : </b><c:out value="${rezervasyon.pnr_no}" /></p>
-                                            <p><b>Uçuş Tarihi : </b><c:out value="${rezervasyon.ucus_tarih}" /></p>
+                                            <p><b>Uçuş Tarihi : </b><c:out value="${rezervasyon.flight_date}" /></p>
                                             <p><b>Nereden : </b><c:out value="${rezervasyon.kalkis_ad}" /> - <c:out value="${rezervasyon.kalkis_sehir}" /> - <c:out value="${rezervasyon.kalkis_kod}" /></p>
                                             <p><b>Nereye : </b><c:out value="${rezervasyon.varis_ad}" /> - <c:out value="${rezervasyon.varis_sehir}" /> - <c:out value="${rezervasyon.varis_kod}" /></p>
-                                            <p><b>Kalkış Saati : </b><c:out value="${rezervasyon.ucus_saat}" /></p>
+                                            <p><b>Kalkış Saati : </b><c:out value="${rezervasyon.flight_hour}" /></p>
                                             <p><b>Varış Saati : </b><c:out value="${rezervasyon.varis_saat}" /></p>
                                             <p><b>Uçuş Saati : </b><c:out value="${rezervasyon.ucus_s}" /> sa <c:out value="${rezervasyon.ucus_d}" />  dk</p>
                                             <p><b>Koltuk No : </b><c:out value="${rezervasyon.koltuk_no}" /></p>

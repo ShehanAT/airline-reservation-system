@@ -1,35 +1,35 @@
 package model;
 
-public class Havaalani_ulke {
-    protected int havaalani_ulke_id;
-    protected String havaalani_ulke_ad;
+public class Airport_country {
+    protected int airport_country_id;
+    protected String airport_country_name;
 
-    public Havaalani_ulke() {
+    public Airport_country() {
     }
     
-    public Havaalani_ulke(String havaalani_ulke_ad) {
-        this.havaalani_ulke_ad = havaalani_ulke_ad;
+    public Airport_country(String airport_country_name) {
+        this.airport_country_name = airport_country_name;
     }
     
-    public Havaalani_ulke(int havaalani_ulke_id, String havaalani_ulke_ad) {
-        this.havaalani_ulke_id = havaalani_ulke_id;
-        this.havaalani_ulke_ad = havaalani_ulke_ad;
+    public Airport_country(int airport_country_id, String airport_country_name) {
+        this.airport_country_id = airport_country_id;
+        this.airport_country_name = airport_country_name;
     }
 
-    public int getHavaalani_ulke_id() {
-        return havaalani_ulke_id;
+    public int getAirport_country_id() {
+        return airport_country_id;
     }
 
-    public String getHavaalani_ulke_ad() {
-        return havaalani_ulke_ad;
+    public String getAirport_country_name() {
+        return airport_country_name;
     }
 
-    public void setHavaalani_ulke_id(int havaalani_ulke_id) {
-        this.havaalani_ulke_id = havaalani_ulke_id;
+    public void setAirport_country_id(int airport_country_id) {
+        this.airport_country_id = airport_country_id;
     }
 
-    public void setHavaalani_ulke_ad(String havaalani_ulke_ad) {
-        this.havaalani_ulke_ad = havaalani_ulke_ad;
+    public void setAirport_country_ad(String airport_country_name) {
+        this.airport_country_name = airport_country_name;
     }
     
 }

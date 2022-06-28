@@ -42,17 +42,17 @@
                     <tbody>
                         <c:forEach var="gecmisucusliste" items="${gecmisucusliste}">
                             <tr>
-                                <td><c:out value="${gecmisucusliste.ucus_id}" /></td>
+                                <td><c:out value="${gecmisucusliste.flight_id}" /></td>
                                 <td><c:out value="${gecmisucusliste.ucus_kalkis}" /></td>
                                 <td><c:out value="${gecmisucusliste.ucus_varis}" /></td>
-                                <td><c:out value="${gecmisucusliste.ucus_tarih}" /></td>
-                                <td><c:out value="${gecmisucusliste.ucus_saat}" /></td>
-                                <td><c:out value="${gecmisucusliste.ucus_sure}" /></td>
+                                <td><c:out value="${gecmisucusliste.flight_date}" /></td>
+                                <td><c:out value="${gecmisucusliste.flight_hour}" /></td>
+                                <td><c:out value="${gecmisucusliste.flight_time}" /></td>
                                 <td><c:out value="${gecmisucusliste.firma_ad}" /></td>
                                 <td><c:out value="${gecmisucusliste.ucak_ad}" /></td>
-                                <td><c:out value="${gecmisucusliste.ucus_ucret}" /></td>
+                                <td><c:out value="${gecmisucusliste.flight_fare}" /></td>
                                 <td>
-                                    <a href="ucussil?id=<c:out value='${gecmisucusliste.ucus_id}' />">
+                                    <a href="ucussil?id=<c:out value='${gecmisucusliste.flight_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <span class="m-0 font-weight-bold text-white">Havaalanı Listesi</span>
-            <a href="havaalaniekle" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Havaalanı Ekle</a>
+            <a href="addAirport" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Havaalanı Ekle</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,18 +32,18 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="havaalani" items="${havaalaniliste}">
+                        <c:forEach var="havaalani" items="${airportList}">
                             <tr>
-                                <td><c:out value="${havaalani.havaalani_id}" /></td>
-                                <td><c:out value="${havaalani.havaalani_ulke_ad}" /></td>
-                                <td><c:out value="${havaalani.havaalani_sehir_ad}" /></td>
-                                <td><c:out value="${havaalani.havaalani_ad}" /></td>
-                                <td><c:out value="${havaalani.havaalani_kod}" /></td>
+                                <td><c:out value="${airport.airport_id}" /></td>
+                                <td><c:out value="${airport.airport_country_name}" /></td>
+                                <td><c:out value="${airport.airport_city_name}" /></td>
+                                <td><c:out value="${airport.airport_name}" /></td>
+                                <td><c:out value="${airport.airport_code}" /></td>
                                 <td>
-                                    <a href="havaalaniguncelle?id=<c:out value='${havaalani.havaalani_id}' />">
+                                    <a href="airportUpdate?id=<c:out value='${airport.airport_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                     </a>
-                                    <a href="havaalanisil?id=<c:out value='${havaalani.havaalani_id}' />">
+                                    <a href="deleteAirport?id=<c:out value='${airport.airport_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

@@ -1,6 +1,6 @@
 package servlet;
 
-import dao.HavaalaniDAO;
+import dao.AirportDAO;
 import dao.RezervasyonDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,18 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Havaalani;
+import model.Airport;
 import model.Rezervasyon;
 
 @WebServlet(urlPatterns = {"/flight_ticket", "/admin/panel"})
 
 public class HomepagerServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
-    private HavaalaniDAO havaalaniDAO;
+    private AirportDAO airportDAO;
     private RezervasyonDAO rezervasyonDAO;
     
     public void init() {
-        havaalaniDAO = new HavaalaniDAO();
+        airportDAO = new AirportDAO();
         rezervasyonDAO = new RezervasyonDAO();
     }
 
@@ -52,8 +52,8 @@ public class HomepagerServlet extends HttpServlet{
 
     private void flight_ticket(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
-        List<Havaalani> havaalaniliste = havaalaniDAO.havaalaniliste();
-        request.setAttribute("havaalaniliste", havaalaniliste);
+        List<Airport> airportList = airportDAO.airportList();
+        request.setAttribute("airportList", airportList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");      
         dispatcher.forward(request, response);
     }

@@ -28,13 +28,13 @@
                     <tbody>
                         <c:forEach var="sehir" items="${sehirliste}">
                             <tr>
-                                <td><c:out value="${sehir.havaalani_sehir_id}" /></td>
-                                <td><c:out value="${sehir.havaalani_sehir_ad}" /></td>
+                                <td><c:out value="${sehir.airport_city_id}" /></td>
+                                <td><c:out value="${sehir.airport_city_name}" /></td>
                                 <td>
-                                    <a href="sehirguncelle?id=<c:out value='${sehir.havaalani_sehir_id}' />">
+                                    <a href="sehirguncelle?id=<c:out value='${sehir.airport_city_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                     </a>
-                                    <a href="sehirsil?id=<c:out value='${sehir.havaalani_sehir_id}' />">
+                                    <a href="deleteCity?id=<c:out value='${sehir.airport_city_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

@@ -50,20 +50,20 @@
                     <tbody>
                         <c:forEach var="guncelucusliste" items="${guncelucusliste}">
                             <tr>
-                                <td><c:out value="${guncelucusliste.ucus_id}" /></td>
+                                <td><c:out value="${guncelucusliste.flight_id}" /></td>
                                 <td><c:out value="${guncelucusliste.ucus_kalkis}" /></td>
                                 <td><c:out value="${guncelucusliste.ucus_varis}" /></td>
-                                <td><c:out value="${guncelucusliste.ucus_tarih}" /></td>
-                                <td><c:out value="${guncelucusliste.ucus_saat}" /></td>
-                                <td><c:out value="${guncelucusliste.ucus_sure}" /></td>
+                                <td><c:out value="${guncelucusliste.flight_date}" /></td>
+                                <td><c:out value="${guncelucusliste.flight_hour}" /></td>
+                                <td><c:out value="${guncelucusliste.flight_time}" /></td>
                                 <td><c:out value="${guncelucusliste.firma_ad}" /></td>
                                 <td><c:out value="${guncelucusliste.ucak_ad}" /></td>
-                                <td><c:out value="${guncelucusliste.ucus_ucret}" /></td>
+                                <td><c:out value="${guncelucusliste.flight_fare}" /></td>
                                 <td>
-                                    <a href="ucusguncelle?id=<c:out value='${guncelucusliste.ucus_id}' />">
+                                    <a href="ucusguncelle?id=<c:out value='${guncelucusliste.flight_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                     </a>
-                                    <a href="ucussil?id=<c:out value='${guncelucusliste.ucus_id}' />">
+                                    <a href="ucussil?id=<c:out value='${guncelucusliste.flight_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

@@ -44,32 +44,32 @@ CREATE TABLE `cevap` (
 CREATE TABLE `firma` (
   `firma_id` int(11) NOT NULL,
   `firma_ad` varchar(100) NOT NULL,
-  `firma_logo` varchar(500) NOT NULL
+  `company_logo` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `havaalani`
+-- Tablo için tablo yapısı `airport`
 --
 
-CREATE TABLE `havaalani` (
-  `havaalani_id` int(11) NOT NULL,
-  `havaalani_ulke_id` int(11) NOT NULL,
-  `havaalani_sehir_id` int(11) NOT NULL,
-  `havaalani_ad` varchar(100) NOT NULL,
-  `havaalani_kod` varchar(50) NOT NULL
+CREATE TABLE `airport` (
+  `airport_id` int(11) NOT NULL,
+  `airport_country_id` int(11) NOT NULL,
+  `airport_city_id` int(11) NOT NULL,
+  `airport_name` varchar(100) NOT NULL,
+  `airport_code` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `havaalani_sehir`
+-- Tablo için tablo yapısı `airport_city`
 --
 
-CREATE TABLE `havaalani_sehir` (
-  `havaalani_sehir_id` int(11) NOT NULL,
-  `havaalani_sehir_ad` varchar(500) NOT NULL
+CREATE TABLE `airport_city` (
+  `airport_city_id` int(11) NOT NULL,
+  `airport_city_name` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,8 +79,8 @@ CREATE TABLE `havaalani_sehir` (
 --
 
 CREATE TABLE `havaalani_ulke` (
-  `havaalani_ulke_id` int(11) NOT NULL,
-  `havaalani_ulke_ad` varchar(500) CHARACTER SET utf8 NOT NULL
+  `airport_country_id` int(11) NOT NULL,
+  `airport_country_name` varchar(500) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -132,7 +132,7 @@ CREATE TABLE `mesaj` (
 CREATE TABLE `rezervasyon` (
   `rezervasyon_id` int(11) NOT NULL,
   `rezervasyon_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
-  `ucus_id` int(11) NOT NULL,
+  `flight_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `pnr_no` varchar(11) NOT NULL DEFAULT '45645',
   `yolcu_ad` varchar(500) NOT NULL,
@@ -163,19 +163,19 @@ CREATE TABLE `ucak` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `ucus`
+-- Tablo için tablo yapısı `flight`
 --
 
-CREATE TABLE `ucus` (
-  `ucus_id` int(11) NOT NULL,
-  `ucus_kalkis_id` int(11) NOT NULL,
-  `ucus_varis_id` int(11) NOT NULL,
-  `ucus_tarih` date NOT NULL,
-  `ucus_saat` time NOT NULL,
-  `ucus_sure` varchar(50) NOT NULL,
+CREATE TABLE `flight` (
+  `flight_id` int(11) NOT NULL,
+  `flight_departure_id` int(11) NOT NULL,
+  `end_heir_id` int(11) NOT NULL,
+  `flight_date` date NOT NULL,
+  `flight_hour` time NOT NULL,
+  `flight_time` varchar(50) NOT NULL,
   `firma_id` int(11) NOT NULL,
   `ucak_id` int(11) NOT NULL,
-  `ucus_ucret` decimal(6,2) NOT NULL
+  `flight_fare` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -195,22 +195,22 @@ ALTER TABLE `firma`
   ADD PRIMARY KEY (`firma_id`);
 
 --
--- Tablo için indeksler `havaalani`
+-- Tablo için indeksler `airport`
 --
 ALTER TABLE `havaalani`
-  ADD PRIMARY KEY (`havaalani_id`);
+  ADD PRIMARY KEY (`airport_id`);
 
 --
--- Tablo için indeksler `havaalani_sehir`
+-- Tablo için indeksler `airport_city`
 --
-ALTER TABLE `havaalani_sehir`
-  ADD PRIMARY KEY (`havaalani_sehir_id`);
+ALTER TABLE `airport_city`
+  ADD PRIMARY KEY (`airport_city_id`);
 
 --
 -- Tablo için indeksler `havaalani_ulke`
 --
 ALTER TABLE `havaalani_ulke`
-  ADD PRIMARY KEY (`havaalani_ulke_id`);
+  ADD PRIMARY KEY (`airport_country_id`);
 
 --
 -- Tablo için indeksler `kullanicilar`
@@ -237,10 +237,10 @@ ALTER TABLE `ucak`
   ADD PRIMARY KEY (`ucak_id`);
 
 --
--- Tablo için indeksler `ucus`
+-- Tablo için indeksler `flight`
 --
-ALTER TABLE `ucus`
-  ADD PRIMARY KEY (`ucus_id`);
+ALTER TABLE `flight`
+  ADD PRIMARY KEY (`flight_id`);
 
 --
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
@@ -262,19 +262,19 @@ ALTER TABLE `firma`
 -- Tablo için AUTO_INCREMENT değeri `havaalani`
 --
 ALTER TABLE `havaalani`
-  MODIFY `havaalani_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `airport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- Tablo için AUTO_INCREMENT değeri `havaalani_sehir`
+-- Tablo için AUTO_INCREMENT değeri `airport_city`
 --
-ALTER TABLE `havaalani_sehir`
-  MODIFY `havaalani_sehir_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+ALTER TABLE `airport_city`
+  MODIFY `airport_city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `havaalani_ulke`
 --
 ALTER TABLE `havaalani_ulke`
-  MODIFY `havaalani_ulke_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `airport_country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kullanicilar`
@@ -304,7 +304,7 @@ ALTER TABLE `ucak`
 -- Tablo için AUTO_INCREMENT değeri `ucus`
 --
 ALTER TABLE `ucus`
-  MODIFY `ucus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `flight_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,6 +1,6 @@
 package servlet;
 
-import dao.FirmaDAO;
+import dao.CompanyDAO;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Firma;
+import model.Company;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@WebServlet(urlPatterns = {"/admin/firmaliste", "/admin/firmaekle", "/admin/gosterfirmaekle", "/admin/firmasil", "/admin/firmaguncelle", "/admin/gosterfirmaguncelle"})
+@WebServlet(urlPatterns = {"/admin/companyList", "/admin/addCompany", "/admin/showAddCompany", "/admin/deleteCompany", "/admin/companyUpdate", "/admin/showCompanyUpdate"})
 
 public class BusinessServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private FirmaDAO firmaDAO;
+    private CompanyDAO companyDAO;
 
     public void init() {
-        firmaDAO = new FirmaDAO();
+        companyDAO = new CompanyDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,23 +40,23 @@ public class BusinessServlet extends HttpServlet {
        
         try {
             switch (action) {
-                case "/admin/firmaliste":
-                    firmaliste(request, response);
+                case "/admin/companyList":
+                    companyList(request, response);
                     break;
-                case "/admin/firmaekle":
-                    firmaekle(request, response);
+                case "/admin/addCompany":
+                    addCompany(request, response);
                     break;
-                case "/admin/gosterfirmaekle":
-                   gosterfirmaekle(request, response);
+                case "/admin/showAddCompany":
+                   showAddCompany(request, response);
                     break;
-                case "/admin/firmaguncelle":
-                    firmaguncelle(request, response);
+                case "/admin/companyUpdate":
+                    companyUpdate(request, response);
                     break;
-                case "/admin/gosterfirmaguncelle":
-                   gosterfirmaguncelle(request, response);
+                case "/admin/showCompanyUpdate":
+                   showCompanyUpdate(request, response);
                     break; 
-                case "/admin/firmasil":
-                   firmasil(request, response);
+                case "/admin/deleteCompany":
+                   deleteCompany(request, response);
                     break;      
             }
         } catch (SQLException ex) {
@@ -64,7 +64,7 @@ public class BusinessServlet extends HttpServlet {
         }
     }
     
-    private void firmaliste(HttpServletRequest request, HttpServletResponse response)
+    private void companyList(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -72,14 +72,14 @@ public class BusinessServlet extends HttpServlet {
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            List<Firma> firmaliste = firmaDAO.firmalistele();
-            request.setAttribute("firmaliste", firmaliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("firmalistele.jsp");
+            List<Company> companyList = companyDAO.companyList();
+            request.setAttribute("companyList", companyList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("companyList.jsp");
             dispatcher.forward(request, response);            
         }
     }
     
-    private void firmaekle(HttpServletRequest request, HttpServletResponse response)
+    private void addCompany(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -87,12 +87,12 @@ public class BusinessServlet extends HttpServlet {
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("firmaekle.jsp");      
+            RequestDispatcher dispatcher = request.getRequestDispatcher("addCompany.jsp");
         dispatcher.forward(request, response);
         }
     }  
     
-    private void gosterfirmaekle(HttpServletRequest request, HttpServletResponse response)
+    private void showAddCompany(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -100,8 +100,8 @@ public class BusinessServlet extends HttpServlet {
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            String firma_logo = null;
-            String firma_ad = null;
+            String company_logo = null;
+            String company_name = null;
 
             response.setContentType("text/html; charset=UTF-8");
 
@@ -123,15 +123,15 @@ public class BusinessServlet extends HttpServlet {
                     FileItem fileItem = it.next();
                     boolean isFormField = fileItem.isFormField();
                     if (isFormField) {
-                        if (firma_ad == null) {
-                            if (fileItem.getFieldName().equals("firma_ad")) {
-                                firma_ad = fileItem.getString("UTF-8");
+                        if (company_name == null) {
+                            if (fileItem.getFieldName().equals("company_name")) {
+                                company_name = fileItem.getString("UTF-8");
                             }
                         }
                     } else {
                         if (fileItem.getSize() > 0) {
-                            firma_logo = fileItem.getName();
-                            fileItem.write(new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + firma_logo));
+                            company_logo = fileItem.getName();
+                            fileItem.write(new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + company_logo));
                             
                         }
                     }
@@ -140,13 +140,13 @@ public class BusinessServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            Firma yenifirma = new Firma(firma_ad, firma_logo);
-            firmaDAO.firmaekle(yenifirma);
-            response.sendRedirect("firmaliste");
+            Company yenifirma = new Company(company_name, company_logo);
+            companyDAO.addCompany(yenifirma);
+            response.sendRedirect("companyList");
         }       
     }   
     
-    private void firmaguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void companyUpdate(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -155,15 +155,15 @@ public class BusinessServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
-            Firma firma = firmaDAO.firmasec(id);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("firmaguncelle.jsp");
+            Company firma = companyDAO.firmasec(id);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("companyUpdate.jsp");
             request.setAttribute("firma", firma);
             dispatcher.forward(request, response);
         }
         
     }
     
-    private void gosterfirmaguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void showCompanyUpdate(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -172,8 +172,8 @@ public class BusinessServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             String logo = null;
-            String firma_logo = null;
-            String firma_ad = null;
+            String company_logo = null;
+            String company_name = null;
             int firma_id = 0;
 
             response.setContentType("text/html; charset=UTF-8");
@@ -195,9 +195,9 @@ public class BusinessServlet extends HttpServlet {
                     FileItem fileItem = it.next();
                     boolean isFormField = fileItem.isFormField();
                     if (isFormField) {
-                        if (firma_ad == null) {
-                            if (fileItem.getFieldName().equals("firma_ad")) {
-                                firma_ad = fileItem.getString("UTF-8");
+                        if (company_name == null) {
+                            if (fileItem.getFieldName().equals("company_name")) {
+                                company_name = fileItem.getString("UTF-8");
                             }
                         }
                         if (logo == null) {
@@ -212,8 +212,8 @@ public class BusinessServlet extends HttpServlet {
                         }
                     } else {
                         if (fileItem.getSize() > 0) {
-                            firma_logo = fileItem.getName();
-                            fileItem.write(new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + firma_logo));
+                            company_logo = fileItem.getName();
+                            fileItem.write(new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + company_logo));
                         }
                     }
                 }
@@ -222,13 +222,13 @@ public class BusinessServlet extends HttpServlet {
             }
             File f = new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + logo);
             f.delete();
-            Firma firma = new Firma(firma_id, firma_ad, firma_logo);
-            firmaDAO.firmaguncelle(firma);
-            response.sendRedirect("firmaliste");
+            Company firma = new Company(firma_id, company_name, company_logo);
+            companyDAO.companyUpdate(firma);
+            response.sendRedirect("companyList");
         }
     }
     
-    private void firmasil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteCompany(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -237,11 +237,11 @@ public class BusinessServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             int firma_id = Integer.parseInt(request.getParameter("id"));
-            String firma_logo = request.getParameter("logo");
-            File f = new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + firma_logo);
+            String company_logo = request.getParameter("logo");
+            File f = new File("C:\\Users\\Asus\\Documents\\NetBeansProjects\\hawkeye\\web\\assets\\data\\" + company_logo);
             f.delete();
-            firmaDAO.firmasil(firma_id);
-            response.sendRedirect("firmaliste");
+            companyDAO.deleteCompany(firma_id);
+            response.sendRedirect("companyList");
         }        
     }
 }

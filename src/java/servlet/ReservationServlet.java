@@ -1,6 +1,6 @@
 package servlet;
 
-import dao.HavaalaniDAO;
+import dao.AirportDAO;
 import dao.RezervasyonDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Havaalani;
+import model.Airport;
 import model.Rezervasyon;
 
-@WebServlet(urlPatterns = {"/ucussorgulama", "/admin/rezervasyonliste", "/admin/rezervasyoniptal", "/rezervasyonsorgulama", "/rezervasyonolustur", "/rezervasyonislemlerim", "/gosterrezervasyonislemlerim", "/rezervasyonguncelle", "/reziptal"})
+@WebServlet(urlPatterns = {"/flight_inquiry", "/admin/rezervasyonliste", "/admin/rezervasyoniptal", "/rezervasyonsorgulama", "/rezervasyonolustur", "/rezervasyonislemlerim", "/gosterrezervasyonislemlerim", "/rezervasyonguncelle", "/reziptal"})
 public class ReservationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private HavaalaniDAO havaalaniDAO;
+    private AirportDAO airportDAO;
     private RezervasyonDAO rezervasyonDAO;
 
     public void init() {
-        havaalaniDAO = new HavaalaniDAO();
+        airportDAO = new AirportDAO();
         rezervasyonDAO = new RezervasyonDAO();
     }
 
@@ -38,8 +38,8 @@ public class ReservationServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "/ucussorgulama":
-                    ucussorgulama(request, response);
+                case "/flight_inquiry":
+                    flight_inquiry(request, response);
                     break;
                 case "/admin/rezervasyonliste":
                     rezervasyonlistele(request, response);
@@ -140,7 +140,7 @@ public class ReservationServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 1) {
             response.sendRedirect("flight_ticket");
         } else {
-            int ucus_id = Integer.parseInt(request.getParameter("ucus_id"));
+            int flight_id = Integer.parseInt(request.getParameter("flight_id"));
             int kullanici_id = (int) session.getAttribute("kullanici_id");
             String yolcu_email = request.getParameter("yolcu_email");
             String yolcu_tel = request.getParameter("yolcu_tel");
@@ -157,7 +157,7 @@ public class ReservationServlet extends HttpServlet {
             Boolean sonuc = false;
             for (int i = 1; i <= (c_sayi + y_sayi); i++) {
                 yolcu_koltuk = request.getParameter("yolcu_koltuk" + i);
-                sonuc = rezervasyonDAO.koltukkontrol(ucus_id, yolcu_koltuk);
+                sonuc = rezervasyonDAO.koltukkontrol(flight_id, yolcu_koltuk);
             }
             if (sonuc == true) {
                 response.sendRedirect("rezervasyonislemlerim?durum=basarisiz");
@@ -170,7 +170,7 @@ public class ReservationServlet extends HttpServlet {
                     yolcu_tc = request.getParameter("yolcu_tc" + i);
                     yolcu_tarih = request.getParameter("yolcu_tarih" + i);
                     yolcu_koltuk = request.getParameter("yolcu_koltuk" + i);
-                    Rezervasyon rezervasyon = new Rezervasyon(pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_koltuk, kullanici_id, ucus_id, yolcu_tarih, u_ucret);
+                    Rezervasyon rezervasyon = new Rezervasyon(pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_koltuk, kullanici_id, flight_id, yolcu_tarih, u_ucret);
                     rezervasyonDAO.rezervasyonekle(rezervasyon);
                 }
 
@@ -204,21 +204,21 @@ public class ReservationServlet extends HttpServlet {
         }
     }
 
-    private void ucussorgulama(HttpServletRequest request, HttpServletResponse response)
+    private void flight_inquiry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int havaalani_kalkis_id = Integer.parseInt(request.getParameter("gidis"));
-        int havaalani_varis_id = Integer.parseInt(request.getParameter("varis"));
-        String ucus_tarih = request.getParameter("gidis_tarih");
+        int airport_departure_id = Integer.parseInt(request.getParameter("gidis"));
+        int airport_heir_id = Integer.parseInt(request.getParameter("varis"));
+        String flight_date = request.getParameter("gidis_tarih");
         int yetiskin_sayi = Integer.parseInt(request.getParameter("yetiskin"));
         int cocuk_sayi = Integer.parseInt(request.getParameter("cocuk"));
 
-        Rezervasyon rezervasyon = new Rezervasyon(havaalani_kalkis_id, havaalani_varis_id, ucus_tarih, yetiskin_sayi, cocuk_sayi);
+        Rezervasyon rezervasyon = new Rezervasyon(airport_departure_id, airport_heir_id, flight_date, yetiskin_sayi, cocuk_sayi);
         request.setAttribute("rezervasyon", rezervasyon);
         List<Rezervasyon> tekyonsorgula = rezervasyonDAO.tekyonsorgulama(rezervasyon);
-        request.setAttribute("ucussorgulama", tekyonsorgula);
-        List<Havaalani> havaalaniliste = havaalaniDAO.havaalaniliste();
-        request.setAttribute("havaalaniliste", havaalaniliste);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ucussorgulama.jsp");
+        request.setAttribute("flight_inquiry", tekyonsorgula);
+        List<Airport> airportList = airportDAO.airportList();
+        request.setAttribute("airportList", airportList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("flight_inquiry.jsp");
         dispatcher.forward(request, response);
     }
 

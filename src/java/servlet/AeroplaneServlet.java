@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UcakDAO;
 import javax.servlet.http.HttpSession;
-import model.Firma;
+import model.Company;
 import model.Ucak;
 
 @WebServlet(urlPatterns = {"/admin/ucakliste", "/admin/ucakekle", "/admin/gosterucakekle", "/admin/ucaksil", "/admin/ucakguncelle", "/admin/gosterucakguncelle"})
@@ -84,7 +84,7 @@ public class AeroplaneServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Firma> firma = ucakDAO.firma();
+            List<Company> firma = ucakDAO.firma();
             request.setAttribute("firma", firma);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucakekle.jsp");
             dispatcher.forward(request, response);
@@ -132,7 +132,7 @@ public class AeroplaneServlet extends HttpServlet {
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Ucak ucak = ucakDAO.ucaksec(id);
-            List<Firma> firma = ucakDAO.firma();
+            List<Company> firma = ucakDAO.firma();
             request.setAttribute("firma", firma);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucakguncelle.jsp");
             request.setAttribute("ucak", ucak);

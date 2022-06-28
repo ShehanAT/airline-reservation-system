@@ -1,34 +1,34 @@
 package model;
 
-public class Havaalani_sehir {
-    protected int havaalani_sehir_id;
-    protected String havaalani_sehir_ad;
+public class Airport_city {
+    protected int airport_city_id;
+    protected String airport_city_name;
 
-    public Havaalani_sehir() {
+    public Airport_city() {
     }
 
-    public Havaalani_sehir(String havaalani_sehir_ad) {
-        this.havaalani_sehir_ad = havaalani_sehir_ad;
+    public Airport_city(String airport_city_name) {
+        this.airport_city_name = airport_city_name;
     }
 
-    public Havaalani_sehir(int havaalani_sehir_id, String havaalani_sehir_ad) {
-        this.havaalani_sehir_id = havaalani_sehir_id;
-        this.havaalani_sehir_ad = havaalani_sehir_ad;
+    public Airport_city(int airport_city_id, String airport_city_name) {
+        this.airport_city_id = airport_city_id;
+        this.airport_city_name = airport_city_name;
     }
 
-    public int getHavaalani_sehir_id() {
-        return havaalani_sehir_id;
+    public int getAirport_city_id() {
+        return airport_city_id;
     }
 
-    public void setHavaalani_sehir_id(int havaalani_sehir_id) {
-        this.havaalani_sehir_id = havaalani_sehir_id;
+    public void setAirport_city_id(int airport_city_id) {
+        this.airport_city_id = airport_city_id;
     }
 
     public String getHavaalani_sehir_ad() {
-        return havaalani_sehir_ad;
+        return airport_city_name;
     }
 
-    public void setHavaalani_sehir_ad(String havaalani_sehir_ad) {
-        this.havaalani_sehir_ad = havaalani_sehir_ad;
+    public void setHavaalani_sehir_ad(String airport_city_name) {
+        this.airport_city_name = airport_city_name;
     }
 }

@@ -7,25 +7,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Havaalani;
-import model.Havaalani_sehir;
-import model.Havaalani_ulke;
+import model.Airport;
+import model.Airport_city;
+import model.Airport_country;
 
-public class HavaalaniDAO {
+public class AirportDAO {
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";  
     
     
-    private static final String HAVAALANI_SELECT_ALL = "SELECT havaalani_id, havaalani_ad, havaalani_kod, havaalani_ulke.havaalani_ulke_id, havaalani_ulke.havaalani_ulke_ad, havaalani_sehir.havaalani_sehir_id, havaalani_sehir.havaalani_sehir_ad  FROM havaalani INNER JOIN havaalani_ulke ON havaalani.havaalani_ulke_id= havaalani_ulke.havaalani_ulke_id INNER JOIN havaalani_sehir ON havaalani.havaalani_sehir_id= havaalani_sehir.havaalani_sehir_id;";
-    private static final String HAVAALANI_INSERT ="INSERT INTO havaalani (havaalani_ad, havaalani_kod, havaalani_sehir_id, havaalani_ulke_id) VALUES (?,?,?,?);";
+    private static final String HAVAALANI_SELECT_ALL = "SELECT airport_id, airport_name, airport_code, havaalani_ulke.airport_country_id, havaalani_ulke.airport_country_name, havaalani_sehir.havaalani_sehir_id, havaalani_sehir.airport_city_name  FROM havaalani INNER JOIN havaalani_ulke ON airport.airport_country_id= havaalani_ulke.airport_country_id INNER JOIN havaalani_sehir ON airport.havaalani_sehir_id= havaalani_sehir.havaalani_sehir_id;";
+    private static final String HAVAALANI_INSERT ="INSERT INTO havaalani (airport_name, airport_code, havaalani_sehir_id, airport_country_id) VALUES (?,?,?,?);";
     private static final String HAVAALANI_SEHIR_SELECT_ALL ="select * from havaalani_sehir;";
     private static final String HAVAALANI_ULKE_SELECT_ALL ="select * from havaalani_ulke;";
-    private static final String HAVAALANI_DELETE = "delete from havaalani where havaalani_id = ?;";
-    private static final String HAVAALANI_SELECT_ID = "SELECT * FROM havaalani  where havaalani_id=?;";
-    private static final String HAVAALANI_UPDATE = "update havaalani set havaalani_ad = ?, havaalani_kod=?, havaalani_ulke_id=?, havaalani_sehir_id=? where havaalani_id = ?;";
+    private static final String HAVAALANI_DELETE = "delete from havaalani where airport_id = ?;";
+    private static final String HAVAALANI_SELECT_ID = "SELECT * FROM havaalani  where airport_id=?;";
+    private static final String HAVAALANI_UPDATE = "update havaalani set airport_name = ?, airport_code=?, airport_country_id=?, havaalani_sehir_id=? where airport_id = ?;";
     
-    public HavaalaniDAO() {}
+    public AirportDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
@@ -42,21 +42,21 @@ public class HavaalaniDAO {
         return connection;
     }
           
-    public List<Havaalani> havaalaniliste() {
+    public List<Airport> airportList() {
 
-        List<Havaalani> havaalani = new ArrayList<> ();
+        List<Airport> havaalani = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int havaalani_sehir_id = rs.getInt("havaalani_sehir_id");
-                String havaalani_sehir_ad = rs.getString("havaalani_sehir_ad");
-                int havaalani_ulke_id = rs.getInt("havaalani_ulke_id");
-                String havaalani_ulke_ad = rs.getString("havaalani_ulke_ad");
-                String havaalani_ad = rs.getString("havaalani_ad");
-                String havaalani_kod = rs.getString("havaalani_kod");
-                int havaalani_id = rs.getInt("havaalani_id");
-                havaalani.add(new Havaalani(havaalani_id, havaalani_ulke_id, havaalani_sehir_id, havaalani_ad, havaalani_kod, havaalani_ulke_ad, havaalani_sehir_ad));
+                String airport_city_name = rs.getString("airport_city_name");
+                int airport_country_id = rs.getInt("airport_country_id");
+                String airport_country_name = rs.getString("airport_country_name");
+                String airport_name = rs.getString("airport_name");
+                String airport_code = rs.getString("airport_code");
+                int airport_id = rs.getInt("airport_id");
+                airport.add(new Airport(airport_id, airport_country_id, havaalani_sehir_id, airport_name, airport_code, airport_country_name, airport_city_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -64,55 +64,55 @@ public class HavaalaniDAO {
         return havaalani;
     }
     
-    public List<Havaalani_sehir> havaalanisehir() {
+    public List<Airport_city> airportCity() {
 
-        List<Havaalani_sehir> havaalanisehir = new ArrayList<> ();
+        List<Airport_city> airportCity = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_SEHIR_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int havaalani_sehir_id = rs.getInt("havaalani_sehir_id");
-                String havaalani_sehir_ad = rs.getString("havaalani_sehir_ad");               
-                havaalanisehir.add(new Havaalani_sehir(havaalani_sehir_id, havaalani_sehir_ad));
+                String airport_city_name = rs.getString("airport_city_name");
+                airportCity.add(new Airport_city(havaalani_sehir_id, airport_city_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return havaalanisehir;
+        return airportCity;
     }
     
-    public List<Havaalani_ulke> havaalaniulke() {
+    public List<Airport_country> airportCountry() {
 
-        List<Havaalani_ulke> havaalaniulke = new ArrayList<> ();
+        List<Airport_country> airportCountry = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_ULKE_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int havaalani_ulke_id = rs.getInt("havaalani_ulke_id");
-                String havaalani_ulke_ad = rs.getString("havaalani_ulke_ad");               
-                havaalaniulke.add(new Havaalani_ulke(havaalani_ulke_id, havaalani_ulke_ad));
+                int airport_country_id = rs.getInt("airport_country_id");
+                String airport_country_name = rs.getString("airport_country_name");
+                airportCountry.add(new Airport_country(airport_country_id, airport_country_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return havaalaniulke;
+        return airportCountry;
     }
     
-    public void havaalaniekle(Havaalani havaalani) throws SQLException {  
+    public void addAirport(Airport airport) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_INSERT)) {
-            preparedStatement.setString(1, havaalani.getHavaalani_ad());
-            preparedStatement.setString(2, havaalani.getHavaalani_kod());
-            preparedStatement.setInt(3, havaalani.getHavaalani_sehir_id());
-            preparedStatement.setInt(4, havaalani.getHavaalani_ulke_id());
+            preparedStatement.setString(1, airport.getHavaalani_ad());
+            preparedStatement.setString(2, airport.getHavaalani_kod());
+            preparedStatement.setInt(3, airport.getAirport_city_id());
+            preparedStatement.setInt(4, airport.getAirport_country_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     
-    public boolean havaalanisil(int id) throws SQLException {
+    public boolean deleteAirport(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(HAVAALANI_DELETE);) {
             statement.setInt(1, id);
@@ -121,19 +121,19 @@ public class HavaalaniDAO {
         return silinenSatir;
     }
     
-    public Havaalani havaalanisec(int id) {
-        Havaalani havaalani = null;
+    public Airport selectAirport(int id) {
+        Airport havaalani = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String havaalani_ad = rs.getString("havaalani_ad");
-                String havaalani_kod = rs.getString("havaalani_kod");
-                int havaalani_ulke_id = rs.getInt("havaalani_ulke_id");
+                String airport_name = rs.getString("airport_name");
+                String airport_code = rs.getString("airport_code");
+                int airport_country_id = rs.getInt("airport_country_id");
                 int havaalani_sehir_id = rs.getInt("havaalani_sehir_id");
                 
-                havaalani = new Havaalani(id, havaalani_ulke_id, havaalani_sehir_id,havaalani_ad, havaalani_kod);
+                havaalani = new Airport(id, airport_country_id, havaalani_sehir_id,airport_name, airport_code);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -141,14 +141,14 @@ public class HavaalaniDAO {
         return havaalani;
     } 
     
-    public boolean havaalaniguncelle(Havaalani havaalani) throws SQLException {
+    public boolean airportUpdate(Airport airport) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(HAVAALANI_UPDATE);) {
-            statement.setString(1, havaalani.getHavaalani_ad()); 
-            statement.setString(2, havaalani.getHavaalani_kod());
-            statement.setInt(3, havaalani.getHavaalani_ulke_id());
-            statement.setInt(4, havaalani.getHavaalani_sehir_id());
-            statement.setInt(5, havaalani.getHavaalani_id());
+            statement.setString(1, airport.getHavaalani_ad());
+            statement.setString(2, airport.getHavaalani_kod());
+            statement.setInt(3, airport.getAirport_country_id());
+            statement.setInt(4, airport.getAirport_city_id());
+            statement.setInt(5, airport.getHavaalani_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;

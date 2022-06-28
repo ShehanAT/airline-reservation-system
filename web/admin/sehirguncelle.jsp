@@ -10,10 +10,10 @@
             </div>
             <div class="card-body">
                 <form class="form" role="form" method="post" autocomplete="off" action="gostersehirguncelle">
-                    <input type="hidden" name="havaalani_sehir_id" id="havaalani_sehir_id" value="<c:out value='${sehir.havaalani_sehir_id}' />" />
+                    <input type="hidden" name="airport_city_id" id="airport_city_id" value="<c:out value='${sehir.airport_city_id}' />" />
                     <div class="form-group">
-                        <label for="havaalani_sehir_ad">Şehir Adı</label>
-                        <input type="text" class="form-control" id="havaalani_sehir_ad" name="havaalani_sehir_ad" value="<c:out value='${sehir.havaalani_sehir_ad}' />" required>
+                        <label for="airport_city_name">Şehir Adı</label>
+                        <input type="text" class="form-control" id="airport_city_name" name="airport_city_name" value="<c:out value='${sehir.airport_city_name}' />" required>
                     </div>
 
                     <div class="form-group">

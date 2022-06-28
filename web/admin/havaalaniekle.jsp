@@ -9,28 +9,28 @@
                 <h3 class="mb-0 text-white">Havaalanı Ekle</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" autocomplete="off" action="gosterhavaalaniekle">
+                <form class="form" role="form" method="post" autocomplete="off" action="showAirportAdd">
                     <div class="form-group">
-                        <label for="havaalani_ad">Ad</label>
-                        <input type="text" class="form-control" id="havaalani_ad" name="havaalani_ad" placeholder="Havaalanı Adı" required>
+                        <label for="airport_name">Ad</label>
+                        <input type="text" class="form-control" id="airport_name" name="airport_name" placeholder="Havaalanı Adı" required>
                     </div>
                     <div class="form-group">
-                        <label for="havaalani_kod">Kod</label>
-                        <input type="text" class="form-control" id="havaalani_kod" name="havaalani_kod" placeholder="Havaalanı Kodu" required>
+                        <label for="airport_code">Kod</label>
+                        <input type="text" class="form-control" id="airport_code" name="airport_code" placeholder="Havaalanı Kodu" required>
                     </div>
                     <div class="form-group">
                         <label for="havaalani_sehir_id">Şehir</label>
                         <select class="form-control" id="havaalani_sehir_id" name="havaalani_sehir_id" required>
-                            <c:forEach var="sehir" items="${havaalanisehir}">
-                                <option value="<c:out value='${sehir.havaalani_sehir_id}' />"><c:out value="${sehir.havaalani_sehir_ad}" /></option>
+                            <c:forEach var="sehir" items="${airportCity}">
+                                <option value="<c:out value='${sehir.havaalani_sehir_id}' />"><c:out value="${sehir.airport_city_name}" /></option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="havaalani_ulke_id">Ülke</label>
-                        <select class="form-control" id="havaalani_ulke_id" name="havaalani_ulke_id" required>
-                            <c:forEach var="ulke" items="${havaalaniulke}">
-                                <option value="<c:out value='${ulke.havaalani_ulke_id}' />"><c:out value="${ulke.havaalani_ulke_ad}" /></option>
+                        <label for="airport_country_id">Ülke</label>
+                        <select class="form-control" id="airport_country_id" name="airport_country_id" required>
+                            <c:forEach var="ulke" items="${airportCountry}">
+                                <option value="<c:out value='${ulke.airport_country_id}' />"><c:out value="${ulke.airport_country_name}" /></option>
                             </c:forEach>
                         </select>
                     </div>

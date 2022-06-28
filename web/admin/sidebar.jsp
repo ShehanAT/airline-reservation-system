@@ -25,8 +25,8 @@
             </a>
             <div id="firma" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="firmaekle">Firma Ekle</a>
-                    <a class="collapse-item" href="firmaliste">Firmaları Listele</a>
+                    <a class="collapse-item" href="addCompany">Firma Ekle</a>
+                    <a class="collapse-item" href="companyList">Firmaları Listele</a>
                 </div>
             </div>
         </li>
@@ -54,12 +54,12 @@
             </a>
             <div id="Havaalanı" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="havaalaniekle">Havaalanı Ekle</a>
-                    <a class="collapse-item" href="havaalaniliste">Havaalanlarını Listele</a>
+                    <a class="collapse-item" href="addAirport">Havaalanı Ekle</a>
+                    <a class="collapse-item" href="airportList">Havaalanlarını Listele</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">ÜLKELER</h6>
-                    <a class="collapse-item" href="ulkeekle">Ülke Ekle</a>
-                    <a class="collapse-item" href="ulkeliste">Ülkeleri Listele</a>
+                    <a class="collapse-item" href="countryAdd">Ülke Ekle</a>
+                    <a class="collapse-item" href="country">Ülkeleri Listele</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">ŞEHİRLER</h6>
                     <a class="collapse-item" href="sehirekle">Şehir Ekle</a>

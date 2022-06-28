@@ -8,22 +8,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Havaalani_ulke;
+import model.Airport_country;
 
-public class Havaalani_ulkeDAO {
+public class Airport_countryDAO {
     
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";    
     
-    private static final String ULKE_SELECT_ID = "select * from havaalani_ulke where havaalani_ulke_id=?;";
+    private static final String ULKE_SELECT_ID = "select * from havaalani_ulke where airport_country_id=?;";
     private static final String ULKE_SELECT_ALL = "select * from havaalani_ulke;";
-    private static final String ULKE_INSERT = "INSERT INTO Havaalani_ulke" + "  (havaalani_ulke_ad) VALUES " +
+    private static final String ULKE_INSERT = "INSERT INTO Airport_country" + "  (airport_country_name) VALUES " +
         " (?);"; 
-    private static final String ULKE_DELETE = "delete from Havaalani_ulke where havaalani_ulke_id = ?;";
-    private static final String ULKE_UPDATE = "update Havaalani_ulke set havaalani_ulke_ad = ? where havaalani_ulke_id = ?;";
+    private static final String ULKE_DELETE = "delete from Airport_country where airport_country_id = ?;";
+    private static final String ULKE_UPDATE = "update Airport_country set airport_country_name = ? where airport_country_id = ?;";
     
-    public Havaalani_ulkeDAO() {}
+    public Airport_countryDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
@@ -40,16 +40,16 @@ public class Havaalani_ulkeDAO {
         return connection;
     }   
     
-    public List<Havaalani_ulke> ulkelistele() {
+    public List<Airport_country> listCountry() {
 
-        List<Havaalani_ulke> ulkeler = new ArrayList<> ();
+        List<Airport_country> ulkeler = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(ULKE_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int havaalani_ulke_id = rs.getInt("havaalani_ulke_id");
-                String havaalani_ulke_ad = rs.getString("havaalani_ulke_ad");
-                ulkeler.add(new Havaalani_ulke(havaalani_ulke_id, havaalani_ulke_ad));
+                int airport_country_id = rs.getInt("airport_country_id");
+                String airport_country_name = rs.getString("airport_country_name");
+                ulkeler.add(new Airport_country(airport_country_id, airport_country_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -57,18 +57,18 @@ public class Havaalani_ulkeDAO {
         return ulkeler;
     }
     
-    public void ulkeekle(Havaalani_ulke ulke) throws SQLException {  
+    public void countryAdd(Airport_country ulke) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(ULKE_INSERT)) {
-            preparedStatement.setString(1, ulke.getHavaalani_ulke_ad());
+            preparedStatement.setString(1, ulke.getAirport_country_ad());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     } 
     
-    public boolean ulkesil(int id) throws SQLException {
+    public boolean deleteCountry(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(ULKE_DELETE);) {
             statement.setInt(1, id);
@@ -77,30 +77,30 @@ public class Havaalani_ulkeDAO {
         return silinenSatir;
     } 
     
-    public boolean ulkeguncelle(Havaalani_ulke ulke) throws SQLException {
+    public boolean updateCountry(Airport_country ulke) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(ULKE_UPDATE);) {
-            statement.setString(1, ulke.getHavaalani_ulke_ad());           
-            statement.setInt(2, ulke.getHavaalani_ulke_id());
+            statement.setString(1, ulke.getAirport_country_ad());
+            statement.setInt(2, ulke.getAirport_country_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     } 
     
-    public Havaalani_ulke ulkesec(int id) {
-        Havaalani_ulke ulke = null;
+    public Airport_country selectCountry(int id) {
+        Airport_country country = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(ULKE_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String havaalani_ulke_ad = rs.getString("havaalani_ulke_ad");
-                ulke = new Havaalani_ulke(id, havaalani_ulke_ad);
+                String airport_country_name = rs.getString("airport_country_name");
+                country = new Airport_country(id, airport_country_name);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return ulke;
+        return country;
     } 
     
     private void printSQLException(SQLException ex) {

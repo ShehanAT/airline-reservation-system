@@ -22,20 +22,20 @@
                         </div>
                     </div>
                     <div class="search_panel active">
-                        <form action="ucussorgulama" id="search_form_1" method="post" name="ucus" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" onsubmit="return Kontrol()">                  
+                        <form action="flight_inquiry" id="search_form_1" method="post" name="ucus" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" onsubmit="return Kontrol()">
                             <div class="search_item">
                                 <div>Gidiş Yeri</div>
                                 <select class="search_input" id="gidis" name="gidis" required>
-                                    <c:forEach var="havaalani" items="${havaalaniliste}">
-                                        <option value="<c:out value="${havaalani.havaalani_id}" />"><c:out value="${havaalani.havaalani_ad}" /> | <c:out value="${havaalani.havaalani_kod}" /> | <c:out value="${havaalani.havaalani_sehir_ad}" /></option>
+                                    <c:forEach var="havaalani" items="${airportList}">
+                                        <option value="<c:out value="${airport.airport_id}" />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /> | <c:out value="${airport.airport_city_ad}" /></option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="search_item">
                                 <div>Varış Yeri</div>
                                 <select class="search_input" id="varis" name="varis" required>
-                                    <c:forEach var="havaalani" items="${havaalaniliste}">
-                                        <option value="<c:out value="${havaalani.havaalani_id}" />"><c:out value="${havaalani.havaalani_ad}" /> | <c:out value="${havaalani.havaalani_kod}" /> | <c:out value="${havaalani.havaalani_sehir_ad}" /></option>
+                                    <c:forEach var="havaalani" items="${airportList}">
+                                        <option value="<c:out value="${airport.airport_id}" />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /> | <c:out value="${airport.airport_city_ad}" /></option>
                                     </c:forEach>
                                 </select>
                             </div>

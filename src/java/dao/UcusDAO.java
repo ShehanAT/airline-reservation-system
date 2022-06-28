@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import model.Firma;
-import model.Havaalani;
+import model.Company;
+import model.Airport;
 import model.Ucak;
 import model.Ucus;
 
@@ -20,29 +20,29 @@ public class UcusDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCUS_INSERT ="INSERT INTO ucus (ucus_kalkis_id, ucus_varis_id, ucus_tarih, ucus_saat, ucus_sure, firma_id, ucak_id, ucus_ucret) VALUES (?,?,?,?,?,?,?,?);";
+    private static final String UCUS_INSERT ="INSERT INTO ucus (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, firma_id, ucak_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
     private static final String FIRMA_SELECT_ALL = "select * from firma;";
-    private static final String HAVAALANI_SELECT_ALL = "select * from havaalani;";
+    private static final String HAVAALANI_SELECT_ALL = "select * from airport;";
     private static final String UCAK_SELECT_ALL = "select * from ucak;";
-    private static final String GUNCELUCUS_SELECT_ALL="select ucus_id, s.havaalani_ad as kalkis_ad, p.havaalani_ad as varis_ad, ucus_tarih, ucus_saat, ucus_sure, firma.firma_ad, ucak.ucak_ad, ucus_ucret from ucus\n" +
-                                "INNER JOIN  ucak ON (ucak.ucak_id = ucus.ucak_id)\n" +
-                                "INNER JOIN  firma ON (firma.firma_id = ucus.firma_id)\n" +
-                                "INNER JOIN  havaalani s ON (s.havaalani_id = ucus.ucus_kalkis_id)\n" +
-                                "INNER JOIN  havaalani p ON (p.havaalani_id = ucus.ucus_varis_id)\n" +
-                                "WHERE ucus_tarih >= ? ;";
+    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, firma.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
+                                "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                "INNER JOIN  firma ON (firma.firma_id = flight.firma_id)\n" +
+                                "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
+                                "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
+                                "WHERE flight_date >= ? ;";
     
-    private static final String GECMISUCUS_SELECT_ALL="select ucus_id, s.havaalani_ad as kalkis_ad, p.havaalani_ad as varis_ad, ucus_tarih, ucus_saat, ucus_sure, firma.firma_ad, ucak.ucak_ad, ucus_ucret from ucus\n" +
-                                "INNER JOIN  ucak ON (ucak.ucak_id = ucus.ucak_id)\n" +
-                                "INNER JOIN  firma ON (firma.firma_id = ucus.firma_id)\n" +
-                                "INNER JOIN  havaalani s ON (s.havaalani_id = ucus.ucus_kalkis_id)\n" +
-                                "INNER JOIN  havaalani p ON (p.havaalani_id = ucus.ucus_varis_id)\n" +
-                                "WHERE ucus_tarih < ? ;";
-    private static final String UCUS_DELETE = "delete from ucus where ucus_id = ?;";
-    private static final String UCUS_SELECT_ID = "SELECT * FROM ucus  where ucus_id=?;";
-    private static final String UCUS_UPDATE = "update ucus set ucus_kalkis_id = ?, ucus_varis_id=?, ucus_tarih=?, ucus_saat=?, ucus_sure=?, firma_id=?, ucak_id=?, ucus_ucret=? where ucus_id = ?;";
+    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, firma.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
+                                "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                "INNER JOIN  firma ON (firma.firma_id = flight.firma_id)\n" +
+                                "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
+                                "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
+                                "WHERE flight_date < ? ;";
+    private static final String UCUS_DELETE = "delete from ucus where flight_id = ?;";
+    private static final String UCUS_SELECT_ID = "SELECT * FROM ucus  where flight_id=?;";
+    private static final String UCUS_UPDATE = "update ucus set flight_departure_id = ?, end_heir_id=?, flight_date=?, flight_hour=?, flight_time=?, firma_id=?, ucak_id=?, flight_fare=? where flight_id = ?;";
     private static final String UCUS_KONTROL = "select * from ucus as u \n" +
                                 "join ucak as k on k.ucak_id=u.ucak_id\n" +
-                                "where u.ucak_id=? and u.ucus_tarih=? and ((u.ucus_saat BETWEEN ? AND ?) or (ADDTIME(u.ucus_saat, u.ucus_sure) BETWEEN ? AND ?));";
+                                "where u.ucak_id=? and u.flight_date=? and ((u.flight_hour BETWEEN ? AND ?) or (ADDTIME(u.flight_hour, u.flight_time) BETWEEN ? AND ?));";
     
     public UcusDAO() {}
     
@@ -75,15 +75,15 @@ public class UcusDAO {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(UCUS_UPDATE);) {
-            statement.setInt(1, ucus.getUcus_kalkis_id());
-            statement.setInt(2, ucus.getUcus_varis_id());
-            statement.setString(3, ucus.getUcus_tarih()); 
-            statement.setString(4, ucus.getUcus_saat());
-            statement.setString(5, ucus.getUcus_sure());
-            statement.setInt(6, ucus.getFirma_id());
-            statement.setInt(7, ucus.getUcak_id());
-            statement.setDouble(8, ucus.getUcus_ucret());
-            statement.setInt(9, ucus.getUcus_id());
+            statement.setInt(1, flight.getUcus_kalkis_id());
+            statement.setInt(2, flight.getUcus_varis_id());
+            statement.setString(3, flight.getUcus_tarih());
+            statement.setString(4, flight.getUcus_saat());
+            statement.setString(5, flight.getUcus_sure());
+            statement.setInt(6, flight.getFirma_id());
+            statement.setInt(7, flight.getUcak_id());
+            statement.setDouble(8, flight.getUcus_ucret());
+            statement.setInt(9, flight.getUcus_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
@@ -97,15 +97,15 @@ public class UcusDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 
-                int ucus_kalkis_id = rs.getInt("ucus_kalkis_id");
-                int ucus_varis_id = rs.getInt("ucus_varis_id");
-                String ucus_tarih = rs.getString("ucus_tarih");
-                String ucus_saat = rs.getString("ucus_saat");
-                String ucus_sure = rs.getString("ucus_sure");
+                int flight_departure_id = rs.getInt("flight_departure_id");
+                int end_heir_id = rs.getInt("end_heir_id");
+                String flight_date = rs.getString("flight_date");
+                String flight_hour = rs.getString("flight_hour");
+                String flight_time = rs.getString("flight_time");
                 int firma_id = rs.getInt("firma_id");
                 int ucak_id = rs.getInt("ucak_id");
-                Double ucus_ucret = rs.getDouble("ucus_ucret");
-                ucus = new Ucus(id,ucus_kalkis_id,ucus_varis_id,ucus_tarih,ucus_saat,ucus_sure,firma_id,ucak_id,ucus_ucret);
+                Double flight_fare = rs.getDouble("flight_fare");
+                ucus = new Ucus(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,firma_id,ucak_id,flight_fare);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -113,15 +113,15 @@ public class UcusDAO {
         return ucus;
     }
     public boolean ucuskontrol(Ucus ucus)throws SQLException { 
-        String ucus_saat = ucus.getUcus_saat();
-        ucus_saat = ucus_saat.substring(0, 5);
-        String ucus_sure = ucus.getUcus_sure();
-        String[] ARRAYucus_sure = ucus_sure.split(":");
-        String ucus_s = ARRAYucus_sure[0];
-        String ucus_d = ARRAYucus_sure[1];
-        String[] ARRAYucus_saat = ucus_saat.split(":");
-        String s = ARRAYucus_saat[0];
-        String d = ARRAYucus_saat[1];
+        String flight_hour = flight.getUcus_saat();
+        flight_hour = flight_hour.substring(0, 5);
+        String flight_time = flight.getUcus_sure();
+        String[] ARRAYflight_time = flight_time.split(":");
+        String ucus_s = ARRAYflight_time[0];
+        String ucus_d = ARRAYflight_time[1];
+        String[] ARRAYflight_hour = flight_hour.split(":");
+        String s = ARRAYflight_hour[0];
+        String d = ARRAYflight_hour[1];
         int saat = (Integer.parseInt(s) + Integer.parseInt(ucus_s)) % 24;
         int dakika = (Integer.parseInt(d) + Integer.parseInt(ucus_d)) % 60;
         String Sdakika;
@@ -139,11 +139,11 @@ public class UcusDAO {
         String varis_saat = Ssaat + ":" + Sdakika;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UCUS_KONTROL);) {
-            preparedStatement.setInt(1, ucus.getUcak_id());
-            preparedStatement.setString(2, ucus.getUcus_tarih());
-            preparedStatement.setString(3, ucus_saat);
+            preparedStatement.setInt(1, flight.getUcak_id());
+            preparedStatement.setString(2, flight.getUcus_tarih());
+            preparedStatement.setString(3, flight_hour);
             preparedStatement.setString(4, varis_saat);
-            preparedStatement.setString(5, ucus_saat);
+            preparedStatement.setString(5, flight_hour);
             preparedStatement.setString(6, varis_saat);
             ResultSet rs = preparedStatement.executeQuery();            
             if (rs.next()) {
@@ -161,14 +161,14 @@ public class UcusDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(UCUS_INSERT)) {
-            preparedStatement.setInt(1, ucus.getUcus_kalkis_id());
-            preparedStatement.setInt(2, ucus.getUcus_varis_id());
-            preparedStatement.setString(3, ucus.getUcus_tarih());
-            preparedStatement.setString(4, ucus.getUcus_saat());
-            preparedStatement.setString(5, ucus.getUcus_sure());
-            preparedStatement.setInt(6, ucus.getFirma_id());
-            preparedStatement.setInt(7, ucus.getUcak_id());
-            preparedStatement.setDouble(8, ucus.getUcus_ucret());
+            preparedStatement.setInt(1, flight.getUcus_kalkis_id());
+            preparedStatement.setInt(2, flight.getUcus_varis_id());
+            preparedStatement.setString(3, flight.getUcus_tarih());
+            preparedStatement.setString(4, flight.getUcus_saat());
+            preparedStatement.setString(5, flight.getUcus_sure());
+            preparedStatement.setInt(6, flight.getFirma_id());
+            preparedStatement.setInt(7, flight.getUcak_id());
+            preparedStatement.setDouble(8, flight.getUcus_ucret());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -186,16 +186,16 @@ public class UcusDAO {
             preparedStatement.setString(1, str);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int ucus_id = rs.getInt("ucus_id");
+                int flight_id = rs.getInt("flight_id");
                 String ucus_kalkis = rs.getString("kalkis_ad");
                 String ucus_varis = rs.getString("varis_ad");
-                String ucus_tarih = rs.getString("ucus_tarih");
-                String ucus_saat = rs.getString("ucus_saat");
-                String ucus_sure = rs.getString("ucus_sure");
-                String firma_ad = rs.getString("firma_ad");
+                String flight_date = rs.getString("flight_date");
+                String flight_hour = rs.getString("flight_hour");
+                String flight_time = rs.getString("flight_time");
+                String company_name = rs.getString("company_name");
                 String ucak_ad = rs.getString("ucak_ad");
-                Double ucus_ucret = rs.getDouble("ucus_ucret");
-                ucuslar.add(new Ucus(ucus_id, ucus_tarih,ucus_saat, ucus_sure, ucus_ucret,firma_ad,ucak_ad,ucus_kalkis,ucus_varis));
+                Double flight_fare = rs.getDouble("flight_fare");
+                ucuslar.add(new Ucus(flight_id, flight_date,flight_hour, flight_time, flight_fare,company_name,ucak_ad,ucus_kalkis,ucus_varis));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -214,17 +214,17 @@ public class UcusDAO {
             preparedStatement.setString(1, str);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int ucus_id = rs.getInt("ucus_id");
+                int flight_id = rs.getInt("flight_id");
                 String ucus_kalkis = rs.getString("kalkis_ad");
                 String ucus_varis = rs.getString("varis_ad");
-                String ucus_tarih = rs.getString("ucus_tarih");
-                String ucus_saat = rs.getString("ucus_saat");
+                String flight_date = rs.getString("flight_date");
+                String flight_hour = rs.getString("flight_hour");
                 ucus_saat=ucus_saat.substring(0, 5);
-                String ucus_sure = rs.getString("ucus_sure");
-                String firma_ad = rs.getString("firma_ad");
+                String flight_time = rs.getString("flight_time");
+                String company_name = rs.getString("company_name");
                 String ucak_ad = rs.getString("ucak_ad");
-                Double ucus_ucret = rs.getDouble("ucus_ucret");
-                ucuslar.add(new Ucus(ucus_id, ucus_tarih,ucus_saat, ucus_sure, ucus_ucret,firma_ad,ucak_ad,ucus_kalkis,ucus_varis));
+                Double flight_fare = rs.getDouble("flight_fare");
+                ucuslar.add(new Ucus(flight_id, flight_date,ucus_saat, flight_time, flight_fare,company_name,ucak_ad,ucus_kalkis,ucus_varis));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -232,15 +232,15 @@ public class UcusDAO {
         return ucuslar;
     } 
     
-    public List<Firma> firma() {
-        List<Firma> firma = new ArrayList<> ();
+    public List<Company> firma() {
+        List<Company> firma = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int firma_id = rs.getInt("firma_id");
-                String firma_ad = rs.getString("firma_ad");               
-                firma.add(new Firma(firma_id, firma_ad));
+                String company_name = rs.getString("company_name");
+                firma.add(new Company(firma_id, company_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -264,16 +264,16 @@ public class UcusDAO {
         return ucak;
     }
     
-    public List<Havaalani> havaalani() {
-        List<Havaalani> havaalani = new ArrayList<> ();
+    public List<Airport> havaalani() {
+        List<Airport> havaalani = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int havaalani_id = rs.getInt("havaalani_id");
-                String havaalani_ad = rs.getString("havaalani_ad");     
-                String havaalani_kod = rs.getString("havaalani_kod");  
-                havaalani.add(new Havaalani(havaalani_id, havaalani_ad, havaalani_kod));
+                int airport_id = rs.getInt("airport_id");
+                String airport_name = rs.getString("airport_name");
+                String airport_code = rs.getString("airport_code");
+                airport.add(new Airport(airport_id, airport_name, airport_code));
             }
         } catch (SQLException e) {
             printSQLException(e);

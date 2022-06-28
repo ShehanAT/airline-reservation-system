@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Firma;
-import model.Havaalani;
+import model.Company;
+import model.Airport;
 import model.Ucak;
 import model.Ucus;
 
@@ -74,8 +74,8 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int ucus_id = Integer.parseInt(request.getParameter("id"));
-            ucusDAO.ucussil(ucus_id);
+            int flight_id = Integer.parseInt(request.getParameter("id"));
+            ucusDAO.ucussil(flight_id);
             response.sendRedirect("guncelucusliste");
         }
     }
@@ -118,10 +118,10 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Havaalani> havaalani = ucusDAO.havaalani();
-            request.setAttribute("havaalani", havaalani);
+            List<Airport> airport = ucusDAO.airport();
+            request.setAttribute("airport", airport);
 
-            List<Firma> firma = ucusDAO.firma();
+            List<Company> firma = ucusDAO.firma();
             request.setAttribute("firma", firma);
 
             List<Ucak> ucak = ucusDAO.ucak();
@@ -140,16 +140,16 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int ucus_kalkis_id = Integer.parseInt(request.getParameter("ucus_kalkis_id"));
-            int ucus_varis_id = Integer.parseInt(request.getParameter("ucus_varis_id"));
-            String ucus_tarih = request.getParameter("ucus_tarih");
-            String ucus_saat = request.getParameter("ucus_saat");
-            String ucus_sure = request.getParameter("ucus_sure");
+            int flight_departure_id = Integer.parseInt(request.getParameter("flight_departure_id"));
+            int end_heir_id = Integer.parseInt(request.getParameter("end_heir_id"));
+            String flight_date = request.getParameter("flight_date");
+            String flight_hour = request.getParameter("flight_hour");
+            String flight_time = request.getParameter("flight_time");
             int firma_id = Integer.parseInt(request.getParameter("firma_id"));
             int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
-            double ucus_ucret = Double.parseDouble(request.getParameter("ucus_ucret"));
+            double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
 
-            Ucus yeniucus = new Ucus(ucus_kalkis_id, ucus_varis_id, ucus_tarih, ucus_saat, ucus_sure, firma_id, ucak_id, ucus_ucret);
+            Ucus yeniucus = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, firma_id, ucak_id, flight_fare);
             Boolean sonuc = ucusDAO.ucuskontrol(yeniucus);
             if (sonuc == false) {
                 response.sendRedirect("guncelucusliste?durum=basarisiz");
@@ -170,12 +170,12 @@ public class FlightServlet extends HttpServlet {
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Ucus ucus = ucusDAO.ucussec(id);
-            List<Firma> firma = ucusDAO.firma();
+            List<Company> firma = ucusDAO.firma();
             request.setAttribute("firma", firma);
             List<Ucak> ucak = ucusDAO.ucak();
             request.setAttribute("ucak", ucak);
-            List<Havaalani> havaalani = ucusDAO.havaalani();
-            request.setAttribute("havaalani", havaalani);
+            List<Airport> airport = ucusDAO.airport();
+            request.setAttribute("airport", airport);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucusguncelle.jsp");
             request.setAttribute("ucus", ucus);
             dispatcher.forward(request, response);
@@ -190,16 +190,16 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int ucus_id = Integer.parseInt(request.getParameter("ucus_id"));
-            int ucus_kalkis_id = Integer.parseInt(request.getParameter("ucus_kalkis_id"));
-            int ucus_varis_id = Integer.parseInt(request.getParameter("ucus_varis_id"));
-            String ucus_tarih = request.getParameter("ucus_tarih");
-            String ucus_saat = request.getParameter("ucus_saat");
-            String ucus_sure = request.getParameter("ucus_sure");
+            int flight_id = Integer.parseInt(request.getParameter("flight_id"));
+            int flight_departure_id = Integer.parseInt(request.getParameter("flight_departure_id"));
+            int end_heir_id = Integer.parseInt(request.getParameter("end_heir_id"));
+            String flight_date = request.getParameter("flight_date");
+            String flight_hour = request.getParameter("flight_hour");
+            String flight_time = request.getParameter("flight_time");
             int firma_id = Integer.parseInt(request.getParameter("firma_id"));
             int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
-            Double ucus_ucret = Double.parseDouble(request.getParameter("ucus_ucret"));
-            Ucus ucus = new Ucus(ucus_id, ucus_kalkis_id, ucus_varis_id, ucus_tarih, ucus_saat, ucus_sure, firma_id, ucak_id, ucus_ucret);
+            Double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
+            Ucus ucus = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, firma_id, ucak_id, flight_fare);
             ucusDAO.ucusguncelle(ucus);
             response.sendRedirect("guncelucusliste");
         }

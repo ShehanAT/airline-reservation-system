@@ -8,21 +8,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Firma;
+import model.Company;
 
-public class FirmaDAO {
+public class CompanyDAO {
     
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";    
 
-    private static final String FIRMA_INSERT = "INSERT INTO firma (firma_ad, firma_logo) VALUES (?, ?);"; 
+    private static final String FIRMA_INSERT = "INSERT INTO firma (company_name, company_logo) VALUES (?, ?);";
     private static final String FIRMA_SELECT_ALL = "select * from firma;";
     private static final String FIRMA_DELETE = "delete from firma where firma_id = ?;";
     private static final String FIRMA_SELECT_ID = "select * from firma where firma_id=?;";
-    private static final String FIRMA_UPDATE = "update firma set firma_ad = ?, firma_logo=? where firma_id = ?;";
+    private static final String FIRMA_UPDATE = "update firma set company_name = ?, company_logo=? where firma_id = ?;";
     
-    public FirmaDAO() {}
+    public CompanyDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
@@ -39,16 +39,16 @@ public class FirmaDAO {
         return connection;
     }
     
-    public List<Firma> firmalistele() {
-        List<Firma> firmalar = new ArrayList<> ();
+    public List<Company> companyList() {
+        List<Company> firmalar = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int firma_id = rs.getInt("firma_id");
-                String firma_ad = rs.getString("firma_ad");
-                String firma_logo = rs.getString("firma_logo");
-                firmalar.add(new Firma(firma_id, firma_ad, firma_logo));
+                String company_name = rs.getString("company_name");
+                String company_logo = rs.getString("company_logo");
+                firmalar.add(new Company(firma_id, company_name, company_logo));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -56,7 +56,7 @@ public class FirmaDAO {
         return firmalar;
     }       
     
-    public void firmaekle(Firma firma) throws SQLException {  
+    public void addCompany(Company firma) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_INSERT)) {
@@ -68,7 +68,7 @@ public class FirmaDAO {
         }
     } 
     
-    public boolean firmasil(int id) throws SQLException {
+    public boolean deleteCompany(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(FIRMA_DELETE);) {
             statement.setInt(1, id);
@@ -77,16 +77,16 @@ public class FirmaDAO {
         return silinenSatir;
     }
     
-    public Firma firmasec(int id) {
-        Firma firma = null;
+    public Company firmasec(int id) {
+        Company firma = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String firma_ad = rs.getString("firma_ad");
-                String firma_logo = rs.getString("firma_logo");
-                firma = new Firma(id, firma_ad, firma_logo);
+                String company_name = rs.getString("company_name");
+                String company_logo = rs.getString("company_logo");
+                firma = new Company(id, company_name, company_logo);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -94,7 +94,7 @@ public class FirmaDAO {
         return firma;
     }  
     
-    public boolean firmaguncelle(Firma firma) throws SQLException {
+    public boolean companyUpdate(Company firma) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(FIRMA_UPDATE);) {
             statement.setString(1, firma.getFirma_ad());           

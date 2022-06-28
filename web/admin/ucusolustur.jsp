@@ -11,39 +11,39 @@
             <div class="card-body">
                 <form class="form" role="form" method="post" name="ucus" autocomplete="off" action="gosterucusolustur" onsubmit="return Kontrol()">
                     <div class="form-group">
-                        <label for="ucus_kalkis_id">Uçuş Kalkış</label>
-                        <select class="form-control" id="ucus_kalkis_id" name="ucus_kalkis_id" required>
+                        <label for="flight_departure_id">Uçuş Kalkış</label>
+                        <select class="form-control" id="flight_departure_id" name="flight_departure_id" required>
                             <c:forEach var="havaalani" items="${havaalani}">
-                                <option value="<c:out value='${havaalani.havaalani_id}' />"><c:out value="${havaalani.havaalani_ad}" /> | <c:out value="${havaalani.havaalani_kod}" /></option>
+                                <option value="<c:out value='${airport.airport_id}' />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /></option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_varis_id">Uçuş Varış</label>
-                        <select class="form-control" id="ucus_varis_id" name="ucus_varis_id" required>
+                        <label for="end_heir_id">Uçuş Varış</label>
+                        <select class="form-control" id="end_heir_id" name="end_heir_id" required>
                             <c:forEach var="havaalani" items="${havaalani}">
-                                <option value="<c:out value='${havaalani.havaalani_id}' />"><c:out value="${havaalani.havaalani_ad}" /> | <c:out value="${havaalani.havaalani_kod}" /></option>
+                                <option value="<c:out value='${airport.airport_id}' />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /></option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_tarih">Uçuş Tarih</label>
-                        <input type="date" class="form-control" id="ucus_tarih" name="ucus_tarih" required>
+                        <label for="flight_date">Uçuş Tarih</label>
+                        <input type="date" class="form-control" id="flight_date" name="flight_date" required>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_saat">Uçuş Saat</label>
-                        <input type="time" class="form-control" id="ucus_saat" name="ucus_saat" required>
+                        <label for="flight_hour">Uçuş Saat</label>
+                        <input type="time" class="form-control" id="flight_hour" name="flight_hour" required>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_sure">Uçuş Süre</label>
-                        <input type="time" class="form-control" id="ucus_sure" name="ucus_sure"required>
+                        <label for="flight_time">Uçuş Süre</label>
+                        <input type="time" class="form-control" id="flight_time" name="flight_time"required>
                     </div>
 
                     <div class="form-group">
-                        <label for="firma_id">Firma Adı</label>
+                        <label for="firma_id">Company Name</label>
                         <select class="form-control" id="firma_id" name="firma_id" required>
                             <c:forEach var="firma" items="${firma}">
-                                <option value="<c:out value='${firma.firma_id}' />"><c:out value="${firma.firma_ad}" /></option>
+                                <option value="<c:out value='${firma.firma_id}' />"><c:out value="${firma.company_name}" /></option>
                             </c:forEach>
                         </select>
                     </div>
@@ -57,8 +57,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_ucret">Uçuş Ücreti</label>
-                        <input type="number" min="1" step="any" class="form-control" id="ucus_ucret" name="ucus_ucret" placeholder="Uçuş Ücreti" required>
+                        <label for="flight_fare">Uçuş Ücreti</label>
+                        <input type="number" min="1" step="any" class="form-control" id="flight_fare" name="flight_fare" placeholder="Uçuş Ücreti" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Oluştur</button>
@@ -71,8 +71,8 @@
 <script>
     function Kontrol() {
         var formKontrol = document.forms["ucus"];
-        var gidis = formKontrol["ucus_kalkis_id"];
-        var varis = formKontrol["ucus_varis_id"];
+        var gidis = formKontrol["flight_departure_id"];
+        var varis = formKontrol["end_heir_id"];
         gidis = gidis.value;
         varis = varis.value;
         if (gidis === varis) {

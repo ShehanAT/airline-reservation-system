@@ -37,11 +37,11 @@
                 <h5 class="card-header text-center" style="background-color: #F1F2F8">REZERVASYON BİLGİLERİ</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${rezervasyonbilgi.firma_logo}' />" style="width: 1.5em"> <c:out value='${rezervasyonbilgi.firma_ad}' /> - <c:out value='${rezervasyonbilgi.ucak_ad}' /></h5>
+                        <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${rezervasyonbilgi.company_logo}' />" style="width: 1.5em"> <c:out value='${rezervasyonbilgi.firma_ad}' /> - <c:out value='${rezervasyonbilgi.ucak_ad}' /></h5>
                         <h5 class="card-title">PNR NUMARASI : <span class="text-white bg-dark"><c:out value='${rezervasyon.pnr_no}' /></span></h5>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.ucus_tarih}' /></span></p>
+                        <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.flight_date}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Nereden : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.kalkis_sehir}' /> | <c:out value='${rezervasyonbilgi.kalkis_ad}' /> [<c:out value='${rezervasyonbilgi.kalkis_kod}' />]</span></p>
@@ -50,7 +50,7 @@
                         <p>Nereye : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.varis_sehir}' /> | <c:out value='${rezervasyonbilgi.varis_ad}' /> [<c:out value='${rezervasyonbilgi.varis_kod}' />]</span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Kalkış Saati : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.ucus_saat}' /></span></p>
+                        <p>Kalkış Saati : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.flight_hour}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Uçuş süresi : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.ucus_s}' /> sa <c:out value='${rezervasyonbilgi.ucus_d}' /> dk</span></p>

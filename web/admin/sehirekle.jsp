@@ -10,8 +10,8 @@
             <div class="card-body">
                 <form class="form" role="form" method="post" autocomplete="off" action="gostersehirekle">
                     <div class="form-group">
-                        <label for="havaalani_sehir_ad">Şehir Adı</label>
-                        <input type="text" class="form-control" id="havaalani_sehir_ad" name="havaalani_sehir_ad" placeholder="Şehir Adı" required>
+                        <label for="airport_city_name">Şehir Adı</label>
+                        <input type="text" class="form-control" id="airport_city_name" name="airport_city_name" placeholder="Şehir Adı" required>
                     </div>
 
                     <div class="form-group">

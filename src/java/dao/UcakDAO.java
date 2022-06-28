@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Ucak;
-import model.Firma;
+import model.Company;
 
 public class UcakDAO {
     
@@ -68,16 +68,16 @@ public class UcakDAO {
         return silinenSatir;
     }
     
-    public List<Firma> firma() {
+    public List<Company> firma() {
 
-        List<Firma> firma = new ArrayList<> ();
+        List<Company> firma = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int firma_id = rs.getInt("firma_id");
                 String firma_ad = rs.getString("firma_ad");               
-                firma.add(new Firma(firma_id, firma_ad));
+                firma.add(new Company(firma_id, firma_ad));
             }
         } catch (SQLException e) {
             printSQLException(e);

@@ -10,59 +10,59 @@
             </div>
             <div class="card-body">
                 <form class="form" role="form" method="post" autocomplete="off" action="gosterucusguncelle">
-                    <input type="hidden" name="ucus_id" id="ucus_id" value="<c:out value='${ucus.ucus_id}' />" />
+                    <input type="hidden" name="flight_id" id="flight_id" value="<c:out value='${flight.flight_id}' />" />
                     <div class="form-group">
-                        <label for="ucus_kalkis_id">Uçuş Kalkış</label>
-                        <select class="form-control" id="ucus_kalkis_id" name="ucus_kalkis_id" required>
-                            <c:forEach var="havaalani" items="${havaalani}">
+                        <label for="flight_departure_id">Uçuş Kalkış</label>
+                        <select class="form-control" id="flight_departure_id" name="flight_departure_id" required>
+                            <c:forEach var="airport" items="${airport}">
                                 <c:choose>
-                                    <c:when test= "${havaalani.havaalani_id == ucus.ucus_kalkis_id}">
-                                        <option value="<c:out value='${havaalani.havaalani_id}' />" selected><c:out value='${havaalani.havaalani_ad}' /></option>
+                                    <c:when test= "${airport.airport_id == flight.flight_departure_id}">
+                                        <option value="<c:out value='${airport.airport_id}' />" selected><c:out value='${airport.airport_name}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${havaalani.havaalani_id}' />"><c:out value='${havaalani.havaalani_ad}' /></option>
+                                        <option value="<c:out value='${airport.airport_id}' />"><c:out value='${airport.airport_name}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_varis_id">Uçuş Varış</label>
-                        <select class="form-control" id="ucus_varis_id" name="ucus_varis_id" required>
-                            <c:forEach var="havaalani" items="${havaalani}">
+                        <label for="end_heir_id">Uçuş Varış</label>
+                        <select class="form-control" id="end_heir_id" name="end_heir_id" required>
+                            <c:forEach var="airport" items="${airport}">
                                 <c:choose>
-                                    <c:when test= "${havaalani.havaalani_id == ucus.ucus_varis_id}">
-                                        <option value="<c:out value='${havaalani.havaalani_id}' />" selected><c:out value='${havaalani.havaalani_ad}' /></option>
+                                    <c:when test= "${airport.airport_id == flight.end_heir_id}">
+                                        <option value="<c:out value='${airport.airport_id}' />" selected><c:out value='${airport.airport_name}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${havaalani.havaalani_id}' />"><c:out value='${havaalani.havaalani_ad}' /></option>
+                                        <option value="<c:out value='${airport.airport_id}' />"><c:out value='${airport.airport_name}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_tarih">Uçuş Tarih</label>
-                        <input type="date" class="form-control" id="ucus_tarih" name="ucus_tarih" value="<c:out value='${ucus.ucus_tarih}' />" required>
+                        <label for="flight_date">Uçuş Tarih</label>
+                        <input type="date" class="form-control" id="flight_date" name="flight_date" value="<c:out value='${flight.flight_date}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_saat">Uçuş Saat</label>
-                        <input type="time" class="form-control" id="ucus_saat" name="ucus_saat" value="<c:out value='${ucus.ucus_saat}' />" required>
+                        <label for="flight_hour">Uçuş Saat</label>
+                        <input type="time" class="form-control" id="flight_hour" name="flight_hour" value="<c:out value='${flight.flight_hour}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_sure">Uçuş Süre</label>
-                        <input type="time" class="form-control" id="ucus_sure" name="ucus_sure" value="<c:out value='${ucus.ucus_sure}' />" required>
+                        <label for="flight_time">Uçuş Süre</label>
+                        <input type="time" class="form-control" id="flight_time" name="flight_time" value="<c:out value='${flight.flight_time}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="firma_id">Firma Adı</label>
+                        <label for="firma_id">Company Name</label>
                         <select class="form-control" id="firma_id" name="firma_id" required>
                             <c:forEach var="firma" items="${firma}">
                                 <c:choose>
-                                    <c:when test= "${firma.firma_id == ucus.firma_id}">
-                                        <option value="<c:out value='${firma.firma_id}' />" selected><c:out value='${firma.firma_ad}' /></option>
+                                    <c:when test= "${firma.firma_id == flight.firma_id}">
+                                        <option value="<c:out value='${firma.firma_id}' />" selected><c:out value='${firma.company_name}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${firma.firma_id}' />"><c:out value='${firma.firma_ad}' /></option>
+                                        <option value="<c:out value='${firma.firma_id}' />"><c:out value='${firma.company_name}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>
@@ -73,7 +73,7 @@
                         <select class="form-control" id="ucak_id" name="ucak_id" required>
                             <c:forEach var="ucak" items="${ucak}">
                                 <c:choose>
-                                    <c:when test= "${ucak.ucak_id == ucus.ucak_id}">
+                                    <c:when test= "${ucak.ucak_id == flight.ucak_id}">
                                         <option value="<c:out value='${ucak.ucak_id }' />" selected><c:out value='${ucak.ucak_ad}' /></option>
                                     </c:when>
                                     <c:otherwise>
@@ -84,8 +84,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucus_ucret">Uçuş Ücreti</label>
-                        <input type="number" min="1" step="any" class="form-control" id="ucus_ucret" name="ucus_ucret" placeholder="Uçuş Ücreti" value="<c:out value='${ucus.ucus_ucret}' />"required>
+                        <label for="flight_fare">Uçuş Ücreti</label>
+                        <input type="number" min="1" step="any" class="form-control" id="flight_fare" name="flight_fare" placeholder="Uçuş Ücreti" value="<c:out value='${flight.flight_fare}' />"required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Güncelle</button>

@@ -11,18 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.Havaalani_ulkeDAO;
-import model.Havaalani_ulke;
+import dao.Airport_countryDAO;
+import model.Airport_country;
 
-@WebServlet(urlPatterns = {"/admin/ulkeliste", "/admin/ulkesil", "/admin/ulkeekle", "/admin/ulkeguncelle", "/admin/gosterulkeguncelle", "/admin/gosterulkeekle"})
+@WebServlet(urlPatterns = {"/admin/countryList", "/admin/deleteCountry", "/admin/countryAdd", "/admin/updateCountry", "/admin/showUpdateCountry", "/admin/showCountryAdd"})
 
 public class Airport_CountryServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private Havaalani_ulkeDAO havaalani_ulkeDAO;
+    private Airport_countryDAO airport_countryDAO;
 
     public void init() {
-        havaalani_ulkeDAO = new Havaalani_ulkeDAO();
+        airport_countryDAO = new Airport_countryDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,23 +35,23 @@ public class Airport_CountryServlet extends HttpServlet {
         String action = request.getServletPath();
         try {
             switch (action) {
-                case "/admin/ulkeliste":
-                    ulkeliste(request, response);
+                case "/admin/countryList":
+                    countryList(request, response);
                     break;
-                case "/admin/ulkeekle":
-                    ulkeekle(request, response);
+                case "/admin/countryAdd":
+                    countryAdd(request, response);
                     break;
-                case "/admin/gosterulkeekle":
-                    gosterulkeekle(request, response);
+                case "/admin/showCountryAdd":
+                    showCountryAdd(request, response);
                     break;
-                case "/admin/ulkeguncelle":
-                    ulkeguncelle(request, response);
+                case "/admin/updateCountry":
+                    updateCountry(request, response);
                     break;
-                case "/admin/gosterulkeguncelle":
-                    gosterulkeguncelle(request, response);
+                case "/admin/showUpdateCountry":
+                    showUpdateCountry(request, response);
                     break;
-                case "/admin/ulkesil":
-                    ulkesil(request, response);
+                case "/admin/deleteCountry":
+                    deleteCountry(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -59,7 +59,7 @@ public class Airport_CountryServlet extends HttpServlet {
         }
     }
 
-    private void ulkeliste(HttpServletRequest request, HttpServletResponse response)
+    private void countryList(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -67,14 +67,14 @@ public class Airport_CountryServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Havaalani_ulke> ulkeliste = havaalani_ulkeDAO.ulkelistele();
-            request.setAttribute("ulkeliste", ulkeliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ulkelistele.jsp");
+            List<Airport_country> countryList = airport_countryDAO.countryListle();
+            request.setAttribute("country", country);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listCountry.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void ulkeekle(HttpServletRequest request, HttpServletResponse response)
+    private void countryAdd(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -82,12 +82,12 @@ public class Airport_CountryServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ulkeekle.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("countryAdd.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void gosterulkeekle(HttpServletRequest request, HttpServletResponse response)
+    private void gostercountryAdd(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -95,14 +95,14 @@ public class Airport_CountryServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            String havaalani_ulke_ad = new String((request.getParameter("havaalani_ulke_ad")).getBytes("ISO-8859-1"), "UTF-8");
-            Havaalani_ulke yeniulke = new Havaalani_ulke(havaalani_ulke_ad);
-            havaalani_ulkeDAO.ulkeekle(yeniulke);
-            response.sendRedirect("ulkeliste");
+            String airport_country_name = new String((request.getParameter("airport_country_name")).getBytes("ISO-8859-1"), "UTF-8");
+            Airport_country newCountry = new Airport_country(airport_country_name);
+            airport_countryDAO.countryAdd(newCountry);
+            response.sendRedirect("country");
         }
     }
 
-    private void ulkeguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updateCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -111,14 +111,14 @@ public class Airport_CountryServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Havaalani_ulke ulke = havaalani_ulkeDAO.ulkesec(id);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ulkeguncelle.jsp");
-            request.setAttribute("ulke", ulke);
+            Airport_country country = airport_countryDAO.selectCountry(id);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("updateCountry.jsp");
+            request.setAttribute("country", country);
             dispatcher.forward(request, response);
         }
     }
 
-    private void gosterulkeguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void showUpdateCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -126,15 +126,15 @@ public class Airport_CountryServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int havaalani_ulke_id = Integer.parseInt(request.getParameter("havaalani_ulke_id"));
-            String havaalani_ulke_ad = new String((request.getParameter("havaalani_ulke_ad")).getBytes("ISO-8859-1"), "UTF-8");
-            Havaalani_ulke ulke = new Havaalani_ulke(havaalani_ulke_id, havaalani_ulke_ad);
-            havaalani_ulkeDAO.ulkeguncelle(ulke);
-            response.sendRedirect("ulkeliste");
+            int airport_country_id = Integer.parseInt(request.getParameter("airport_country_id"));
+            String airport_country_name = new String((request.getParameter("airport_country_name")).getBytes("ISO-8859-1"), "UTF-8");
+            Airport_country ulke = new Airport_country(airport_country_id, airport_country_name);
+            airport_countryDAO.updateCountry(country);
+            response.sendRedirect("country");
         }
     }
 
-    private void ulkesil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -142,9 +142,9 @@ public class Airport_CountryServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int havaalani_ulke_id = Integer.parseInt(request.getParameter("id"));
-            havaalani_ulkeDAO.ulkesil(havaalani_ulke_id);
-            response.sendRedirect("ulkeliste");
+            int airport_country_id = Integer.parseInt(request.getParameter("id"));
+            airport_countryDAO.deleteCountry(airport_country_id);
+            response.sendRedirect("country");
         }
     }
 }

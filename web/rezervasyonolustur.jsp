@@ -15,16 +15,16 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <p class="f-14 card-text-payment card-text-payment-bold">Gidiş</p>
-                                <p class="f-14 card-text-payment card-text-payment-bold"><c:out value='${ucusbilgileri.ucus_tarih}' /></p>
+                                <p class="f-14 card-text-payment card-text-payment-bold"><c:out value='${ucusbilgileri.flight_date}' /></p>
                             </div>
                             <p class="card-border-bottom-payment"></p>
 
                             <div>
                                 <div class="d-flex justify-content-between">
-                                    <p class="small card-text-payment f-08em"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${ucusbilgileri.firma_logo}' />" style="width: 1.5em"><c:out value='${ucusbilgileri.firma_ad}' /> - <c:out value='${ucusbilgileri.ucak_ad}' /></p>                        
+                                    <p class="small card-text-payment f-08em"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${ucusbilgileri.company_logo}' />" style="width: 1.5em"><c:out value='${ucusbilgileri.company_name}' /> - <c:out value='${ucusbilgileri.ucak_ad}' /></p>
                                 </div>
                                 <div class="d-flex justify-content-between align-item-center">
-                                    <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${ucusbilgileri.kalkis_kod}' /> <c:out value='${ucusbilgileri.ucus_saat}' /> </span>
+                                    <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${ucusbilgileri.kalkis_kod}' /> <c:out value='${ucusbilgileri.flight_hour}' /> </span>
                                     <hr class="divider-small">
                                     <span class="f-08em text-soft"><i class="far fa-clock text-soft" aria-hidden="true"></i> <c:out value='${ucusbilgileri.ucus_s}' /> Sa <c:out value='${ucusbilgileri.ucus_d}' /> dk </span>
                                     <hr class="divider-small">
@@ -51,19 +51,19 @@
                                             <tbody>
                                                 <tr>
                                                     <th class="text-left py-0"><span id="yetiskin_ucret" name="yetiskin_ucret"><c:out value='${yolcusayi.yetiskin_sayi}' /></span> Yetişkin</th>
-                                                    <td class="text-right py-0"><c:out value='${yolcusayi.yetiskin_sayi*ucusbilgileri.ucus_ucret}' /> ₺</td>
+                                                    <td class="text-right py-0"><c:out value='${yolcusayi.yetiskin_sayi*ucusbilgileri.flight_fare}' /> ₺</td>
                                                 </tr>
                                                 <c:if test="${yolcusayi.cocuk_sayi!=0}">
                                                     <tr>
                                                         <th class="text-left py-0"><span id="cocuk_ucret" name="cocuk_ucret"><c:out value='${yolcusayi.cocuk_sayi}' /></span> Çocuk</th>
-                                                        <td class="text-right py-0"><c:out value='${yolcusayi.cocuk_sayi*ucusbilgileri.ucus_ucret}' /> ₺</td>
+                                                        <td class="text-right py-0"><c:out value='${yolcusayi.cocuk_sayi*ucusbilgileri.flight_fare}' /> ₺</td>
                                                     </tr>
                                                 </c:if>    
                                                 <tr>                                  
                                                     <td id="fiyat_goster">
                                                         <b class="card-text-payment">Toplam Tutar</b>                                      
                                                     </td>
-                                                    <td class="text-right card-text-payment-bold card-text-payment"><span id="toplam_tutar" name="toplam_tutar"><c:out value='${yolcusayi.cocuk_sayi*ucusbilgileri.ucus_ucret + yolcusayi.yetiskin_sayi*ucusbilgileri.ucus_ucret}' /></span> ₺</td>
+                                                    <td class="text-right card-text-payment-bold card-text-payment"><span id="toplam_tutar" name="toplam_tutar"><c:out value='${yolcusayi.cocuk_sayi*ucusbilgileri.flight_fare + yolcusayi.yetiskin_sayi*ucusbilgileri.flight_fare}' /></span> ₺</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -77,10 +77,10 @@
         </div>
         <div class="col-md-8" id="flight-paymentblock-mid">
             <form action="gosterrezervasyonislemlerim" method="post">
-                <input type="hidden" id="ucus_id" name="ucus_id" value="<c:out value='${ucusbilgileri.ucus_id}' />">
+                <input type="hidden" id="flight_id" name="flight_id" value="<c:out value='${ucusbilgileri.flight_id}' />">
                 <input type="hidden" id="y_sayi" name="y_sayi" value="<c:out value='${yolcusayi.yetiskin_sayi}' />">
                 <input type="hidden" id="c_sayi" name="c_sayi" value="<c:out value='${yolcusayi.cocuk_sayi}' />">
-                <input type="hidden" id="u_ucret" name="u_ucret" value="<c:out value='${ucusbilgileri.ucus_ucret}' />">
+                <input type="hidden" id="u_ucret" name="u_ucret" value="<c:out value='${ucusbilgileri.flight_fare}' />">
                 <div class="row mb-2">
                     <div class="col-12 mb-2">
                         <div class="card shadow-sm">

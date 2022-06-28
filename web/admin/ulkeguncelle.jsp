@@ -9,11 +9,11 @@
                 <h3 class="mb-0 text-white">Ülke Güncelle</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" autocomplete="off" action="gosterulkeguncelle">
-                    <input type="hidden" name="havaalani_ulke_id" id="havaalani_ulke_id" value="<c:out value='${ulke.havaalani_ulke_id}' />" />
+                <form class="form" role="form" method="post" autocomplete="off" action="showUpdateCountry">
+                    <input type="hidden" name="airport_country_id" id="airport_country_id" value="<c:out value='${country.airport_country_id}' />" />
                     <div class="form-group">
-                        <label for="havaalani_ulke_ad">Ülke Adı</label>
-                        <input type="text" class="form-control" id="havaalani_ulke_ad" name="havaalani_ulke_ad" value="<c:out value='${ulke.havaalani_ulke_ad}' />" required>
+                        <label for="airport_country_name">Ülke Adı</label>
+                        <input type="text" class="form-control" id="airport_country_name" name="airport_country_name" value="<c:out value='${country.airport_country_name}' />" required>
                     </div>
 
                     <div class="form-group">

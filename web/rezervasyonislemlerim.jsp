@@ -51,11 +51,11 @@
                     <p class="card-header text-center" style="background-color: #F1F2F8">Rezervasyon Bilgileri</p>
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value="${rez.firma_logo}" />" style="width: 1.5em"> <c:out value="${rez.firma_ad}" /> - <c:out value="${rez.ucak_ad}" /></h5>
+                            <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value="${rez.company_logo}" />" style="width: 1.5em"> <c:out value="${rez.firma_ad}" /> - <c:out value="${rez.ucak_ad}" /></h5>
                             <p class="card-title">PNR NUMARASI : <span class="text-white bg-dark"><c:out value="${rez.pnr_no}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value="${rez.ucus_tarih}" /></span></p>
+                            <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value="${rez.flight_date}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>Nereden : <span class="font-weight-bold"><c:out value="${rez.kalkis_ad}" /></span></p>
@@ -64,7 +64,7 @@
                             <p>Nereye : <span class="font-weight-bold"><c:out value="${rez.varis_ad}" /></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p>Kalkış Saati : <span class="font-weight-bold"><c:out value="${rez.ucus_saat}" /></span></p>
+                            <p>Kalkış Saati : <span class="font-weight-bold"><c:out value="${rez.flight_hour}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>Varış Saati : <span class="font-weight-bold"><c:out value="${rez.varis_saat}" /></span></p>
