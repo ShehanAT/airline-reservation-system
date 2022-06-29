@@ -17,7 +17,7 @@ public class RezervasyonDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";    
     
-    private static final String TEKYON_SORGULAMA_SELECT1="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from ucus JOIN havaalani JOIN airport_city\n" +
+    private static final String TEKYON_SORGULAMA_SELECT1="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from flight JOIN havaalani JOIN airport_city\n" +
                                     "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
@@ -25,7 +25,7 @@ public class RezervasyonDAO {
                                     "INNER JOIN  airport_city a ON (a.airport_city_id = s.airport_city_id)\n" +
                                     "INNER JOIN  airport_city b ON (b.airport_city_id = p.airport_city_id)\n" +
                                     "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND (ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) >= ?;";
-    private static final String TEKYON_SORGULAMA_SELECT2="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from ucus JOIN havaalani JOIN airport_city\n" +
+    private static final String TEKYON_SORGULAMA_SELECT2="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from flight JOIN havaalani JOIN airport_city\n" +
                                     "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
@@ -34,12 +34,12 @@ public class RezervasyonDAO {
                                     "INNER JOIN  havaalani_sehir b ON (b.havaalani_sehir_id = p.havaalani_sehir_id)\n" +
                                     "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND flight_hour > ? AND (ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) >= ?;";
     private static final String REZERVASYON_SELECT_COUNT="SELECT COUNT(*) as sonuc FROM rezervasyon WHERE rezervasyon_tarih BETWEEN ? AND ?;";
-    private static final String UCUS_SELECT_COUNT="SELECT count(*) as sonuc FROM ucus WHERE flight_date >= ? ;";
+    private static final String UCUS_SELECT_COUNT="SELECT count(*) as sonuc FROM flight WHERE flight_date >= ? ;";
     private static final String MESAJ_SELECT_COUNT="SELECT count(*) as sonuc FROM mesaj WHERE mesaj_okunma = 0;";
     private static final String REZERVASYON_DELETE = "delete from rezervasyon where rezervasyon_id = ?;";
     private static final String REZERVASYON_SELECT_PNRNO="SELECT * FROM rezervasyon where pnr_no=? and yolcu_soyad=?;";
-    private static final String REZERVASYON_SELECT_UCUS_ID="select DISTINCT k.ucak_ad, u.flight_hour, u.flight_date, u.flight_time, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tc, yolcu_tip, a.airport_city_name AS kalkis_sehir, s.airport_name as kalkis_ad, s.airport_code as kalkis_kod, b.airport_city_name as varis_sehir, p.airport_name as varis_ad, p.airport_code as varis_kod, f.company_name, f.company_logo from rezervasyon JOIN havaalani JOIN havaalani_sehir JOIN ucus JOIN company JOIN ucak\n" +
-                                    "INNER JOIN  ucus u ON (rezervasyon.flight_id = flight.flight_id)\n" +
+    private static final String REZERVASYON_SELECT_UCUS_ID="select DISTINCT k.ucak_ad, u.flight_hour, u.flight_date, u.flight_time, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tc, yolcu_tip, a.airport_city_name AS kalkis_sehir, s.airport_name as kalkis_ad, s.airport_code as kalkis_kod, b.airport_city_name as varis_sehir, p.airport_name as varis_ad, p.airport_code as varis_kod, f.company_name, f.company_logo from rezervasyon JOIN havaalani JOIN havaalani_sehir JOIN flight JOIN company JOIN ucak\n" +
+                                    "INNER JOIN  flight u ON (rezervasyon.flight_id = flight.flight_id)\n" +
                                     "INNER JOIN  company f ON (f.company_id = u.company_id)\n" +
                                     "INNER JOIN  ucak k ON (k.plane_id = u.plane_id)\n" +
                                     "INNER JOIN  havaalani s ON (u.flight_departure_id = s.airport_id)\n" +
@@ -47,7 +47,7 @@ public class RezervasyonDAO {
                                     "INNER JOIN  havaalani_sehir a ON (s.havaalani_sehir_id = a.havaalani_sehir_id )\n" +
                                     "INNER JOIN  havaalani_sehir b ON (p.havaalani_sehir_id = b.havaalani_sehir_id)\n" +
                                     "WHERE u.flight_id=? and rezervasyon.rezervasyon_id=?;";
-    private static final String SELECT_UCUS_BILGILERI = "select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, ucak.ucak_koltuk, flight_fare from ucus JOIN havaalani JOIN havaalani_sehir\n" +
+    private static final String SELECT_UCUS_BILGILERI = "select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, ucak.ucak_koltuk, flight_fare from flight JOIN havaalani JOIN havaalani_sehir\n" +
                                     "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
@@ -63,7 +63,7 @@ public class RezervasyonDAO {
     private static final String REZERVASYON_INSERT ="INSERT INTO rezervasyon (flight_id, kullanici_id, pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_tarih, yolcu_ucret, koltuk_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
     private static final String KOLTUK_NO_SELECT="SELECT * FROM rezervasyon WHERE flight_id=? and koltuk_no=?;";
     private static final String REZERVASYON_ISLEMLERIM_SELECT="SELECT r.rezervasyon_id,r.durum ,r.rezervasyon_tarih, r.pnr_no, r.yolcu_ad, r.yolcu_soyad, r.yolcu_email, r.yolcu_tel, r.yolcu_tc, r.yolcu_tip, r.yolcu_tarih, r.yolcu_ucret, r.koltuk_no, u.flight_date, u.flight_hour, u.flight_time, k.airport_name as kalkis_ad, k.airport_code as kalkis_kod, v.airport_name as varis_ad, v.airport_code as varis_kod, s1.airport_city_name as kalkis_sehir, s2.airport_city_name as varis_sehir, f.company_name, f.company_logo, p.ucak_ad from rezervasyon AS r\n" +
-                                                "JOIN ucus AS u ON u.flight_id = r.flight_id\n" +
+                                                "JOIN flight AS u ON u.flight_id = r.flight_id\n" +
                                                 "JOIN havaalani AS k ON k.airport_id=u.flight_departure_id \n" +
                                                 "JOIN havaalani AS v ON v.airport_id=u.end_heir_id\n" +
                                                 "JOIN havaalani_sehir AS s1 ON s1.havaalani_sehir_id=k.havaalani_sehir_id\n" +
@@ -73,17 +73,17 @@ public class RezervasyonDAO {
                                                 "WHERE r.kullanici_id=?\n"+
                                                 "ORDER BY r.rezervasyon_tarih DESC;";
     private static final String IPTAL_DURUM1="update rezervasyon r\n" +
-                                                "join ucus u on r.flight_id = u.flight_id\n" +
+                                                "join flight u on r.flight_id = u.flight_id\n" +
                                                 "set r.durum = '1'\n" +
                                                 "WHERE (r.kullanici_id=? and u.flight_date > ?) OR (u.flight_date = ? and u.flight_hour > ?);";
     private static final String IPTAL_DURUM0="update rezervasyon r\n" +
-                                                "join ucus u on r.flight_id = u.flight_id\n" +
+                                                "join flight u on r.flight_id = u.flight_id\n" +
                                                 "set r.durum = '0'\n" +
                                                 "WHERE (r.kullanici_id=? and u.flight_date < ?) OR (u.flight_date = ? and u.flight_hour < ?);";
     private static final String REZERVASYON_UPDATE = "update rezervasyon set yolcu_ad = ?, yolcu_soyad=?, yolcu_tc=?, yolcu_tarih=?, yolcu_email=?, yolcu_tel=? where rezervasyon_id = ?;";
     
     private static final String RZERVASYON_INCELE="SELECT r.rezervasyon_id,r.durum ,r.rezervasyon_tarih, r.pnr_no, r.yolcu_ad, r.yolcu_soyad, r.yolcu_email, r.yolcu_tel, r.yolcu_tc, r.yolcu_tip, r.yolcu_tarih, r.yolcu_ucret, r.koltuk_no, u.flight_date, u.flight_hour, u.flight_time, k.airport_name as kalkis_ad, k.airport_code as kalkis_kod, v.airport_name as varis_ad, v.airport_code as varis_kod, s1.airport_city_name as kalkis_sehir, s2.airport_city_name as varis_sehir, f.company_name, f.company_logo, p.ucak_ad from rezervasyon AS r\n" +
-                                                "JOIN ucus AS u ON u.flight_id = r.flight_id\n" +
+                                                "JOIN flight AS u ON u.flight_id = r.flight_id\n" +
                                                 "JOIN havaalani AS k ON k.airport_id=u.flight_departure_id\n" +
                                                 "JOIN havaalani AS v ON v.airport_id=u.end_heir_id\n" +
                                                 "JOIN havaalani_sehir AS s1 ON s1.havaalani_sehir_id=k.havaalani_sehir_id\n" +
@@ -248,13 +248,13 @@ public class RezervasyonDAO {
                 String flight_date=rs.getString("flight_date");
                 String flight_time=rs.getString("flight_time");
                 String[] ARRAYflight_time = flight_time.split(":");
-                String ucus_s = ARRAYflight_time[0];
-                String ucus_d = ARRAYflight_time[1];
+                String flight_s = ARRAYflight_time[0];
+                String flight_d = ARRAYflight_time[1];
                 String[] ARRAYflight_hour = flight_hour.split(":");
                 String s = ARRAYflight_hour[0];
                 String d = ARRAYflight_hour[1];
-                int saat=(Integer.parseInt(s)+Integer.parseInt(ucus_s))%24 ;
-                int dakika=(Integer.parseInt(d)+Integer.parseInt(ucus_d))%60 ;
+                int saat=(Integer.parseInt(s)+Integer.parseInt(flight_s))%24 ;
+                int dakika=(Integer.parseInt(d)+Integer.parseInt(flight_d))%60 ;
                 String Sdakika;
                 if(dakika < 10){
                     Sdakika="0"+String.valueOf(dakika);
@@ -279,7 +279,7 @@ public class RezervasyonDAO {
                 String company_logo=rs.getString("company_logo");
                 String ucak_ad=rs.getString("ucak_ad");
                 String rezervasyon_tarih=rs.getString("rezervasyon_tarih");          
-                rez.add(new Rezervasyon(durum, rezervasyon_id, rezervasyon_tarih, pnr_no,yolcu_ad, yolcu_soyad,yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, koltuk_no, flight_date, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, flight_hour, flight_time, company_name, company_logo, ucus_s, ucus_d, varis_saat,ucak_ad, yolcu_tarih, yolcu_ucret));
+                rez.add(new Rezervasyon(durum, rezervasyon_id, rezervasyon_tarih, pnr_no,yolcu_ad, yolcu_soyad,yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, koltuk_no, flight_date, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, flight_hour, flight_time, company_name, company_logo, flight_s, flight_d, varis_saat,ucak_ad, yolcu_tarih, yolcu_ucret));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -350,13 +350,13 @@ public class RezervasyonDAO {
                     String varis_ad = rs.getString("varis_ad");
                     String varis_kod = rs.getString("varis_kod");
                     String flight_hour = rs.getString("flight_hour");
-                    flight_hour = ucus_saat.substring(0, 5);
+                    flight_hour = flight_saat.substring(0, 5);
                     String flight_date = rs.getString("flight_date");
                     String flight_time = rs.getString("flight_time");
 
                     String[] ARRAYflight_time = flight_time.split(":");
-                    String ucus_s = ARRAYflight_time[0];
-                    String ucus_d = ARRAYflight_time[1];
+                    String flight_s = ARRAYflight_time[0];
+                    String flight_d = ARRAYflight_time[1];
                     String[] ARRAYucus_saat = ucus_saat.split(":");
                     String s = ARRAYucus_saat[0];
                     String d = ARRAYucus_saat[1];
@@ -583,7 +583,7 @@ public class RezervasyonDAO {
         return rezervasyon;
     }
     
-    public List<Rezervasyon> ucussayisi() {
+    public List<Rezervasyon> numberOfFlights() {
         List<Rezervasyon> rezervasyon = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDateTime now = LocalDateTime.now(); 

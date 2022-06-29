@@ -168,7 +168,7 @@
             <p>Uçuş tarihini değiştirmeyi deneyebilirsiniz.</p>
         </div>
         </c:if>
-        <c:forEach var="ucus" items="${flight_inquiry}">
+        <c:forEach var="flight" items="${flight_inquiry}">
         <div class="col-md-12" style="opacity: 1;">
             <div class="card z-depth-1 mb-3 searchcell" xid="1">
                 <div class="card-body p-0">
@@ -192,7 +192,7 @@
                                         <i class="fas fa-plane text-green-light fa-lg mr-3" aria-hidden="true"></i>
                                     </div>
                                     <div class="text-center align-items-center justify-content-center py-0 mb-4">                                            
-                                        <p class="time-gri py-0"><c:out value='${flight.ucus_s}' /> sa <c:out value='${flight.ucus_d}'/> dk</p>
+                                        <p class="time-gri py-0"><c:out value='${flight.flight_s}' /> sa <c:out value='${flight.flight_d}'/> dk</p>
                                     </div>
                                 </div>
 

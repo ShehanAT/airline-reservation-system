@@ -49,26 +49,18 @@ O
 web/admin/havaalaniguncelle.jsp,b\d\bde0f95998304d2c8cc9b4df077fd8f74b5c38e1
 N
 web/admin/havaalanilistele.jsp,4\a\4a762cfc569afd2f8dfc9c512e1de65222dd23a3
-V
-&src/java/servlet/HomepagerServlet.java,d\8\d899a319e14a5604861bea1e69e73a5cf6995f03
-=
-web/index.jsp,9\f\9f198ed450f32e45b10ec3c2b1406e609b4a96cd
 X
 (src/java/servlet/ReservationServlet.java,3\3\339e9f06b990087ce511d37284f05071e2667acc
 O
 src/java/model/Rezervasyon.java,c\1\c1adb17bfb3cc859a4558cc2f12915296a6f1163
 P
  web/admin/rezervasyonlistele.jsp,0\9\0991d496a7afb00c57ce6e509a95e549c8a543cd
-J
-web/rezervasyonolustur.jsp,e\3\e3c39cae974f7f96e05f0c9f94b3167b6e5ebc0e
 G
 web/admin/sehirekle.jsp,c\4\c43b34739591353d5a7d34b7aa4d2bb0608b23c3
 K
 web/admin/sehirguncelle.jsp,a\d\adbfb0797bac41c1904bf1c768b15de5d4c1f2f2
 J
 web/admin/sehirlistele.jsp,3\5\355fcd9652f28f62b210a8400b8045dcf115344b
-E
-web/ucussorgulama.jsp,9\f\9f02ded08488bdeb195176095ae12f4a923decb4
 F
 web/admin/ulkeekle.jsp,8\0\80a99cd91a57956e14a90d488084fabc7bb1b55e
 J
@@ -85,3 +77,19 @@ M
 web/rezervasyonislemlerim.jsp,6\9\69b18b0a0d7aceaae1d1be3136edb8cf458be7d9
 L
 web/rezervasyonsorgulama.jsp,0\c\0c2b042a060ba688fbbe7b0450a337cd056257d1
+S
+#web/admin/gecmisucuslarilistele.jsp,d\c\dcdd234477fdc2d78b8b1cbd50a13a389c6beb04
+S
+#web/admin/guncelucuslarilistele.jsp,1\2\12cfd6462957a5bde7f21870d009092f03b3fa97
+H
+src/java/model/Ucak.java,6\c\6c21fdb79364bb9774c338f41947ce54bf06498b
+I
+src/java/dao/UcakDAO.java,9\f\9f83cf8a901f278b3a432b587d5aa914f17b314b
+F
+web/admin/ucakekle.jsp,8\c\8c01377edaf731fbc4d59ba9ff57f7eb1b330ffb
+J
+web/admin/ucakguncelle.jsp,1\3\13561c7f2bd7579f7d8637def2a7ad5e0cabcd1f
+I
+web/admin/ucaklistele.jsp,8\4\841ebff0ab943843224a103fa6c3603610f78665
+H
+src/java/model/Ucus.java,d\6\d638d067ef39bea43d984efb18a6b172ca2902f1

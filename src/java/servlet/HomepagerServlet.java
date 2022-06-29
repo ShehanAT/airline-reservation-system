@@ -69,8 +69,8 @@ public class HomepagerServlet extends HttpServlet{
             List<Rezervasyon> rezervasyon = rezervasyonDAO.rezervasyonsayisi();
             request.setAttribute("rezervasyon", rezervasyon);
 
-            List<Rezervasyon> ucus = rezervasyonDAO.ucussayisi();
-            request.setAttribute("ucus", ucus);
+            List<Rezervasyon> flight = rezervasyonDAO.numberOfFlights();
+            request.setAttribute("flight", flight);
 
             List<Rezervasyon> mesaj = rezervasyonDAO.mesajsayisi();
             request.setAttribute("mesaj", mesaj);

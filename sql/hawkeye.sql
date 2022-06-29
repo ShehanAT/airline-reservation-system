@@ -301,9 +301,9 @@ ALTER TABLE `ucak`
   MODIFY `plane_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Tablo için AUTO_INCREMENT değeri `ucus`
+-- Tablo için AUTO_INCREMENT değeri `flight`
 --
-ALTER TABLE `ucus`
+ALTER TABLE `flight`
   MODIFY `flight_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 

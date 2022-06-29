@@ -78,11 +78,11 @@
                 <span>Uçuş Oluştur</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ucus" aria-expanded="true" aria-controls="ucus">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#flight" aria-expanded="true" aria-controls="ucus">
                 <i class="fas fa-fw fa-map"></i>
                 <span>Uçuş İşlemleri</span>
             </a>
-            <div id="ucus" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="flight" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="currentFlightList">Güncel Uçuşları Listele</a>
                     <a class="collapse-item" href="pastFlightList">Geçmiş Uçuşları Listele</a>

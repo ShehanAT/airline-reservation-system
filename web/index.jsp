@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="search_panel active">
-                        <form action="flight_inquiry" id="search_form_1" method="post" name="ucus" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" onsubmit="return Kontrol()">
+                        <form action="flight_inquiry" id="search_form_1" method="post" name="flight" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" onsubmit="return Kontrol()">
                             <div class="search_item">
                                 <div>Gidiş Yeri</div>
                                 <select class="search_input" id="gidis" name="gidis" required>
@@ -83,7 +83,7 @@
 </main>
 <script>
     function Kontrol() {
-        var formKontrol = document.forms["ucus"];
+        var formKontrol = document.forms["flight"];
         var gidis = formKontrol["gidis"];
         var varis = formKontrol["varis"];
         gidis = gidis.value;

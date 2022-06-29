@@ -169,7 +169,7 @@ public class FlightServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Ucus ucus = flightDAO.ucussec(id);
+            Ucus flight = flightDAO.ucussec(id);
             List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
             List<Ucak> ucak = flightDAO.ucak();
@@ -177,7 +177,7 @@ public class FlightServlet extends HttpServlet {
             List<Airport> airport = flightDAO.airport();
             request.setAttribute("airport", airport);
             RequestDispatcher dispatcher = request.getRequestDispatcher("updateFlight.jsp");
-            request.setAttribute("ucus", ucus);
+            request.setAttribute("flight", flight);
             dispatcher.forward(request, response);
         }
     }
@@ -199,8 +199,8 @@ public class FlightServlet extends HttpServlet {
             int company_id = Integer.parseInt(request.getParameter("company_id"));
             int plane_id = Integer.parseInt(request.getParameter("plane_id"));
             Double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
-            Ucus ucus = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
-            flightDAO.updateFlight(ucus);
+            Ucus flight = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
+            flightDAO.updateFlight(flight);
             response.sendRedirect("currentFlightList");
         }
     }

@@ -20,27 +20,27 @@ public class FlightDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCUS_INSERT ="INSERT INTO ucus (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
+    private static final String UCUS_INSERT ="INSERT INTO flight (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
     private static final String FIRMA_SELECT_ALL = "select * from company;";
     private static final String HAVAALANI_SELECT_ALL = "select * from airport;";
     private static final String UCAK_SELECT_ALL = "select * from ucak;";
-    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
+    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from flight\n" +
                                 "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date >= ? ;";
     
-    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
+    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from flight\n" +
                                 "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date < ? ;";
-    private static final String UCUS_DELETE = "delete from ucus where flight_id = ?;";
-    private static final String UCUS_SELECT_ID = "SELECT * FROM ucus  where flight_id=?;";
+    private static final String UCUS_DELETE = "delete from flight where flight_id = ?;";
+    private static final String UCUS_SELECT_ID = "SELECT * FROM flight  where flight_id=?;";
     private static final String UCUS_UPDATE = "update ucus set flight_departure_id = ?, end_heir_id=?, flight_date=?, flight_hour=?, flight_time=?, company_id=?, plane_id=?, flight_fare=? where flight_id = ?;";
-    private static final String UCUS_KONTROL = "select * from ucus as u \n" +
+    private static final String UCUS_KONTROL = "select * from flight as u \n" +
                                 "join ucak as k on k.plane_id=u.plane_id\n" +
                                 "where u.plane_id=? and u.flight_date=? and ((u.flight_hour BETWEEN ? AND ?) or (ADDTIME(u.flight_hour, u.flight_time) BETWEEN ? AND ?));";
     
@@ -71,7 +71,7 @@ public class FlightDAO {
         return silinenSatir;
     }
     
-    public boolean updateFlight(Ucus ucus) throws SQLException {
+    public boolean updateFlight(Ucus flight) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(UCUS_UPDATE);) {

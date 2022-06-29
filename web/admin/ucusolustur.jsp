@@ -9,7 +9,7 @@
                 <h3 class="mb-0 text-white">Uçuş Oluştur</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" name="ucus" autocomplete="off" action="showCreateFlight" onsubmit="return Kontrol()">
+                <form class="form" role="form" method="post" name="flight" autocomplete="off" action="showCreateFlight" onsubmit="return Kontrol()">
                     <div class="form-group">
                         <label for="flight_departure_id">Uçuş Kalkış</label>
                         <select class="form-control" id="flight_departure_id" name="flight_departure_id" required>
@@ -70,7 +70,7 @@
 </div>
 <script>
     function Kontrol() {
-        var formKontrol = document.forms["ucus"];
+        var formKontrol = document.forms["flight"];
         var gidis = formKontrol["flight_departure_id"];
         var varis = formKontrol["end_heir_id"];
         gidis = gidis.value;

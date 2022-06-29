@@ -26,7 +26,7 @@
                                 <div class="d-flex justify-content-between align-item-center">
                                     <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${ucusbilgileri.kalkis_kod}' /> <c:out value='${ucusbilgileri.flight_hour}' /> </span>
                                     <hr class="divider-small">
-                                    <span class="f-08em text-soft"><i class="far fa-clock text-soft" aria-hidden="true"></i> <c:out value='${ucusbilgileri.ucus_s}' /> Sa <c:out value='${ucusbilgileri.ucus_d}' /> dk </span>
+                                    <span class="f-08em text-soft"><i class="far fa-clock text-soft" aria-hidden="true"></i> <c:out value='${ucusbilgileri.flight_s}' /> Sa <c:out value='${ucusbilgileri.flight_d}' /> dk </span>
                                     <hr class="divider-small">
                                     <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${ucusbilgileri.varis_kod}' /> <c:out value='${ucusbilgileri.varis_saat}' /></span>
                                 </div>
