@@ -14,7 +14,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <span class="m-0 font-weight-bold text-white">Güncel Uçuşların Listesi</span>
-            <a href="ucusolustur" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Uçuş Oluştur</a>
+            <a href="createFlight" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Uçuş Oluştur</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -48,22 +48,22 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="guncelucusliste" items="${guncelucusliste}">
+                        <c:forEach var="currentFlightList" items="${currentFlightList}">
                             <tr>
-                                <td><c:out value="${guncelucusliste.flight_id}" /></td>
-                                <td><c:out value="${guncelucusliste.ucus_kalkis}" /></td>
-                                <td><c:out value="${guncelucusliste.ucus_varis}" /></td>
-                                <td><c:out value="${guncelucusliste.flight_date}" /></td>
-                                <td><c:out value="${guncelucusliste.flight_hour}" /></td>
-                                <td><c:out value="${guncelucusliste.flight_time}" /></td>
-                                <td><c:out value="${guncelucusliste.company_name}" /></td>
-                                <td><c:out value="${guncelucusliste.ucak_ad}" /></td>
-                                <td><c:out value="${guncelucusliste.flight_fare}" /></td>
+                                <td><c:out value="${currentFlightList.flight_id}" /></td>
+                                <td><c:out value="${currentFlightList.ucus_kalkis}" /></td>
+                                <td><c:out value="${currentFlightList.ucus_varis}" /></td>
+                                <td><c:out value="${currentFlightList.flight_date}" /></td>
+                                <td><c:out value="${currentFlightList.flight_hour}" /></td>
+                                <td><c:out value="${currentFlightList.flight_time}" /></td>
+                                <td><c:out value="${currentFlightList.company_name}" /></td>
+                                <td><c:out value="${currentFlightList.ucak_ad}" /></td>
+                                <td><c:out value="${currentFlightList.flight_fare}" /></td>
                                 <td>
-                                    <a href="ucusguncelle?id=<c:out value='${guncelucusliste.flight_id}' />">
+                                    <a href="updateFlight?id=<c:out value='${currentFlightList.flight_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                     </a>
-                                    <a href="ucussil?id=<c:out value='${guncelucusliste.flight_id}' />">
+                                    <a href="deleteFlight?id=<c:out value='${currentFlightList.flight_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

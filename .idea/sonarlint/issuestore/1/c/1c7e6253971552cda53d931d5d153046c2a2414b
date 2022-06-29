@@ -1,0 +1,133 @@
+
+a	java:S112Ğ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+<	java:S131.""Add a default case to this switch.(ë´åİşÿÿÿÿ
+U
+java:S4719‹"9Replace charset name argument with StandardCharsets.UTF_8(±õß£øÿÿÿÿ
+P
+java:S4719Œ"9Replace charset name argument with StandardCharsets.UTF_8(¹üı‹
+C
+java:S1125"'Remove the unnecessary boolean literal.(¾—×ıÿÿÿÿ
+U
+java:S4719£"9Replace charset name argument with StandardCharsets.UTF_8(»”¡Èúÿÿÿÿ
+U
+java:S4719¤"9Replace charset name argument with StandardCharsets.UTF_8(ßôµúÿÿÿÿ
+C
+java:S1125§"'Remove the unnecessary boolean literal.(Ë„£Âûÿÿÿÿ
+U
+java:S4719ê"9Replace charset name argument with StandardCharsets.UTF_8(»”¡Èúÿÿÿÿ
+U
+java:S4719ë"9Replace charset name argument with StandardCharsets.UTF_8(ßôµúÿÿÿÿ
+U
+java:S4719í"9Replace charset name argument with StandardCharsets.UTF_8(‡ÿšñıÿÿÿÿ
+C
+java:S1125ï"'Remove the unnecessary boolean literal.(¾—×ıÿÿÿÿ
+U
+java:S4719¡"9Replace charset name argument with StandardCharsets.UTF_8(»”¡Èúÿÿÿÿ
+U
+java:S4719¢"9Replace charset name argument with StandardCharsets.UTF_8(ßôµúÿÿÿÿ
+U
+java:S4719¤"9Replace charset name argument with StandardCharsets.UTF_8(‡ÿšñıÿÿÿÿ
+C
+java:S1125±"'Remove the unnecessary boolean literal.(¨ÖŸ˜øÿÿÿÿ
+“
+java:S5527½"wEnable server hostname verification on this SSL/TLS connection, by setting "mail.smtp.ssl.checkserveridentity" to true.(÷òæÓûÿÿÿÿ
+U
+java:S4719à"9Replace charset name argument with StandardCharsets.UTF_8(»”¡Èúÿÿÿÿ
+U
+java:S4719á"9Replace charset name argument with StandardCharsets.UTF_8(ßôµúÿÿÿÿ
+P
+java:S4719ã"9Replace charset name argument with StandardCharsets.UTF_8(Í†Â
+C
+java:S1125å"'Remove the unnecessary boolean literal.(¾—×ıÿÿÿÿ
+U
+java:S4719—"9Replace charset name argument with StandardCharsets.UTF_8(‡ÿšñıÿÿÿÿ
+C
+java:S1125š"'Remove the unnecessary boolean literal.(¾—×ıÿÿÿÿ
+C
+java:S1125Ä"'Remove the unnecessary boolean literal.(¾—×ıÿÿÿÿ
+C
+java:S1125ã"'Remove the unnecessary boolean literal.(¾—×ıÿÿÿÿ
+c
+java:S1192|"MDefine a constant instead of duplicating this literal "kullanici_id" 6 times.(©ª¤¡
+m
+java:S1192ˆ"ODefine a constant instead of duplicating this literal "flight_ticket" 11 times.(Í÷£ä8ÖáÇ×š0
+i
+java:S1192£"MDefine a constant instead of duplicating this literal "kullanici_ad" 8 times.(»”¡Èúÿÿÿÿ
+f
+java:S1192Ñ"ODefine a constant instead of duplicating this literal "kullaniciliste" 4 times.(®©¼«
+l
+java:S1192¤"PDefine a constant instead of duplicating this literal "kullanici_soyad" 8 times.(ßôµúÿÿÿÿ
+n
+java:S1192z"QDefine a constant instead of duplicating this literal "../flight_ticket" 8 times.(Ø§¦„8×áÇ×š0
+c
+java:S1192‹"GDefine a constant instead of duplicating this literal "UTF-8" 16 times.(±õß£øÿÿÿÿ
+l
+java:S1192‘"PDefine a constant instead of duplicating this literal "kullanici_sifre" 5 times.(‘âïªùÿÿÿÿ
+h
+java:S1192¡"QDefine a constant instead of duplicating this literal "kullanici_email" 11 times.(ŒœËº
+i
+java:S1192x"GDefine a constant instead of duplicating this literal "login" 11 times.(âùÒúÿÿÿÿ8ØáÇ×š0
+]
+java:S1192¸"FDefine a constant instead of duplicating this literal "panel" 3 times.(Ô¿ÖË
+h
+java:S1192‹"LDefine a constant instead of duplicating this literal "ISO-8859-1" 14 times.(±õß£øÿÿÿÿ
+q
+java:S1192w"TDefine a constant instead of duplicating this literal "user_authorization" 31 times.(š˜ºÅ8ÙáÇ×š0
+f	java:S117|"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ª¤¡
+g	java:S117Š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à±¯ƒ
+l	java:S117‹"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±õß£øÿÿÿÿ
+g	java:S117Œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹üı‹
+g	java:S117¡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŒœËº
+l	java:S117¢"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ùüÿÿÿÿ
+l	java:S117£"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»”¡Èúÿÿÿÿ
+l	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßôµúÿÿÿÿ
+l	java:S117¥"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€åïèûÿÿÿÿ
+g	java:S117¼"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ª¤¡
+l	java:S117½"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Íë£Åúÿÿÿÿ
+l	java:S117¾"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï©úïûÿÿÿÿ
+g	java:S117¿"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ĞñÅ
+l	java:S117ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»”¡Èúÿÿÿÿ
+l	java:S117ë"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßôµúÿÿÿÿ
+l	java:S117ì"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€åïèûÿÿÿÿ
+l	java:S117í"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÿšñıÿÿÿÿ
+l	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ùüÿÿÿÿ
+l	java:S117¡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»”¡Èúÿÿÿÿ
+l	java:S117¢"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßôµúÿÿÿÿ
+l	java:S117£"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€åïèûÿÿÿÿ
+l	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÿšñıÿÿÿÿ
+l	java:S117¯"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€åïèûÿÿÿÿ
+l	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™™¹ıÿÿÿÿ
+l	java:S117à"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»”¡Èúÿÿÿÿ
+l	java:S117á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßôµúÿÿÿÿ
+l	java:S117â"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€åïèûÿÿÿÿ
+g	java:S117ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í†Â
+l	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€åïèûÿÿÿÿ
+l	java:S117—"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÿšñıÿÿÿÿ
+l	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¥Âÿÿÿÿÿ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àë“Ò
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«Ïš–ùÿÿÿÿ
+g	java:S117Ÿ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨»İ
+f	java:S117À"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÛ•Q
+l	java:S117Á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä™ÖÙşÿÿÿÿ
+l	java:S117Ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ¥Âÿÿÿÿÿ
+g	java:S117È"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àë“Ò
+l	java:S117É"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«Ïš–ùÿÿÿÿ
+g	java:S117Ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨»İ
+l	java:S117à"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Õ®ùıÿÿÿÿ
+g	java:S117á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬± «
+F
+java:S5411"*Use the primitive boolean expression here.(¾—×ıÿÿÿÿ
+F
+java:S5411§"*Use the primitive boolean expression here.(Ë„£Âûÿÿÿÿ
+F
+java:S5411ï"*Use the primitive boolean expression here.(¾—×ıÿÿÿÿ
+F
+java:S5411±"*Use the primitive boolean expression here.(¨ÖŸ˜øÿÿÿÿ
+F
+java:S5411å"*Use the primitive boolean expression here.(¾—×ıÿÿÿÿ
+F
+java:S5411š"*Use the primitive boolean expression here.(¾—×ıÿÿÿÿ
+F
+java:S5411Ä"*Use the primitive boolean expression here.(¾—×ıÿÿÿÿ
+F
+java:S5411ã"*Use the primitive boolean expression here.(¾—×ıÿÿÿÿ

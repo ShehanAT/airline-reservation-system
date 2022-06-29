@@ -18,7 +18,7 @@ public class RezervasyonDAO {
     private final String jdbcPassword = "123456";    
     
     private static final String TEKYON_SORGULAMA_SELECT1="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from ucus JOIN havaalani JOIN airport_city\n" +
-                                    "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                    "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
                                     "INNER JOIN  havaalani p ON (p.airport_id = flight.end_heir_id)\n" +
@@ -26,7 +26,7 @@ public class RezervasyonDAO {
                                     "INNER JOIN  airport_city b ON (b.airport_city_id = p.airport_city_id)\n" +
                                     "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND (ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) >= ?;";
     private static final String TEKYON_SORGULAMA_SELECT2="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from ucus JOIN havaalani JOIN airport_city\n" +
-                                    "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                    "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
                                     "INNER JOIN  havaalani p ON (p.airport_id = flight.end_heir_id)\n" +
@@ -41,14 +41,14 @@ public class RezervasyonDAO {
     private static final String REZERVASYON_SELECT_UCUS_ID="select DISTINCT k.ucak_ad, u.flight_hour, u.flight_date, u.flight_time, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tc, yolcu_tip, a.airport_city_name AS kalkis_sehir, s.airport_name as kalkis_ad, s.airport_code as kalkis_kod, b.airport_city_name as varis_sehir, p.airport_name as varis_ad, p.airport_code as varis_kod, f.company_name, f.company_logo from rezervasyon JOIN havaalani JOIN havaalani_sehir JOIN ucus JOIN company JOIN ucak\n" +
                                     "INNER JOIN  ucus u ON (rezervasyon.flight_id = flight.flight_id)\n" +
                                     "INNER JOIN  company f ON (f.company_id = u.company_id)\n" +
-                                    "INNER JOIN  ucak k ON (k.ucak_id = u.ucak_id)\n" +
+                                    "INNER JOIN  ucak k ON (k.plane_id = u.plane_id)\n" +
                                     "INNER JOIN  havaalani s ON (u.flight_departure_id = s.airport_id)\n" +
                                     "INNER JOIN  havaalani p ON (u.end_heir_id = p.airport_id)\n" +
                                     "INNER JOIN  havaalani_sehir a ON (s.havaalani_sehir_id = a.havaalani_sehir_id )\n" +
                                     "INNER JOIN  havaalani_sehir b ON (p.havaalani_sehir_id = b.havaalani_sehir_id)\n" +
                                     "WHERE u.flight_id=? and rezervasyon.rezervasyon_id=?;";
     private static final String SELECT_UCUS_BILGILERI = "select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM rezervasyon WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, ucak.ucak_koltuk, flight_fare from ucus JOIN havaalani JOIN havaalani_sehir\n" +
-                                    "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                    "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
                                     "INNER JOIN  havaalani p ON (p.airport_id = flight.end_heir_id)\n" +
@@ -69,7 +69,7 @@ public class RezervasyonDAO {
                                                 "JOIN havaalani_sehir AS s1 ON s1.havaalani_sehir_id=k.havaalani_sehir_id\n" +
                                                 "JOIN havaalani_sehir AS s2 ON s2.havaalani_sehir_id=v.havaalani_sehir_id\n" +
                                                 "JOIN company AS f ON f.company_id=u.company_id\n" +
-                                                "JOIN ucak AS p ON p.ucak_id=u.ucak_id\n" +
+                                                "JOIN ucak AS p ON p.plane_id=u.plane_id\n" +
                                                 "WHERE r.kullanici_id=?\n"+
                                                 "ORDER BY r.rezervasyon_tarih DESC;";
     private static final String IPTAL_DURUM1="update rezervasyon r\n" +
@@ -89,7 +89,7 @@ public class RezervasyonDAO {
                                                 "JOIN havaalani_sehir AS s1 ON s1.havaalani_sehir_id=k.havaalani_sehir_id\n" +
                                                 "JOIN havaalani_sehir AS s2 ON s2.havaalani_sehir_id=v.havaalani_sehir_id\n" +
                                                 "JOIN company AS f ON f.company_id=u.company_id\n" +
-                                                "JOIN ucak AS p ON p.ucak_id=u.ucak_id\n" +
+                                                "JOIN ucak AS p ON p.plane_id=u.plane_id\n" +
                                                 "ORDER BY r.rezervasyon_tarih DESC;";
     
     public RezervasyonDAO() {}

@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <span class="m-0 font-weight-bold text-white">Uçak Listesi</span>
-            <a href="ucakekle" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Uçak Ekle</a>
+            <a href="addFlight" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Uçak Ekle</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -30,17 +30,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="ucak" items="${ucakliste}">
+                        <c:forEach var="plane" items="${ucakliste}">
                             <tr>
-                                <td><c:out value="${ucak.ucak_id}" /></td>
+                                <td><c:out value="${ucak.plane_id}" /></td>
                                 <td><c:out value="${ucak.ucak_ad}" /></td>
                                 <td><c:out value="${ucak.company_name}" /></td>
                                 <td><c:out value="${ucak.ucak_koltuk}" /></td>
                                 <td>
-                                    <a href="ucakguncelle?id=<c:out value='${ucak.ucak_id}' />">
+                                    <a href="ucakguncelle?id=<c:out value='${ucak.plane_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                     </a>
-                                    <a href="ucaksil?id=<c:out value='${ucak.ucak_id}' />">
+                                    <a href="ucaksil?id=<c:out value='${ucak.plane_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

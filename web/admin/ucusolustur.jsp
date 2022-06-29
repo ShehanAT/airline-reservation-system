@@ -9,7 +9,7 @@
                 <h3 class="mb-0 text-white">Uçuş Oluştur</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" name="ucus" autocomplete="off" action="gosterucusolustur" onsubmit="return Kontrol()">
+                <form class="form" role="form" method="post" name="ucus" autocomplete="off" action="showCreateFlight" onsubmit="return Kontrol()">
                     <div class="form-group">
                         <label for="flight_departure_id">Uçuş Kalkış</label>
                         <select class="form-control" id="flight_departure_id" name="flight_departure_id" required>
@@ -49,10 +49,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ucak_id">Uçak Adı</label>
-                        <select class="form-control" id="ucak_id" name="ucak_id" required>
-                            <c:forEach var="ucak" items="${ucak}">
-                                <option value="<c:out value='${ucak.ucak_id}' />"><c:out value="${ucak.ucak_ad}" /></option>
+                        <label for="plane_id">Uçak Adı</label>
+                        <select class="form-control" id="plane_id" name="plane_id" required>
+                            <c:forEach var="plane" items="${ucak}">
+                                <option value="<c:out value='${ucak.plane_id}' />"><c:out value="${ucak.ucak_ad}" /></option>
                             </c:forEach>
                         </select>
                     </div>

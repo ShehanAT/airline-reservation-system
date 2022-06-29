@@ -9,7 +9,7 @@
                             <h3 class="mb-0 text-white">Uçak Ekle</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form" role="form" method="post" autocomplete="off" action="gosterucakekle">
+                            <form class="form" role="form" method="post" autocomplete="off" action="showAddFlight">
                                 <div class="form-group">
                                     <label for="ucak_ad">Uçak Adı</label>
                                     <input type="text" class="form-control" id="ucak_ad" name="ucak_ad" placeholder="Uçak Adı" required>

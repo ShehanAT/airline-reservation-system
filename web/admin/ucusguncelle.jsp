@@ -9,7 +9,7 @@
                 <h3 class="mb-0 text-white">Uçuş Güncelle</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" autocomplete="off" action="gosterucusguncelle">
+                <form class="form" role="form" method="post" autocomplete="off" action="showUpdateFlight">
                     <input type="hidden" name="flight_id" id="flight_id" value="<c:out value='${flight.flight_id}' />" />
                     <div class="form-group">
                         <label for="flight_departure_id">Uçuş Kalkış</label>
@@ -69,15 +69,15 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="ucak_id">Uçak Adı</label>
-                        <select class="form-control" id="ucak_id" name="ucak_id" required>
-                            <c:forEach var="ucak" items="${ucak}">
+                        <label for="plane_id">Uçak Adı</label>
+                        <select class="form-control" id="plane_id" name="plane_id" required>
+                            <c:forEach var="plane" items="${ucak}">
                                 <c:choose>
-                                    <c:when test= "${ucak.ucak_id == flight.ucak_id}">
-                                        <option value="<c:out value='${ucak.ucak_id }' />" selected><c:out value='${ucak.ucak_ad}' /></option>
+                                    <c:when test= "${ucak.plane_id == flight.plane_id}">
+                                        <option value="<c:out value='${ucak.plane_id }' />" selected><c:out value='${ucak.ucak_ad}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${ucak.ucak_id}' />"><c:out value='${ucak.ucak_ad}' /></option>
+                                        <option value="<c:out value='${ucak.plane_id}' />"><c:out value='${ucak.ucak_ad}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>

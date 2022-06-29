@@ -1,6 +1,6 @@
 package servlet;
 
-import dao.UcusDAO;
+import dao.FlightDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,15 +17,15 @@ import model.Airport;
 import model.Ucak;
 import model.Ucus;
 
-@WebServlet(urlPatterns = {"/admin/ucussil", "/admin/ucusolustur", "/admin/gosterucusolustur", "/admin/guncelucusliste", "/admin/gecmisucusliste", "/admin/ucusguncelle", "/admin/gosterucusguncelle"})
+@WebServlet(urlPatterns = {"/admin/deleteFlight", "/admin/createFlight", "/admin/showCreateFlight", "/admin/currentFlightList", "/admin/pastFlightList", "/admin/updateFlight", "/admin/showUpdateFlight"})
 
 public class FlightServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private UcusDAO ucusDAO;
+    private FlightDAO flightDAO;
 
     public void init() {
-        ucusDAO = new UcusDAO();
+        flightDAO = new FlightDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,26 +39,26 @@ public class FlightServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "/admin/ucusolustur":
-                    ucusolustur(request, response);
+                case "/admin/createFlight":
+                    createFlight(request, response);
                     break;
-                case "/admin/gosterucusolustur":
-                    gosterucusolustur(request, response);
+                case "/admin/showCreateFlight":
+                    showCreateFlight(request, response);
                     break;
-                case "/admin/guncelucusliste":
-                    guncelucusliste(request, response);
+                case "/admin/currentFlightList":
+                    currentFlightList(request, response);
                     break;
-                case "/admin/gecmisucusliste":
-                    gecmisucusliste(request, response);
+                case "/admin/pastFlightList":
+                    pastFlightList(request, response);
                     break;
-                case "/admin/ucussil":
-                    ucussil(request, response);
+                case "/admin/deleteFlight":
+                    deleteFlight(request, response);
                     break;
-                case "/admin/ucusguncelle":
-                    ucusguncelle(request, response);
+                case "/admin/updateFlight":
+                    updateFlight(request, response);
                     break;
-                case "/admin/gosterucusguncelle":
-                    gosterucusguncelle(request, response);
+                case "/admin/showUpdateFlight":
+                    gosterupdateFlight(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class FlightServlet extends HttpServlet {
         }
     }
 
-    private void ucussil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteFlight(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -75,12 +75,12 @@ public class FlightServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int flight_id = Integer.parseInt(request.getParameter("id"));
-            ucusDAO.ucussil(flight_id);
-            response.sendRedirect("guncelucusliste");
+            flightDAO.deleteFlight(flight_id);
+            response.sendRedirect("currentFlightList");
         }
     }
 
-    private void guncelucusliste(HttpServletRequest request, HttpServletResponse response)
+    private void currentFlightList(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -88,14 +88,14 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Ucus> guncelucusliste = ucusDAO.guncelucusliste();
-            request.setAttribute("guncelucusliste", guncelucusliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("guncelucuslarilistele.jsp");
+            List<Ucus> currentFlightList = flightDAO.currentFlightList();
+            request.setAttribute("currentFlightList", currentFlightList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listCurrentFlights.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void gecmisucusliste(HttpServletRequest request, HttpServletResponse response)
+    private void pastFlightList(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -103,14 +103,14 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Ucus> gecmisucusliste = ucusDAO.gecmisucusliste();
-            request.setAttribute("gecmisucusliste", gecmisucusliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("gecmisucuslarilistele.jsp");
+            List<Ucus> pastFlightList = flightDAO.pastFlightList();
+            request.setAttribute("pastFlightList", pastFlightList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listCurrentFlights.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void ucusolustur(HttpServletRequest request, HttpServletResponse response)
+    private void createFlight(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -118,21 +118,21 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Airport> airport = ucusDAO.airport();
+            List<Airport> airport = flightDAO.airport();
             request.setAttribute("airport", airport);
 
-            List<Company> company = ucusDAO.company();
+            List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
 
-            List<Ucak> ucak = ucusDAO.ucak();
-            request.setAttribute("ucak", ucak);
+            List<Ucak> ucak = flightDAO.ucak();
+            request.setAttribute("plane", ucak);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ucusolustur.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("createFlight.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void gosterucusolustur(HttpServletRequest request, HttpServletResponse response)
+    private void showCreateFlight(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -146,21 +146,21 @@ public class FlightServlet extends HttpServlet {
             String flight_hour = request.getParameter("flight_hour");
             String flight_time = request.getParameter("flight_time");
             int company_id = Integer.parseInt(request.getParameter("company_id"));
-            int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
+            int plane_id = Integer.parseInt(request.getParameter("plane_id"));
             double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
 
-            Ucus yeniucus = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, ucak_id, flight_fare);
-            Boolean sonuc = ucusDAO.ucuskontrol(yeniucus);
+            Ucus newFlight = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
+            Boolean sonuc = flightDAO.ucuskontrol(newFlight);
             if (sonuc == false) {
-                response.sendRedirect("guncelucusliste?durum=basarisiz");
+                response.sendRedirect("currentFlightList?durum=basarisiz");
             } else {
-                ucusDAO.ucusolustur(yeniucus);
-                response.sendRedirect("guncelucusliste");
+                flightDAO.createFlight(newFlight);
+                response.sendRedirect("currentFlightList");
             }
         }
     }
 
-    private void ucusguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updateFlight(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -169,20 +169,20 @@ public class FlightServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Ucus ucus = ucusDAO.ucussec(id);
-            List<Company> company = ucusDAO.company();
+            Ucus ucus = flightDAO.ucussec(id);
+            List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
-            List<Ucak> ucak = ucusDAO.ucak();
-            request.setAttribute("ucak", ucak);
-            List<Airport> airport = ucusDAO.airport();
+            List<Ucak> ucak = flightDAO.ucak();
+            request.setAttribute("plane", ucak);
+            List<Airport> airport = flightDAO.airport();
             request.setAttribute("airport", airport);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ucusguncelle.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("updateFlight.jsp");
             request.setAttribute("ucus", ucus);
             dispatcher.forward(request, response);
         }
     }
 
-    private void gosterucusguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void showUpdateFlight(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -197,11 +197,11 @@ public class FlightServlet extends HttpServlet {
             String flight_hour = request.getParameter("flight_hour");
             String flight_time = request.getParameter("flight_time");
             int company_id = Integer.parseInt(request.getParameter("company_id"));
-            int ucak_id = Integer.parseInt(request.getParameter("ucak_id"));
+            int plane_id = Integer.parseInt(request.getParameter("plane_id"));
             Double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
-            Ucus ucus = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, ucak_id, flight_fare);
-            ucusDAO.ucusguncelle(ucus);
-            response.sendRedirect("guncelucusliste");
+            Ucus ucus = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
+            flightDAO.updateFlight(ucus);
+            response.sendRedirect("currentFlightList");
         }
     }
 

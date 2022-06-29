@@ -10,7 +10,7 @@
                         </div>
                         <div class="card-body">
                             <form class="form" role="form" method="post" autocomplete="off" action="gosterucakguncelle">
-                                <input type="hidden" name="ucak_id" id="ucak_id" value="<c:out value='${ucak.ucak_id}' />" />
+                                <input type="hidden" name="plane_id" id="plane_id" value="<c:out value='${ucak.plane_id}' />" />
                                 <div class="form-group">
                                     <label for="ucak_ad">Uçak Adı</label>
                                     <input type="text" class="form-control" id="ucak_ad" name="ucak_ad" placeholder="Uçak Adı" value="<c:out value='${ucak.ucak_ad}' />" required>

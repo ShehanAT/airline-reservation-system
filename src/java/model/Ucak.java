@@ -1,7 +1,7 @@
 package model;
 
 public class Ucak {
-    int ucak_id;
+    int plane_id;
     String ucak_ad;
     int ucak_koltuk;
     int company_id;
@@ -10,8 +10,8 @@ public class Ucak {
     public Ucak() {
     }
 
-    public Ucak(int ucak_id, String ucak_ad) {
-        this.ucak_id = ucak_id;
+    public Ucak(int plane_id, String ucak_ad) {
+        this.plane_id = plane_id;
         this.ucak_ad = ucak_ad;
     }
 
@@ -21,26 +21,26 @@ public class Ucak {
         this.company_id = company_id;
     }
     
-    public Ucak(int ucak_id, String ucak_ad, int ucak_koltuk, int company_id) {
-        this.ucak_id = ucak_id;
+    public Ucak(int plane_id, String ucak_ad, int ucak_koltuk, int company_id) {
+        this.plane_id = plane_id;
         this.ucak_ad = ucak_ad;
         this.ucak_koltuk = ucak_koltuk;
         this.company_id = company_id;
     }
 
-    public Ucak(int ucak_id, String ucak_ad, int ucak_koltuk, String company_name) {
-        this.ucak_id = ucak_id;
+    public Ucak(int plane_id, String ucak_ad, int ucak_koltuk, String company_name) {
+        this.plane_id = plane_id;
         this.ucak_ad = ucak_ad;
         this.ucak_koltuk = ucak_koltuk;
         this.company_name = company_name;
     }
 
     public int getUcak_id() {
-        return ucak_id;
+        return plane_id;
     }
 
-    public void setUcak_id(int ucak_id) {
-        this.ucak_id = ucak_id;
+    public void setUcak_id(int plane_id) {
+        this.plane_id = plane_id;
     }
 
     public String getUcak_ad() {

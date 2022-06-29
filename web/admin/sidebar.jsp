@@ -31,13 +31,13 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ucak" aria-expanded="true" aria-controls="ucak">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#plane" aria-expanded="true" aria-controls="plane">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Uçak İşlemleri</span>
             </a>
-            <div id="ucak" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="plane" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="ucakekle">Uçak Ekle</a>
+                    <a class="collapse-item" href="addFlight">Uçak Ekle</a>
                     <a class="collapse-item" href="ucakliste">Uçakları Listele</a>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             UÇUŞ
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="ucusolustur">
+            <a class="nav-link" href="createFlight">
                 <i class="fas fa-fw fa-map-marked-alt"></i>
                 <span>Uçuş Oluştur</span></a>
         </li>
@@ -84,8 +84,8 @@
             </a>
             <div id="ucus" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="guncelucusliste">Güncel Uçuşları Listele</a>
-                    <a class="collapse-item" href="gecmisucusliste">Geçmiş Uçuşları Listele</a>
+                    <a class="collapse-item" href="currentFlightList">Güncel Uçuşları Listele</a>
+                    <a class="collapse-item" href="pastFlightList">Geçmiş Uçuşları Listele</a>
                 </div>
             </div>
         </li>

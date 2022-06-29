@@ -17,12 +17,12 @@ public class UcakDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCAK_SELECT_ALL = "SELECT ucak_id, ucak_ad, ucak_koltuk, company.company_name FROM ucak INNER JOIN company ON ucak.company_id=company.company_id;";
+    private static final String UCAK_SELECT_ALL = "SELECT plane_id, ucak_ad, ucak_koltuk, company.company_name FROM ucak INNER JOIN company ON ucak.company_id=company.company_id;";
     private static final String FIRMA_SELECT_ALL ="select * from company;";
     private static final String UCAK_INSERT ="INSERT INTO ucak (ucak_ad, ucak_koltuk, company_id) VALUES (?,?,?);";
-    private static final String UCAK_DELETE = "delete from ucak where ucak_id = ?;";
-    private static final String UCAK_UPDATE = "update ucak set ucak_ad = ?, ucak_koltuk=?, company_id=? where ucak_id = ?;";
-    private static final String UCAK_SELECT_ID = "SELECT * FROM ucak  where ucak_id=?;";
+    private static final String UCAK_DELETE = "delete from ucak where plane_id = ?;";
+    private static final String UCAK_UPDATE = "update ucak set ucak_ad = ?, ucak_koltuk=?, company_id=? where plane_id = ?;";
+    private static final String UCAK_SELECT_ID = "SELECT * FROM ucak  where plane_id=?;";
     
     public UcakDAO() {}
     
@@ -47,11 +47,11 @@ public class UcakDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(UCAK_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int ucak_id = rs.getInt("ucak_id");
+                int plane_id = rs.getInt("plane_id");
                 String ucak_ad = rs.getString("ucak_ad");
                 int ucak_koltuk = rs.getInt("ucak_koltuk");
                 String company_name = rs.getString("company_name");
-                ucaklar.add(new Ucak(ucak_id, ucak_ad, ucak_koltuk, company_name));
+                ucaklar.add(new Ucak(plane_id, ucak_ad, ucak_koltuk, company_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -85,7 +85,7 @@ public class UcakDAO {
         return company;
     }
     
-    public void ucakekle(Ucak ucak) throws SQLException {  
+    public void addFlight(Ucak ucak) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(UCAK_INSERT)) {

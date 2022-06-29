@@ -1,0 +1,19 @@
+
+<	java:S131'""Add a default case to this switch.(ë´åÝþÿÿÿÿ
+O
+java:S4719_"9Replace charset name argument with StandardCharsets.UTF_8(À¿Ü
+O
+java:S4719a"9Replace charset name argument with StandardCharsets.UTF_8(ì¹ûé
+T
+java:S4719b"9Replace charset name argument with StandardCharsets.UTF_8(¿ßíûÿÿÿÿ
+a
+java:S1192_"KDefine a constant instead of duplicating this literal "ISO-8859-1" 3 times.(À¿Ü
+\
+java:S1192_"FDefine a constant instead of duplicating this literal "UTF-8" 3 times.(À¿Ü
+p
+java:S1192="SDefine a constant instead of duplicating this literal "user_authorization" 4 times.(š˜ºÅ8ÂÞÇ×š0
+k	java:S117Q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊïÅ…ÿÿÿÿÿ
+f	java:S117_"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¿Ü
+f	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñï•³
+f	java:S117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì¹ûé
+k	java:S117b"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ßíûÿÿÿÿ

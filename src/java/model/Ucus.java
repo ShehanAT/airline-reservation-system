@@ -8,7 +8,7 @@ public class Ucus {
     protected String flight_hour;
     protected String flight_time;
     protected int company_id;
-    protected int ucak_id;
+    protected int plane_id;
     protected double flight_fare;
     protected String company_name;
     protected String ucak_ad;
@@ -18,7 +18,7 @@ public class Ucus {
     public Ucus() {
     }
 
-    public Ucus(int flight_id, int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int company_id, int ucak_id, double flight_fare) {
+    public Ucus(int flight_id, int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int company_id, int plane_id, double flight_fare) {
         this.flight_id = flight_id;
         this.flight_departure_id = flight_departure_id;
         this.end_heir_id = end_heir_id;
@@ -26,7 +26,7 @@ public class Ucus {
         this.flight_hour = flight_hour;
         this.flight_time = flight_time;
         this.company_id = company_id;
-        this.ucak_id = ucak_id;
+        this.plane_id = plane_id;
         this.flight_fare = flight_fare;
     }
 
@@ -42,14 +42,14 @@ public class Ucus {
         this.ucus_varis = ucus_varis;
     }
 
-    public Ucus(int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int company_id, int ucak_id, double flight_fare) {
+    public Ucus(int flight_departure_id, int end_heir_id, String flight_date, String flight_hour, String flight_time, int company_id, int plane_id, double flight_fare) {
         this.flight_departure_id = flight_departure_id;
         this.end_heir_id = end_heir_id;
         this.flight_date = flight_date;
         this.flight_hour = flight_hour;
         this.flight_time = flight_time;
         this.company_id = company_id;
-        this.ucak_id = ucak_id;
+        this.plane_id = plane_id;
         this.flight_fare = flight_fare;
     }
     
@@ -110,11 +110,11 @@ public class Ucus {
     }
 
     public int getUcak_id() {
-        return ucak_id;
+        return plane_id;
     }
 
-    public void setUcak_id(int ucak_id) {
-        this.ucak_id = ucak_id;
+    public void setUcak_id(int plane_id) {
+        this.plane_id = plane_id;
     }
 
     public double getUcus_ucret() {

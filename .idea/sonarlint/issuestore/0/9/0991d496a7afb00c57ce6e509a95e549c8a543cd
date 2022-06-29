@@ -1,0 +1,33 @@
+
+HWeb:TableWithoutCaptionCheck" Add a description to this table.(ÛšòÌ
+>	Web:S1827")Remove this deprecated "width" attribute.(ÛšòÌ
+D	Web:S1827"/Remove this deprecated "cellspacing" attribute.(ÛšòÌ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(Æ‚’§şÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(øšµÀÿÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(¶ü§Úüÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(Æ‚’§şÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(øšµÀÿÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(¶ü§Úüÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
+HWeb:BoldAndItalicTagsCheck("Replace this <i> tag by <em>.(øŠıâşÿÿÿÿ
+BWeb:BoldAndItalicTagsCheck+"Replace this <i> tag by <em>.(ÔèÜ
+
+LWeb:ImgWithoutAltCheck:"%Add an "alt" attribute to this image.(º˜Ÿ†ıÿÿÿÿ
+LWeb:BoldAndItalicTagsCheck;"!Replace this <b> tag by <strong>.(ÀÑûøûÿÿÿÿ
+GWeb:BoldAndItalicTagsCheck<"!Replace this <b> tag by <strong>.(¬ÃÉ
+GWeb:BoldAndItalicTagsCheck="!Replace this <b> tag by <strong>.(ÙŠÅ
+LWeb:BoldAndItalicTagsCheck>"!Replace this <b> tag by <strong>.(€®ó¹ÿÿÿÿÿ
+LWeb:BoldAndItalicTagsCheck?"!Replace this <b> tag by <strong>.(Ö¯Åøøÿÿÿÿ
+LWeb:BoldAndItalicTagsCheck@"!Replace this <b> tag by <strong>.(ÑŞÒôúÿÿÿÿ
+LWeb:BoldAndItalicTagsCheckA"!Replace this <b> tag by <strong>.(‚ÅŒşÿÿÿÿ
+LWeb:BoldAndItalicTagsCheckB"!Replace this <b> tag by <strong>.(Ô¨®Íüÿÿÿÿ
+LWeb:BoldAndItalicTagsCheckD"!Replace this <b> tag by <strong>.(³Õûøÿÿÿÿ
+LWeb:BoldAndItalicTagsCheckE"!Replace this <b> tag by <strong>.(Û¹Æşÿÿÿÿ
+GWeb:BoldAndItalicTagsCheckF"!Replace this <b> tag by <strong>.(ˆã¢«
+LWeb:BoldAndItalicTagsCheckI"!Replace this <b> tag by <strong>.(Ó‘½şÿÿÿÿ
+GWeb:BoldAndItalicTagsCheckL"!Replace this <b> tag by <strong>.(áùİÁ
+LWeb:BoldAndItalicTagsCheckQ"!Replace this <b> tag by <strong>.(™ÉöÁûÿÿÿÿ
+GWeb:BoldAndItalicTagsCheckR"!Replace this <b> tag by <strong>.(ÄÁªş

@@ -140,7 +140,7 @@ public class BusinessServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            Company yenicompany = new Company(company_name, company_logo);
+            Company newCompany = new Company(company_name, company_logo);
             companyDAO.addCompany(yenifirma);
             response.sendRedirect("companyList");
         }       

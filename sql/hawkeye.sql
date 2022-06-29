@@ -154,7 +154,7 @@ CREATE TABLE `rezervasyon` (
 --
 
 CREATE TABLE `ucak` (
-  `ucak_id` int(11) NOT NULL,
+  `plane_id` int(11) NOT NULL,
   `ucak_ad` varchar(500) NOT NULL,
   `ucak_koltuk` int(10) NOT NULL,
   `company_id` int(11) NOT NULL
@@ -174,7 +174,7 @@ CREATE TABLE `flight` (
   `flight_hour` time NOT NULL,
   `flight_time` varchar(50) NOT NULL,
   `company_id` int(11) NOT NULL,
-  `ucak_id` int(11) NOT NULL,
+  `plane_id` int(11) NOT NULL,
   `flight_fare` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -234,7 +234,7 @@ ALTER TABLE `rezervasyon`
 -- Tablo için indeksler `ucak`
 --
 ALTER TABLE `ucak`
-  ADD PRIMARY KEY (`ucak_id`);
+  ADD PRIMARY KEY (`plane_id`);
 
 --
 -- Tablo için indeksler `flight`
@@ -298,7 +298,7 @@ ALTER TABLE `rezervasyon`
 -- Tablo için AUTO_INCREMENT değeri `ucak`
 --
 ALTER TABLE `ucak`
-  MODIFY `ucak_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `plane_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `ucus`

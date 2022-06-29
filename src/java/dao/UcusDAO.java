@@ -14,37 +14,37 @@ import model.Airport;
 import model.Ucak;
 import model.Ucus;
 
-public class UcusDAO {
+public class FlightDAO {
     
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCUS_INSERT ="INSERT INTO ucus (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, ucak_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
+    private static final String UCUS_INSERT ="INSERT INTO ucus (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
     private static final String FIRMA_SELECT_ALL = "select * from company;";
     private static final String HAVAALANI_SELECT_ALL = "select * from airport;";
     private static final String UCAK_SELECT_ALL = "select * from ucak;";
     private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
-                                "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date >= ? ;";
     
     private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from ucus\n" +
-                                "INNER JOIN  ucak ON (ucak.ucak_id = flight.ucak_id)\n" +
+                                "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date < ? ;";
     private static final String UCUS_DELETE = "delete from ucus where flight_id = ?;";
     private static final String UCUS_SELECT_ID = "SELECT * FROM ucus  where flight_id=?;";
-    private static final String UCUS_UPDATE = "update ucus set flight_departure_id = ?, end_heir_id=?, flight_date=?, flight_hour=?, flight_time=?, company_id=?, ucak_id=?, flight_fare=? where flight_id = ?;";
+    private static final String UCUS_UPDATE = "update ucus set flight_departure_id = ?, end_heir_id=?, flight_date=?, flight_hour=?, flight_time=?, company_id=?, plane_id=?, flight_fare=? where flight_id = ?;";
     private static final String UCUS_KONTROL = "select * from ucus as u \n" +
-                                "join ucak as k on k.ucak_id=u.ucak_id\n" +
-                                "where u.ucak_id=? and u.flight_date=? and ((u.flight_hour BETWEEN ? AND ?) or (ADDTIME(u.flight_hour, u.flight_time) BETWEEN ? AND ?));";
+                                "join ucak as k on k.plane_id=u.plane_id\n" +
+                                "where u.plane_id=? and u.flight_date=? and ((u.flight_hour BETWEEN ? AND ?) or (ADDTIME(u.flight_hour, u.flight_time) BETWEEN ? AND ?));";
     
-    public UcusDAO() {}
+    public FlightDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
@@ -61,7 +61,7 @@ public class UcusDAO {
         return connection;
     }
     
-    public boolean ucussil(int id) throws SQLException {
+    public boolean deleteFlight(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(UCUS_DELETE);) {
@@ -71,7 +71,7 @@ public class UcusDAO {
         return silinenSatir;
     }
     
-    public boolean ucusguncelle(Ucus ucus) throws SQLException {
+    public boolean updateFlight(Ucus ucus) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(UCUS_UPDATE);) {
@@ -103,9 +103,9 @@ public class UcusDAO {
                 String flight_hour = rs.getString("flight_hour");
                 String flight_time = rs.getString("flight_time");
                 int company_id = rs.getInt("company_id");
-                int ucak_id = rs.getInt("ucak_id");
+                int plane_id = rs.getInt("plane_id");
                 Double flight_fare = rs.getDouble("flight_fare");
-                ucus = new Ucus(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,company_id,ucak_id,flight_fare);
+                ucus = new Ucus(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,company_id,plane_id,flight_fare);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -157,7 +157,7 @@ public class UcusDAO {
         return true;     
     }
     
-    public void ucusolustur(Ucus ucus) throws SQLException {  
+    public void createFlight(Ucus ucus) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(UCUS_INSERT)) {
@@ -175,7 +175,7 @@ public class UcusDAO {
         }
     }
     
-    public List<Ucus> guncelucusliste() {
+    public List<Ucus> currentFlightList() {
         List<Ucus> ucuslar = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDateTime now = LocalDateTime.now(); 
@@ -203,7 +203,7 @@ public class UcusDAO {
         return ucuslar;
     }  
     
-    public List<Ucus> gecmisucusliste() {
+    public List<Ucus> pastFlightList() {
         List<Ucus> ucuslar = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDateTime now = LocalDateTime.now(); 
@@ -254,9 +254,9 @@ public class UcusDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(UCAK_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int ucak_id = rs.getInt("ucak_id");
+                int plane_id = rs.getInt("plane_id");
                 String ucak_ad = rs.getString("ucak_ad");               
-                ucak.add(new Ucak(ucak_id, ucak_ad));
+                ucak.add(new Ucak(plane_id, ucak_ad));
             }
         } catch (SQLException e) {
             printSQLException(e);

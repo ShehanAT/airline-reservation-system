@@ -1,0 +1,16 @@
+
+HWeb:BoldAndItalicTagsCheck	"Replace this <i> tag by <em>.(’éì´üÿÿÿÿ
+HWeb:TableWithoutCaptionCheck" Add a description to this table.(ÛšòÌ
+>	Web:S1827")Remove this deprecated "width" attribute.(ÛšòÌ
+D	Web:S1827"/Remove this deprecated "cellspacing" attribute.(ÛšòÌ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÐÔ¸Òùÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(´’ç»ûÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üýÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÐÔ¸Òùÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(´’ç»ûÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üýÿÿÿÿ
+GWeb:ImgWithoutAltCheck#"%Add an "alt" attribute to this image.(ÎâžÀ
+CWeb:BoldAndItalicTagsCheck&"Replace this <i> tag by <em>.(«»‡¼
+HWeb:BoldAndItalicTagsCheck)"Replace this <i> tag by <em>.(ÚÃÖûýÿÿÿÿ
