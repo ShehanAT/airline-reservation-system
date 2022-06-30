@@ -72,8 +72,8 @@ public class HomepagerServlet extends HttpServlet{
             List<Reservation> flight = reservationDAO.numberOfFlights();
             request.setAttribute("flight", flight);
 
-            List<Reservation> mesaj = reservationDAO.numberOfMessages();
-            request.setAttribute("mesaj", mesaj);
+            List<Reservation> message = reservationDAO.numberOfMessages();
+            request.setAttribute("message", message);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);

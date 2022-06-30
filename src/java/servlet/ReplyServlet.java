@@ -19,14 +19,14 @@ import javax.servlet.http.HttpSession;
 import model.Cevap;
 import model.Mesaj;
 
-@WebServlet(urlPatterns = {"/admin/mesajcevapla", "/admin/gostermesajcevapla", "/admin/cevapliste", "/admin/cevapsil", "/admin/cevapincele"})
+@WebServlet(urlPatterns = {"/admin/mesajcevapla", "/admin/gostermesajcevapla", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
 
 public class ReplyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private CevapDAO cevapDAO;
+    private CevapDAO replyDAO;
     private MesajDAO messageDAO;
     public void init() {
-        cevapDAO = new CevapDAO();
+        replyDAO = new CevapDAO();
         messageDAO = new MesajDAO();
     }
 
@@ -47,14 +47,14 @@ public class ReplyServlet extends HttpServlet {
                 case "/admin/gostermesajcevapla":
                     gostermesajcevapla(request, response);
                     break;
-                case "/admin/cevapliste":
-                    cevapliste(request, response);
+                case "/admin/reviewList":
+                    reviewList(request, response);
                     break;
-                case "/admin/cevapsil":
-                    cevapsil(request, response);
+                case "/admin/deleteAnswer":
+                    deleteAnswer(request, response);
                     break;  
-                case "/admin/cevapincele":
-                    cevapincele(request, response);
+                case "/admin/reviewAnswer":
+                    reviewAnswer(request, response);
                     break;  
             }
         } catch (SQLException ex) {
@@ -62,7 +62,7 @@ public class ReplyServlet extends HttpServlet {
         }
     }
     
-    private void cevapliste(HttpServletRequest request, HttpServletResponse response)
+    private void reviewList(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -70,14 +70,14 @@ public class ReplyServlet extends HttpServlet {
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            List<Cevap> cevapliste = cevapDAO.cevaplistele();
-            request.setAttribute("cevapliste", cevapliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("cevaplistele.jsp");
+            List<Cevap> reviewList = cevapDAO.reviewList();
+            request.setAttribute("reviewList", reviewList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("reviewList.jsp");
             dispatcher.forward(request, response);
         }
     }
     
-    private void cevapincele(HttpServletRequest request, HttpServletResponse response)
+    private void reviewAnswer(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -85,15 +85,15 @@ public class ReplyServlet extends HttpServlet {
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            int cevap_id = Integer.parseInt(request.getParameter("id"));
-            Cevap cevap = cevapDAO.cevapincele(cevap_id);
-            request.setAttribute("cevap", cevap);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("cevapincele.jsp");
+            int reply_id = Integer.parseInt(request.getParameter("id"));
+            Cevap reply = replyDAO.reviewAnswer(cevap_id);
+            request.setAttribute("reply", cevap);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("reviewAnswer.jsp");
             dispatcher.forward(request, response);
         }       
     }
     
-    private void cevapsil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteAnswer(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -102,8 +102,8 @@ public class ReplyServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             int cevap_id = Integer.parseInt(request.getParameter("id"));
-            cevapDAO.cevapsil(cevap_id);
-            response.sendRedirect("cevapliste");
+            cevapDAO.deleteAnswer(cevap_id);
+            response.sendRedirect("reviewList");
         } 
     }
     
@@ -116,8 +116,8 @@ public class ReplyServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
-            mesajDAO.mesajokunma(id);
-            Mesaj mesaj = cevapDAO.mesajsec(id);      
+            mesajDAO.mesajnotRead(id);
+            Mesaj mesaj = cevapDAO.selectMessage(id);
             request.setAttribute("mesaj", mesaj); 
             RequestDispatcher dispatcher = request.getRequestDispatcher("mesajcevap.jsp");      
             dispatcher.forward(request, response);
@@ -134,12 +134,12 @@ public class ReplyServlet extends HttpServlet {
         }else{
             int mesaj_id = Integer.parseInt(request.getParameter("mesaj_id"));
             String mesaj_email = request.getParameter("mesaj_email");
-            String cevap_baslik = new String((request.getParameter("cevap_baslik")).getBytes("ISO-8859-1"), "UTF-8");
+            String cevap_title = new String((request.getParameter("cevap_title")).getBytes("ISO-8859-1"), "UTF-8");
             String cevap_icerik = new String((request.getParameter("cevap_icerik")).getBytes("ISO-8859-1"), "UTF-8");
-            Cevap yenicevap = new Cevap(mesaj_id,cevap_icerik,cevap_baslik);
+            Cevap yenicevap = new Cevap(mesaj_id,cevap_icerik,cevap_title);
 
             final String to = mesaj_email; 
-            final String subject = cevap_baslik;
+            final String subject = cevap_title;
             final String messg = cevap_icerik;
             final String from = "mail@gmail.com";
             final String pass = "sifre";
@@ -168,7 +168,7 @@ public class ReplyServlet extends HttpServlet {
             }        
             mesajDAO.mesajcevap(mesaj_id);
             cevapDAO.cevapekle(yenicevap);
-            response.sendRedirect("cevapliste");
+            response.sendRedirect("reviewList");
         }    
     }
 }

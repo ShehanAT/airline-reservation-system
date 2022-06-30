@@ -15,15 +15,15 @@ import dao.MesajDAO;
 import javax.servlet.http.HttpSession;
 import model.Mesaj;
 
-@WebServlet(urlPatterns = {"/admin/mesajliste", "/admin/mesajsil", "/iletisim", "/gostermesajekle"})
+@WebServlet(urlPatterns = {"/admin/mesajliste", "/admin/mesajsil", "/iletisim", "/showAddMessage"})
 
 public class MessageServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private MesajDAO mesajDAO;
+    private MesajDAO messageDAO;
 
     public void init() {
-        mesajDAO = new MesajDAO();
+        messageDAO = new MesajDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,8 +46,8 @@ public class MessageServlet extends HttpServlet {
                 case "/iletisim":
                     mesajekle(request, response);
                     break;
-                case "/gostermesajekle":
-                    gostermesajekle(request, response);
+                case "/showAddMessage":
+                    showAddMessage(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -63,7 +63,7 @@ public class MessageServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Mesaj> mesajliste = mesajDAO.mesajlistele();
+            List<Mesaj> mesajliste = messageDAO.mesajlistele();
             request.setAttribute("mesajliste", mesajliste);
             RequestDispatcher dispatcher = request.getRequestDispatcher("mesajlistele.jsp");
             dispatcher.forward(request, response);
@@ -78,8 +78,8 @@ public class MessageServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int mesaj_id = Integer.parseInt(request.getParameter("id"));
-            mesajDAO.mesajsil(mesaj_id);
+            int message_id = Integer.parseInt(request.getParameter("id"));
+            messageDAO.mesajsil(message_id);
             response.sendRedirect("mesajliste");
         }
     }
@@ -90,14 +90,14 @@ public class MessageServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void gostermesajekle(HttpServletRequest request, HttpServletResponse response)
+    private void showAddMessage(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        String mesaj_adsoyad = new String((request.getParameter("mesaj_adsoyad")).getBytes("ISO-8859-1"), "UTF-8");
-        String mesaj_email = request.getParameter("mesaj_email");
-        String mesaj_konu = new String((request.getParameter("mesaj_konu")).getBytes("ISO-8859-1"), "UTF-8");
-        String mesaj_icerik = new String((request.getParameter("mesaj_icerik")).getBytes("ISO-8859-1"), "UTF-8");
-        Mesaj yenimesaj = new Mesaj(mesaj_adsoyad, mesaj_email, mesaj_konu, mesaj_icerik);
-        mesajDAO.mesajekle(yenimesaj);
+        String message_surname = new String((request.getParameter("message_surname")).getBytes("ISO-8859-1"), "UTF-8");
+        String message_email = request.getParameter("message_email");
+        String message_konu = new String((request.getParameter("message_konu")).getBytes("ISO-8859-1"), "UTF-8");
+        String message_icerik = new String((request.getParameter("message_icerik")).getBytes("ISO-8859-1"), "UTF-8");
+        Mesaj newMessage = new Mesaj(message_surname, message_email, message_konu, message_icerik);
+        mesajDAO.mesajekle(newMessage);
         response.sendRedirect("iletisim?situation=basarili");
     }
 }

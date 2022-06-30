@@ -33,16 +33,16 @@
                     <tbody>
                         <c:forEach var="mesaj" items="${mesajliste}">
                             <tr>
-                                <td><c:out value="${mesaj.mesaj_id}" /></td>
-                                <td><c:out value="${mesaj.mesaj_adsoyad}" /></td>
-                                <td><c:out value="${mesaj.mesaj_konu}" /></td>
-                                <td><c:out value="${mesaj.mesaj_tarih}" /></td>
+                                <td><c:out value="${message.mesaj_id}" /></td>
+                                <td><c:out value="${message.mesaj_surname}" /></td>
+                                <td><c:out value="${message.message_subject}" /></td>
+                                <td><c:out value="${message.message_date}" /></td>
                                 <c:choose>
-                                    <c:when test= "${mesaj.mesaj_okunma == 1}">
+                                    <c:when test= "${message.mesaj_notRead == 1}">
                                         <td>
                                             <span style="color: black"><i class="fas fa-eye"></i></span>
                                                 <c:choose>
-                                                    <c:when test= "${mesaj.mesaj_cevap == 0}">
+                                                    <c:when test= "${message.message_reply == 0}">
                                                     <span style="color: red" class="ml-4"><i class="fas fa-times-circle"></i></span>
                                                     </c:when>
                                                     <c:otherwise>
@@ -55,7 +55,7 @@
                                         <td>
                                             <span style="color: black"><i class="fas fa-eye-slash"></i></span>
                                                 <c:choose>
-                                                    <c:when test= "${mesaj.mesaj_cevap == 0}">
+                                                    <c:when test= "${message.message_reply == 0}">
                                                     <span style="color: red" class="ml-4"><i class="fas fa-times-circle"></i></span>
                                                     </c:when>
                                                     <c:otherwise>
@@ -66,10 +66,10 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <td>
-                                    <a href="mesajcevapla?id=<c:out value='${mesaj.mesaj_id}' />">
+                                    <a href="mesajcevapla?id=<c:out value='${message.mesaj_id}' />">
                                         <button class="btn btn-success btn-sm"><i class="far fa-edit"></i> Cevapla</button>
                                     </a>
-                                    <a href="mesajsil?id=<c:out value='${mesaj.mesaj_id}' />">
+                                    <a href="mesajsil?id=<c:out value='${message.mesaj_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

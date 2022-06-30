@@ -9,11 +9,11 @@
                 <h3 class="mb-0 text-white">Mesaj Cevapla</h3>
             </div>
             <div class="card-body">
-                <form class="form" autocomplete="off" method="post" action="gostermesajcevapla">
+                <form class="form" autocomplete="off" method="post" action="gostermesajreplyla">
                     <input type="hidden" name="message_id" id="message_id" value="<c:out value='${message.message_id}' />" />
                     <div class="form-group">
-                        <label for="message_adsoyad">Gönderen Ad Soyad</label>
-                        <input type="text" class="form-control" id="message_adsoyad" name="message_adsoyad" value="<c:out value='${message.message_adsoyad}' />" readonly>
+                        <label for="message_surname">Gönderen Ad Soyad</label>
+                        <input type="text" class="form-control" id="message_surname" name="message_surname" value="<c:out value='${message.message_surname}' />" readonly>
                     </div>
                     <div class="form-group">
                         <label for="message_tarih">Tarih</label>
@@ -32,12 +32,12 @@
                         <textarea class="form-control" id="message_icerik" name="message_icerik" rows="5" readonly><c:out value='${message.message_icerik}' /></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="cevap_baslik">Cevap Başlığı</label>
-                        <input type="text" class="form-control" id="cevap_baslik" name="cevap_baslik" required>
+                        <label for="reply_title">Cevap Başlığı</label>
+                        <input type="text" class="form-control" id="reply_title" name="reply_title" required>
                     </div>
                     <div class="form-group">
-                        <label for="cevap_icerik">Cevap İçeriği</label>
-                        <textarea class="form-control" id="cevap_icerik" name="cevap_icerik" rows="5" required></textarea>
+                        <label for="reply_icerik">Cevap İçeriği</label>
+                        <textarea class="form-control" id="reply_icerik" name="reply_icerik" rows="5" required></textarea>
                     </div>    
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Cevapla</button>

@@ -11,8 +11,6 @@ M
 src/java/model/Kullanici.java,a\2\a2967825dd032bd42aa7c1904340472b99b0390a
 N
 src/java/dao/KullaniciDAO.java,8\0\80e5efddf573166635627da5702355e6a59a201b
-R
-"src/java/servlet/ReplyServlet.java,c\8\c847f0633283430a96ed0fc384839416c2838860
 C
 web/WEB-INF/web.xml,c\d\cdcc12da5c4054f6995aab32914d7e0243194c05
 G
@@ -73,12 +71,8 @@ C
 web/admin/giris.jsp,a\2\a2f64671295ef4cb416fa909c1ac29477964f1d8
 S
 #web/admin/guncelucuslarilistele.jsp,1\2\12cfd6462957a5bde7f21870d009092f03b3fa97
-@
-web/iletisim.jsp,1\8\1833b4a0b06fccbfa5e63f5b6e09ebaab1b24908
 N
 web/admin/kullanicilistele.jsp,8\b\8be509daea9104b86115c90802de19707fa1b5bd
-T
-$src/java/servlet/MessageServlet.java,5\5\55cbad55dbf32eac361f650c77dcadc4043e3413
 >
 web/profil.jsp,3\c\3c77ec573ab21abfa5fea7701c7d51cae7fe64b2
 F

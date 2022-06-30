@@ -10,32 +10,32 @@
             </div>
             <div class="card-body">                               
                     <div class="form-group">
-                        <label for="mesaj_adsoyad">Gönderen Ad Soyad</label>
-                        <input type="text" class="form-control" id="mesaj_adsoyad" name="mesaj_adsoyad" value="<c:out value='${cevap.mesaj_adsoyad}' />" disabled>
+                        <label for="mesaj_surname">Gönderen Ad Soyad</label>
+                        <input type="text" class="form-control" id="mesaj_surname" name="mesaj_surname" value="<c:out value='${review.mesaj_surname}' />" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="mesaj_tarih">Tarih</label>
-                        <input type="text" class="form-control" id="mesaj_tarih" name="mesaj_tarih" value="<c:out value='${cevap.mesaj_tarih}' />" disabled>
+                        <label for="message_date">Tarih</label>
+                        <input type="text" class="form-control" id="message_date" name="message_date" value="<c:out value='${review.message_date}' />" disabled>
                     </div>
                     <div class="form-group">
                         <label for="mesaj_email">Gönderen Email</label>
-                        <input type="text" class="form-control" id="mesaj_email" name="mesaj_email" value="<c:out value='${cevap.mesaj_email}' />" disabled>
+                        <input type="text" class="form-control" id="mesaj_email" name="mesaj_email" value="<c:out value='${review.mesaj_email}' />" disabled>
                     </div>                           
                     <div class="form-group">
-                        <label for="mesaj_konu">Konu</label>
-                        <input type="text" class="form-control" id="mesaj_konu" name="mesaj_konu" value="<c:out value='${cevap.mesaj_konu}' />" disabled>
+                        <label for="message_subject">Konu</label>
+                        <input type="text" class="form-control" id="message_subject" name="message_subject" value="<c:out value='${review.message_subject}' />" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="mesaj_icerik">İçerik</label>
-                        <textarea class="form-control" id="mesaj_icerik" name="mesaj_icerik" rows="5" disabled><c:out value='${cevap.mesaj_icerik}' /></textarea>
+                        <label for="message_content">İçerik</label>
+                        <textarea class="form-control" id="message_content" name="message_content" rows="5" disabled><c:out value='${review.message_content}' /></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="cevap_baslik">Cevap Başlığı</label>
-                        <input type="text" class="form-control" id="cevap_baslik" name="cevap_baslik" value="<c:out value='${cevap.cevap_baslik}' />" disabled>
+                        <label for="review_title">Cevap Başlığı</label>
+                        <input type="text" class="form-control" id="review_title" name="review_title" value="<c:out value='${review.review_title}' />" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="cevap_icerik">Cevap İçeriği</label>
-                        <textarea class="form-control" id="cevap_icerik" name="cevap_icerik" rows="5" disabled><c:out value='${cevap.cevap_icerik}' /></textarea>
+                        <label for="review_icerik">Cevap İçeriği</label>
+                        <textarea class="form-control" id="review_icerik" name="review_icerik" rows="5" disabled><c:out value='${review.review_icerik}' /></textarea>
                     </div>
             </div>
         </div>

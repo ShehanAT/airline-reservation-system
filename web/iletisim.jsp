@@ -21,12 +21,12 @@
     
     <div class="row">
         <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" method="post" name="contact-form" action="gostermesajekle">
+            <form id="contact-form" method="post" name="contact-form" action="showAddMessage">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <label for="mesaj_adsoyad" class="">İsim Soyisim</label>
-                            <input type="text" id="mesaj_adsoyad" name="mesaj_adsoyad" class="form-control">
+                            <label for="mesaj_surname" class="">İsim Soyisim</label>
+                            <input type="text" id="mesaj_surname" name="mesaj_surname" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -39,16 +39,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form mb-0">
-                            <label for="mesaj_konu" class="">Konu</label>
-                            <input type="text" id="mesaj_konu" name="mesaj_konu" class="form-control">
+                            <label for="message_subject" class="">Konu</label>
+                            <input type="text" id="message_subject" name="message_subject" class="form-control">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form">
-                            <label for="mesaj_icerik">Mesaj</label>
-                            <textarea type="text" id="mesaj_icerik" name="mesaj_icerik" rows="5" class="form-control md-textarea"></textarea>
+                            <label for="message_content">Mesaj</label>
+                            <textarea type="text" id="message_content" name="message_content" rows="5" class="form-control md-textarea"></textarea>
                         </div>
                     </div>
                 </div>

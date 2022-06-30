@@ -17,9 +17,9 @@ public class MesajDAO {
     
     private static final String MESAJ_SELECT_ALL = "select * from mesaj;";
     private static final String MESAJ_DELETE = "delete from mesaj where mesaj_id = ?;";
-    private static final String MESAJ_OKUNMA_UPDATE = "update mesaj set mesaj_okunma=1 where mesaj_id = ?;";
-    private static final String MESAJ_CEVAP_UPDATE = "update mesaj set mesaj_cevap=1 where mesaj_id = ?;";
-    private static final String MESAJ_INSERT = "INSERT INTO mesaj  (mesaj_adsoyad, mesaj_email, mesaj_konu, mesaj_icerik) VALUES " +
+    private static final String MESAJ_OKUNMA_UPDATE = "update mesaj set mesaj_notRead=1 where mesaj_id = ?;";
+    private static final String MESAJ_CEVAP_UPDATE = "update mesaj set mesaj_review=1 where mesaj_id = ?;";
+    private static final String MESAJ_INSERT = "INSERT INTO mesaj  (mesaj_surname, mesaj_email, message_subject, message_content) VALUES " +
         " (?,?,?,?);"; 
     
     public MesajDAO() {}
@@ -39,7 +39,7 @@ public class MesajDAO {
         return connection;
     }
     
-    public boolean mesajokunma(int id) throws SQLException {
+    public boolean mesajnotRead(int id) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(MESAJ_OKUNMA_UPDATE);) {     
@@ -49,7 +49,7 @@ public class MesajDAO {
         return guncellenenSatir;
     }
     
-    public boolean mesajcevap(int id) throws SQLException {
+    public boolean mesajreview(int id) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(MESAJ_CEVAP_UPDATE);) {     
@@ -63,10 +63,10 @@ public class MesajDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(MESAJ_INSERT)) {
-            preparedStatement.setString(1, mesaj.getMesaj_adsoyad());
-            preparedStatement.setString(2, mesaj.getMesaj_email());
-            preparedStatement.setString(3, mesaj.getMesaj_konu());
-            preparedStatement.setString(4, mesaj.getMesaj_icerik());
+            preparedStatement.setString(1, message.getMesaj_surname());
+            preparedStatement.setString(2, message.getMesaj_email());
+            preparedStatement.setString(3, message.getMesaj_konu());
+            preparedStatement.setString(4, message.getMesaj_icerik());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -80,14 +80,14 @@ public class MesajDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int mesaj_id = rs.getInt("mesaj_id");
-                String mesaj_adsoyad = rs.getString("mesaj_adsoyad");
+                String mesaj_surname = rs.getString("mesaj_surname");
                 String mesaj_email = rs.getString("mesaj_email");
-                String mesaj_konu = rs.getString("mesaj_konu");
-                String mesaj_icerik = rs.getString("mesaj_icerik");
-                String mesaj_tarih = rs.getString("mesaj_tarih");               
-                int mesaj_okunma = rs.getInt("mesaj_okunma");
-                int mesaj_cevap = rs.getInt("mesaj_cevap");
-                mesajlar.add(new Mesaj(mesaj_id,mesaj_adsoyad,mesaj_email,mesaj_konu,mesaj_icerik,mesaj_tarih,mesaj_okunma,mesaj_cevap));
+                String message_subject = rs.getString("message_subject");
+                String message_content = rs.getString("message_content");
+                String message_date = rs.getString("message_date");
+                int mesaj_notRead = rs.getInt("mesaj_notRead");
+                int mesaj_review = rs.getInt("mesaj_review");
+                mesajlar.add(new Mesaj(mesaj_id,mesaj_surname,mesaj_email,message_subject,message_content,message_date,mesaj_notRead,mesaj_review));
             }
         } catch (SQLException e) {
             printSQLException(e);

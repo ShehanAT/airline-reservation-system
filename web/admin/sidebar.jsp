@@ -135,7 +135,7 @@
             <div id="message" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="mesajliste">Gelen Mesajlar</a>
-                    <a class="collapse-item" href="cevapliste">Cevap Listesi</a>
+                    <a class="collapse-item" href="reviewList">Cevap Listesi</a>
                 </div>
             </div>
         </li>

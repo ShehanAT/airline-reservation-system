@@ -29,17 +29,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="cevap" items="${cevapliste}">
+                        <c:forEach var="review" items="${reviewliste}">
                             <tr>
-                                <td><c:out value="${cevap.cevap_id}" /></td>
-                                <td><c:out value="${cevap.mesaj_konu}" /></td>
-                                <td><c:out value="${cevap.mesaj_tarih}" /></td>
-                                <td><c:out value="${cevap.cevap_tarih}" /></td>
+                                <td><c:out value="${review.review_id}" /></td>
+                                <td><c:out value="${review.message_konu}" /></td>
+                                <td><c:out value="${review.message_tarih}" /></td>
+                                <td><c:out value="${review.review_tarih}" /></td>
                                 <td>
-                                    <a href="cevapincele?id=<c:out value='${cevap.cevap_id}' />">
+                                    <a href="reviewAnswer?id=<c:out value='${review.review_id}' />">
                                         <button class="btn btn-success btn-sm"><i class="far fa-file-alt"></i> İncele</button>
                                     </a>
-                                    <a href="cevapsil?id=<c:out value='${cevap.cevap_id}' />">
+                                    <a href="deleteAnswer?id=<c:out value='${review.review_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

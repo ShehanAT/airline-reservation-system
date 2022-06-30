@@ -17,14 +17,14 @@ public class CevapDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
     
-    private static final String CEVAP_SELECT_ALL = "select * from cevap\n" +
-                                                "INNER JOIN  message ON (message.message_id = cevap.message_id);";
-    private static final String CEVAP_DELETE = "delete from cevap where cevap_id = ?;";
+    private static final String CEVAP_SELECT_ALL = "select * from reply\n" +
+                                                "INNER JOIN  message ON (message.message_id = reply.message_id);";
+    private static final String CEVAP_DELETE = "delete from reply where reply_id = ?;";
     private static final String MESAJ_SELECT_ID = "SELECT * FROM message  where message_id=?;";
-    private static final String CEVAP_INSERT = "INSERT INTO cevap (message_id, cevap_icerik, cevap_baslik) VALUES (?,?,?);";
-    private static final String CEVAP_SELECT_ID = "select * from cevap\n" +
-                                                "INNER JOIN  message ON (message.mesaj_id = cevap.mesaj_id)"+
-                                                "where cevap_id=?;";
+    private static final String CEVAP_INSERT = "INSERT INTO reply (message_id, review_icerik, review_title) VALUES (?,?,?);";
+    private static final String CEVAP_SELECT_ID = "select * from reply\n" +
+                                                "INNER JOIN  message ON (message.message_id = reply.message_id)"+
+                                                "where reply_id=?;";
     
     public CevapDAO() {}
     
@@ -43,71 +43,71 @@ public class CevapDAO {
         return connection;
     }
     
-    public List<Cevap> cevaplistele() {
-        List<Cevap> cevaplar = new ArrayList<> ();
+    public List<Cevap> reviewList() {
+        List<Cevap> answers = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int cevap_id = rs.getInt("cevap_id");
-                int mesaj_id = rs.getInt("mesaj_id");
-                String cevap_icerik = rs.getString("cevap_icerik");
-                String cevap_baslik = rs.getString("cevap_baslik");
-                String cevap_tarih = rs.getString("cevap_tarih");
-                String mesaj_adsoyad = rs.getString("mesaj_adsoyad");
-                String mesaj_email = rs.getString("mesaj_email");
-                String mesaj_konu = rs.getString("mesaj_konu");
-                String mesaj_icerik = rs.getString("mesaj_icerik");
-                String mesaj_tarih = rs.getString("mesaj_tarih");               
+                int reply_id = rs.getInt("reply_id");
+                int message_id = rs.getInt("message_id");
+                String reply_icerik = rs.getString("reply_icerik");
+                String reply_title = rs.getString("reply_title");
+                String reply_tarih = rs.getString("reply_tarih");
+                String message_surname = rs.getString("message_surname");
+                String message_email = rs.getString("message_email");
+                String message_konu = rs.getString("message_konu");
+                String message_icerik = rs.getString("message_icerik");
+                String message_tarih = rs.getString("message_tarih");
                 
-                cevaplar.add(new Cevap(cevap_id,mesaj_id,cevap_icerik,cevap_baslik,cevap_tarih,mesaj_adsoyad,mesaj_email, mesaj_konu, mesaj_icerik,mesaj_tarih));
+                answers.add(new Cevap(reply_id,message_id,reply_icerik,reply_title,reply_tarih,message_surname,message_email, message_konu, message_icerik,message_tarih));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return cevaplar;
+        return answers;
     } 
     
-    public Mesaj mesajsec(int id) {
-        Mesaj mesaj = null;
+    public Mesaj selectMessage(int id) {
+        Mesaj message = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(MESAJ_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String mesaj_adsoyad = rs.getString("mesaj_adsoyad");                
-                String mesaj_email = rs.getString("mesaj_email");
-                String mesaj_konu = rs.getString("mesaj_konu");
-                String mesaj_icerik = rs.getString("mesaj_icerik");
-                String mesaj_tarih = rs.getString("mesaj_tarih");
-                int mesaj_okunma = rs.getInt("mesaj_okunma");
-                int mesaj_cevap = rs.getInt("mesaj_cevap");
-                mesaj = new Mesaj(id, mesaj_adsoyad, mesaj_email, mesaj_konu, mesaj_icerik, mesaj_tarih,mesaj_okunma,mesaj_cevap);
+                String message_surname = rs.getString("message_surname");
+                String message_email = rs.getString("message_email");
+                String message_konu = rs.getString("message_konu");
+                String message_icerik = rs.getString("message_icerik");
+                String message_tarih = rs.getString("message_tarih");
+                int message_notRead = rs.getInt("message_notRead");
+                int message_reply = rs.getInt("message_reply");
+                message = new Mesaj(id, message_surname, message_email, message_konu, message_icerik, message_tarih,message_notRead,message_reply);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return mesaj;
+        return message;
     } 
     
-    public Cevap cevapincele(int id) {
-        Cevap cevap = null;
+    public Cevap reviewAnswer(int id) {
+        Cevap review = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int cevap_id = rs.getInt("cevap_id");
-                int mesaj_id = rs.getInt("mesaj_id");
-                String cevap_icerik = rs.getString("cevap_icerik");
-                String cevap_baslik = rs.getString("cevap_baslik");
-                String cevap_tarih = rs.getString("cevap_tarih");
-                String mesaj_adsoyad = rs.getString("mesaj_adsoyad");
-                String mesaj_email = rs.getString("mesaj_email");
-                String mesaj_konu = rs.getString("mesaj_konu");
-                String mesaj_icerik = rs.getString("mesaj_icerik");
-                String mesaj_tarih = rs.getString("mesaj_tarih");     
-                cevap = new Cevap(cevap_id,mesaj_id,cevap_icerik,cevap_baslik,cevap_tarih,mesaj_adsoyad,mesaj_email, mesaj_konu, mesaj_icerik,mesaj_tarih);
+                int review_id = rs.getInt("review_id");
+                int message_id = rs.getInt("message_id");
+                String review_icerik = rs.getString("review_icerik");
+                String review_title = rs.getString("review_title");
+                String review_tarih = rs.getString("cevap_tarih");
+                String message_surname = rs.getString("message_surname");
+                String message_email = rs.getString("message_email");
+                String message_konu = rs.getString("message_subject");
+                String message_content = rs.getString("message_content");
+                String message_date = rs.getString("message_date");
+                cevap = new Cevap(cevap_id,mesaj_id,cevap_icerik,cevap_title,cevap_tarih,mesaj_surname,mesaj_email, message_subject, message_content,message_date);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -121,14 +121,14 @@ public class CevapDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_INSERT)) {
             preparedStatement.setInt(1, cevap.getMesaj_id());
             preparedStatement.setString(2, cevap.getCevap_icerik());
-            preparedStatement.setString(3, cevap.getCevap_baslik());
+            preparedStatement.setString(3, cevap.getCevap_title());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     
-    public boolean cevapsil(int id) throws SQLException {
+    public boolean deleteAnswer(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(CEVAP_DELETE);) {
