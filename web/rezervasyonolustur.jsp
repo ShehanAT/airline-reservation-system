@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="col-md-8" id="flight-paymentblock-mid">
-            <form action="gosterrezervasyonislemlerim" method="post">
+            <form action="showMyReservationTransactions" method="post">
                 <input type="hidden" id="flight_id" name="flight_id" value="<c:out value='${ucusbilgileri.flight_id}' />">
                 <input type="hidden" id="y_sayi" name="y_sayi" value="<c:out value='${yolcusayi.yetiskin_sayi}' />">
                 <input type="hidden" id="c_sayi" name="c_sayi" value="<c:out value='${yolcusayi.cocuk_sayi}' />">
@@ -246,7 +246,7 @@
                         </div>
                     </div>
                     <div class="mx-auto">
-                        <button type="submit" class="btn btn-warning btn-rounded text-white selectbtn-go mb-5 mt-5">Rezervasyon İşlemini Tamamla</button>
+                        <button type="submit" class="btn btn-warning btn-rounded text-white selectbtn-go mb-5 mt-5">Reservation İşlemini Tamamla</button>
                     </div>
             </form>
             <script type="text/javascript">

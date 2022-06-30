@@ -126,10 +126,10 @@ CREATE TABLE `mesaj` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `rezervasyon`
+-- Tablo için tablo yapısı `reservation`
 --
 
-CREATE TABLE `rezervasyon` (
+CREATE TABLE `reservation` (
   `rezervasyon_id` int(11) NOT NULL,
   `rezervasyon_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
   `flight_id` int(11) NOT NULL,
@@ -225,10 +225,10 @@ ALTER TABLE `mesaj`
   ADD PRIMARY KEY (`mesaj_id`);
 
 --
--- Tablo için indeksler `rezervasyon`
+-- Tablo için indeksler `reservation`
 --
-ALTER TABLE `rezervasyon`
-  ADD PRIMARY KEY (`rezervasyon_id`);
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`reservation_id`);
 
 --
 -- Tablo için indeksler `ucak`
@@ -289,10 +289,10 @@ ALTER TABLE `mesaj`
   MODIFY `mesaj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- Tablo için AUTO_INCREMENT değeri `rezervasyon`
+-- Tablo için AUTO_INCREMENT değeri `reservation`
 --
-ALTER TABLE `rezervasyon`
-  MODIFY `rezervasyon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+ALTER TABLE `reservation`
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `ucak`

@@ -114,11 +114,11 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#rezervasyon" aria-expanded="true" aria-controls="rezervasyon">
                 <i class="far fa-fw fa-calendar-alt"></i>
-                <span>Rezervasyon İşlemleri</span>
+                <span>Reservation İşlemleri</span>
             </a>
             <div id="rezervasyon" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="rezervasyonliste">Rezervasyon Listele</a>
+                    <a class="collapse-item" href="rezervasyonliste">Reservation Listele</a>
                 </div>
             </div>
         </li>       

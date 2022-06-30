@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-white">Rezervasyon Listesi</h6>
+            <h6 class="m-0 font-weight-bold text-white">Reservation Listesi</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Rezervasyon Tarihi</th>
+                            <th>Reservation Tarihi</th>
                             <th>PNR</th>
                             <th>Soyad</th>
                             <th>İşlemler</th>
@@ -22,7 +22,7 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Rezervasyon Tarihi</th>
+                            <th>Reservation Tarihi</th>
                             <th>PNR</th>
                             <th>Soyad</th>
                             <th>İşlemler</th>
@@ -39,7 +39,7 @@
                                     <a data-toggle="modal" href="#modal<c:out value="${rezervasyon.rezervasyon_id}" />">
                                         <button class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> İncele</button>
                                     </a>
-                                    <a href="rezervasyoniptal?id=<c:out value="${rezervasyon.rezervasyon_id}" />">
+                                    <a href="cancelReservation?id=<c:out value="${rezervasyon.rezervasyon_id}" />">
                                         <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> İptal</button>
                                     </a>
                                 </td>

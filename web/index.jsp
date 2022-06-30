@@ -64,7 +64,7 @@
                         </form>                            
                     </div>
                     <div class="search_panel">
-                        <form action="rezervasyonsorgulama" id="search_form_3" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                        <form action="reservationInquiry" id="search_form_3" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
                             <div class="search_item">
                                 <div>PNR Numaranız</div>
                                 <input type="text" name="pnr_no" id="pnr_no" class="search_input"  required="required">
@@ -106,7 +106,7 @@
 <section class="pt-5">
     <div class="intro">
         <h1 class="text-center intro_title">Gönül rahatlığıyla rezervasyon yapın</h1>
-        <p class="text-center intro_subtitle">Koşulsuz bilet iptali, online değişiklik, kayıtlı kart ve daha fazlası</p>
+        <p class="text-center intro_subtitle">Koşulsuz bilet canceli, online değişiklik, kayıtlı kart ve daha fazlası</p>
     </div>
     <div class="">
         <div class="container">
@@ -265,7 +265,7 @@
                     <img class="intro_card-img-top mx-auto" src="assets/images/3.svg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title text-center">İstediğiniz gibi seyahat edin</h5>
-                            <p class="card-text text-center">Nereye gitmek istediğinizi biliyor musunuz? Rezervasyon yapmak için en uygun zamanı görün. Tarihleriniz esnek mi? Kısa molalardan müthiş maceralara tüm fırsatları keşfedin.</p>
+                            <p class="card-text text-center">Nereye gitmek istediğinizi biliyor musunuz? Reservation yapmak için en uygun zamanı görün. Tarihleriniz esnek mi? Kısa molalardan müthiş maceralara tüm fırsatları keşfedin.</p>
                         </div>
                 </div>
             </div>

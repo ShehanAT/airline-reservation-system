@@ -1,7 +1,7 @@
 package servlet;
 
 import dao.AirportDAO;
-import dao.RezervasyonDAO;
+import dao.ReservationDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,18 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Airport;
-import model.Rezervasyon;
+import model.Reservation;
 
 @WebServlet(urlPatterns = {"/flight_ticket", "/admin/panel"})
 
 public class HomepagerServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private AirportDAO airportDAO;
-    private RezervasyonDAO rezervasyonDAO;
+    private ReservationDAO reservationDAO;
     
     public void init() {
         airportDAO = new AirportDAO();
-        rezervasyonDAO = new RezervasyonDAO();
+        reservationDAO = new ReservationDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -66,13 +66,13 @@ public class HomepagerServlet extends HttpServlet{
         }else if((Integer) session.getAttribute("user_authorization") != 2){
                 response.sendRedirect("../flight_ticket");
         }else{
-            List<Rezervasyon> rezervasyon = rezervasyonDAO.rezervasyonsayisi();
-            request.setAttribute("rezervasyon", rezervasyon);
+            List<Reservation> reservation = reservationDAO.numberOfReservations();
+            request.setAttribute("reservation", reservation);
 
-            List<Rezervasyon> flight = rezervasyonDAO.numberOfFlights();
+            List<Reservation> flight = reservationDAO.numberOfFlights();
             request.setAttribute("flight", flight);
 
-            List<Rezervasyon> mesaj = rezervasyonDAO.mesajsayisi();
+            List<Reservation> mesaj = reservationDAO.numberOfMessages();
             request.setAttribute("mesaj", mesaj);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

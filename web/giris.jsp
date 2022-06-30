@@ -12,7 +12,7 @@
             }
             String r = request.getParameter("rezervasyon");
             if (r != null) {
-                out.print("<div class='alert alert-warning' role='alert'>Rezervasyon işlemini gerçekleştirmek için giriş yapınız.</div>");
+                out.print("<div class='alert alert-warning' role='alert'>Reservation işlemini gerçekleştirmek için giriş yapınız.</div>");
             }
         %>
         <label for="kullanici_email" class="sr-only">E-mail</label>

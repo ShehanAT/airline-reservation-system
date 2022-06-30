@@ -7,7 +7,7 @@
             <div class="row fill_height">
                 <div class="col fill_height">
                     <div class="search_tabs_container">
-                        <form action="rezervasyonsorgulama" method="post" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                        <form action="reservationInquiry" method="post" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
                             <div class="search_item">
                                 <div>PNR Numaranız</div>
                                 <input type="text" name="pnr_no" id="pnr_no" class="search_input" value="<c:out value='${reservationLogin.pnr_no}' />" required="required">
@@ -28,7 +28,7 @@
     <c:when test="${empty rezervasyon}">
         <div class="text-center" style="margin-bottom: 130px; margin-top: 100px;">
             <i class="fas fa-exclamation text-dark fa-4x mt-3" style="margin-left: 40px;"></i>
-            <h2 class="mb-3 mt-4">Rezervasyon Bulunamadı</h2>
+            <h2 class="mb-3 mt-4">Reservation Bulunamadı</h2>
         </div>
     </c:when>    
     <c:otherwise>

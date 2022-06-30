@@ -206,7 +206,7 @@
                         <div class="col-md-3 text-right bg-filtre-title py-0">
                             <p class="h3 font-weight-normal mt-5"><c:out value="${flight.flight_fare}" /> ₺</p>
 
-                            <a href="rezervasyonolustur?id=<c:out value='${flight.flight_id}' />&yetiskin=<c:out value='${rezervasyon.yetiskin_sayi}' />&cocuk=<c:out value='${rezervasyon.cocuk_sayi}' />" class="btn btn-warning btn-rounded text-white text-right selectbtn-go">Seç</a>
+                            <a href="makeReservation?id=<c:out value='${flight.flight_id}' />&yetiskin=<c:out value='${rezervasyon.yetiskin_sayi}' />&cocuk=<c:out value='${rezervasyon.cocuk_sayi}' />" class="btn btn-warning btn-rounded text-white text-right selectbtn-go">Seç</a>
                         </div>
                     </div>
                 </div>
