@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Company;
 import model.Ucak;
 
-@WebServlet(urlPatterns = {"/admin/ucakliste", "/admin/addFlight", "/admin/showAddFlight", "/admin/ucaksil", "/admin/ucakguncelle", "/admin/gosterucakguncelle"})
+@WebServlet(urlPatterns = {"/admin/ucakliste", "/admin/addFlight", "/admin/showAddFlight", "/admin/ucaksil", "/admin/ucakguncelle", "/admin/showucakguncelle"})
 
 public class AeroplaneServlet extends HttpServlet {
 
@@ -52,8 +52,8 @@ public class AeroplaneServlet extends HttpServlet {
                 case "/admin/ucakguncelle":
                     ucakguncelle(request, response);
                     break;
-                case "/admin/gosterucakguncelle":
-                    gosterucakguncelle(request, response);
+                case "/admin/showAirplaneUpdate":
+                    showAirplaneUpdate(request, response);
                     break;
             }
         } catch (SQLException ex) {

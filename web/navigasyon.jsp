@@ -8,10 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-5">
                 <li class="nav-item active">
-                    <a class="nav-link" href="flight_ticket">Uçak Bileti</a>
+                    <a class="nav-link" href="flight_ticket">Flight Ticket</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="iletisim">İletişim</a>
+                    <a class="nav-link" href="contact">Contact</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto">

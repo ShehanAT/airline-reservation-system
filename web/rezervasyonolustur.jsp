@@ -86,7 +86,7 @@
                         <div class="card shadow-sm">
                             <div class="card-header white card-header-payment pb-1">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <p class="font-weight-normal card-title-payment f-16 card-text-payment-bold">İletişim Bilgileri</p>
+                                    <p class="font-weight-normal card-title-payment f-16 card-text-payment-bold">Contact Information</p>
                                 </div>
                             </div>
                             <div class="card-body">

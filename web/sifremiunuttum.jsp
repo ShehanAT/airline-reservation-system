@@ -9,7 +9,7 @@
         <%
             String req = request.getParameter("situation");
             if (req != null) {
-                if (req.equals("basarili")) {
+                if (req.equals("successful")) {
                     out.print("<div class='alert alert-success' role='alert'>Şifreniz email adresinize gönderilmiştir.</div>");
                 } else {
                     out.print("<div class='alert alert-warning' role='alert'>Email ile eşleşen hesap bulunamadı.</div>");

@@ -143,7 +143,7 @@ public class UserServlet extends HttpServlet {
                 Kullanici kullanici = new Kullanici(kullanici_id, kullanici_sifre1);
                 kullaniciDAO.sifreguncelle(kullanici);
                 session.setAttribute("kullanici_sifre", kullanici_sifre1);
-                response.sendRedirect("profil?situation=basarili");
+                response.sendRedirect("profil?situation=successful");
             } else {
                 response.sendRedirect("profil?situation=hatali");
             }
@@ -170,7 +170,7 @@ public class UserServlet extends HttpServlet {
                 session.setAttribute("kullanici_ad", kullanici_ad);
                 session.setAttribute("kullanici_soyad", kullanici_soyad);
                 session.setAttribute("kullanici_email", kullanici_email);
-                response.sendRedirect("profil?situation=basarili");
+                response.sendRedirect("profil?situation=successful");
             } else {
                 response.sendRedirect("profil?situation=unsuccessful");
             }
@@ -336,7 +336,7 @@ public class UserServlet extends HttpServlet {
                     throw new RuntimeException(e);
 
                 }
-                response.sendRedirect("sifremiunuttum?situation=basarili");
+                response.sendRedirect("sifremiunuttum?situation=successful");
             } else {
                 response.sendRedirect("sifremiunuttum?situation=unsuccessful");
             }
@@ -357,7 +357,7 @@ public class UserServlet extends HttpServlet {
             if (kontrol == true) {
                 Kullanici yeniKullanici = new Kullanici(kullanici_ad, kullanici_soyad, kullanici_email, kullanici_sifre);
                 kullaniciDAO.uyeol(yeniKullanici);
-                response.sendRedirect("uyeol?situation=basarili");
+                response.sendRedirect("uyeol?situation=successful");
             } else {
                 response.sendRedirect("uyeol?situation=unsuccessful");
             }

@@ -73,7 +73,7 @@ public class MesajDAO {
         }
     }
     
-    public List<Mesaj> mesajlistele() {
+    public List<Mesaj> messageListle() {
         List<Mesaj> mesajlar = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(MESAJ_SELECT_ALL);) {
@@ -95,7 +95,7 @@ public class MesajDAO {
         return mesajlar;
     } 
     
-    public boolean mesajsil(int id) throws SQLException {
+    public boolean deleteMessage(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(MESAJ_DELETE);) {

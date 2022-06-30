@@ -9,7 +9,7 @@
                             <h3 class="mb-0 text-white">Uçak Güncelle</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form" role="form" method="post" autocomplete="off" action="gosterucakguncelle">
+                            <form class="form" role="form" method="post" autocomplete="off" action="showAirplaneUpdate">
                                 <input type="hidden" name="plane_id" id="plane_id" value="<c:out value='${ucak.plane_id}' />" />
                                 <div class="form-group">
                                     <label for="ucak_ad">Uçak Adı</label>

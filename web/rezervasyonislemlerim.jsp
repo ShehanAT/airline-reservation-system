@@ -16,7 +16,7 @@
     <%        
     String req = request.getParameter("situation");
         if (req != null) {
-            if (req.equals("basarili")) {
+            if (req.equals("successful")) {
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Rezervasyonunuz oluşturulmuştur.</div>");
             } else {
                 out.print("<div class=' alert alert-warning mt-3' role='alert'>Reservation oluşturma işlemi tamamlanamadı. Seçili koltuklar rezervedir.</div>");
@@ -24,7 +24,7 @@
         }
     String re = request.getParameter("guncelleme");
         if (re != null) {
-            if (re.equals("basarili")) {
+            if (re.equals("successful")) {
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Güncelleme işlemi başarıyla tamamlandı.</div>");
             }
         }
@@ -199,7 +199,7 @@
                                         <p>Bilet Ücreti: <c:out value="${rez.yolcu_ucret}" /> ₺</p>
                                         <p>Koltuk No: <c:out value="${rez.koltuk_no}" /></p>
                                         <br><br>
-                                        <h5 style="color:orange">İletişim Bilgileri</h5>
+                                        <h5 style="color:orange">Contact Information</h5>
                                         <p>Email : <c:out value="${rez.yolcu_email}" /></p>
                                         <p>Telefon : <c:out value="${rez.yolcu_tel}" /></p>
                                     </div>

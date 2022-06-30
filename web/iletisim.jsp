@@ -13,7 +13,7 @@
     <%        
     String req = request.getParameter("situation");
         if (req != null) {
-            if (req.equals("basarili")) {
+            if (req.equals("successful")) {
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Mesajınız başarıyla gönderilmiştir.</div>");
             }
         }
@@ -66,7 +66,7 @@
                 </li>
 
                 <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>iletisim@hawkeye.com</p>
+                    <p>contact@hawkeye.com</p>
                 </li>
             </ul>
         </div>

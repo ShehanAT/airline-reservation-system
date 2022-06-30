@@ -31,7 +31,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="mesaj" items="${mesajliste}">
+                        <c:forEach var="mesaj" items="${messageList}">
                             <tr>
                                 <td><c:out value="${message.mesaj_id}" /></td>
                                 <td><c:out value="${message.mesaj_surname}" /></td>
@@ -66,10 +66,10 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <td>
-                                    <a href="mesajcevapla?id=<c:out value='${message.mesaj_id}' />">
+                                    <a href="replyMessage?id=<c:out value='${message.mesaj_id}' />">
                                         <button class="btn btn-success btn-sm"><i class="far fa-edit"></i> Cevapla</button>
                                     </a>
-                                    <a href="mesajsil?id=<c:out value='${message.mesaj_id}' />">
+                                    <a href="deleteMessage?id=<c:out value='${message.mesaj_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

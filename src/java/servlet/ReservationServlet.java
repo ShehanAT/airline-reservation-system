@@ -85,7 +85,7 @@ public class ReservationServlet extends HttpServlet {
             String sifre = request.getParameter("sil_sifre");
             if (kullanici_sifre.equals(sifre)) {
                 reservationDAO.cancelReservation(rezervasyon_id);
-                response.sendRedirect("myReservationTransactions?cancel=basarili");
+                response.sendRedirect("myReservationTransactions?cancel=successful");
             } else {
                 response.sendRedirect("myReservationTransactions?cancel=unsuccessful");
             }
@@ -109,7 +109,7 @@ public class ReservationServlet extends HttpServlet {
             String yolcu_tel = request.getParameter("yolcu_tel" + id);
             Reservation rez = new Reservation(id, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tarih);
             reservationDAO.rezervasyonguncelle(rez);
-            response.sendRedirect("myReservationTransactions?guncelleme=basarili");
+            response.sendRedirect("myReservationTransactions?guncelleme=successful");
         }
     }
 
@@ -174,7 +174,7 @@ public class ReservationServlet extends HttpServlet {
                     reservationDAO.rezervasyonekle(rezervasyon);
                 }
 
-                response.sendRedirect("myReservationTransactions?situation=basarili");
+                response.sendRedirect("myReservationTransactions?situation=successful");
             }
         }
     }

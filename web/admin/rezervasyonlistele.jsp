@@ -77,7 +77,7 @@
                                                 </c:otherwise>
                                             </c:choose>
 
-                                            <p style="color:#FF7F00">İletişim Bilgileri</p>
+                                            <p style="color:#FF7F00">Contact Information</p>
                                             <p><b>Telefon : </b><c:out value="${rezervasyon.yolcu_tel}" /></p>
                                             <p><b>Email : </b><c:out value="${rezervasyon.yolcu_email}" /></p>
                                     </div>

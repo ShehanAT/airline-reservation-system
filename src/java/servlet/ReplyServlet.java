@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import model.Cevap;
 import model.Mesaj;
 
-@WebServlet(urlPatterns = {"/admin/mesajcevapla", "/admin/gostermesajcevapla", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
+@WebServlet(urlPatterns = {"/admin/replyMessage", "/admin/gosterreplyMessage", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
 
 public class ReplyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -41,11 +41,11 @@ public class ReplyServlet extends HttpServlet {
        
         try {
             switch (action) {
-                case "/admin/mesajcevapla":
-                    mesajcevapla(request, response);
+                case "/admin/replyMessage":
+                    replyMessage(request, response);
                     break;
-                case "/admin/gostermesajcevapla":
-                    gostermesajcevapla(request, response);
+                case "/admin/gosterreplyMessage":
+                    gosterreplyMessage(request, response);
                     break;
                 case "/admin/reviewList":
                     reviewList(request, response);
@@ -107,7 +107,7 @@ public class ReplyServlet extends HttpServlet {
         } 
     }
     
-    private void mesajcevapla(HttpServletRequest request, HttpServletResponse response)
+    private void replyMessage(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -124,7 +124,7 @@ public class ReplyServlet extends HttpServlet {
         }
     }
     
-    private void gostermesajcevapla(HttpServletRequest request, HttpServletResponse response)
+    private void gosterreplyMessage(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         HttpSession sessionn = request.getSession();
         if ((Integer) sessionn.getAttribute("user_authorization") == null) {

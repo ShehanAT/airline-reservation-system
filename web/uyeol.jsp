@@ -9,7 +9,7 @@
         <%
             String req = request.getParameter("situation");
             if (req != null) {
-                if (req.equals("basarili")) {
+                if (req.equals("successful")) {
                     out.print("<div class='alert alert-success' role='alert'>Kayıt başarılı. Giriş yapınız.</div>");
                 } else {
                     out.print("<div class='alert alert-warning' role='alert'>Bu Email kullanılıyor.</div>");

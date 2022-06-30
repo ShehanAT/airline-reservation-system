@@ -45,7 +45,7 @@
         <%                
         String req = request.getParameter("situation");
             if (req != null) {
-                if (req.equals("basarili")) {
+                if (req.equals("successful")) {
                     out.print("<div class=' alert alert-success mt-3' role='alert'>Güncelleme İşlemi Başarıyla Tamamlandı.</div>");
                 } else if (req.equals("hatali")) {
                     out.print("<div class=' alert alert-warning mt-3' role='alert'>Güncelleme İşlemi Tamamlanamadı. Şu anki şifre hatalı.</div>");
