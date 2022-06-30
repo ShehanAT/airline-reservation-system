@@ -45,7 +45,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 OKUNMAMIŞ MESAJLAR</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${mesaj[0].conclusion}' /></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${message[0].conclusion}' /></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>

@@ -35,7 +35,7 @@ public class ReservationDAO {
                                     "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND flight_hour > ? AND (ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) >= ?;";
     private static final String REZERVASYON_SELECT_COUNT="SELECT COUNT(*) as conclusion FROM reservation WHERE rezervasyon_tarih BETWEEN ? AND ?;";
     private static final String UCUS_SELECT_COUNT="SELECT count(*) as conclusion FROM flight WHERE flight_date >= ? ;";
-    private static final String MESAJ_SELECT_COUNT="SELECT count(*) as conclusion FROM mesaj WHERE mesaj_okunma = 0;";
+    private static final String MESAJ_SELECT_COUNT="SELECT count(*) as conclusion FROM message WHERE message_okunma = 0;";
     private static final String REZERVASYON_DELETE = "delete from reservation where rezervasyon_id = ?;";
     private static final String REZERVASYON_SELECT_PNRNO="SELECT * FROM reservation where pnr_no=? and yolcu_soyad=?;";
     private static final String REZERVASYON_SELECT_UCUS_ID="select DISTINCT k.ucak_ad, u.flight_hour, u.flight_date, u.flight_time, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tc, yolcu_tip, a.airport_city_name AS kalkis_sehir, s.airport_name as kalkis_ad, s.airport_code as kalkis_kod, b.airport_city_name as varis_sehir, p.airport_name as varis_ad, p.airport_code as varis_kod, f.company_name, f.company_logo from reservation JOIN havaalani JOIN havaalani_sehir JOIN flight JOIN company JOIN ucak\n" +

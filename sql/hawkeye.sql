@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cevap` (
   `cevap_id` int(11) NOT NULL,
-  `mesaj_id` int(11) NOT NULL,
+  `message_id` int(11) NOT NULL,
   `cevap_icerik` text NOT NULL,
   `cevap_baslik` varchar(500) NOT NULL,
   `cevap_tarih` timestamp NOT NULL DEFAULT current_timestamp()
@@ -109,18 +109,18 @@ INSERT INTO `kullanicilar` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `u
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `mesaj`
+-- Tablo için tablo yapısı `message`
 --
 
-CREATE TABLE `mesaj` (
-  `mesaj_id` int(11) NOT NULL,
-  `mesaj_adsoyad` varchar(500) NOT NULL,
-  `mesaj_email` varchar(500) NOT NULL,
-  `mesaj_konu` varchar(500) NOT NULL,
-  `mesaj_icerik` text NOT NULL,
-  `mesaj_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
-  `mesaj_okunma` int(2) NOT NULL DEFAULT 0,
-  `mesaj_cevap` int(2) NOT NULL DEFAULT 0
+CREATE TABLE `message` (
+  `message_id` int(11) NOT NULL,
+  `message_adsoyad` varchar(500) NOT NULL,
+  `message_email` varchar(500) NOT NULL,
+  `message_konu` varchar(500) NOT NULL,
+  `message_icerik` text NOT NULL,
+  `message_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
+  `message_okunma` int(2) NOT NULL DEFAULT 0,
+  `message_cevap` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -219,10 +219,10 @@ ALTER TABLE `kullanicilar`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Tablo için indeksler `mesaj`
+-- Tablo için indeksler `message`
 --
-ALTER TABLE `mesaj`
-  ADD PRIMARY KEY (`mesaj_id`);
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`message_id`);
 
 --
 -- Tablo için indeksler `reservation`
@@ -283,10 +283,10 @@ ALTER TABLE `kullanicilar`
   MODIFY `kullanici_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- Tablo için AUTO_INCREMENT değeri `mesaj`
+-- Tablo için AUTO_INCREMENT değeri `message`
 --
-ALTER TABLE `mesaj`
-  MODIFY `mesaj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+ALTER TABLE `message`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `reservation`

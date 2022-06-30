@@ -1,0 +1,17 @@
+
+HWeb:BoldAndItalicTagsCheck	"Replace this <i> tag by <em>.(’îÑ„ùÿÿÿÿ
+HWeb:TableWithoutCaptionCheck" Add a description to this table.(ÛšòÌ
+>	Web:S1827")Remove this deprecated "width" attribute.(ÛšòÌ
+D	Web:S1827"/Remove this deprecated "cellspacing" attribute.(ÛšòÌ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(È‹²¨
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(àêüùÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(èüÒìüÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(È‹²¨
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(àêüùÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(èüÒìüÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
+CWeb:BoldAndItalicTagsCheck)"Replace this <i> tag by <em>.(«»‡¼
+HWeb:BoldAndItalicTagsCheck,"Replace this <i> tag by <em>.(ÚÃÖûıÿÿÿÿ

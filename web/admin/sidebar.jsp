@@ -128,11 +128,11 @@
             MESAJ
         </div>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mesaj" aria-expanded="true" aria-controls="mesaj">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#message" aria-expanded="true" aria-controls="message">
                 <i class="fa-fw far fa-envelope"></i>
                 <span>Mesaj İşlemleri</span>
             </a>
-            <div id="mesaj" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="message" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="mesajliste">Gelen Mesajlar</a>
                     <a class="collapse-item" href="cevapliste">Cevap Listesi</a>

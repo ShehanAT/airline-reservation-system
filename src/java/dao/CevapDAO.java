@@ -18,12 +18,12 @@ public class CevapDAO {
     private final String jdbcPassword = "123456";   
     
     private static final String CEVAP_SELECT_ALL = "select * from cevap\n" +
-                                                "INNER JOIN  mesaj ON (mesaj.mesaj_id = cevap.mesaj_id);";
+                                                "INNER JOIN  message ON (message.message_id = cevap.message_id);";
     private static final String CEVAP_DELETE = "delete from cevap where cevap_id = ?;";
-    private static final String MESAJ_SELECT_ID = "SELECT * FROM mesaj  where mesaj_id=?;";
-    private static final String CEVAP_INSERT = "INSERT INTO cevap (mesaj_id, cevap_icerik, cevap_baslik) VALUES (?,?,?);"; 
+    private static final String MESAJ_SELECT_ID = "SELECT * FROM message  where message_id=?;";
+    private static final String CEVAP_INSERT = "INSERT INTO cevap (message_id, cevap_icerik, cevap_baslik) VALUES (?,?,?);";
     private static final String CEVAP_SELECT_ID = "select * from cevap\n" +
-                                                "INNER JOIN  mesaj ON (mesaj.mesaj_id = cevap.mesaj_id)"+
+                                                "INNER JOIN  message ON (message.mesaj_id = cevap.mesaj_id)"+
                                                 "where cevap_id=?;";
     
     public CevapDAO() {}

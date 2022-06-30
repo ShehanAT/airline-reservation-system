@@ -2,46 +2,46 @@ package model;
 
 public class Cevap {
     int cevap_id;
-    int mesaj_id;
+    int message_id;
     String cevap_icerik;
     String cevap_baslik;
     String cevap_tarih;
-    String mesaj_adsoyad;
-    String mesaj_email;
-    String mesaj_konu;
-    String mesaj_icerik;
-    String mesaj_tarih;               
-    int mesaj_okunma;
-    int mesaj_cevap;
+    String message_adsoyad;
+    String message_email;
+    String message_konu;
+    String message_icerik;
+    String message_tarih;
+    int message_okunma;
+    int message_cevap;
 
     public Cevap() {
     }
 
-    public Cevap(int cevap_id, int mesaj_id, String cevap_icerik, String cevap_baslik, String cevap_tarih, String mesaj_adsoyad, String mesaj_email, String mesaj_konu, String mesaj_icerik, String mesaj_tarih) {
+    public Cevap(int cevap_id, int message_id, String cevap_icerik, String cevap_baslik, String cevap_tarih, String message_adsoyad, String message_email, String message_konu, String message_icerik, String message_tarih) {
         this.cevap_id = cevap_id;
-        this.mesaj_id = mesaj_id;
+        this.message_id = message_id;
         this.cevap_icerik = cevap_icerik;
         this.cevap_baslik = cevap_baslik;
         this.cevap_tarih = cevap_tarih;
-        this.mesaj_adsoyad = mesaj_adsoyad;
-        this.mesaj_email = mesaj_email;
-        this.mesaj_konu = mesaj_konu;
-        this.mesaj_icerik = mesaj_icerik;
-        this.mesaj_tarih = mesaj_tarih;
+        this.message_adsoyad = message_adsoyad;
+        this.message_email = message_email;
+        this.message_konu = message_konu;
+        this.message_icerik = message_icerik;
+        this.message_tarih = message_tarih;
     }
     
-    public Cevap(int mesaj_id, String cevap_icerik, String cevap_baslik) {
-        this.mesaj_id = mesaj_id;
+    public Cevap(int message_id, String cevap_icerik, String cevap_baslik) {
+        this.message_id = message_id;
         this.cevap_icerik = cevap_icerik;
         this.cevap_baslik = cevap_baslik;
     }
 
     public String getMesaj_adsoyad() {
-        return mesaj_adsoyad;
+        return message_adsoyad;
     }
 
-    public void setMesaj_adsoyad(String mesaj_adsoyad) {
-        this.mesaj_adsoyad = mesaj_adsoyad;
+    public void setMesaj_adsoyad(String message_adsoyad) {
+        this.message_adsoyad = mesaj_adsoyad;
     }
 
     public String getMesaj_email() {

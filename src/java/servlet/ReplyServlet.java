@@ -24,10 +24,10 @@ import model.Mesaj;
 public class ReplyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private CevapDAO cevapDAO;
-    private MesajDAO mesajDAO;
+    private MesajDAO messageDAO;
     public void init() {
         cevapDAO = new CevapDAO();
-        mesajDAO = new MesajDAO();
+        messageDAO = new MesajDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

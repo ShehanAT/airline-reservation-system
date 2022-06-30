@@ -10,26 +10,26 @@
             </div>
             <div class="card-body">
                 <form class="form" autocomplete="off" method="post" action="gostermesajcevapla">
-                    <input type="hidden" name="mesaj_id" id="mesaj_id" value="<c:out value='${mesaj.mesaj_id}' />" />
+                    <input type="hidden" name="message_id" id="message_id" value="<c:out value='${message.message_id}' />" />
                     <div class="form-group">
-                        <label for="mesaj_adsoyad">Gönderen Ad Soyad</label>
-                        <input type="text" class="form-control" id="mesaj_adsoyad" name="mesaj_adsoyad" value="<c:out value='${mesaj.mesaj_adsoyad}' />" readonly>
+                        <label for="message_adsoyad">Gönderen Ad Soyad</label>
+                        <input type="text" class="form-control" id="message_adsoyad" name="message_adsoyad" value="<c:out value='${message.message_adsoyad}' />" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="mesaj_tarih">Tarih</label>
-                        <input type="text" class="form-control" id="mesaj_tarih" name="mesaj_tarih" value="<c:out value='${mesaj.mesaj_tarih}' />" readonly>
+                        <label for="message_tarih">Tarih</label>
+                        <input type="text" class="form-control" id="message_tarih" name="message_tarih" value="<c:out value='${message.message_tarih}' />" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="mesaj_email">Gönderen Email</label>
-                        <input type="text" class="form-control" id="mesaj_email" name="mesaj_email" value="<c:out value='${mesaj.mesaj_email}' />" readonly>
+                        <label for="message_email">Gönderen Email</label>
+                        <input type="text" class="form-control" id="message_email" name="message_email" value="<c:out value='${message.message_email}' />" readonly>
                     </div>                           
                     <div class="form-group">
-                        <label for="mesaj_konu">Konu</label>
-                        <input type="text" class="form-control" id="mesaj_konu" name="mesaj_konu" value="<c:out value='${mesaj.mesaj_konu}' />" readonly>
+                        <label for="message_konu">Konu</label>
+                        <input type="text" class="form-control" id="message_konu" name="message_konu" value="<c:out value='${message.message_konu}' />" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="mesaj_icerik">İçerik</label>
-                        <textarea class="form-control" id="mesaj_icerik" name="mesaj_icerik" rows="5" readonly><c:out value='${mesaj.mesaj_icerik}' /></textarea>
+                        <label for="message_icerik">İçerik</label>
+                        <textarea class="form-control" id="message_icerik" name="message_icerik" rows="5" readonly><c:out value='${message.message_icerik}' /></textarea>
                     </div>
                     <div class="form-group">
                         <label for="cevap_baslik">Cevap Başlığı</label>
