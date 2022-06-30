@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.MesajDAO;
+import dao.MessageDAO;
 import javax.servlet.http.HttpSession;
-import model.Mesaj;
+import model.Message;
 
 @WebServlet(urlPatterns = {"/admin/messageList", "/admin/deleteMessage", "/contact", "/showAddMessage"})
 
 public class MessageServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private MesajDAO messageDAO;
+    private MessageDAO messageDAO;
 
     public void init() {
-        messageDAO = new MesajDAO();
+        messageDAO = new MessageDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,7 @@ public class MessageServlet extends HttpServlet {
                     deleteMessage(request, response);
                     break;
                 case "/contact":
-                    mesajekle(request, response);
+                    addMessage(request, response);
                     break;
                 case "/showAddMessage":
                     showAddMessage(request, response);
@@ -63,7 +63,7 @@ public class MessageServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Mesaj> messageList = messageDAO.messageListle();
+            List<Message> messageList = messageDAO.messageListle();
             request.setAttribute("messageList", messageList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("messageListle.jsp");
             dispatcher.forward(request, response);
@@ -84,7 +84,7 @@ public class MessageServlet extends HttpServlet {
         }
     }
 
-    private void mesajekle(HttpServletRequest request, HttpServletResponse response)
+    private void addMessage(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("contact.jsp");
         dispatcher.forward(request, response);
@@ -96,8 +96,8 @@ public class MessageServlet extends HttpServlet {
         String message_email = request.getParameter("message_email");
         String message_konu = new String((request.getParameter("message_konu")).getBytes("ISO-8859-1"), "UTF-8");
         String message_icerik = new String((request.getParameter("message_icerik")).getBytes("ISO-8859-1"), "UTF-8");
-        Mesaj newMessage = new Mesaj(message_surname, message_email, message_konu, message_icerik);
-        mesajDAO.mesajekle(newMessage);
+        Message newMessage = new Message(message_surname, message_email, message_konu, message_icerik);
+        messageDAO.addMessage(newMessage);
         response.sendRedirect("contact?situation=successful");
     }
 }

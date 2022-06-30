@@ -25,14 +25,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <label for="mesaj_surname" class="">İsim Soyisim</label>
-                            <input type="text" id="mesaj_surname" name="mesaj_surname" class="form-control">
+                            <label for="message_surname" class="">İsim Soyisim</label>
+                            <input type="text" id="message_surname" name="message_surname" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <label for="mesaj_email" class="">E-mail</label>
-                            <input type="text" id="mesaj_email" name="mesaj_email" class="form-control">
+                            <label for="message_email" class="">E-mail</label>
+                            <input type="text" id="message_email" name="message_email" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form">
-                            <label for="message_content">Mesaj</label>
+                            <label for="message_content">Message</label>
                             <textarea type="text" id="message_content" name="message_content" rows="5" class="form-control md-textarea"></textarea>
                         </div>
                     </div>

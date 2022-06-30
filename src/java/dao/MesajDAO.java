@@ -7,22 +7,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Mesaj;
+import model.Message;
 
-public class MesajDAO {
+public class MessageDAO {
     
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";       
     
-    private static final String MESAJ_SELECT_ALL = "select * from mesaj;";
-    private static final String MESAJ_DELETE = "delete from mesaj where mesaj_id = ?;";
-    private static final String MESAJ_OKUNMA_UPDATE = "update mesaj set mesaj_notRead=1 where mesaj_id = ?;";
-    private static final String MESAJ_CEVAP_UPDATE = "update mesaj set mesaj_review=1 where mesaj_id = ?;";
-    private static final String MESAJ_INSERT = "INSERT INTO mesaj  (mesaj_surname, mesaj_email, message_subject, message_content) VALUES " +
+    private static final String MESAJ_SELECT_ALL = "select * from message;";
+    private static final String MESAJ_DELETE = "delete from message where message_id = ?;";
+    private static final String MESAJ_OKUNMA_UPDATE = "update message set message_notRead=1 where message_id = ?;";
+    private static final String MESAJ_CEVAP_UPDATE = "update message set message_review=1 where message_id = ?;";
+    private static final String MESAJ_INSERT = "INSERT INTO message  (message_surname, message_email, message_subject, message_content) VALUES " +
         " (?,?,?,?);"; 
     
-    public MesajDAO() {}
+    public MessageDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
@@ -39,7 +39,7 @@ public class MesajDAO {
         return connection;
     }
     
-    public boolean mesajnotRead(int id) throws SQLException {
+    public boolean messagenotRead(int id) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(MESAJ_OKUNMA_UPDATE);) {     
@@ -49,7 +49,7 @@ public class MesajDAO {
         return guncellenenSatir;
     }
     
-    public boolean mesajreview(int id) throws SQLException {
+    public boolean messagereview(int id) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(MESAJ_CEVAP_UPDATE);) {     
@@ -59,35 +59,35 @@ public class MesajDAO {
         return guncellenenSatir;
     } 
     
-    public void mesajekle(Mesaj mesaj) throws SQLException {  
+    public void addMessage(Message message) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(MESAJ_INSERT)) {
-            preparedStatement.setString(1, message.getMesaj_surname());
-            preparedStatement.setString(2, message.getMesaj_email());
-            preparedStatement.setString(3, message.getMesaj_konu());
-            preparedStatement.setString(4, message.getMesaj_icerik());
+            preparedStatement.setString(1, message.getMessage_surname());
+            preparedStatement.setString(2, message.getMessage_email());
+            preparedStatement.setString(3, message.getMessage_konu());
+            preparedStatement.setString(4, message.getMessage_icerik());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     
-    public List<Mesaj> messageListle() {
-        List<Mesaj> mesajlar = new ArrayList<> ();
+    public List<Message> messageListle() {
+        List<Message> messageslar = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(MESAJ_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int mesaj_id = rs.getInt("mesaj_id");
-                String mesaj_surname = rs.getString("mesaj_surname");
-                String mesaj_email = rs.getString("mesaj_email");
+                int message_id = rs.getInt("message_id");
+                String message_surname = rs.getString("message_surname");
+                String message_email = rs.getString("message_email");
                 String message_subject = rs.getString("message_subject");
                 String message_content = rs.getString("message_content");
                 String message_date = rs.getString("message_date");
-                int mesaj_notRead = rs.getInt("mesaj_notRead");
-                int mesaj_review = rs.getInt("mesaj_review");
-                mesajlar.add(new Mesaj(mesaj_id,mesaj_surname,mesaj_email,message_subject,message_content,message_date,mesaj_notRead,mesaj_review));
+                int message_notRead = rs.getInt("message_notRead");
+                int message_review = rs.getInt("message_review");
+                messageslar.add(new Message(message_id,message_surname,message_email,message_subject,message_content,message_date,message_notRead,message_review));
             }
         } catch (SQLException e) {
             printSQLException(e);

@@ -6,10 +6,10 @@
     <div class="col-md-8 mx-auto mb-5">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0 text-white">Mesaj Cevapla</h3>
+                <h3 class="mb-0 text-white">Message Cevapla</h3>
             </div>
             <div class="card-body">
-                <form class="form" autocomplete="off" method="post" action="gostermesajreplyla">
+                <form class="form" autocomplete="off" method="post" action="showMessageReply">
                     <input type="hidden" name="message_id" id="message_id" value="<c:out value='${message.message_id}' />" />
                     <div class="form-group">
                         <label for="message_surname">Gönderen Ad Soyad</label>

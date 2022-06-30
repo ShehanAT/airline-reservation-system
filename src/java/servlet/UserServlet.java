@@ -22,7 +22,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import model.Kullanici;
 
-@WebServlet(urlPatterns = {"/uyeol", "/gosteruyeol", "/sifremiunuttum", "/gostersifremiunuttum", "/login", "/gostergiris", "/cikis", "/admin/giris", "/admin/gostergiris", "/admin/kullaniciliste", "/admin/adminekle", "/admin/gosteradminekle", "/admin/kullanicisil", "/admin/adminguncelle", "/admin/gosteradminguncelle", "/profil", "/profilguncelle", "/sifreguncelle", "/hesapsil", "/admin/cikis", "/admin/bilgilerim"})
+@WebServlet(urlPatterns = {"/uyeol", "/showMember", "/sifremiunuttum", "/gostersifremiunuttum", "/login", "/gostergiris", "/cikis", "/admin/giris", "/admin/gostergiris", "/admin/kullaniciliste", "/admin/adminekle", "/admin/gosteradminekle", "/admin/kullanicisil", "/admin/adminguncelle", "/admin/gosteradminguncelle", "/profil", "/profilguncelle", "/sifreguncelle", "/hesapsil", "/admin/cikis", "/admin/bilgilerim"})
 
 public class UserServlet extends HttpServlet {
 
@@ -47,8 +47,8 @@ public class UserServlet extends HttpServlet {
                 case "/uyeol":
                     uyeol(request, response);
                     break;
-                case "/gosteruyeol":
-                    gosteruyeol(request, response);
+                case "/showMember":
+                    showMember(request, response);
                     break;
                 case "/gostergiris":
                     gostergiris(request, response);
@@ -345,7 +345,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void gosteruyeol(HttpServletRequest request, HttpServletResponse response)
+    private void showMember(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {

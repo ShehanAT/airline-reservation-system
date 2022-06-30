@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Cevap;
-import model.Mesaj;
+import model.Message;
 
-public class CevapDAO {
+public class ReplyDAO {
     
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
     private final String jdbcKullaniciname = "root";
@@ -26,7 +26,7 @@ public class CevapDAO {
                                                 "INNER JOIN  message ON (message.message_id = reply.message_id)"+
                                                 "where reply_id=?;";
     
-    public CevapDAO() {}
+    public ReplyDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
@@ -68,8 +68,8 @@ public class CevapDAO {
         return answers;
     } 
     
-    public Mesaj selectMessage(int id) {
-        Mesaj message = null;
+    public Message selectMessage(int id) {
+        Message message = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(MESAJ_SELECT_ID);) {
             preparedStatement.setInt(1, id);
@@ -82,7 +82,7 @@ public class CevapDAO {
                 String message_tarih = rs.getString("message_tarih");
                 int message_notRead = rs.getInt("message_notRead");
                 int message_reply = rs.getInt("message_reply");
-                message = new Mesaj(id, message_surname, message_email, message_konu, message_icerik, message_tarih,message_notRead,message_reply);
+                message = new Message(id, message_surname, message_email, message_konu, message_icerik, message_tarih,message_notRead,message_reply);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -107,7 +107,7 @@ public class CevapDAO {
                 String message_konu = rs.getString("message_subject");
                 String message_content = rs.getString("message_content");
                 String message_date = rs.getString("message_date");
-                cevap = new Cevap(cevap_id,mesaj_id,cevap_icerik,cevap_title,cevap_tarih,mesaj_surname,mesaj_email, message_subject, message_content,message_date);
+                cevap = new Cevap(cevap_id,message_id,cevap_icerik,cevap_title,cevap_tarih,message_surname,message_email, message_subject, message_content,message_date);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -119,7 +119,7 @@ public class CevapDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_INSERT)) {
-            preparedStatement.setInt(1, cevap.getMesaj_id());
+            preparedStatement.setInt(1, cevap.getMessage_id());
             preparedStatement.setString(2, cevap.getCevap_icerik());
             preparedStatement.setString(3, cevap.getCevap_title());
             preparedStatement.executeUpdate();

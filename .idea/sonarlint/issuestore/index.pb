@@ -59,8 +59,6 @@ I
 src/java/dao/UcakDAO.java,9\f\9f83cf8a901f278b3a432b587d5aa914f17b314b
 F
 web/admin/ucakekle.jsp,8\c\8c01377edaf731fbc4d59ba9ff57f7eb1b330ffb
-J
-web/admin/ucakguncelle.jsp,1\3\13561c7f2bd7579f7d8637def2a7ad5e0cabcd1f
 I
 web/admin/ucaklistele.jsp,8\4\841ebff0ab943843224a103fa6c3603610f78665
 H
@@ -73,13 +71,5 @@ S
 #web/admin/guncelucuslarilistele.jsp,1\2\12cfd6462957a5bde7f21870d009092f03b3fa97
 N
 web/admin/kullanicilistele.jsp,8\b\8be509daea9104b86115c90802de19707fa1b5bd
->
-web/profil.jsp,3\c\3c77ec573ab21abfa5fea7701c7d51cae7fe64b2
-F
-web/sifremiunuttum.jsp,9\4\946c354950fb629fd18890634904c8139e668daa
 I
 src/java/dao/UcusDAO.java,a\7\a752b12c1a06ed78fb6defd0fbb61e61a270aba2
-Q
-!src/java/servlet/UserServlet.java,1\c\1c7e6253971552cda53d931d5d153046c2a2414b
-=
-web/uyeol.jsp,3\e\3e99e10c516f021b259463ad6c3cca5d3ea2ceee

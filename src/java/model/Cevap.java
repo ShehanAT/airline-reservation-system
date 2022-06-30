@@ -36,60 +36,60 @@ public class Cevap {
         this.reply_title = reply_title;
     }
 
-    public String getMesaj_surname() {
+    public String getMessage_surname() {
         return message_surname;
     }
 
-    public void setMesaj_surname(String message_surname) {
+    public void setMessage_surname(String message_surname) {
         this.message_surname = message_surname;
     }
 
-    public String getMesaj_email() {
+    public String getMessage_email() {
         return message_email;
     }
 
-    public void setMesaj_email(String mesaj_email) {
-        this.mesaj_email = mesaj_email;
+    public void setMessage_email(String message_email) {
+        this.message_email = message_email;
     }
 
-    public String getMesaj_konu() {
+    public String getMessage_konu() {
         return message_subject;
     }
 
-    public void setMesaj_konu(String message_subject) {
+    public void setMessage_konu(String message_subject) {
         this.message_subject = message_subject;
     }
 
-    public String getMesaj_icerik() {
+    public String getMessage_icerik() {
         return message_content;
     }
 
-    public void setMesaj_icerik(String message_content) {
+    public void setMessage_icerik(String message_content) {
         this.message_content = message_content;
     }
 
-    public String getMesaj_tarih() {
+    public String getMessage_tarih() {
         return message_date;
     }
 
-    public void setMesaj_tarih(String message_date) {
+    public void setMessage_tarih(String message_date) {
         this.message_date = message_date;
     }
 
-    public int getMesaj_notRead() {
-        return mesaj_notRead;
+    public int getMessage_notRead() {
+        return message_notRead;
     }
 
-    public void setMesaj_notRead(int mesaj_notRead) {
-        this.mesaj_notRead = mesaj_notRead;
+    public void setMessage_notRead(int message_notRead) {
+        this.message_notRead = message_notRead;
     }
 
-    public int getMesaj_reply() {
-        return mesaj_reply;
+    public int getMessage_reply() {
+        return message_reply;
     }
 
-    public void setMesaj_reply(int mesaj_reply) {
-        this.mesaj_reply = mesaj_reply;
+    public void setMessage_reply(int message_reply) {
+        this.message_reply = message_reply;
     }
     
     public int getCevap_id() {
@@ -100,12 +100,12 @@ public class Cevap {
         this.review_id = review_id;
     }
 
-    public int getMesaj_id() {
-        return mesaj_id;
+    public int getMessage_id() {
+        return message_id;
     }
 
-    public void setMesaj_id(int mesaj_id) {
-        this.mesaj_id = mesaj_id;
+    public void setMessage_id(int message_id) {
+        this.message_id = message_id;
     }
 
     public String getCevap_icerik() {

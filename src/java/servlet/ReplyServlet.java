@@ -1,7 +1,7 @@
 package servlet;
 
-import dao.CevapDAO;
-import dao.MesajDAO;
+import dao.ReplyDAO;
+import dao.MessageDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
@@ -17,17 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Cevap;
-import model.Mesaj;
+import model.Message;
 
 @WebServlet(urlPatterns = {"/admin/replyMessage", "/admin/gosterreplyMessage", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
 
 public class ReplyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private CevapDAO replyDAO;
-    private MesajDAO messageDAO;
+    private ReplyDAO replyDAO;
+    private MessageDAO messageDAO;
     public void init() {
-        replyDAO = new CevapDAO();
-        messageDAO = new MesajDAO();
+        replyDAO = new ReplyDAO();
+        messageDAO = new MessageDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -116,9 +116,9 @@ public class ReplyServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
-            mesajDAO.mesajnotRead(id);
-            Mesaj mesaj = cevapDAO.selectMessage(id);
-            request.setAttribute("mesaj", mesaj); 
+            messageDAO.messagenotRead(id);
+            Message message = cevapDAO.selectMessage(id);
+            request.setAttribute("message", message);
             RequestDispatcher dispatcher = request.getRequestDispatcher("mesajcevap.jsp");      
             dispatcher.forward(request, response);
         }
@@ -132,13 +132,13 @@ public class ReplyServlet extends HttpServlet {
         }else if((Integer) sessionn.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            int mesaj_id = Integer.parseInt(request.getParameter("mesaj_id"));
-            String mesaj_email = request.getParameter("mesaj_email");
+            int message_id = Integer.parseInt(request.getParameter("message_id"));
+            String message_email = request.getParameter("message_email");
             String cevap_title = new String((request.getParameter("cevap_title")).getBytes("ISO-8859-1"), "UTF-8");
             String cevap_icerik = new String((request.getParameter("cevap_icerik")).getBytes("ISO-8859-1"), "UTF-8");
-            Cevap yenicevap = new Cevap(mesaj_id,cevap_icerik,cevap_title);
+            Cevap yenicevap = new Cevap(message_id,cevap_icerik,cevap_title);
 
-            final String to = mesaj_email; 
+            final String to = message_email;
             final String subject = cevap_title;
             final String messg = cevap_icerik;
             final String from = "mail@gmail.com";
@@ -166,7 +166,7 @@ public class ReplyServlet extends HttpServlet {
             } catch (MessagingException e) {throw new RuntimeException(e);
 
             }        
-            mesajDAO.mesajcevap(mesaj_id);
+            messageDAO.mesajcevap(mesaj_id);
             cevapDAO.cevapekle(yenicevap);
             response.sendRedirect("reviewList");
         }    

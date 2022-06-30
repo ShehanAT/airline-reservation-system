@@ -10,16 +10,16 @@
             </div>
             <div class="card-body">                               
                     <div class="form-group">
-                        <label for="mesaj_surname">Gönderen Ad Soyad</label>
-                        <input type="text" class="form-control" id="mesaj_surname" name="mesaj_surname" value="<c:out value='${review.mesaj_surname}' />" disabled>
+                        <label for="message_surname">Gönderen Ad Soyad</label>
+                        <input type="text" class="form-control" id="message_surname" name="message_surname" value="<c:out value='${review.message_surname}' />" disabled>
                     </div>
                     <div class="form-group">
                         <label for="message_date">Tarih</label>
                         <input type="text" class="form-control" id="message_date" name="message_date" value="<c:out value='${review.message_date}' />" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="mesaj_email">Gönderen Email</label>
-                        <input type="text" class="form-control" id="mesaj_email" name="mesaj_email" value="<c:out value='${review.mesaj_email}' />" disabled>
+                        <label for="message_email">Gönderen Email</label>
+                        <input type="text" class="form-control" id="message_email" name="message_email" value="<c:out value='${review.message_email}' />" disabled>
                     </div>                           
                     <div class="form-group">
                         <label for="message_subject">Konu</label>

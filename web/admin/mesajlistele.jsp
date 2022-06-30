@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <span class="m-0 font-weight-bold text-white">Mesaj Listesi</span>
+            <span class="m-0 font-weight-bold text-white">Message Listesi</span>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -31,14 +31,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="mesaj" items="${messageList}">
+                        <c:forEach var="message" items="${messageList}">
                             <tr>
-                                <td><c:out value="${message.mesaj_id}" /></td>
-                                <td><c:out value="${message.mesaj_surname}" /></td>
+                                <td><c:out value="${message.message_id}" /></td>
+                                <td><c:out value="${message.message_surname}" /></td>
                                 <td><c:out value="${message.message_subject}" /></td>
                                 <td><c:out value="${message.message_date}" /></td>
                                 <c:choose>
-                                    <c:when test= "${message.mesaj_notRead == 1}">
+                                    <c:when test= "${message.message_notRead == 1}">
                                         <td>
                                             <span style="color: black"><i class="fas fa-eye"></i></span>
                                                 <c:choose>
@@ -66,10 +66,10 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <td>
-                                    <a href="replyMessage?id=<c:out value='${message.mesaj_id}' />">
+                                    <a href="replyMessage?id=<c:out value='${message.message_id}' />">
                                         <button class="btn btn-success btn-sm"><i class="far fa-edit"></i> Cevapla</button>
                                     </a>
-                                    <a href="deleteMessage?id=<c:out value='${message.mesaj_id}' />">
+                                    <a href="deleteMessage?id=<c:out value='${message.message_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

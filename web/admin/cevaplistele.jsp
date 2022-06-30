@@ -13,8 +13,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Mesaj Konu</th>
-                            <th>Mesaj Tarihi</th>
+                            <th>Message Konu</th>
+                            <th>Message Tarihi</th>
                             <th>Cevap Tarihi</th>
                             <th>İşlemler</th>
                         </tr>
@@ -22,8 +22,8 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Mesaj Konu</th>
-                            <th>Mesaj Tarihi</th>
+                            <th>Message Konu</th>
+                            <th>Message Tarihi</th>
                             <th>Cevap Tarihi</th>
                             <th>İşlemler</th>
                         </tr>

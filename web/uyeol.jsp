@@ -1,7 +1,7 @@
 <%@ include file = "header.jsp" %>
 
 <section class="text-center">
-    <form class="form-signin" action="gosteruyeol" method="POST" name="UyeOl" onsubmit="return UyeolKontrol()">
+    <form class="form-signin" action="showMember" method="POST" name="UyeOl" onsubmit="return UyeolKontrol()">
         <a href="flight_ticket">
             <img class="mt-3 mb-5" src="assets/images/logo.png" alt="" width="300" height="50">
         </a>
