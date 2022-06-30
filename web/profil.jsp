@@ -26,7 +26,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="hesapsil" method="post">
+                    <form action="deleteAccount" method="post">
                         <input type="hidden" id="sifre_id" name="sifre_id" value="<c:out value="${kullanici.kullanici_id}" />">
                             <p>Bu işlem geri alınamaz. Emin misiniz ?</p>
                             <div class="form-group">
@@ -61,7 +61,7 @@
                 <div class="card border">
                     <p class="card-header text-center" style="background-color: #F1F2F8;">Üyelik Bilgilerim</p>
                     <div class="card-body">
-                        <form class="text-muted" action="profilguncelle" method="post">
+                        <form class="text-muted" action="updateProfile" method="post">
                             <input type="hidden" id="kullanici_id" name="kullanici_id" value="<c:out value="${kullanici.kullanici_id}" />">
                                 <div class="form-group row">
                                     <label for="kullanici_ad" class="col-sm-4 col-form-label">Ad</label>
@@ -90,7 +90,7 @@
                 <div class="card border">
                     <p class="card-header text-center" style="background-color: #F1F2F8;">Şifre Güncelleme</p>
                     <div class="card-body">
-                        <form class="text-muted" id="sifreguncelleme" name="sifreguncelleme" method="POST" action="sifreguncelle" onsubmit="return Kontrol()">
+                        <form class="text-muted" id="sifreguncelleme" name="sifreguncelleme" method="POST" action="updatePassword" onsubmit="return Kontrol()">
                             <input type="hidden" id="kullanici_id_sifre" name="kullanici_id_sifre" value="<c:out value="${kullanici.kullanici_id}" />">
                                 <div class="form-group row">
                                     <label for="kullanici_suan_sifre" class="col-sm-4 col-form-label">Şu anki Şifre</label>

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Cevap;
+import model.Reply;
 import model.Message;
 
 public class ReplyDAO {
@@ -43,8 +43,8 @@ public class ReplyDAO {
         return connection;
     }
     
-    public List<Cevap> reviewList() {
-        List<Cevap> answers = new ArrayList<> ();
+    public List<Reply> reviewList() {
+        List<Reply> answers = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -60,7 +60,7 @@ public class ReplyDAO {
                 String message_icerik = rs.getString("message_icerik");
                 String message_tarih = rs.getString("message_tarih");
                 
-                answers.add(new Cevap(reply_id,message_id,reply_icerik,reply_title,reply_tarih,message_surname,message_email, message_konu, message_icerik,message_tarih));
+                answers.add(new Reply(reply_id,message_id,reply_icerik,reply_title,reply_tarih,message_surname,message_email, message_konu, message_icerik,message_tarih));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -90,8 +90,8 @@ public class ReplyDAO {
         return message;
     } 
     
-    public Cevap reviewAnswer(int id) {
-        Cevap review = null;
+    public Reply reviewAnswer(int id) {
+        Reply review = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_SELECT_ID);) {
             preparedStatement.setInt(1, id);
@@ -101,27 +101,27 @@ public class ReplyDAO {
                 int message_id = rs.getInt("message_id");
                 String review_icerik = rs.getString("review_icerik");
                 String review_title = rs.getString("review_title");
-                String review_tarih = rs.getString("cevap_tarih");
+                String review_tarih = rs.getString("reply_tarih");
                 String message_surname = rs.getString("message_surname");
                 String message_email = rs.getString("message_email");
                 String message_konu = rs.getString("message_subject");
                 String message_content = rs.getString("message_content");
                 String message_date = rs.getString("message_date");
-                cevap = new Cevap(cevap_id,message_id,cevap_icerik,cevap_title,cevap_tarih,message_surname,message_email, message_subject, message_content,message_date);
+                reply = new Reply(reply_id,message_id,reply_icerik,reply_title,reply_tarih,message_surname,message_email, message_subject, message_content,message_date);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return cevap;
+        return reply;
     }    
     
-    public void cevapekle(Cevap cevap) throws SQLException {  
+    public void addReply(Reply reply) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(CEVAP_INSERT)) {
-            preparedStatement.setInt(1, cevap.getMessage_id());
-            preparedStatement.setString(2, cevap.getCevap_icerik());
-            preparedStatement.setString(3, cevap.getCevap_title());
+            preparedStatement.setInt(1, reply.getMessage_id());
+            preparedStatement.setString(2, reply.getReply_icerik());
+            preparedStatement.setString(3, reply.getReply_title());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);

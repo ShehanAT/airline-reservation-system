@@ -101,8 +101,8 @@
             </a>
             <div id="kullanici" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="adminekle">Admin Ekle</a>
-                    <a class="collapse-item" href="kullaniciliste">Kullanıcı Listele</a>
+                    <a class="collapse-item" href="addAdmin">Admin Ekle</a>
+                    <a class="collapse-item" href="userList">Kullanıcı Listele</a>
                 </div>
             </div>
         </li>
@@ -135,7 +135,7 @@
             <div id="message" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="messageList">Gelen Mesajlar</a>
-                    <a class="collapse-item" href="reviewList">Cevap Listesi</a>
+                    <a class="collapse-item" href="reviewList">Reply Listesi</a>
                 </div>
             </div>
         </li>

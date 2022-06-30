@@ -22,7 +22,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import model.Kullanici;
 
-@WebServlet(urlPatterns = {"/uyeol", "/showMember", "/sifremiunuttum", "/gostersifremiunuttum", "/login", "/gostergiris", "/cikis", "/admin/giris", "/admin/gostergiris", "/admin/kullaniciliste", "/admin/adminekle", "/admin/gosteradminekle", "/admin/kullanicisil", "/admin/adminguncelle", "/admin/gosteradminguncelle", "/profil", "/profilguncelle", "/sifreguncelle", "/hesapsil", "/admin/cikis", "/admin/bilgilerim"})
+@WebServlet(urlPatterns = {"/uyeol", "/showMember", "/sifremiunuttum", "/showForgotInformation", "/login", "/showLogin", "/login", "/admin/giris", "/admin/showLogin", "/admin/userList", "/admin/addAdmin", "/admin/showAddAdmin", "/admin/deleteUser", "/admin/adminUpdate", "/admin/gosteradminUpdate", "/profil", "/updateProfile", "/updatePassword", "/deleteAccount", "/admin/login", "/admin/myInformation"})
 
 public class UserServlet extends HttpServlet {
 
@@ -50,8 +50,8 @@ public class UserServlet extends HttpServlet {
                 case "/showMember":
                     showMember(request, response);
                     break;
-                case "/gostergiris":
-                    gostergiris(request, response);
+                case "/showLogin":
+                    showLogin(request, response);
                     break;
                 case "/login":
                     login(request, response);
@@ -59,53 +59,53 @@ public class UserServlet extends HttpServlet {
                 case "/sifremiunuttum":
                     sifremiunuttum(request, response);
                     break;
-                case "/gostersifremiunuttum":
-                    gostersifremiunuttum(request, response);
+                case "/showForgotInformation":
+                    showForgotInformation(request, response);
                     break;
-                case "/cikis":
-                    uyecikis(request, response);
+                case "/login":
+                    uyelogin(request, response);
                     break;
-                case "/admin/cikis":
-                    adminuyecikis(request, response);
+                case "/admin/login":
+                    adminuyelogin(request, response);
                     break;
-                case "/admin/kullaniciliste":
-                    kullaniciliste(request, response);
+                case "/admin/userList":
+                    userList(request, response);
                     break;
-                case "/admin/adminekle":
-                    adminekle(request, response);
+                case "/admin/addAdmin":
+                    addAdmin(request, response);
                     break;
-                case "/admin/gosteradminekle":
-                    gosteradminekle(request, response);
+                case "/admin/showAddAdmin":
+                    showAddAdmin(request, response);
                     break;
-                case "/admin/kullanicisil":
-                    kullanicisil(request, response);
+                case "/admin/deleteUser":
+                    deleteUser(request, response);
                     break;
-                case "/admin/adminguncelle":
-                    adminguncelle(request, response);
+                case "/admin/adminUpdate":
+                    adminUpdate(request, response);
                     break;
-                case "/admin/gosteradminguncelle":
-                    gosteradminguncelle(request, response);
+                case "/admin/gosteradminUpdate":
+                    gosteradminUpdate(request, response);
                     break;
-                case "/admin/gostergiris":
-                    admingostergiris(request, response);
+                case "/admin/showLogin":
+                    adminshowLogin(request, response);
                     break;
                 case "/admin/giris":
                     admingiris(request, response);
                     break;
-                case "/admin/bilgilerim":
-                    adminbilgilerim(request, response);
+                case "/admin/myInformation":
+                    adminmyInformation(request, response);
                     break;
                 case "/profil":
                     profil(request, response);
                     break;
-                case "/profilguncelle":
-                    profilguncelle(request, response);
+                case "/updateProfile":
+                    updateProfile(request, response);
                     break;
-                case "/sifreguncelle":
-                    sifreguncelle(request, response);
+                case "/updatePassword":
+                    updatePassword(request, response);
                     break;
-                case "/hesapsil":
-                    hesapsil(request, response);
+                case "/deleteAccount":
+                    deleteAccount(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -113,7 +113,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void adminbilgilerim(HttpServletRequest request, HttpServletResponse response)
+    private void adminmyInformation(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -122,12 +122,12 @@ public class UserServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int kullanici_id = (int) session.getAttribute("kullanici_id");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("adminguncelle?id=" + kullanici_id);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminUpdate?id=" + kullanici_id);
             dispatcher.forward(request, response);
         }
     }
 
-    private void sifreguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updatePassword(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -141,7 +141,7 @@ public class UserServlet extends HttpServlet {
             Boolean kontrol = kullaniciDAO.sifrekontrol(kullanici_id, kullanici_sifre);
             if (kontrol == true) {
                 Kullanici kullanici = new Kullanici(kullanici_id, kullanici_sifre1);
-                kullaniciDAO.sifreguncelle(kullanici);
+                kullaniciDAO.updatePassword(kullanici);
                 session.setAttribute("kullanici_sifre", kullanici_sifre1);
                 response.sendRedirect("profil?situation=successful");
             } else {
@@ -150,7 +150,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void profilguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updateProfile(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -166,7 +166,7 @@ public class UserServlet extends HttpServlet {
             Boolean kontrol = kullaniciDAO.uyekontrol(kullanici_email);
             if (kontrol == true || kullanici_email.equals(kontrol_email)) {
                 Kullanici kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email);
-                kullaniciDAO.profilguncelle(kullanici);
+                kullaniciDAO.updateProfile(kullanici);
                 session.setAttribute("kullanici_ad", kullanici_ad);
                 session.setAttribute("kullanici_soyad", kullanici_soyad);
                 session.setAttribute("kullanici_email", kullanici_email);
@@ -196,7 +196,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void kullanicisil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -205,12 +205,12 @@ public class UserServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            kullaniciDAO.kullanicisil(id);
-            response.sendRedirect("kullaniciliste");
+            kullaniciDAO.deleteUser(id);
+            response.sendRedirect("userList");
         }
     }
 
-    private void adminekle(HttpServletRequest request, HttpServletResponse response)
+    private void addAdmin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -218,12 +218,12 @@ public class UserServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("adminekle.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("addAdmin.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void gosteradminekle(HttpServletRequest request, HttpServletResponse response)
+    private void showAddAdmin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -238,15 +238,15 @@ public class UserServlet extends HttpServlet {
             Boolean kontrol = kullaniciDAO.uyekontrol(kullanici_email);
             if (kontrol == true) {
                 Kullanici yenikullanici = new Kullanici(kullanici_ad, kullanici_soyad, kullanici_email, kullanici_sifre);
-                kullaniciDAO.adminekle(yenikullanici);
-                response.sendRedirect("kullaniciliste");
+                kullaniciDAO.addAdmin(yenikullanici);
+                response.sendRedirect("userList");
             } else {
-                response.sendRedirect("kullaniciliste?situation=unsuccessful");
+                response.sendRedirect("userList?situation=unsuccessful");
             }
         }
     }
 
-    private void kullaniciliste(HttpServletRequest request, HttpServletResponse response)
+    private void userList(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -254,14 +254,14 @@ public class UserServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Kullanici> kullaniciliste = kullaniciDAO.uyelistele();
-            request.setAttribute("kullaniciliste", kullaniciliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("kullanicilistele.jsp");
+            List<Kullanici> userList = kullaniciDAO.uyelistele();
+            request.setAttribute("userList", userList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("userListle.jsp");
             dispatcher.forward(request, response);
         }
     }
 
-    private void adminguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void adminUpdate(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -271,13 +271,13 @@ public class UserServlet extends HttpServlet {
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
             Kullanici kullanici = kullaniciDAO.kullanicisec(id);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("adminguncelle.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminUpdate.jsp");
             request.setAttribute("kullanici", kullanici);
             dispatcher.forward(request, response);
         }
     }
 
-    private void gosteradminguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void gosteradminUpdate(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -291,12 +291,12 @@ public class UserServlet extends HttpServlet {
             String kullanici_email = request.getParameter("kullanici_email");
             String kullanici_sifre = new String((request.getParameter("kullanici_sifre")).getBytes("ISO-8859-1"), "UTF-8");
             Kullanici kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, kullanici_sifre);
-            kullaniciDAO.adminguncelle(kullanici);
-            response.sendRedirect("kullaniciliste");
+            kullaniciDAO.adminUpdate(kullanici);
+            response.sendRedirect("userList");
         }
     }
 
-    private void gostersifremiunuttum(HttpServletRequest request, HttpServletResponse response)
+    private void showForgotInformation(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession sessionn = request.getSession();
         if ((Integer) sessionn.getAttribute("user_authorization") == null) {
@@ -399,7 +399,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void gostergiris(HttpServletRequest request, HttpServletResponse response)
+    private void showLogin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -441,7 +441,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void admingostergiris(HttpServletRequest request, HttpServletResponse response)
+    private void adminshowLogin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -473,7 +473,7 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    private void hesapsil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteAccount(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == 1) {
@@ -481,8 +481,8 @@ public class UserServlet extends HttpServlet {
             String kullanici_sifre = request.getParameter("sil_sifre");
             Boolean kontrol = kullaniciDAO.sifrekontrol(kullanici_id, kullanici_sifre);
             if (kontrol == true) {
-                kullaniciDAO.hesapsil(kullanici_id);
-                response.sendRedirect("cikis");
+                kullaniciDAO.deleteAccount(kullanici_id);
+                response.sendRedirect("login");
             } else {
                 response.sendRedirect("profil?situation=uyari");
             }

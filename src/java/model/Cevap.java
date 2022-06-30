@@ -1,6 +1,6 @@
 package model;
 
-public class Cevap {
+public class Reply {
     int reply_id;
     int message_id;
     String reply_icerik;
@@ -14,10 +14,10 @@ public class Cevap {
     int message_notRead;
     int message_reply;
 
-    public Cevap() {
+    public Reply() {
     }
 
-    public Cevap(int reply_id, int message_id, String reply_icerik, String reply_title, String reply_tarih, String message_surname, String message_email, String message_konu, String message_icerik, String message_tarih) {
+    public Reply(int reply_id, int message_id, String reply_icerik, String reply_title, String reply_tarih, String message_surname, String message_email, String message_konu, String message_icerik, String message_tarih) {
         this.reply_id = reply_id;
         this.message_id = message_id;
         this.reply_icerik = reply_icerik;
@@ -30,7 +30,7 @@ public class Cevap {
         this.message_tarih = message_tarih;
     }
     
-    public Cevap(int message_id, String reply_icerik, String reply_title) {
+    public Reply(int message_id, String reply_icerik, String reply_title) {
         this.message_id = message_id;
         this.reply_icerik = reply_icerik;
         this.reply_title = reply_title;
@@ -92,11 +92,11 @@ public class Cevap {
         this.message_reply = message_reply;
     }
     
-    public int getCevap_id() {
+    public int getReply_id() {
         return reply_id;
     }
 
-    public void setCevap_id(int reply_id) {
+    public void setReply_id(int reply_id) {
         this.review_id = review_id;
     }
 
@@ -108,27 +108,27 @@ public class Cevap {
         this.message_id = message_id;
     }
 
-    public String getCevap_icerik() {
+    public String getReply_icerik() {
         return review_icerik;
     }
 
-    public void setCevap_icerik(String review_icerik) {
+    public void setReply_icerik(String review_icerik) {
         this.review_icerik = review_icerik;
     }
 
-    public String getCevap_title() {
+    public String getReply_title() {
         return review_title;
     }
 
-    public void setCevap_title(String review_title) {
+    public void setReply_title(String review_title) {
         this.review_title = review_title;
     }
 
-    public String getCevap_tarih() {
+    public String getReply_tarih() {
         return review_tarih;
     }
 
-    public void setCevap_tarih(String review_tarih) {
+    public void setReply_tarih(String review_tarih) {
         this.review_tarih = review_tarih;
     }
     

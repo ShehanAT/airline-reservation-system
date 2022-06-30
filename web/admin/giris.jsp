@@ -21,7 +21,7 @@
                                         }
                                     %>
                                 </div>
-                                <form class="user" method="post" action="gostergiris">
+                                <form class="user" method="post" action="showLogin">
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user"
                                                id="admin_email" name="admin_email" placeholder="E-mail">

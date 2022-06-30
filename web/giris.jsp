@@ -1,6 +1,6 @@
 <%@ include file = "header.jsp" %>
 <section class="text-center mb-5">
-    <form class="form-signin" action="gostergiris" method="post">
+    <form class="form-signin" action="showLogin" method="post">
         <a href="flight_ticket">
             <img class="mt-3 mb-5" src="assets/images/logo.png" alt="" width="300" height="50">
         </a>

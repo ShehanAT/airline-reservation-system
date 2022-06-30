@@ -87,7 +87,7 @@ public class Airport_CountryServlet extends HttpServlet {
         }
     }
 
-    private void gostercountryAdd(HttpServletRequest request, HttpServletResponse response)
+    private void showcountryAdd(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {

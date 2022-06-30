@@ -67,7 +67,7 @@
                                 </c:choose>
                                 <td>
                                     <a href="replyMessage?id=<c:out value='${message.message_id}' />">
-                                        <button class="btn btn-success btn-sm"><i class="far fa-edit"></i> Cevapla</button>
+                                        <button class="btn btn-success btn-sm"><i class="far fa-edit"></i> Replyla</button>
                                     </a>
                                     <a href="deleteMessage?id=<c:out value='${message.message_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>

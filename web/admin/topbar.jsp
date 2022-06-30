@@ -13,12 +13,12 @@
                         <img class="img-profile rounded-circle" src="img/undraw_profile.png">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">                              
-                        <a class="dropdown-item" href="bilgilerim">
+                        <a class="dropdown-item" href="myInformation">
                             <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                             Bilgilerimi Güncelle
                         </a>
                         <div class='dropdown-divider'></div>
-                        <a class="dropdown-item" href="cikis">
+                        <a class="dropdown-item" href="login">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Çıkış
                         </a>

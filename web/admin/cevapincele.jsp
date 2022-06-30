@@ -30,11 +30,11 @@
                         <textarea class="form-control" id="message_content" name="message_content" rows="5" disabled><c:out value='${review.message_content}' /></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="review_title">Cevap Başlığı</label>
+                        <label for="review_title">Reply Başlığı</label>
                         <input type="text" class="form-control" id="review_title" name="review_title" value="<c:out value='${review.review_title}' />" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="review_icerik">Cevap İçeriği</label>
+                        <label for="review_icerik">Reply İçeriği</label>
                         <textarea class="form-control" id="review_icerik" name="review_icerik" rows="5" disabled><c:out value='${review.review_icerik}' /></textarea>
                     </div>
             </div>

@@ -9,7 +9,7 @@
                 <h3 class="mb-0 text-white">Admin Güncelle</h3>
             </div>
             <div class="card-body">
-                <form class="form" action="gosteradminguncelle" method="post" autocomplete="off">
+                <form class="form" action="gosteradminUpdate" method="post" autocomplete="off">
                     <input type="hidden" name="user_id" id="user_id" value="<c:out value='${user.user_id}' />" />
                     <div class="form-group">
                         <label for="user_ad">Ad</label>

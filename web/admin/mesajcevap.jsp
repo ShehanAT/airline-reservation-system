@@ -6,7 +6,7 @@
     <div class="col-md-8 mx-auto mb-5">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0 text-white">Message Cevapla</h3>
+                <h3 class="mb-0 text-white">Message Replyla</h3>
             </div>
             <div class="card-body">
                 <form class="form" autocomplete="off" method="post" action="showMessageReply">
@@ -32,15 +32,15 @@
                         <textarea class="form-control" id="message_icerik" name="message_icerik" rows="5" readonly><c:out value='${message.message_icerik}' /></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="reply_title">Cevap Başlığı</label>
+                        <label for="reply_title">Reply Başlığı</label>
                         <input type="text" class="form-control" id="reply_title" name="reply_title" required>
                     </div>
                     <div class="form-group">
-                        <label for="reply_icerik">Cevap İçeriği</label>
+                        <label for="reply_icerik">Reply İçeriği</label>
                         <textarea class="form-control" id="reply_icerik" name="reply_icerik" rows="5" required></textarea>
                     </div>    
                     <div class="form-group">
-                        <button type="submit" class="btn btn-dark btn-block">Cevapla</button>
+                        <button type="submit" class="btn btn-dark btn-block">Replyla</button>
                     </div>
                 </form>
             </div>

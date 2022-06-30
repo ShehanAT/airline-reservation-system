@@ -14,7 +14,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <span class="m-0 font-weight-bold text-white">Kullanıcı Listesi</span>
-            <a href="adminekle" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Admin Ekle</a>
+            <a href="addAdmin" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Admin Ekle</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -56,11 +56,11 @@
                                 </c:choose>
                                 <td>
                                     <c:if test="${kullanici.user_authorization > 1}">
-                                        <a href="adminguncelle?id=<c:out value='${kullanici.kullanici_id}' />">
+                                        <a href="adminUpdate?id=<c:out value='${kullanici.kullanici_id}' />">
                                             <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                         </a>
                                     </c:if>                                               
-                                    <a href="kullanicisil?id=<c:out value='${kullanici.kullanici_id}' />">
+                                    <a href="deleteUser?id=<c:out value='${kullanici.kullanici_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

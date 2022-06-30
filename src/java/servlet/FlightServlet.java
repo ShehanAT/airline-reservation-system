@@ -58,7 +58,7 @@ public class FlightServlet extends HttpServlet {
                     updateFlight(request, response);
                     break;
                 case "/admin/showUpdateFlight":
-                    gosterupdateFlight(request, response);
+                    showupdateFlight(request, response);
                     break;
             }
         } catch (SQLException ex) {

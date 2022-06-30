@@ -132,7 +132,7 @@ public class ReservationServlet extends HttpServlet {
         }
     }
 
-    private void gostermyReservationTransactions(HttpServletRequest request, HttpServletResponse response)
+    private void showmyReservationTransactions(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {

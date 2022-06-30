@@ -8,7 +8,7 @@
                 <h3 class="mb-0 text-white">Admin Ekle</h3>
             </div>
             <div class="card-body">
-                <form class="form" action="gosteradminekle" method="post" autocomplete="off">
+                <form class="form" action="showAddAdmin" method="post" autocomplete="off">
                     <div class="form-group">
                         <label for="user_ad">Ad</label>
                         <input type="text" class="form-control" id="user_ad" name="user_ad" placeholder="Ad" required>

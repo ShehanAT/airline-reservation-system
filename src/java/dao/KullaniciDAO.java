@@ -86,7 +86,7 @@ public class KullaniciDAO {
         return false;
     }
     
-    public boolean kullanicisil(int id) throws SQLException {
+    public boolean deleteUser(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(KULLANICI_DELETE);) {
@@ -96,7 +96,7 @@ public class KullaniciDAO {
         return silinenSatir;
     }
     
-    public boolean hesapsil(int id) throws SQLException {
+    public boolean deleteAccount(int id) throws SQLException {
         boolean silinenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(HESAP_DELETE);) {
@@ -141,7 +141,7 @@ public class KullaniciDAO {
         return kullanici;
     }
     
-    public boolean adminguncelle(Kullanici kullanici) throws SQLException {
+    public boolean adminUpdate(Kullanici kullanici) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(KULLANICI_UPDATE);) {
@@ -155,7 +155,7 @@ public class KullaniciDAO {
         return guncellenenSatir;
     }
     
-    public boolean sifreguncelle(Kullanici kullanici) throws SQLException {
+    public boolean updatePassword(Kullanici kullanici) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(SIFRE_UPDATE);) {
@@ -166,7 +166,7 @@ public class KullaniciDAO {
         return guncellenenSatir;
     } 
     
-    public boolean profilguncelle(Kullanici kullanici) throws SQLException {
+    public boolean updateProfile(Kullanici kullanici) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(PROFIL_UPDATE);) {
@@ -193,7 +193,7 @@ public class KullaniciDAO {
         }
     }
     
-    public void adminekle(Kullanici kullanici) throws SQLException {       
+    public void addAdmin(Kullanici kullanici) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_INSERT_ADMIN)) {
