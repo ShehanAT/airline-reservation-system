@@ -98,6 +98,6 @@ public class MessageServlet extends HttpServlet {
         String mesaj_icerik = new String((request.getParameter("mesaj_icerik")).getBytes("ISO-8859-1"), "UTF-8");
         Mesaj yenimesaj = new Mesaj(mesaj_adsoyad, mesaj_email, mesaj_konu, mesaj_icerik);
         mesajDAO.mesajekle(yenimesaj);
-        response.sendRedirect("iletisim?durum=basarili");
+        response.sendRedirect("iletisim?situation=basarili");
     }
 }

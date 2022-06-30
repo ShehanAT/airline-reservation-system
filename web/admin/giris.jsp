@@ -15,7 +15,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Tekrar Hoş Geldin</h1>
                                     <%
-                                        String req = request.getParameter("durum");
+                                        String req = request.getParameter("situation");
                                         if (req != null) {
                                             out.print("<div class='alert alert-warning' role='alert'>Giriş Başarısız.</div>");
                                         }

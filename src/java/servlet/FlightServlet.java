@@ -150,9 +150,9 @@ public class FlightServlet extends HttpServlet {
             double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
 
             Ucus newFlight = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
-            Boolean sonuc = flightDAO.ucuskontrol(newFlight);
-            if (sonuc == false) {
-                response.sendRedirect("currentFlightList?durum=basarisiz");
+            Boolean conclusion = flightDAO.flightControl(newFlight);
+            if (conclusion == false) {
+                response.sendRedirect("currentFlightList?situation=unsuccessful");
             } else {
                 flightDAO.createFlight(newFlight);
                 response.sendRedirect("currentFlightList");

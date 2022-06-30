@@ -14,7 +14,7 @@
         </div>
     </div>
     <%        
-    String req = request.getParameter("durum");
+    String req = request.getParameter("situation");
         if (req != null) {
             if (req.equals("basarili")) {
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Rezervasyonunuz oluşturulmuştur.</div>");
@@ -30,7 +30,7 @@
         }
     String r = request.getParameter("iptal");
         if (r != null) {
-            if (r.equals("basarisiz")) {
+            if (r.equals("unsuccessful")) {
                 out.print("<div class=' alert alert-warning mt-3' role='alert'>Rezervasyon iptal işlemi tamamlanamadı. Şifre hatalı.</div>");
             }else{
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Rezervasyon iptal işlemi başarıyla tamamlandı.</div>");
@@ -78,7 +78,7 @@
                         <div class="d-flex justify-content-between">
                             <p class="card-title mt-2">İptal Hakkı <br> Uçuş süresinden 2 saat önceye kadar uçuşunuzu iptal edebilirsiniz.</p>     
                                 <c:choose>
-                                    <c:when test= "${rez.durum > 0}">
+                                    <c:when test= "${rez.situation > 0}">
                                     <a style="color:#FF7F00" data-toggle="modal" href="#exampleModal<c:out value="${rez.rezervasyon_id}" />">İptal Et</a>
                                 </c:when>
                                 <c:otherwise>
@@ -89,7 +89,7 @@
                         <div class="d-flex justify-content-between">
                             <p class="card-title mt-2">Değişiklik Hakkı <br> Uçuş süresinden 2 saat önceye kadar bilgilerinizi değiştirebilirsiniz.</p>     
                                 <c:choose>
-                                    <c:when test= "${rez.durum > 0}">
+                                    <c:when test= "${rez.situation > 0}">
                                     <a style="color:#FF7F00" data-toggle="modal" href="#exampleModal0<c:out value="${rez.rezervasyon_id}" />">Bilgileri Değiştir</a>
                                 </c:when>
                                 <c:otherwise>

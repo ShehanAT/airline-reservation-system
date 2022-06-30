@@ -11,7 +11,7 @@
     <p class="text-center w-responsive mx-auto mb-5">Sormak istediğiniz bir şey mi var? Lütfen doğrudan bizimle iletişime geçmekten çekinmeyin. Ekibimiz birkaç saat içinde size geri dönecektir.</p>
     
     <%        
-    String req = request.getParameter("durum");
+    String req = request.getParameter("situation");
         if (req != null) {
             if (req.equals("basarili")) {
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Mesajınız başarıyla gönderilmiştir.</div>");

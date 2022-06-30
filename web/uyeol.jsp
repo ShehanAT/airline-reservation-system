@@ -7,7 +7,7 @@
         </a>
         <h1 class="h3 mb-3 font-weight-600">Kayıt Olun</h1>
         <%
-            String req = request.getParameter("durum");
+            String req = request.getParameter("situation");
             if (req != null) {
                 if (req.equals("basarili")) {
                     out.print("<div class='alert alert-success' role='alert'>Kayıt başarılı. Giriş yapınız.</div>");

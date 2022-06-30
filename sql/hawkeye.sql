@@ -144,7 +144,7 @@ CREATE TABLE `rezervasyon` (
   `yolcu_tarih` varchar(20) NOT NULL,
   `yolcu_ucret` decimal(6,2) NOT NULL,
   `koltuk_no` varchar(10) NOT NULL,
-  `durum` int(2) NOT NULL DEFAULT 0
+  `situation` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

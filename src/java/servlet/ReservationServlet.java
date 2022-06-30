@@ -87,7 +87,7 @@ public class ReservationServlet extends HttpServlet {
                 rezervasyonDAO.rezervasyoniptal(rezervasyon_id);
                 response.sendRedirect("rezervasyonislemlerim?iptal=basarili");
             } else {
-                response.sendRedirect("rezervasyonislemlerim?iptal=basarisiz");
+                response.sendRedirect("rezervasyonislemlerim?iptal=unsuccessful");
             }
         }
     }
@@ -122,8 +122,8 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect("flight_ticket");
         } else {
             int kullanici_id = (int) session.getAttribute("kullanici_id");
-            rezervasyonDAO.iptaldurum1(kullanici_id);
-            rezervasyonDAO.iptaldurum0(kullanici_id);
+            rezervasyonDAO.iptalsituation1(kullanici_id);
+            rezervasyonDAO.iptalsituation0(kullanici_id);
             List<Rezervasyon> rezervasyonislem = rezervasyonDAO.rezervasyonislem(kullanici_id);
             request.setAttribute("rezervasyonislem", rezervasyonislem);
 
@@ -154,13 +154,13 @@ public class ReservationServlet extends HttpServlet {
             String yolcu_tc;
             String yolcu_tarih;
             String yolcu_koltuk;
-            Boolean sonuc = false;
+            Boolean conclusion = false;
             for (int i = 1; i <= (c_sayi + y_sayi); i++) {
                 yolcu_koltuk = request.getParameter("yolcu_koltuk" + i);
-                sonuc = rezervasyonDAO.koltukkontrol(flight_id, yolcu_koltuk);
+                conclusion = rezervasyonDAO.koltukkontrol(flight_id, yolcu_koltuk);
             }
-            if (sonuc == true) {
-                response.sendRedirect("rezervasyonislemlerim?durum=basarisiz");
+            if (conclusion == true) {
+                response.sendRedirect("rezervasyonislemlerim?situation=unsuccessful");
             } else {
                 for (int i = 1; i <= (c_sayi + y_sayi); i++) {
                     pnr_no = getAlphaNumericString(8);
@@ -174,7 +174,7 @@ public class ReservationServlet extends HttpServlet {
                     rezervasyonDAO.rezervasyonekle(rezervasyon);
                 }
 
-                response.sendRedirect("rezervasyonislemlerim?durum=basarili");
+                response.sendRedirect("rezervasyonislemlerim?situation=basarili");
             }
         }
     }
@@ -241,7 +241,7 @@ public class ReservationServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
-            response.sendRedirect("login?rezervasyon=basarisiz");
+            response.sendRedirect("login?rezervasyon=unsuccessful");
         } else if ((Integer) session.getAttribute("user_authorization") != 1) {
             response.sendRedirect("flight_ticket");
         } else {
@@ -276,7 +276,7 @@ public class ReservationServlet extends HttpServlet {
         request.setAttribute("rezervasyon", rezervasyonsec);
 
         if (rezervasyonsec == null) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("rezervasyonsorgulama.jsp?durum=basarisiz");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("rezervasyonsorgulama.jsp?situation=unsuccessful");
             dispatcher.forward(request, response);
         } else {
             Rezervasyon rezervasyonbilgi = rezervasyonDAO.rezervasyonbilgi(rezervasyonsec.getUcus_id(), rezervasyonsec.getRezervasyon_id());

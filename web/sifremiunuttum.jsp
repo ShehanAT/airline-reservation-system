@@ -7,7 +7,7 @@
         <h1 class="h3 mb-3 font-weight-600">Hesabınızı Bulalım</h1>
         <p class="lead">Lütfen e-posta adresinizi girin</p>
         <%
-            String req = request.getParameter("durum");
+            String req = request.getParameter("situation");
             if (req != null) {
                 if (req.equals("basarili")) {
                     out.print("<div class='alert alert-success' role='alert'>Şifreniz email adresinize gönderilmiştir.</div>");

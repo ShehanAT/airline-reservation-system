@@ -6,7 +6,7 @@
         </a>
         <h1 class="h3 mb-3 font-weight-600">Tekrar Hoş Geldiniz</h1>
         <%
-            String req = request.getParameter("durum");
+            String req = request.getParameter("situation");
             if (req != null) {
                 out.print("<div class='alert alert-warning' role='alert'>Giriş başarısız.</div>");
             }

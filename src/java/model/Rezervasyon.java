@@ -34,11 +34,11 @@ public class Rezervasyon  {
     String varis_saat;
     String ucak_ad;
     int ucak_koltuk;
-    int sonuc;
+    int conclusion;
     int koltuk_dolu;
     String yolcu_tarih;
     Double yolcu_ucret;
-    int durum;
+    int situation;
 
     public Rezervasyon(int rezervasyon_id, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, String yolcu_tarih) {
         this.rezervasyon_id = rezervasyon_id;
@@ -51,8 +51,8 @@ public class Rezervasyon  {
     }
     
     
-    public Rezervasyon(int durum, int rezervasyon_id, String rezervasyon_tarih, String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, String flight_date, String kalkis_sehir, String kalkis_ad, String kalkis_kod, String varis_sehir, String varis_ad, String varis_kod, String flight_hour, String flight_time, String company_name, String company_logo, String ucus_s, String ucus_d, String varis_saat, String ucak_ad, String yolcu_tarih, Double yolcu_ucret) {
-        this.durum = durum;
+    public Rezervasyon(int situation, int rezervasyon_id, String rezervasyon_tarih, String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, String flight_date, String kalkis_sehir, String kalkis_ad, String kalkis_kod, String varis_sehir, String varis_ad, String varis_kod, String flight_hour, String flight_time, String company_name, String company_logo, String ucus_s, String ucus_d, String varis_saat, String ucak_ad, String yolcu_tarih, Double yolcu_ucret) {
+        this.situation = situation;
         this.rezervasyon_id = rezervasyon_id;
         this.rezervasyon_tarih = rezervasyon_tarih;
         this.pnr_no = pnr_no;
@@ -100,8 +100,8 @@ public class Rezervasyon  {
     public Rezervasyon() {
     }
     
-    public Rezervasyon(int sonuc) {
-        this.sonuc = sonuc;
+    public Rezervasyon(int conclusion) {
+        this.conclusion = conclusion;
     }
 
     public Rezervasyon(String pnr_no, String yolcu_soyad) {
@@ -208,11 +208,11 @@ public class Rezervasyon  {
     }
     
     public int getDurum() {
-        return durum;
+        return situation;
     }
 
-    public void setDurum(int durum) {
-        this.durum = durum;
+    public void setDurum(int situation) {
+        this.situation = situation;
     }
     
     public Double getYolcu_ucret() {
@@ -499,11 +499,11 @@ public class Rezervasyon  {
         this.cocuk_sayi = cocuk_sayi;
     }
     public int getSonuc() {
-        return sonuc;
+        return conclusion;
     }
 
-    public void setSonuc(int sonuc) {
-        this.sonuc = sonuc;
+    public void setSonuc(int conclusion) {
+        this.conclusion = conclusion;
     }
     
     

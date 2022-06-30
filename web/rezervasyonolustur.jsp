@@ -201,14 +201,14 @@
                                                     <ol class="seats">
                                                         <c:forEach var = "i" begin = "1" end="${ucusbilgileri.ucak_koltuk}">
                                                             <li class="seat">
-                                                                <c:set var="durum" value="${0}" />
-                                                                <c:forEach var = "j" begin = "1" end="${koltuk_dolu.sonuc}">
-                                                                    <c:if test="${i==koltuk[j-1].sonuc}">
-                                                                        <c:set var="durum" value="${1}" />                            
+                                                                <c:set var="situation" value="${0}" />
+                                                                <c:forEach var = "j" begin = "1" end="${koltuk_dolu.conclusion}">
+                                                                    <c:if test="${i==koltuk[j-1].conclusion}">
+                                                                        <c:set var="situation" value="${1}" />
                                                                     </c:if>
                                                                 </c:forEach>
                                                                 <c:choose>
-                                                                    <c:when test= "${durum == 0}">
+                                                                    <c:when test= "${situation == 0}">
                                                                         <input type="radio" id="koltuk<c:out value = "${i}"/>" value="<c:out value = "${i}"/>" name="seat" checked/>
                                                                         <label for="koltuk<c:out value = "${i}"/>"><c:out value = "${i}"/></label> 
                                                                     </c:when>

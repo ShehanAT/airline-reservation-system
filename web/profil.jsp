@@ -43,7 +43,7 @@
             </div>
         </div>
         <%                
-        String req = request.getParameter("durum");
+        String req = request.getParameter("situation");
             if (req != null) {
                 if (req.equals("basarili")) {
                     out.print("<div class=' alert alert-success mt-3' role='alert'>Güncelleme İşlemi Başarıyla Tamamlandı.</div>");

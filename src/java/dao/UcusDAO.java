@@ -112,7 +112,7 @@ public class FlightDAO {
         }
         return ucus;
     }
-    public boolean ucuskontrol(Ucus ucus)throws SQLException { 
+    public boolean flightControl(Ucus ucus)throws SQLException {
         String flight_hour = flight.getUcus_saat();
         flight_hour = flight_hour.substring(0, 5);
         String flight_time = flight.getUcus_sure();

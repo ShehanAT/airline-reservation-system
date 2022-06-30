@@ -4,9 +4,9 @@
 <%@ include file = "topbar.jsp" %>
 <div class="container-fluid">
     <%
-        String req = request.getParameter("durum");
+        String req = request.getParameter("situation");
         if (req != null) {
-            if (req.equals("basarisiz")) {
+            if (req.equals("unsuccessful")) {
                 out.print("<div class='alert alert-warning' role='alert'>Bu Email kullanılıyor. Kayıt işlemi gerçekleştirilemedi.</div>");
             }
         }
