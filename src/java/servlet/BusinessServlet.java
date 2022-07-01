@@ -141,7 +141,7 @@ public class BusinessServlet extends HttpServlet {
             }
 
             Company newCompany = new Company(company_name, company_logo);
-            companyDAO.addCompany(yenifirma);
+            companyDAO.addCompany(newCompany);
             response.sendRedirect("companyList");
         }       
     }   

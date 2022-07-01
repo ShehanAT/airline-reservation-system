@@ -49,14 +49,14 @@ public class MessageDAO {
         return guncellenenSatir;
     }
     
-    public boolean messagereview(int id) throws SQLException {
-        boolean guncellenenSatir;
+    public boolean messageReply(int id) throws SQLException {
+        boolean updatedLine;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(MESAJ_CEVAP_UPDATE);) {     
             statement.setInt(1, id);
-            guncellenenSatir = statement.executeUpdate() > 0;
+            updatedLine = statement.executeUpdate() > 0;
         }
-        return guncellenenSatir;
+        return updatedLine;
     } 
     
     public void addMessage(Message message) throws SQLException {

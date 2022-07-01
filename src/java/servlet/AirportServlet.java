@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Airport;
-import model.AirportCity;
-import model.Airport_country;
+import model.Airport_City;
+import model.Airport_Country;
 
 @WebServlet(urlPatterns = {"/admin/airportList", "/admin/addAirport", "/admin/showAirportAdd", "/admin/deleteAirport", "/admin/airportUpdate", "/admin/showAirportUpdate"})
 
@@ -82,9 +82,9 @@ public class AirportServlet extends HttpServlet{
         }else if((Integer) session.getAttribute("user_authorization") != 2){
             response.sendRedirect("../flight_ticket");
         }else{
-            List<AirportCity> airportCity = airportDAO.airportCity();
+            List<Airport_City> airportCity = airportDAO.airportCity();
             request.setAttribute("airportCity", airportCity);
-            List<Airport_country> airportCountry = airportDAO.airportCountry();
+            List<Airport_Country> airportCountry = airportDAO.airportCountry();
             request.setAttribute("airportCountry", airportCountry);
             RequestDispatcher dispatcher = request.getRequestDispatcher("addAirport.jsp");
             dispatcher.forward(request, response);
@@ -133,9 +133,9 @@ public class AirportServlet extends HttpServlet{
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             Airport airport = airportDAO.selectAirport(id);
-            List<AirportCity> airportCity = airportDAO.airportCity();
+            List<Airport_City> airportCity = airportDAO.airportCity();
             request.setAttribute("airportCity", airportCity);
-            List<Airport_country> airportCountry = airportDAO.airportCountry();
+            List<Airport_Country> airportCountry = airportDAO.airportCountry();
             request.setAttribute("airportCountry", airportCountry);
             RequestDispatcher dispatcher = request.getRequestDispatcher("airportUpdate.jsp");
             request.setAttribute("airport", airport);

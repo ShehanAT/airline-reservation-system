@@ -106,7 +106,7 @@ public class UserDAO {
         return silinenSatir;
     }
     
-    public User usersec(int id) {
+    public User selectUser(int id) {
         User user = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_ID);) {
@@ -125,7 +125,7 @@ public class UserDAO {
         return user;
     }
     
-    public User sifreal(String user_email) {
+    public User cipher(String user_email) {
         User user = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL);) {
@@ -207,7 +207,7 @@ public class UserDAO {
         }
     }
     
-    public boolean uyekontrol(String user_email) {
+    public boolean memberControl(String user_email) {
 
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL);) {
@@ -225,12 +225,12 @@ public class UserDAO {
         return true;
     }
     
-    public boolean uyegiriskontrol(String user_email, String user_sifre) {
+    public boolean memberLoginControl(String user_email, String user_password) {
         
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL_SIFRE);) {
             preparedStatement.setString(1, user_email);
-            preparedStatement.setString(2, user_sifre);
+            preparedStatement.setString(2, user_password);
             
             ResultSet rs = preparedStatement.executeQuery();
             
@@ -245,12 +245,12 @@ public class UserDAO {
         return false;
     }
     
-    public boolean admingiriskontrol(String admin_email, String admin_sifre) {
+    public boolean adminLoginControl(String admin_email, String admin_password) {
         
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(ADMIN_SELECT_EMAIL_SIFRE);) {
             preparedStatement.setString(1, admin_email);
-            preparedStatement.setString(2, admin_sifre);
+            preparedStatement.setString(2, admin_password);
             
             ResultSet rs = preparedStatement.executeQuery();
             
@@ -265,7 +265,7 @@ public class UserDAO {
         return false;
     }
     
-    public User uyegiris(String user_email, String user_sifre) {
+    public User memberLogin(String user_email, String user_sifre) {
          
         User user = null;
         
@@ -290,7 +290,7 @@ public class UserDAO {
         return user;
     }
     
-    public User admingiris(String admin_email, String admin_sifre) {
+    public User adminLogin(String admin_email, String admin_sifre) {
          
         User user = null;
         
@@ -329,5 +329,9 @@ public class UserDAO {
                 }
             }
         }
+    }
+
+    public Boolean passwordControl(int user_id, String user_password) {
+        return true;
     }
 }

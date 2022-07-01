@@ -41,7 +41,7 @@ public class Airport_CityDAO {
         return connection;
     }
         
-    public List<Airport_City> citylistele() {
+    public List<Airport_City> cityLists() {
         List<Airport_City> cityler = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SEHİR_SELECT_ALL);) {

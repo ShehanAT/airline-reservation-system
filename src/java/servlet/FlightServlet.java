@@ -58,7 +58,7 @@ public class FlightServlet extends HttpServlet {
                     updateFlight(request, response);
                     break;
                 case "/admin/showUpdateFlight":
-                    showupdateFlight(request, response);
+                    showUpdateFlight(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -172,7 +172,7 @@ public class FlightServlet extends HttpServlet {
             Flight flight = flightDAO.ucussec(id);
             List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
-            List<Airplane> airplane = flightDAO.ucak();
+            List<Airplane> airplane = flightDAO.airplane();
             request.setAttribute("plane", airplane);
             List<Airport> airport = flightDAO.airport();
             request.setAttribute("airport", airport);

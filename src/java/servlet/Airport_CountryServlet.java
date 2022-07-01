@@ -1,5 +1,8 @@
 package servlet;
 
+import dao.Airport_CountryDAO;
+import model.Airport_Country;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,18 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.Airport_countryDAO;
-import model.Airport_country;
 
 @WebServlet(urlPatterns = {"/admin/countryList", "/admin/deleteCountry", "/admin/countryAdd", "/admin/updateCountry", "/admin/showUpdateCountry", "/admin/showCountryAdd"})
 
 public class Airport_CountryServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private Airport_countryDAO airport_countryDAO;
+    private Airport_CountryDAO airport_countryDAO;
 
     public void init() {
-        airport_countryDAO = new Airport_countryDAO();
+        airport_countryDAO = new Airport_CountryDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -67,8 +68,8 @@ public class Airport_CountryServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Airport_country> countryList = airport_countryDAO.countryListle();
-            request.setAttribute("country", country);
+            List<Airport_Country> countryList = airport_countryDAO.listCountry();
+            request.setAttribute("country", countryList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("listCountry.jsp");
             dispatcher.forward(request, response);
         }
@@ -87,7 +88,7 @@ public class Airport_CountryServlet extends HttpServlet {
         }
     }
 
-    private void showcountryAdd(HttpServletRequest request, HttpServletResponse response)
+    private void showCountryAdd(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -96,7 +97,7 @@ public class Airport_CountryServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             String airport_country_name = new String((request.getParameter("airport_country_name")).getBytes("ISO-8859-1"), "UTF-8");
-            Airport_country newCountry = new Airport_country(airport_country_name);
+            Airport_Country newCountry = new Airport_Country(airport_country_name);
             airport_countryDAO.countryAdd(newCountry);
             response.sendRedirect("country");
         }
@@ -111,7 +112,7 @@ public class Airport_CountryServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Airport_country country = airport_countryDAO.selectCountry(id);
+            Airport_Country country = airport_countryDAO.selectCountry(id);
             RequestDispatcher dispatcher = request.getRequestDispatcher("updateCountry.jsp");
             request.setAttribute("country", country);
             dispatcher.forward(request, response);
@@ -128,7 +129,7 @@ public class Airport_CountryServlet extends HttpServlet {
         } else {
             int airport_country_id = Integer.parseInt(request.getParameter("airport_country_id"));
             String airport_country_name = new String((request.getParameter("airport_country_name")).getBytes("ISO-8859-1"), "UTF-8");
-            Airport_country ulke = new Airport_country(airport_country_id, airport_country_name);
+            Airport_Country country = new Airport_Country(airport_country_id, airport_country_name);
             airport_countryDAO.updateCountry(country);
             response.sendRedirect("country");
         }

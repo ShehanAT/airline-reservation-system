@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UcakDAO;
+import dao.AirplaneDAO;
 import javax.servlet.http.HttpSession;
 import model.Company;
 import model.Airplane;
 
-@WebServlet(urlPatterns = {"/admin/ucakliste", "/admin/addFlight", "/admin/showAddFlight", "/admin/ucaksil", "/admin/ucakguncelle", "/admin/showucakguncelle"})
+@WebServlet(urlPatterns = {"/admin/flightList", "/admin/addFlight", "/admin/showAddFlight", "/admin/deleteAirplane", "/admin/updatePlane", "/admin/showAirplaneUpdate"})
 
 public class AeroplaneServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private UcakDAO ucakDAO;
+    private AirplaneDAO airplaneDAO;
 
     public void init() {
-        ucakDAO = new UcakDAO();
+        airplaneDAO = new AirplaneDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,8 +37,8 @@ public class AeroplaneServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "/admin/ucakliste":
-                    ucakliste(request, response);
+                case "/admin/flightList":
+                    flightList(request, response);
                     break;
                 case "/admin/addFlight":
                     addFlight(request, response);
@@ -46,14 +46,14 @@ public class AeroplaneServlet extends HttpServlet {
                 case "/admin/showAddFlight":
                     showAddFlight(request, response);
                     break;
-                case "/admin/ucaksil":
-                    ucaksil(request, response);
+                case "/admin/deleteAirplane":
+                    deleteAirplane(request, response);
                     break;
-                case "/admin/ucakguncelle":
-                    ucakguncelle(request, response);
+                case "/admin/updatePlane":
+                    updatePlane(request, response);
                     break;
                 case "/admin/showAirplaneUpdate":
-                    showAirplaneUpdate(request, response);
+                    updateToShow(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -61,7 +61,7 @@ public class AeroplaneServlet extends HttpServlet {
         }
     }
 
-    private void ucakliste(HttpServletRequest request, HttpServletResponse response)
+    private void flightList(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -69,9 +69,9 @@ public class AeroplaneServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Airplane> ucakliste = ucakDAO.ucaklistele();
-            request.setAttribute("ucakliste", ucakliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ucaklistele.jsp");
+            List<Airplane> flightList = airplaneDAO.airplaneList();
+            request.setAttribute("flightList", flightList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("flightList.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -84,7 +84,7 @@ public class AeroplaneServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Company> company = ucakDAO.company();
+            List<Company> company = airplaneDAO.company();
             request.setAttribute("company", company);
             RequestDispatcher dispatcher = request.getRequestDispatcher("addFlight.jsp");
             dispatcher.forward(request, response);
@@ -103,12 +103,12 @@ public class AeroplaneServlet extends HttpServlet {
             String ucak_name = new String((request.getParameter("ucak_name")).getBytes("ISO-8859-1"), "UTF-8");
             int ucak_seat = Integer.parseInt(request.getParameter("ucak_seat"));
             Airplane yeniucak = new Airplane(ucak_name, ucak_seat, company_id);
-            ucakDAO.addFlight(yeniucak);
-            response.sendRedirect("ucakliste");
+            airplaneDAO.addFlight(yeniucak);
+            response.sendRedirect("flightList");
         }
     }
 
-    private void ucaksil(HttpServletRequest request, HttpServletResponse response)
+    private void deleteAirplane(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -117,12 +117,12 @@ public class AeroplaneServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int plane_id = Integer.parseInt(request.getParameter("id"));
-            ucakDAO.ucaksil(plane_id);
-            response.sendRedirect("ucakliste");
+            airplaneDAO.deleteAirplane(plane_id);
+            response.sendRedirect("flightList");
         }
     }
 
-    private void ucakguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updatePlane(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -131,8 +131,8 @@ public class AeroplaneServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Airplane airplane = ucakDAO.ucaksec(id);
-            List<Company> company = ucakDAO.company();
+            Airplane airplane = airplaneDAO.selectAirplane(id);
+            List<Company> company = airplaneDAO.company();
             request.setAttribute("company", company);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucakguncelle.jsp");
             request.setAttribute("plane", airplane);
@@ -152,8 +152,8 @@ public class AeroplaneServlet extends HttpServlet {
             int business_id = Integer.parseInt(request.getParameter("business_id"));
             int airplane_seat = Integer.parseInt(request.getParameter("airplane_seat"));
             String airplane_name = new String((request.getParameter("aircraft_name")).getBytes("ISO-8859-1"), "UTF-8");
-            Aeroplane plane = new Aeroplane(airplane_id, airplane_name, airplane_seat, business_id);
-            planeDAO.updatePlane(plane);
+            Airplane plane = new Airplane(flight_id, airplane_name, airplane_seat, business_id);
+            airplaneDAO.updateAirplane(plane);
             response.sendRedirect("flight_list");
         }
     }

@@ -11,27 +11,27 @@ import java.util.List;
 import model.Airplane;
 import model.Company;
 
-public class UcakDAO {
+public class AirplaneDAO {
     
     private final String jdbcURL = "jdbc:mysql://localhost:3306/hawkeye";
-    private final String jdbcKullaniciname = "root";
+    private final String jdbcUsername = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCAK_SELECT_ALL = "SELECT plane_id, airplane_name, airplane_seat, company.company_name FROM airplane INNER JOIN company ON airplane.company_id=company.company_id;";
+    private static final String AIRPLANE_SELECT_ALL = "SELECT plane_id, airplane_name, airplane_seat, company.company_name FROM airplane INNER JOIN company ON airplane.company_id=company.company_id;";
     private static final String FIRMA_SELECT_ALL ="select * from company;";
-    private static final String UCAK_INSERT ="INSERT INTO airplane (airplane_name, airplane_seat, company_id) VALUES (?,?,?);";
-    private static final String UCAK_DELETE = "delete from airplane where plane_id = ?;";
-    private static final String UCAK_UPDATE = "update airplane set airplane_name = ?, airplane_seat=?, company_id=? where plane_id = ?;";
-    private static final String UCAK_SELECT_ID = "SELECT * FROM airplane  where plane_id=?;";
+    private static final String AIRPLANE_INSERT ="INSERT INTO airplane (airplane_name, airplane_seat, company_id) VALUES (?,?,?);";
+    private static final String AIRPLANE_DELETE = "delete from airplane where plane_id = ?;";
+    private static final String AIRPLANE_UPDATE = "update airplane set airplane_name = ?, airplane_seat=?, company_id=? where plane_id = ?;";
+    private static final String AIRPLANE_SELECT_ID = "SELECT * FROM airplane  where plane_id=?;";
     
-    public UcakDAO() {}
+    public AirplaneDAO() {}
     
     protected Connection getConnection() {
         Connection connection = null;
          
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL,jdbcKullaniciname,jdbcPassword);
+            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
            
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class UcakDAO {
     public List<Airplane> airplaneList() {
         List<Airplane> airplanes = new ArrayList<> ();
         try (Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(UCAK_SELECT_ALL);) {
+            PreparedStatement preparedStatement = connection.prepareStatement(AIRPLANE_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int plane_id = rs.getInt("plane_id");
@@ -59,9 +59,9 @@ public class UcakDAO {
         return airplanes;
     }  
     
-    public boolean ucaksil(int id) throws SQLException {
+    public boolean deleteAirplane(int id) throws SQLException {
         boolean silinenSatir;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UCAK_DELETE);) {
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(AIRPLANE_DELETE);) {
             statement.setInt(1, id);
             silinenSatir = statement.executeUpdate() > 0;
         }
@@ -88,7 +88,7 @@ public class UcakDAO {
     public void addFlight(Airplane airplane) throws SQLException {
         try (           
             Connection connection = getConnection();                                
-            PreparedStatement preparedStatement = connection.prepareStatement(UCAK_INSERT)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(AIRPLANE_INSERT)) {
             preparedStatement.setString(1, airplane.getUcak_name());
             preparedStatement.setInt(2, airplane.getAirplane_seat());
             preparedStatement.setInt(3, airplane.getCompany_id());
@@ -98,10 +98,10 @@ public class UcakDAO {
         }
     }
     
-    public boolean ucakguncelle(Airplane airplane) throws SQLException {
+    public boolean updateAirplane(Airplane airplane) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
-            PreparedStatement statement = connection.prepareStatement(UCAK_UPDATE);) {
+            PreparedStatement statement = connection.prepareStatement(AIRPLANE_UPDATE);) {
             statement.setString(1, airplane.getUcak_name());
             statement.setInt(2, airplane.getAirplane_seat());
             statement.setInt(3, airplane.getCompany_id());
@@ -111,17 +111,17 @@ public class UcakDAO {
         return guncellenenSatir;
     }  
     
-    public Airplane ucaksec(int id) {
+    public Airplane selectAirplane(int id) {
         Airplane airplane = null;
         try (Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(UCAK_SELECT_ID);) {
+            PreparedStatement preparedStatement = connection.prepareStatement(AIRPLANE_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String ucak_name = rs.getString("ucak_name");
-                int ucak_seat = rs.getInt("ucak_seat");
+                String airplane_name = rs.getString("airplane_name");
+                int airplane_seat = rs.getInt("airplane_seat");
                 int company_id = rs.getInt("company_id");
-                airplane = new Airplane(id, ucak_name, ucak_seat, company_id);
+                airplane = new Airplane(id, airplane_name, airplane_seat, company_id);
             }
         } catch (SQLException e) {
             printSQLException(e);

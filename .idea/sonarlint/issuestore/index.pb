@@ -1,6 +1,4 @@
 
-U
-%airline-reservation-system-master.iml,4\c\4cd5232da187f3691e6bea1cd03508580f96ba47
 G
 .idea/libraries/lib.xml,5\6\563a23e064e6fdd2d09bd0c2d99ef456aff71a31
 C
@@ -23,16 +21,12 @@ J
 web/admin/firmalistele.jsp,e\4\e4cf6fbcb6660cc063884f497055a0e312f3070c
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-T
-$src/java/servlet/AirportServlet.java,e\f\ef45f5e49615170b7a162f538b218abe037c36f6
 C
 web/admin/index.jsp,6\3\63035a370bef98a9d0a1da70b115f3c82c95f721
 @
 web/iletisim.jsp,1\8\1833b4a0b06fccbfa5e63f5b6e09ebaab1b24908
 M
 nbproject/private/private.xml,0\9\099660eedda25586dc6725c7e626acce7ac94a55
-\
-,src/java/servlet/Airport_CountryServlet.java,5\1\516f370acbfeca4ffe915e09bbb472ca21c553bc
 J
 web/admin/mesajlistele.jsp,b\6\b6b939467948258f1c6ec474e23e7fe37a3f2fac
 F

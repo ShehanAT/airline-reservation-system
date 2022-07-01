@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.mail.Message;
 import model.Reply;
-import model.Message;
+
 
 @WebServlet(urlPatterns = {"/admin/replyMessage", "/admin/showReplyMessage", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
 
@@ -117,7 +117,7 @@ public class ReplyServlet extends HttpServlet {
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             messageDAO.messagenotRead(id);
-            Message message = replyDAO.selectMessage(id);
+            model.Message message = replyDAO.selectMessage(id);
             request.setAttribute("message", message);
             RequestDispatcher dispatcher = request.getRequestDispatcher("messageReply.jsp");
             dispatcher.forward(request, response);
@@ -159,7 +159,7 @@ public class ReplyServlet extends HttpServlet {
             });       
             try {    
                MimeMessage message = new MimeMessage(session);
-               message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+               message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
                message.setSubject(subject, "UTF-8");    
                message.setText(messg, "UTF-8");    
                Transport.send(message);    

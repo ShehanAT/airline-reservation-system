@@ -7,6 +7,18 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>com.coding.informer</groupId>
     <artifactId>Airline-Reservation-System</artifactId>
     <version>1</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <mavenVersion>3.0</mavenVersion>
@@ -17,6 +29,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -29,4 +42,19 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>${mavenVersion}</version>
         </dependency>
     </dependencies>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.tomcat.maven</groupId>-->
+<!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
+<!--                &lt;!&ndash; for Tomcat 8 also &ndash;&gt;-->
+<!--                <version>2.2</version>-->
+<!--                <configuration>-->
+<!--                    <server>tomcat8</server>-->
+<!--                    <url>http://localhost.com:1234/mymanager</url>-->
+<!--                    <path>/doorman</path>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 </project>

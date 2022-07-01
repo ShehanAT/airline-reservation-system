@@ -10,16 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.airportCityDAO;
+import dao.Airport_CityDAO;
+import model.Airport_City;
+
 import javax.servlet.http.HttpSession;
-import model.airportCity;
+
 
 @WebServlet(urlPatterns = {"/admin/cityList", "/admin/cityDelete", "/admin/addCity", "/admin/showAddCity", "/admin/updateCity", "/admin/showCityUpdate"})
 
 public class Airport_CityServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private Airport_CityDAO airportCityDAO;
+    private Airport_CityDAO airport_cityDAO;
 
     public void init() {
         airport_cityDAO = new Airport_CityDAO();
@@ -68,7 +70,7 @@ public class Airport_CityServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<AirportCity> cityList = airportCitDAO.cityLists();
+            List<Airport_City> cityList = airport_cityDAO.cityLists();
             request.setAttribute("cityList", cityList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("citylistele.jsp");
             dispatcher.forward(request, response);
@@ -97,8 +99,8 @@ public class Airport_CityServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             String airportCityName = new String((request.getParameter("airportCity_name")).getBytes("ISO-8859-1"), "UTF-8");
-            AirportCity newCity = new AirportCity(airportCityName);
-            airportCityDAO.addCity(newCity);
+            Airport_City newCity = new Airport_City(airportCityName);
+            airport_cityDAO.addCity(newCity);
             response.sendRedirect("cityList");
         }
     }
@@ -112,7 +114,7 @@ public class Airport_CityServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int airportCity_id = Integer.parseInt(request.getParameter( "id"));
-            airportCityDAO.deleteCity(airportCity_id);
+            airport_cityDAO.deleteCity(airportCity_id);
             response.sendRedirect("cityList");
         }
     }
@@ -126,7 +128,7 @@ public class Airport_CityServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            AirportCity city = airportCityDAO.chooseCity(id);
+            Airport_City city = airport_cityDAO.chooseCity(id);
             RequestDispatcher dispatcher = request.getRequestDispatcher("updateCity.jsp");
             request.setAttribute("city", city);
             dispatcher.forward(request, response);
@@ -143,8 +145,8 @@ public class Airport_CityServlet extends HttpServlet {
         } else {
             int airportCity_id = Integer.parseInt(request.getParameter("airportCity_id"));
             String airportCityName = new String((request.getParameter("airportCityName")).getBytes("ISO-8859-1"), "UTF-8");
-            AirportCity city = new AirportCity(airportCity_id, airportCityName);
-            airportCityDAO.updateCity(city);
+            Airport_City city = new Airport_City(airportCity_id, airportCityName);
+            airport_cityDAO.updateCity(city);
             response.sendRedirect("cityList");
         }
     }

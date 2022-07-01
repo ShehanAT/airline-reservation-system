@@ -35,17 +35,17 @@ public class Airport{
     
     public Airport(int airport_country_id, int airport_city_id, String airport_name, String airport_code, String airport_country_name, String airport_city_name) {
         this.airport_country_id = airport_country_id;
-        this.airport_city_id = havaalani_city_id;
+        this.airport_city_id = airport_city_id;
         this.airport_name = airport_name;
         this.airport_code = airport_code;
         this.airport_country_name = airport_country_name;
         this.airport_city_name = airport_city_name;
     }
     
-    public Airport(int airport_id, int airport_country_id, int havaalani_city_id, String airport_name, String airport_code, String airport_country_name, String airport_city_name) {
+    public Airport(int airport_id, int airport_country_id, int airport_city_id, String airport_name, String airport_code, String airport_country_name, String airport_city_name) {
         this.airport_id = airport_id;
         this.airport_country_id = airport_country_id;
-        this.havaalani_city_id = havaalani_city_id;
+        this.airport_city_id = airport_city_id;
         this.airport_name = airport_name;
         this.airport_code = airport_code;
         this.airport_country_name = airport_country_name;
@@ -69,11 +69,11 @@ public class Airport{
     }
 
     public int getAirport_city_id() {
-        return havaalani_city_id;
+        return airport_city_id;
     }
 
-    public void setAirport_city_id(int havaalani_city_id) {
-        this.havaalani_city_id = havaalani_city_id;
+    public void setAirport_city_id(int airport_city_id) {
+        this.airport_city_id = airport_city_id;
     }
 
     public String getHavaalani_ad() {

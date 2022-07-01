@@ -63,7 +63,7 @@ public class MessageServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Message> messageList = messageDAO.messageListle();
+            List<Message> messageList = messageDAO.messagesList();
             request.setAttribute("messageList", messageList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("messageListle.jsp");
             dispatcher.forward(request, response);

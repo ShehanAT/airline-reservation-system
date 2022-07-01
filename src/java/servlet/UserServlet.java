@@ -62,12 +62,6 @@ public class UserServlet extends HttpServlet {
                 case "/showForgotInformation":
                     showForgotInformation(request, response);
                     break;
-                case "/login":
-                    uyelogin(request, response);
-                    break;
-                case "/admin/login":
-                    adminuyelogin(request, response);
-                    break;
                 case "/admin/userList":
                     userList(request, response);
                     break;
@@ -83,19 +77,19 @@ public class UserServlet extends HttpServlet {
                 case "/admin/adminUpdate":
                     adminUpdate(request, response);
                     break;
-                case "/admin/gosteradminUpdate":
+                case "/admin/showAdminUpdate":
                     gosteradminUpdate(request, response);
                     break;
                 case "/admin/showLogin":
-                    adminshowLogin(request, response);
+                    adminShowLogin(request, response);
                     break;
-                case "/admin/giris":
-                    admingiris(request, response);
+                case "/admin/login":
+                    adminLogin(request, response);
                     break;
                 case "/admin/myInformation":
                     adminmyInformation(request, response);
                     break;
-                case "/profil":
+                case "/profile":
                     profil(request, response);
                     break;
                 case "/updateProfile":
@@ -138,8 +132,8 @@ public class UserServlet extends HttpServlet {
             int user_id = Integer.parseInt(request.getParameter("user_id_password"));
             String user_password = new String((request.getParameter("user_suan_password")).getBytes("ISO-8859-1"), "UTF-8");
             String user_password1 = new String((request.getParameter("user_password1")).getBytes("ISO-8859-1"), "UTF-8");
-            Boolean kontrol = userDAO.passwordkontrol(user_id, user_password);
-            if (kontrol == true) {
+            Boolean control = userDAO.passwordControl(user_id, user_password);
+            if (control == true) {
                 User user = new User(user_id, user_password1);
                 userDAO.updatePassword(user);
                 session.setAttribute("user_password", user_password1);
@@ -163,8 +157,8 @@ public class UserServlet extends HttpServlet {
             String user_name = new String((request.getParameter("user_name")).getBytes("ISO-8859-1"), "UTF-8");
             String user_surname = new String((request.getParameter("user_surname")).getBytes("ISO-8859-1"), "UTF-8");
             String user_email = request.getParameter("user_email");
-            Boolean kontrol = userDAO.uyekontrol(user_email);
-            if (kontrol == true || user_email.equals(kontrol_email)) {
+            Boolean control = userDAO.memberControl(user_email);
+            if (control == true || user_email.equals(kontrol_email)) {
                 User user = new User(user_id, user_name, user_surname, user_email);
                 userDAO.updateProfile(user);
                 session.setAttribute("user_name", user_name);
@@ -235,10 +229,10 @@ public class UserServlet extends HttpServlet {
             String user_surname = new String((request.getParameter("user_surname")).getBytes("ISO-8859-1"), "UTF-8");
             String user_email = request.getParameter("user_email");
             String user_password = new String((request.getParameter("user_password")).getBytes("ISO-8859-1"), "UTF-8");
-            Boolean kontrol = userDAO.uyekontrol(user_email);
-            if (kontrol == true) {
-                User yeniuser = new User(user_name, user_surname, user_email, user_password);
-                userDAO.addAdmin(yeniuser);
+            Boolean control = userDAO.memberControl(user_email);
+            if (control == true) {
+                User newUser = new User(user_name, user_surname, user_email, user_password);
+                userDAO.addAdmin(newUser);
                 response.sendRedirect("userList");
             } else {
                 response.sendRedirect("userList?situation=unsuccessful");
@@ -270,7 +264,7 @@ public class UserServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            User user = userDAO.usersec(id);
+            User user = userDAO.selectUser(id);
             RequestDispatcher dispatcher = request.getRequestDispatcher("adminUpdate.jsp");
             request.setAttribute("user", user);
             dispatcher.forward(request, response);
@@ -301,10 +295,10 @@ public class UserServlet extends HttpServlet {
         HttpSession sessionn = request.getSession();
         if ((Integer) sessionn.getAttribute("user_authorization") == null) {
             String user_email = request.getParameter("user_email");
-            Boolean kontrol = userDAO.uyekontrol(user_email);
+            Boolean kontrol = userDAO.memberControl(user_email);
             if (kontrol == false) {
-                User user = userDAO.sifreal(user_email);
-                String user_password = user.getKullanici_password();
+                User user = userDAO.cipher(user_email);
+                String user_password = user.getUser_password();
                 final String to = user_email;
                 final String subject = "HAWKEYE Giriş Şifresi";
                 final String messg = "Sisteme giriş için şifreniz : " + user_password;
@@ -353,7 +347,7 @@ public class UserServlet extends HttpServlet {
             String user_surname = new String((request.getParameter("user_surname")).getBytes("ISO-8859-1"), "UTF-8");
             String user_email = request.getParameter("user_email");
             String user_password = new String((request.getParameter("user_password1")).getBytes("ISO-8859-1"), "UTF-8");
-            Boolean kontrol = userDAO.uyekontrol(user_email);
+            Boolean kontrol = userDAO.memberControl(user_email);
             if (kontrol == true) {
                 User yeniKullanici = new User(user_name, user_surname, user_email, user_password);
                 userDAO.signUp(yeniKullanici);
@@ -406,13 +400,13 @@ public class UserServlet extends HttpServlet {
             String user_email = request.getParameter("user_email");
             String user_password = new String((request.getParameter("user_password")).getBytes("ISO-8859-1"), "UTF-8");
 
-            Boolean kontrol = userDAO.uyegiriskontrol(user_email, user_password);
+            Boolean kontrol = userDAO.memberLoginControl(user_email, user_password);
             if (kontrol == true) {
-                User uye = userDAO.uyegiris(user_email, user_password);
-                int user_authorization = uye.getKullanici_yetki();
-                String user_name = uye.getKullanici_name();
-                String user_surname = uye.getKullanici_surname();
-                int user_id = uye.getKullanici_id();
+                User uye = userDAO.memberLogin(user_email, user_password);
+                int user_authorization = uye.getUser_authority();
+                String user_name = uye.getUser_name();
+                String user_surname = uye.getUser_surname();
+                int user_id = uye.getUser_id();
 
                 session.setAttribute("user_id", user_id);
                 session.setAttribute("user_name", user_name);
@@ -430,7 +424,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void admingiris(HttpServletRequest request, HttpServletResponse response)
+    private void adminLogin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -441,21 +435,21 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void adminshowLogin(HttpServletRequest request, HttpServletResponse response)
+    private void adminShowLogin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
             String admin_email = request.getParameter("admin_email");
             String admin_password = request.getParameter("admin_password");
 
-            Boolean kontrol = userDAO.admingiriskontrol(admin_email, admin_password);
+            Boolean kontrol = userDAO.adminLoginControl(admin_email, admin_password);
             if (kontrol == true) {
-                User uye = userDAO.admingiris(admin_email, admin_password);
+                User member = userDAO.adminLogin(admin_email, admin_password);
 
-                int user_authorization = uye.getKullanici_yetki();
-                String user_name = uye.getKullanici_name();
-                String user_surname = uye.getKullanici_surname();
-                int user_id = uye.getKullanici_id();
+                int user_authorization = member.getUser_authority();
+                String user_name = member.getUser_name();
+                String user_surname = member.getUser_surname();
+                int user_id = member.getUser_id();
 
                 session.setAttribute("user_id", user_id);
                 session.setAttribute("user_name", user_name);

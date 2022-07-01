@@ -23,7 +23,7 @@ public class FlightDAO {
     private static final String UCUS_INSERT ="INSERT INTO flight (flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare) VALUES (?,?,?,?,?,?,?,?);";
     private static final String FIRMA_SELECT_ALL = "select * from company;";
     private static final String HAVAALANI_SELECT_ALL = "select * from airport;";
-    private static final String UCAK_SELECT_ALL = "select * from airplane;";
+    private static final String AIRPLANE_SELECT_ALL = "select * from airplane;";
     private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as departure_name, p.airport_name as varis_name, flight_date, flight_hour, flight_time, company.company_name, airplane.airplane_name, flight_fare from flight\n" +
                                 "INNER JOIN  airplane ON (airplane.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
@@ -251,7 +251,7 @@ public class FlightDAO {
     public List<Airplane> airplane() {
         List<Airplane> airplane = new ArrayList<> ();
         try (Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(UCAK_SELECT_ALL);) {
+            PreparedStatement preparedStatement = connection.prepareStatement(AIRPLANE_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int plane_id = rs.getInt("plane_id");
