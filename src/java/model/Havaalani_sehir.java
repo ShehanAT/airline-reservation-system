@@ -24,11 +24,11 @@ public class Airport_city {
         this.airport_city_id = airport_city_id;
     }
 
-    public String getHavaalani_sehir_ad() {
+    public String getHavaalani_city_ad() {
         return airport_city_name;
     }
 
-    public void setHavaalani_sehir_ad(String airport_city_name) {
+    public void setHavaalani_city_ad(String airport_city_name) {
         this.airport_city_name = airport_city_name;
     }
 }

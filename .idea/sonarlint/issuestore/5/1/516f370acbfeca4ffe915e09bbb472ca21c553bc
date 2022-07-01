@@ -1,0 +1,30 @@
+
+y	java:S116"]Rename this field "airport_countryDAO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Ê8ÙÇÛš0
+<	java:S131%""Add a default case to this switch.(ë´åİşÿÿÿÿ
+[
+java:S1854F"?Remove this useless assignment to local variable "countryList".(ì¦û/8ëÖÛš0
+L
+java:S1481F"0Remove this unused "countryList" local variable.(ì¦û/8íÖÛš0
+T
+java:S4719b"9Replace charset name argument with StandardCharsets.UTF_8(òêÆáıÿÿÿÿ
+[
+java:S1854ƒ"8Remove this useless assignment to local variable "ulke".(¾›èôıÿÿÿÿ8ô­Ûš0
+U
+java:S4719‚"9Replace charset name argument with StandardCharsets.UTF_8(òêÆáıÿÿÿÿ
+L
+java:S1481ƒ")Remove this unused "ulke" local variable.(¾›èôıÿÿÿÿ8ô­Ûš0
+U
+java:S1144Z"3Remove this unused private "showcountryAdd" method.(ŠÓİùüÿÿÿÿ8ç¤Ì³›0
+j
+java:S1192G"HDefine a constant instead of duplicating this literal "country" 5 times.(½ğ¡Úùÿÿÿÿ8ìÍÛš0
+n
+java:S1192D"QDefine a constant instead of duplicating this literal "../flight_ticket" 6 times.(Ø§¦„8ŞÕÇ×š0
+h
+java:S1192B"FDefine a constant instead of duplicating this literal "login" 6 times.(âùÒúÿÿÿÿ8ßÕÇ×š0
+q
+java:S1192A"TDefine a constant instead of duplicating this literal "user_authorization" 12 times.(š˜ºÅ8ßÕÇ×š0
+k	java:S117b"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òêÆáıÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İÑ€ıÿÿÿÿ
+l	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òêÆáıÿÿÿÿ
+g	java:S117‘"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ïÌ¨
+a	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÄüŞZ

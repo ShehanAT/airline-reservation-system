@@ -10,7 +10,7 @@
             if (req != null) {
                 out.print("<div class='alert alert-warning' role='alert'>Giriş başarısız.</div>");
             }
-            String r = request.getParameter("rezervasyon");
+            String r = request.getParameter("reservation");
             if (r != null) {
                 out.print("<div class='alert alert-warning' role='alert'>Reservation işlemini gerçekleştirmek için giriş yapınız.</div>");
             }

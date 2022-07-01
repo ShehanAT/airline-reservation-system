@@ -64,9 +64,9 @@
                         <form class="text-muted" action="updateProfile" method="post">
                             <input type="hidden" id="user_id" name="user_id" value="<c:out value="${user.user_id}" />">
                                 <div class="form-group row">
-                                    <label for="user_ad" class="col-sm-4 col-form-label">Ad</label>
+                                    <label for="user_name" class="col-sm-4 col-form-label">Ad</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="user_ad" name="user_ad" value="<c:out value="${user.user_ad}" />" placeholder="Ad" required>
+                                        <input type="text" class="form-control" id="user_name" name="user_name" value="<c:out value="${user.user_name}" />" placeholder="Ad" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">

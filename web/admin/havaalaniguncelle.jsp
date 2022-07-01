@@ -22,13 +22,13 @@
                     <div class="form-group">
                         <label for="airport_city_id">Şehir</label>
                         <select class="form-control" id="airport_city_id" name="airport_city_id" required>
-                            <c:forEach var="sehir" items="${airportCity}">
+                            <c:forEach var="city" items="${airportCity}">
                                 <c:choose>
-                                    <c:when test= "${sehir.airport_city_id == airport.airport_city_id}">
-                                        <option value="<c:out value='${sehir.airport_city_id}' />" selected><c:out value='${sehir.airport_city_name}' /></option>
+                                    <c:when test= "${city.airport_city_id == airport.airport_city_id}">
+                                        <option value="<c:out value='${city.airport_city_id}' />" selected><c:out value='${city.airport_city_name}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${sehir.airport_city_id}' />"><c:out value='${sehir.airport_city_name}' /></option>
+                                        <option value="<c:out value='${city.airport_city_id}' />"><c:out value='${city.airport_city_name}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>

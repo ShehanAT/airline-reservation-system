@@ -17,11 +17,11 @@ public class UcakDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";   
 
-    private static final String UCAK_SELECT_ALL = "SELECT plane_id, ucak_ad, ucak_koltuk, company.company_name FROM ucak INNER JOIN company ON ucak.company_id=company.company_id;";
+    private static final String UCAK_SELECT_ALL = "SELECT plane_id, ucak_name, ucak_seat, company.company_name FROM ucak INNER JOIN company ON ucak.company_id=company.company_id;";
     private static final String FIRMA_SELECT_ALL ="select * from company;";
-    private static final String UCAK_INSERT ="INSERT INTO ucak (ucak_ad, ucak_koltuk, company_id) VALUES (?,?,?);";
+    private static final String UCAK_INSERT ="INSERT INTO ucak (ucak_name, ucak_seat, company_id) VALUES (?,?,?);";
     private static final String UCAK_DELETE = "delete from ucak where plane_id = ?;";
-    private static final String UCAK_UPDATE = "update ucak set ucak_ad = ?, ucak_koltuk=?, company_id=? where plane_id = ?;";
+    private static final String UCAK_UPDATE = "update ucak set ucak_name = ?, ucak_seat=?, company_id=? where plane_id = ?;";
     private static final String UCAK_SELECT_ID = "SELECT * FROM ucak  where plane_id=?;";
     
     public UcakDAO() {}
@@ -48,10 +48,10 @@ public class UcakDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int plane_id = rs.getInt("plane_id");
-                String ucak_ad = rs.getString("ucak_ad");
-                int ucak_koltuk = rs.getInt("ucak_koltuk");
+                String ucak_name = rs.getString("ucak_name");
+                int ucak_seat = rs.getInt("ucak_seat");
                 String company_name = rs.getString("company_name");
-                ucaklar.add(new Ucak(plane_id, ucak_ad, ucak_koltuk, company_name));
+                ucaklar.add(new Ucak(plane_id, ucak_name, ucak_koltuk, company_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -89,7 +89,7 @@ public class UcakDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(UCAK_INSERT)) {
-            preparedStatement.setString(1, ucak.getUcak_ad());
+            preparedStatement.setString(1, ucak.getUcak_name());
             preparedStatement.setInt(2, ucak.getUcak_koltuk());
             preparedStatement.setInt(3, ucak.getFirma_id());
             preparedStatement.executeUpdate();
@@ -102,7 +102,7 @@ public class UcakDAO {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(UCAK_UPDATE);) {
-            statement.setString(1, ucak.getUcak_ad());
+            statement.setString(1, ucak.getUcak_name());
             statement.setInt(2, ucak.getUcak_koltuk());
             statement.setInt(3, ucak.getFirma_id());       
             statement.setInt(4, ucak.getUcak_id());
@@ -118,10 +118,10 @@ public class UcakDAO {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String ucak_ad = rs.getString("ucak_ad");
+                String ucak_name = rs.getString("ucak_name");
                 int ucak_koltuk = rs.getInt("ucak_koltuk");
                 int company_id = rs.getInt("company_id");
-                ucak = new Ucak(id, ucak_ad, ucak_koltuk, company_id);
+                ucak = new Ucak(id, ucak_name, ucak_koltuk, company_id);
             }
         } catch (SQLException e) {
             printSQLException(e);

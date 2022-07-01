@@ -11,8 +11,8 @@
                         <div class="card-body">
                             <form class="form" role="form" method="post" autocomplete="off" action="showAddFlight">
                                 <div class="form-group">
-                                    <label for="ucak_ad">Uçak Adı</label>
-                                    <input type="text" class="form-control" id="ucak_ad" name="ucak_ad" placeholder="Uçak Adı" required>
+                                    <label for="ucak_name">Uçak Adı</label>
+                                    <input type="text" class="form-control" id="ucak_name" name="ucak_name" placeholder="Uçak Adı" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="company_id">Uçak Firması</label>

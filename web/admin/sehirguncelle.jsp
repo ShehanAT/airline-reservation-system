@@ -9,11 +9,11 @@
                 <h3 class="mb-0 text-white">Şehir Güncelle</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" autocomplete="off" action="gostersehirguncelle">
-                    <input type="hidden" name="airport_city_id" id="airport_city_id" value="<c:out value='${sehir.airport_city_id}' />" />
+                <form class="form" role="form" method="post" autocomplete="off" action="showCityUpdate">
+                    <input type="hidden" name="airport_city_id" id="airport_city_id" value="<c:out value='${city.airport_city_id}' />" />
                     <div class="form-group">
                         <label for="airport_city_name">Şehir Adı</label>
-                        <input type="text" class="form-control" id="airport_city_name" name="airport_city_name" value="<c:out value='${sehir.airport_city_name}' />" required>
+                        <input type="text" class="form-control" id="airport_city_name" name="airport_city_name" value="<c:out value='${city.airport_city_name}' />" required>
                     </div>
 
                     <div class="form-group">

@@ -15,22 +15,22 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <p class="f-14 card-text-payment card-text-payment-bold">Gidiş</p>
-                                <p class="f-14 card-text-payment card-text-payment-bold"><c:out value='${ucusbilgileri.flight_date}' /></p>
+                                <p class="f-14 card-text-payment card-text-payment-bold"><c:out value='${flightInformation.flight_date}' /></p>
                             </div>
                             <p class="card-border-bottom-payment"></p>
 
                             <div>
                                 <div class="d-flex justify-content-between">
-                                    <p class="small card-text-payment f-08em"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${ucusbilgileri.company_logo}' />" style="width: 1.5em"><c:out value='${ucusbilgileri.company_name}' /> - <c:out value='${ucusbilgileri.ucak_ad}' /></p>
+                                    <p class="small card-text-payment f-08em"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${flightInformation.company_logo}' />" style="width: 1.5em"><c:out value='${flightInformation.company_name}' /> - <c:out value='${flightInformation.ucak_name}' /></p>
                                 </div>
                                 <div class="d-flex justify-content-between align-item-center">
-                                    <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${ucusbilgileri.kalkis_kod}' /> <c:out value='${ucusbilgileri.flight_hour}' /> </span>
+                                    <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${flightInformation.departure_code}' /> <c:out value='${flightInformation.flight_hour}' /> </span>
                                     <hr class="divider-small">
-                                    <span class="f-08em text-soft"><i class="far fa-clock text-soft" aria-hidden="true"></i> <c:out value='${ucusbilgileri.flight_s}' /> Sa <c:out value='${ucusbilgileri.flight_d}' /> dk </span>
+                                    <span class="f-08em text-soft"><i class="far fa-clock text-soft" aria-hidden="true"></i> <c:out value='${flightInformation.flight_s}' /> Sa <c:out value='${flightInformation.flight_d}' /> dk </span>
                                     <hr class="divider-small">
-                                    <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${ucusbilgileri.varis_kod}' /> <c:out value='${ucusbilgileri.varis_saat}' /></span>
+                                    <span class="card-text-payment card-text-payment-bold f-16"><c:out value='${flightInformation.arrival_code}' /> <c:out value='${flightInformation.arrival_saat}' /></span>
                                 </div>
-                                <div class="d-flex justify-content-between align-item-center mb-2 card-text-payment pt-1"><small class="f-07em"><c:out value='${ucusbilgileri.kalkis_ad}' /></small> <small class="f-07em"><c:out value='${ucusbilgileri.varis_ad}' /></small></div>
+                                <div class="d-flex justify-content-between align-item-center mb-2 card-text-payment pt-1"><small class="f-07em"><c:out value='${flightInformation.departure_name}' /></small> <small class="f-07em"><c:out value='${flightInformation.arrival_name}' /></small></div>
                             </div>               
                         </div>
                     </div>
@@ -50,20 +50,20 @@
                                         <table class="table table-borderless" style=" margin-bottom:0px !important;">
                                             <tbody>
                                                 <tr>
-                                                    <th class="text-left py-0"><span id="yetiskin_ucret" name="yetiskin_ucret"><c:out value='${yolcusayi.yetiskin_sayi}' /></span> Yetişkin</th>
-                                                    <td class="text-right py-0"><c:out value='${yolcusayi.yetiskin_sayi*ucusbilgileri.flight_fare}' /> ₺</td>
+                                                    <th class="text-left py-0"><span id="adult_ucret" name="adult_ucret"><c:out value='${passengerNumber.adultNumber}' /></span> Yetişkin</th>
+                                                    <td class="text-right py-0"><c:out value='${passengerNumber.adultNumber*flightInformation.flight_fare}' /> ₺</td>
                                                 </tr>
-                                                <c:if test="${yolcusayi.cocuk_sayi!=0}">
+                                                <c:if test="${passengerNumber.childrenNumber!=0}">
                                                     <tr>
-                                                        <th class="text-left py-0"><span id="cocuk_ucret" name="cocuk_ucret"><c:out value='${yolcusayi.cocuk_sayi}' /></span> Çocuk</th>
-                                                        <td class="text-right py-0"><c:out value='${yolcusayi.cocuk_sayi*ucusbilgileri.flight_fare}' /> ₺</td>
+                                                        <th class="text-left py-0"><span id="children_wage" name="children_wage"><c:out value='${passengerNumber.childrenNumber}' /></span> Çocuk</th>
+                                                        <td class="text-right py-0"><c:out value='${passengerNumber.childrenNumber*flightInformation.flight_fare}' /> ₺</td>
                                                     </tr>
                                                 </c:if>    
                                                 <tr>                                  
                                                     <td id="fiyat_goster">
                                                         <b class="card-text-payment">Toplam Tutar</b>                                      
                                                     </td>
-                                                    <td class="text-right card-text-payment-bold card-text-payment"><span id="toplam_tutar" name="toplam_tutar"><c:out value='${yolcusayi.cocuk_sayi*ucusbilgileri.flight_fare + yolcusayi.yetiskin_sayi*ucusbilgileri.flight_fare}' /></span> ₺</td>
+                                                    <td class="text-right card-text-payment-bold card-text-payment"><span id="toplam_tutar" name="toplam_tutar"><c:out value='${passengerNumber.childrenNumber*flightInformation.flight_fare + passengerNumber.adultNumber*flightInformation.flight_fare}' /></span> ₺</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -77,10 +77,10 @@
         </div>
         <div class="col-md-8" id="flight-paymentblock-mid">
             <form action="showMyReservationTransactions" method="post">
-                <input type="hidden" id="flight_id" name="flight_id" value="<c:out value='${ucusbilgileri.flight_id}' />">
-                <input type="hidden" id="y_sayi" name="y_sayi" value="<c:out value='${yolcusayi.yetiskin_sayi}' />">
-                <input type="hidden" id="c_sayi" name="c_sayi" value="<c:out value='${yolcusayi.cocuk_sayi}' />">
-                <input type="hidden" id="u_ucret" name="u_ucret" value="<c:out value='${ucusbilgileri.flight_fare}' />">
+                <input type="hidden" id="flight_id" name="flight_id" value="<c:out value='${flightInformation.flight_id}' />">
+                <input type="hidden" id="y_sayi" name="y_sayi" value="<c:out value='${passengerNumber.adultNumber}' />">
+                <input type="hidden" id="c_sayi" name="c_sayi" value="<c:out value='${passengerNumber.childrenNumber}' />">
+                <input type="hidden" id="u_ucret" name="u_ucret" value="<c:out value='${flightInformation.flight_fare}' />">
                 <div class="row mb-2">
                     <div class="col-12 mb-2">
                         <div class="card shadow-sm">
@@ -110,7 +110,7 @@
                                     <p class="font-weight-normal card-title-payment f-16 card-text-payment-bold">Yolcu Bilgileri</p>
                                 </div>
                             </div>
-                            <c:forEach var = "i" begin = "1" end="${yolcusayi.yetiskin_sayi}">
+                            <c:forEach var = "i" begin = "1" end="${passengerNumber.adultNumber}">
                                 <div class="card-body">
                                     <div class="row mb-4">
                                         <div class="col-md-12 col-12"> 
@@ -119,8 +119,8 @@
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="yolcu_ad<c:out value = "${i}"/>">Adı</label>
-                                                <input type="text" class="form-control" id="yolcu_ad<c:out value = "${i}"/>" name="yolcu_ad<c:out value = "${i}"/>" required>
+                                                <label for="yolcu_name<c:out value = "${i}"/>">Adı</label>
+                                                <input type="text" class="form-control" id="yolcu_name<c:out value = "${i}"/>" name="yolcu_name<c:out value = "${i}"/>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -137,15 +137,15 @@
                                         </div>
                                         <div class="col-md-6 mb-4 mb-lg-4 col-12">
                                             <div class="form-group">
-                                                <label for="yolcu_tarih<c:out value = "${i}"/>" class="">Doğum Tarihi</label>
-                                                <input type="date" class="form-control" name="yolcu_tarih<c:out value = "${i}"/>" id="yolcu_tarih<c:out value = "${i}"/>" required>
+                                                <label for="yolcu_date<c:out value = "${i}"/>" class="">Doğum Tarihi</label>
+                                                <input type="date" class="form-control" name="yolcu_date<c:out value = "${i}"/>" id="yolcu_date<c:out value = "${i}"/>" required>
                                             </div>
                                         </div>     
                                     </div>   
                                 </div>
                             </c:forEach>
-                            <c:if test="${yolcusayi.cocuk_sayi!=0}">
-                                <c:forEach var = "k" begin = "${yolcusayi.yetiskin_sayi+1}" end="${yolcusayi.cocuk_sayi+yolcusayi.yetiskin_sayi}">
+                            <c:if test="${passengerNumber.childrenNumber!=0}">
+                                <c:forEach var = "k" begin = "${passengerNumber.adultNumber+1}" end="${passengerNumber.childrenNumber+passengerNumber.adultNumber}">
                                     <div class="card-body">
                                         <div class="row mb-4">
                                             <div class="col-md-12 col-12"> 
@@ -154,8 +154,8 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="yolcu_ad<c:out value = "${k}"/>" class="">Adı</label>
-                                                    <input type="text" class="form-control" id="yolcu_ad<c:out value = "${k}"/>" name="yolcu_ad<c:out value = "${k}"/>" required>
+                                                    <label for="yolcu_name<c:out value = "${k}"/>" class="">Adı</label>
+                                                    <input type="text" class="form-control" id="yolcu_name<c:out value = "${k}"/>" name="yolcu_name<c:out value = "${k}"/>" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
@@ -172,8 +172,8 @@
                                             </div>
                                             <div class="col-md-6 mb-4 mb-lg-4 col-12">
                                                 <div class="form-group">
-                                                    <label for="yolcu_tarih<c:out value = "${k}"/>" class="">Doğum Tarihi</label>
-                                                    <input type="date" class="form-control" name="yolcu_tarih<c:out value = "${k}"/>" id="yolcu_tarih<c:out value = "${k}"/>"required>
+                                                    <label for="yolcu_date<c:out value = "${k}"/>" class="">Doğum Tarihi</label>
+                                                    <input type="date" class="form-control" name="yolcu_date<c:out value = "${k}"/>" id="yolcu_date<c:out value = "${k}"/>"required>
                                                 </div>
                                             </div>     
                                         </div>   
@@ -199,22 +199,22 @@
                                                 <div class="exit exit--front fuselage"></div>
                                                 <ol class="cabin fuselage">
                                                     <ol class="seats">
-                                                        <c:forEach var = "i" begin = "1" end="${ucusbilgileri.ucak_koltuk}">
+                                                        <c:forEach var = "i" begin = "1" end="${flightInformation.ucak_seat}">
                                                             <li class="seat">
                                                                 <c:set var="situation" value="${0}" />
-                                                                <c:forEach var = "j" begin = "1" end="${koltuk_dolu.conclusion}">
-                                                                    <c:if test="${i==koltuk[j-1].conclusion}">
+                                                                <c:forEach var = "j" begin = "1" end="${seat_full.conclusion}">
+                                                                    <c:if test="${i==seat[j-1].conclusion}">
                                                                         <c:set var="situation" value="${1}" />
                                                                     </c:if>
                                                                 </c:forEach>
                                                                 <c:choose>
                                                                     <c:when test= "${situation == 0}">
-                                                                        <input type="radio" id="koltuk<c:out value = "${i}"/>" value="<c:out value = "${i}"/>" name="seat" checked/>
-                                                                        <label for="koltuk<c:out value = "${i}"/>"><c:out value = "${i}"/></label> 
+                                                                        <input type="radio" id="seat<c:out value = "${i}"/>" value="<c:out value = "${i}"/>" name="seat" checked/>
+                                                                        <label for="seat<c:out value = "${i}"/>"><c:out value = "${i}"/></label>
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                        <input type="radio" disabled id="koltuk<c:out value = "${i}"/>"  name="seat"/>
-                                                                        <label for="koltuk<c:out value = "${i}"/>"><c:out value = "${i}"/></label>
+                                                                        <input type="radio" disabled id="seat<c:out value = "${i}"/>"  name="seat"/>
+                                                                        <label for="seat<c:out value = "${i}"/>"><c:out value = "${i}"/></label>
                                                                     </c:otherwise>
                                                                 </c:choose>
                                                             </li>         
@@ -228,14 +228,14 @@
                                     </div>
                                     <div class="col-md-6 mb-4 mb-lg-4 col-12">
                                         <div class="form-group" id="divID">
-                                            <c:forEach var = "k" begin = "1" end="${yolcusayi.cocuk_sayi+yolcusayi.yetiskin_sayi}">
+                                            <c:forEach var = "k" begin = "1" end="${passengerNumber.childrenNumber+passengerNumber.adultNumber}">
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
-                                                        <label for="yolcu_koltuk<c:out value = "${k}"/>" class="col-form-label"><c:out value = "${k}"/>. Yolcu</label>
-                                                        <input type="text" id="yolcu_koltuk<c:out value = "${k}"/>" name="yolcu_koltuk<c:out value = "${k}"/>" class="form-control" required onkeypress="return false;">
+                                                        <label for="yolcu_seat<c:out value = "${k}"/>" class="col-form-label"><c:out value = "${k}"/>. Yolcu</label>
+                                                        <input type="text" id="yolcu_seat<c:out value = "${k}"/>" name="yolcu_seat<c:out value = "${k}"/>" class="form-control" required onkeypress="return false;">
                                                     </div>
                                                     <div class="col-auto" style="padding-top:40px;">
-                                                        <button type="button" id="<c:out value = "${k}"/>" onClick="koltuk_sec(this.id)" class="btn btn-dark">Seç</button>
+                                                        <button type="button" id="<c:out value = "${k}"/>" onClick="seat_sec(this.id)" class="btn btn-dark">Seç</button>
                                                     </div>
                                                 </div>
                                             </c:forEach>
@@ -250,10 +250,10 @@
                     </div>
             </form>
             <script type="text/javascript">
-                function koltuk_sec(id) {
+                function seat_sec(id) {
                     var value = document.querySelector('input[name="seat"]:checked').value;
-                    document.getElementById("yolcu_koltuk" + id).value = value;
-                    document.getElementById("koltuk" + value).disabled = true;
+                    document.getElementById("yolcu_seat" + id).value = value;
+                    document.getElementById("seat" + value).disabled = true;
                     document.getElementById(id).disabled = true;
                 }
             </script>

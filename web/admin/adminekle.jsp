@@ -10,8 +10,8 @@
             <div class="card-body">
                 <form class="form" action="showAddAdmin" method="post" autocomplete="off">
                     <div class="form-group">
-                        <label for="user_ad">Ad</label>
-                        <input type="text" class="form-control" id="user_ad" name="user_ad" placeholder="Ad" required>
+                        <label for="user_name">Ad</label>
+                        <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Ad" required>
                     </div>
                     <div class="form-group">
                         <label for="user_soyad">Soyad</label>

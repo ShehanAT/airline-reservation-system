@@ -17,16 +17,16 @@ public class KullaniciDAO {
     private final String jdbcPassword = "123456";    
     
     private static final String KULLANICI_INSERT = "INSERT INTO users" +
-            "  (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES " +
+            "  (user_name, user_surname, user_email, user_password, user_authorization) VALUES " +
         " (?, ?, ?, ?,"+1+");";
     private static final String KULLANICI_SELECT_ID = "select * from users where user_id=?;";
     private static final String KULLANICI_DELETE = "delete from users where user_id = ?;";
     private static final String KULLANICI_SELECT_EMAIL = "select * from users where user_email = ?;";
     private static final String KULLANICI_SELECT_ALL = "select * from users;";
     private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from users where user_email = ? and user_password = ?;";
-    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO users (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES (?,?,?,?,"+2+");";
-    private static final String KULLANICI_UPDATE = "update users set user_ad = ?, user_soyad = ?, user_email = ?, user_password = ? where user_id = ?;";
-    private static final String PROFIL_UPDATE = "update users set user_ad = ?, user_soyad = ?, user_email = ? where user_id = ?;";
+    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO users (user_name, user_surname, user_email, user_password, user_authorization) VALUES (?,?,?,?,"+2+");";
+    private static final String KULLANICI_UPDATE = "update users set user_name = ?, user_surname = ?, user_email = ?, user_password = ? where user_id = ?;";
+    private static final String PROFIL_UPDATE = "update users set user_name = ?, user_surname = ?, user_email = ? where user_id = ?;";
     private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from users where user_email = ? and user_password = ? and user_authorization=2;";
     private static final String SIFRE_KONTROL_SELECT = "select * from users where user_id=? and user_password=?;";
     private static final String SIFRE_UPDATE = "update users set user_password = ? where user_id = ?;";
@@ -55,11 +55,11 @@ public class KullaniciDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int user_id = rs.getInt("user_id");
-                String user_ad = rs.getString("user_ad");
-                String user_soyad = rs.getString("user_soyad");
+                String user_name = rs.getString("user_name");
+                String user_surname = rs.getString("user_surname");
                 String user_email = rs.getString("user_email");
                 int user_authorization = rs.getInt("user_authorization");
-                uyeler.add(new Kullanici(user_id, user_ad, user_soyad, user_email, user_authorization));
+                uyeler.add(new Kullanici(user_id, user_name, user_surname, user_email, user_authorization));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -113,11 +113,11 @@ public class KullaniciDAO {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String user_ad = rs.getString("user_ad");
-                String user_soyad = rs.getString("user_soyad");
+                String user_name = rs.getString("user_name");
+                String user_surname = rs.getString("user_surname");
                 String user_email = rs.getString("user_email");
                 String user_password = rs.getString("user_password");
-                user = new Kullanici(id, user_ad,user_soyad,user_email, user_password);
+                user = new Kullanici(id, user_name,user_surname,user_email, user_password);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -145,8 +145,8 @@ public class KullaniciDAO {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(KULLANICI_UPDATE);) {
-            statement.setString(1, user.getKullanici_ad());
-            statement.setString(2, user.getKullanici_soyad());
+            statement.setString(1, user.getKullanici_name());
+            statement.setString(2, user.getKullanici_surname());
             statement.setString(3, user.getKullanici_email());
             statement.setString(4, user.getKullanici_password());
             statement.setInt(5, user.getKullanici_id());
@@ -170,8 +170,8 @@ public class KullaniciDAO {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(PROFIL_UPDATE);) {
-            statement.setString(1, user.getKullanici_ad());
-            statement.setString(2, user.getKullanici_soyad());
+            statement.setString(1, user.getKullanici_name());
+            statement.setString(2, user.getKullanici_surname());
             statement.setString(3, user.getKullanici_email());
             statement.setInt(4, user.getKullanici_id());
             guncellenenSatir = statement.executeUpdate() > 0;
@@ -183,8 +183,8 @@ public class KullaniciDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_INSERT)) {
-            preparedStatement.setString(1, user.getKullanici_ad());
-            preparedStatement.setString(2, user.getKullanici_soyad());
+            preparedStatement.setString(1, user.getKullanici_name());
+            preparedStatement.setString(2, user.getKullanici_surname());
             preparedStatement.setString(3, user.getKullanici_email());
             preparedStatement.setString(4, user.getKullanici_sifre());
             preparedStatement.executeUpdate();
@@ -197,8 +197,8 @@ public class KullaniciDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_INSERT_ADMIN)) {
-            preparedStatement.setString(1, user.getKullanici_ad());
-            preparedStatement.setString(2, user.getKullanici_soyad());
+            preparedStatement.setString(1, user.getKullanici_name());
+            preparedStatement.setString(2, user.getKullanici_surname());
             preparedStatement.setString(3, user.getKullanici_email());
             preparedStatement.setString(4, user.getKullanici_sifre());
             preparedStatement.executeUpdate();
@@ -279,10 +279,10 @@ public class KullaniciDAO {
 
             while (rs.next()) {
                 int user_id = rs.getInt("user_id");
-                String user_ad = rs.getString("user_ad");
+                String user_name = rs.getString("user_name");
                 String user_soyad = rs.getString("user_soyad");
                 int user_authorization = rs.getInt("user_authorization");
-                user = new Kullanici(user_id, user_ad, user_soyad, user_email, user_authorization);
+                user = new Kullanici(user_id, user_name, user_soyad, user_email, user_authorization);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -304,10 +304,10 @@ public class KullaniciDAO {
 
             while (rs.next()) {
                 int user_id = rs.getInt("user_id");
-                String user_ad = rs.getString("user_ad");
+                String user_name = rs.getString("user_name");
                 String user_soyad = rs.getString("user_soyad");
                 int user_authorization = rs.getInt("user_authorization");
-                user = new Kullanici(user_id, user_ad, user_soyad, admin_email, user_authorization);
+                user = new Kullanici(user_id, user_name, user_soyad, admin_email, user_authorization);
             }
         } catch (SQLException e) {
             printSQLException(e);

@@ -62,8 +62,8 @@
                     <a class="collapse-item" href="country">Ülkeleri Listele</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">ŞEHİRLER</h6>
-                    <a class="collapse-item" href="sehirekle">Şehir Ekle</a>
-                    <a class="collapse-item" href="sehirliste">Şehirleri Listele</a>
+                    <a class="collapse-item" href="addCity">Add City</a>
+                    <a class="collapse-item" href="listCities">List Cities</a>
                 </div>
             </div>
         </li>
@@ -112,11 +112,11 @@
             REZERVASYON
         </div>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#rezervasyon" aria-expanded="true" aria-controls="rezervasyon">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reservation" aria-expanded="true" aria-controls="reservation">
                 <i class="far fa-fw fa-calendar-alt"></i>
                 <span>Reservation İşlemleri</span>
             </a>
-            <div id="rezervasyon" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="reservation" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="reservationList">Reservation Listele</a>
                 </div>

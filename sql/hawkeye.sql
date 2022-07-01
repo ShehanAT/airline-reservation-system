@@ -32,7 +32,7 @@ CREATE TABLE `review` (
   `message_id` int(11) NOT NULL,
   `review_contents` text NOT NULL,
   `review_title` varchar(500) NOT NULL,
-  `review_tarih` timestamp NOT NULL DEFAULT current_timestamp()
+  `review_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,8 +91,8 @@ CREATE TABLE `havaalani_ulke` (
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `user_ad` varchar(100) DEFAULT NULL,
-  `user_soyad` varchar(100) DEFAULT NULL,
+  `user_name` varchar(100) DEFAULT NULL,
+  `user_surname` varchar(100) DEFAULT NULL,
   `user_email` varchar(100) DEFAULT NULL,
   `user_password` varchar(100) DEFAULT NULL,
   `user_authorization` int(11) DEFAULT 1
@@ -102,7 +102,7 @@ CREATE TABLE `users` (
 -- Tablo döküm verisi `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `user_password`, `user_authorization`) VALUES
+INSERT INTO `users` (`user_id`, `user_name`, `user_surname`, `user_email`, `user_password`, `user_authorization`) VALUES
 (3, 'Kullanıcı', 'Admin', 'admin@hawkeye.com', '123456', 2),
 (4, 'Kullanıcı', 'Üye', 'user@hawkeye.com', '123456', 1);
 
@@ -118,7 +118,7 @@ CREATE TABLE `message` (
   `message_email` varchar(500) NOT NULL,
   `message_konu` varchar(500) NOT NULL,
   `message_contents` text NOT NULL,
-  `message_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
+  `message_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `message_notRead` int(2) NOT NULL DEFAULT 0,
   `message_review` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -131,19 +131,19 @@ CREATE TABLE `message` (
 
 CREATE TABLE `reservation` (
   `reservation_id` int(11) NOT NULL,
-  `rezervasyon_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reservation_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `flight_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `pnr_no` varchar(11) NOT NULL DEFAULT '45645',
-  `yolcu_ad` varchar(500) NOT NULL,
-  `yolcu_soyad` varchar(500) NOT NULL,
+  `yolcu_name` varchar(500) NOT NULL,
+  `yolcu_surname` varchar(500) NOT NULL,
   `yolcu_email` varchar(500) NOT NULL,
   `yolcu_tel` varchar(11) NOT NULL,
   `yolcu_tc` varchar(11) NOT NULL,
   `yolcu_tip` int(5) NOT NULL,
-  `yolcu_tarih` varchar(20) NOT NULL,
+  `yolcu_date` varchar(20) NOT NULL,
   `yolcu_ucret` decimal(6,2) NOT NULL,
-  `koltuk_no` varchar(10) NOT NULL,
+  `seat_no` varchar(10) NOT NULL,
   `situation` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -155,8 +155,8 @@ CREATE TABLE `reservation` (
 
 CREATE TABLE `ucak` (
   `plane_id` int(11) NOT NULL,
-  `ucak_ad` varchar(500) NOT NULL,
-  `ucak_koltuk` int(10) NOT NULL,
+  `ucak_name` varchar(500) NOT NULL,
+  `ucak_seat` int(10) NOT NULL,
   `company_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

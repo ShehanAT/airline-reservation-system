@@ -20,8 +20,8 @@ public class Airport_cityDAO {
     private static final String SEHİR_SELECT_ALL = "select * from airport_city;";
     private static final String SEHİR_INSERT = "INSERT INTO airport_city (airport_city_name) VALUES " +
         " (?);"; 
-    private static final String SEHİR_DELETE = "delete from airport_city where havaalani_sehir_id = ?;";
-    private static final String SEHİR_UPDATE = "update airport_city set airport_city_name = ? where havaalani_sehir_id = ?;";
+    private static final String SEHİR_DELETE = "delete from airport_city where havaalani_city_id = ?;";
+    private static final String SEHİR_UPDATE = "update airport_city set airport_city_name = ? where havaalani_city_id = ?;";
     
     public Airport_cityDAO() {}
     
@@ -40,27 +40,27 @@ public class Airport_cityDAO {
         return connection;
     }
         
-    public List<Airport_city> sehirlistele() {
-        List<Airport_city> sehirler = new ArrayList<> ();
+    public List<Airport_city> citylistele() {
+        List<Airport_city> cityler = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SEHİR_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int airport_city_id = rs.getInt("airport_city_id");
                 String airport_city_name = rs.getString("airport_city_name");
-                sehirler.add(new Airport_city(airport_city_id, airport_city_name));
+                cityler.add(new Airport_city(airport_city_id, airport_city_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return sehirler;
+        return cityler;
     }
     
-    public void sehirekle(Airport_city sehir) throws SQLException {
+    public void cityekle(Airport_city city) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(SEHİR_INSERT)) {
-            preparedStatement.setString(1, sehir.getHavaalani_sehir_ad());
+            preparedStatement.setString(1, city.getHavaalani_city_name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -76,31 +76,31 @@ public class Airport_cityDAO {
         return silinenSatir;
     }
     
-    public boolean sehirguncelle(Airport_city sehir) throws SQLException {
+    public boolean cityguncelle(Airport_city city) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(SEHİR_UPDATE);) {
-            statement.setString(1, sehir.getHavaalani_sehir_ad());           
-            statement.setInt(2, sehir.getAirport_city_id());
+            statement.setString(1, city.getHavaalani_city_name());
+            statement.setInt(2, city.getAirport_city_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     }
     
     public Airport_city chooseCity(int id) {
-        Airport_city sehir = null;
+        Airport_city city = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SEHİR_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String airport_city_name = rs.getString("airport_city_name");
-                sehir = new Airport_city(id, airport_city_name);
+                city = new Airport_city(id, airport_city_name);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return sehir;
+        return city;
     }
     
     private void printSQLException(SQLException ex) {

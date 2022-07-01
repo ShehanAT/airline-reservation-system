@@ -2,36 +2,36 @@ package model;
 
 public class Ucak {
     int plane_id;
-    String ucak_ad;
-    int ucak_koltuk;
+    String ucak_name;
+    int ucak_seat;
     int company_id;
     String company_name;
 
     public Ucak() {
     }
 
-    public Ucak(int plane_id, String ucak_ad) {
+    public Ucak(int plane_id, String ucak_name) {
         this.plane_id = plane_id;
-        this.ucak_ad = ucak_ad;
+        this.ucak_name = ucak_name;
     }
 
-    public Ucak(String ucak_ad, int ucak_koltuk, int company_id) {
-        this.ucak_ad = ucak_ad;
-        this.ucak_koltuk = ucak_koltuk;
+    public Ucak(String ucak_name, int ucak_seat, int company_id) {
+        this.ucak_name = ucak_name;
+        this.ucak_seat = ucak_seat;
         this.company_id = company_id;
     }
     
-    public Ucak(int plane_id, String ucak_ad, int ucak_koltuk, int company_id) {
+    public Ucak(int plane_id, String ucak_name, int ucak_seat, int company_id) {
         this.plane_id = plane_id;
-        this.ucak_ad = ucak_ad;
-        this.ucak_koltuk = ucak_koltuk;
+        this.ucak_name = ucak_name;
+        this.ucak_seat = ucak_seat;
         this.company_id = company_id;
     }
 
-    public Ucak(int plane_id, String ucak_ad, int ucak_koltuk, String company_name) {
+    public Ucak(int plane_id, String ucak_name, int ucak_seat, String company_name) {
         this.plane_id = plane_id;
-        this.ucak_ad = ucak_ad;
-        this.ucak_koltuk = ucak_koltuk;
+        this.ucak_name = ucak_name;
+        this.ucak_seat = ucak_seat;
         this.company_name = company_name;
     }
 
@@ -43,15 +43,15 @@ public class Ucak {
         this.plane_id = plane_id;
     }
 
-    public String getUcak_ad() {
-        return ucak_ad;
+    public String getUcak_name() {
+        return ucak_name;
     }
 
-    public void setUcak_ad(String ucak_ad) {
-        this.ucak_ad = ucak_ad;
+    public void setUcak_name(String ucak_name) {
+        this.ucak_name = ucak_name;
     }
 
-    public int getUcak_koltuk() {
+    public int getUcak_seat() {
         return ucak_koltuk;
     }
 
@@ -67,11 +67,11 @@ public class Ucak {
         this.company_id = company_id;
     }
 
-    public String getFirma_ad() {
+    public String getFirma_name() {
         return company_name;
     }
 
-    public void setFirma_ad(String company_name) {
+    public void setFirma_name(String company_name) {
         this.company_name = company_name;
     }
     

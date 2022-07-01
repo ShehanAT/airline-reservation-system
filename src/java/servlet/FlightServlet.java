@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Company;
 import model.Airport;
 import model.Ucak;
-import model.Ucus;
+import model.Flight;
 
 @WebServlet(urlPatterns = {"/admin/deleteFlight", "/admin/createFlight", "/admin/showCreateFlight", "/admin/currentFlightList", "/admin/pastFlightList", "/admin/updateFlight", "/admin/showUpdateFlight"})
 
@@ -88,7 +88,7 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Ucus> currentFlightList = flightDAO.currentFlightList();
+            List<Flight> currentFlightList = flightDAO.currentFlightList();
             request.setAttribute("currentFlightList", currentFlightList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("listCurrentFlights.jsp");
             dispatcher.forward(request, response);
@@ -103,7 +103,7 @@ public class FlightServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Ucus> pastFlightList = flightDAO.pastFlightList();
+            List<Flight> pastFlightList = flightDAO.pastFlightList();
             request.setAttribute("pastFlightList", pastFlightList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("listCurrentFlights.jsp");
             dispatcher.forward(request, response);
@@ -149,7 +149,7 @@ public class FlightServlet extends HttpServlet {
             int plane_id = Integer.parseInt(request.getParameter("plane_id"));
             double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
 
-            Ucus newFlight = new Ucus(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
+            Flight newFlight = new Flight(flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
             Boolean conclusion = flightDAO.flightControl(newFlight);
             if (conclusion == false) {
                 response.sendRedirect("currentFlightList?situation=unsuccessful");
@@ -169,7 +169,7 @@ public class FlightServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Ucus flight = flightDAO.ucussec(id);
+            Flight flight = flightDAO.ucussec(id);
             List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
             List<Ucak> ucak = flightDAO.ucak();
@@ -199,7 +199,7 @@ public class FlightServlet extends HttpServlet {
             int company_id = Integer.parseInt(request.getParameter("company_id"));
             int plane_id = Integer.parseInt(request.getParameter("plane_id"));
             Double flight_fare = Double.parseDouble(request.getParameter("flight_fare"));
-            Ucus flight = new Ucus(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
+            Flight flight = new Flight(flight_id, flight_departure_id, end_heir_id, flight_date, flight_hour, flight_time, company_id, plane_id, flight_fare);
             flightDAO.updateFlight(flight);
             response.sendRedirect("currentFlightList");
         }

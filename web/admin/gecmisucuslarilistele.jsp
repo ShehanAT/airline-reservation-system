@@ -43,13 +43,13 @@
                         <c:forEach var="pastFlightList" items="${pastFlightList}">
                             <tr>
                                 <td><c:out value="${pastFlightList.flight_id}" /></td>
-                                <td><c:out value="${pastFlightList.ucus_kalkis}" /></td>
+                                <td><c:out value="${pastFlightList.ucus_departure}" /></td>
                                 <td><c:out value="${pastFlightList.ucus_varis}" /></td>
                                 <td><c:out value="${pastFlightList.flight_date}" /></td>
                                 <td><c:out value="${pastFlightList.flight_hour}" /></td>
                                 <td><c:out value="${pastFlightList.flight_time}" /></td>
                                 <td><c:out value="${pastFlightList.company_name}" /></td>
-                                <td><c:out value="${pastFlightList.ucak_ad}" /></td>
+                                <td><c:out value="${pastFlightList.ucak_name}" /></td>
                                 <td><c:out value="${pastFlightList.flight_fare}" /></td>
                                 <td>
                                     <a href="deleteFlight?id=<c:out value='${pastFlightList.flight_id}' />">

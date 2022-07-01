@@ -5,29 +5,29 @@ public class Reply {
     int message_id;
     String reply_contents;
     String reply_title;
-    String reply_tarih;
+    String reply_date;
     String message_surname;
     String message_email;
     String message_konu;
     String message_contents;
-    String message_tarih;
+    String message_date;
     int message_notRead;
     int message_reply;
 
     public Reply() {
     }
 
-    public Reply(int reply_id, int message_id, String reply_contents, String reply_title, String reply_tarih, String message_surname, String message_email, String message_konu, String message_contents, String message_tarih) {
+    public Reply(int reply_id, int message_id, String reply_contents, String reply_title, String reply_date, String message_surname, String message_email, String message_konu, String message_contents, String message_date) {
         this.reply_id = reply_id;
         this.message_id = message_id;
         this.reply_contents = reply_contents;
         this.reply_title = reply_title;
-        this.reply_tarih = reply_tarih;
+        this.reply_date = reply_date;
         this.message_surname = message_surname;
         this.message_email = message_email;
         this.message_konu = message_konu;
         this.message_contents = message_contents;
-        this.message_tarih = message_tarih;
+        this.message_date = message_date;
     }
     
     public Reply(int message_id, String reply_contents, String reply_title) {
@@ -68,11 +68,11 @@ public class Reply {
         this.message_content = message_content;
     }
 
-    public String getMessage_tarih() {
+    public String getMessage_date() {
         return message_date;
     }
 
-    public void setMessage_tarih(String message_date) {
+    public void setMessage_date(String message_date) {
         this.message_date = message_date;
     }
 
@@ -124,12 +124,12 @@ public class Reply {
         this.review_title = review_title;
     }
 
-    public String getReply_tarih() {
-        return review_tarih;
+    public String getReply_date() {
+        return review_date;
     }
 
-    public void setReply_tarih(String review_tarih) {
-        this.review_tarih = review_tarih;
+    public void setReply_date(String review_date) {
+        this.review_date = review_date;
     }
     
     

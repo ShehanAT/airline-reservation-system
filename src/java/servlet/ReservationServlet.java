@@ -101,13 +101,13 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect("flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            String yolcu_ad = new String((request.getParameter("yolcu_ad" + id)).getBytes("ISO-8859-1"), "UTF-8");
-            String yolcu_soyad = new String((request.getParameter("yolcu_soyad" + id)).getBytes("ISO-8859-1"), "UTF-8");
-            String yolcu_tc = request.getParameter("yolcu_tc" + id);
-            String yolcu_tarih = request.getParameter("yolcu_tarih" + id);
-            String yolcu_email = request.getParameter("yolcu_email" + id);
-            String yolcu_tel = request.getParameter("yolcu_tel" + id);
-            Reservation rez = new Reservation(id, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tarih);
+            String traveller_name = new String((request.getParameter("traveller_name" + id)).getBytes("ISO-8859-1"), "UTF-8");
+            String traveller_surname = new String((request.getParameter("traveller_surname" + id)).getBytes("ISO-8859-1"), "UTF-8");
+            String traveller_tc = request.getParameter("traveller_tc" + id);
+            String traveller_date = request.getParameter("traveller_date" + id);
+            String traveller_email = request.getParameter("traveller_email" + id);
+            String traveller_tel = request.getParameter("traveller_tel" + id);
+            Reservation rez = new Reservation(id, traveller_name, traveller_surname, traveller_email, traveller_tel, traveller_tc, traveller_date);
             reservationDAO.updateReservation(rez);
             response.sendRedirect("myReservationTransactions?guncelleme=successful");
         }
@@ -124,8 +124,8 @@ public class ReservationServlet extends HttpServlet {
             int user_id = (int) session.getAttribute("user_id");
             reservationDAO.cancellationStatus1(user_id);
             reservationDAO.cancellationStatus0(user_id);
-            List<Reservation> rezervasyonislem = reservationDAO.rezervasyonislem(user_id);
-            request.setAttribute("rezervasyonislem", rezervasyonislem);
+            List<Reservation> reservationProcess = reservationDAO.reservationProcess(user_id);
+            request.setAttribute("reservationProcess", reservationProcess);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("myReservationTransactions.jsp");
             dispatcher.forward(request, response);
@@ -142,36 +142,36 @@ public class ReservationServlet extends HttpServlet {
         } else {
             int flight_id = Integer.parseInt(request.getParameter("flight_id"));
             int user_id = (int) session.getAttribute("user_id");
-            String yolcu_email = request.getParameter("yolcu_email");
-            String yolcu_tel = request.getParameter("yolcu_tel");
+            String traveller_email = request.getParameter("traveller_email");
+            String traveller_tel = request.getParameter("traveller_tel");
             String pnr_no;
             int c_sayi = Integer.parseInt(request.getParameter("c_sayi"));
             int y_sayi = Integer.parseInt(request.getParameter("y_sayi"));
             Double u_ucret = Double.parseDouble(request.getParameter("u_ucret"));
-            int yolcu_tip;
-            String yolcu_ad;
-            String yolcu_soyad;
-            String yolcu_tc;
-            String yolcu_tarih;
-            String yolcu_koltuk;
+            int traveller_tip;
+            String traveller_name;
+            String traveller_surname;
+            String traveller_tc;
+            String traveller_date;
+            String traveller_seat;
             Boolean conclusion = false;
             for (int i = 1; i <= (c_sayi + y_sayi); i++) {
-                yolcu_koltuk = request.getParameter("yolcu_koltuk" + i);
-                conclusion = reservationDAO.seatControl(flight_id, yolcu_koltuk);
+                traveller_seat = request.getParameter("traveller_seat" + i);
+                conclusion = reservationDAO.seatControl(flight_id, traveller_seat);
             }
             if (conclusion == true) {
                 response.sendRedirect("myReservationTransactions?situation=unsuccessful");
             } else {
                 for (int i = 1; i <= (c_sayi + y_sayi); i++) {
                     pnr_no = getAlphaNumericString(8);
-                    yolcu_tip = Integer.parseInt(request.getParameter("yolcu_tip" + i));
-                    yolcu_ad = new String((request.getParameter("yolcu_ad" + i)).getBytes("ISO-8859-1"), "UTF-8");
-                    yolcu_soyad = new String((request.getParameter("yolcu_soyad" + i)).getBytes("ISO-8859-1"), "UTF-8");
-                    yolcu_tc = request.getParameter("yolcu_tc" + i);
-                    yolcu_tarih = request.getParameter("yolcu_tarih" + i);
-                    yolcu_koltuk = request.getParameter("yolcu_koltuk" + i);
-                    Reservation rezervasyon = new Reservation(pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_koltuk, user_id, flight_id, yolcu_tarih, u_ucret);
-                    reservationDAO.rezervasyonekle(rezervasyon);
+                    traveller_tip = Integer.parseInt(request.getParameter("traveller_tip" + i));
+                    traveller_name = new String((request.getParameter("traveller_name" + i)).getBytes("ISO-8859-1"), "UTF-8");
+                    traveller_surname = new String((request.getParameter("traveller_surname" + i)).getBytes("ISO-8859-1"), "UTF-8");
+                    traveller_tc = request.getParameter("traveller_tc" + i);
+                    traveller_date = request.getParameter("traveller_date" + i);
+                    traveller_seat = request.getParameter("traveller_seat" + i);
+                    Reservation reservation = new Reservation(pnr_no, traveller_name, traveller_surname, traveller_email, traveller_tel, traveller_tc, traveller_tip, traveller_seat, user_id, flight_id, traveller_date, u_ucret);
+                    reservationDAO.addReservation(reservation);
                 }
 
                 response.sendRedirect("myReservationTransactions?situation=successful");
@@ -206,16 +206,16 @@ public class ReservationServlet extends HttpServlet {
 
     private void flight_inquiry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int airport_departure_id = Integer.parseInt(request.getParameter("gidis"));
-        int airport_heir_id = Integer.parseInt(request.getParameter("varis"));
-        String flight_date = request.getParameter("gidis_tarih");
-        int yetiskin_sayi = Integer.parseInt(request.getParameter("yetiskin"));
-        int cocuk_sayi = Integer.parseInt(request.getParameter("cocuk"));
+        int airport_departure_id = Integer.parseInt(request.getParameter("departure"));
+        int airport_heir_id = Integer.parseInt(request.getParameter("arrival"));
+        String flight_date = request.getParameter("departure_date");
+        int adultNumber = Integer.parseInt(request.getParameter("adult"));
+        int childrenNumber = Integer.parseInt(request.getParameter("children"));
 
-        Reservation rezervasyon = new Reservation(airport_departure_id, airport_heir_id, flight_date, yetiskin_sayi, cocuk_sayi);
-        request.setAttribute("rezervasyon", rezervasyon);
-        List<Reservation> tekyonsorgula = reservationDAO.tekyonsorgulama(rezervasyon);
-        request.setAttribute("flight_inquiry", tekyonsorgula);
+        Reservation reservation = new Reservation(airport_departure_id, airport_heir_id, flight_date, adultNumber, childrenNumber);
+        request.setAttribute("reservation", reservation);
+        List<Reservation> questionInquire = reservationDAO.oneWayQuery(reservation);
+        request.setAttribute("flight_inquiry", questionInquire);
         List<Airport> airportList = airportDAO.airportList();
         request.setAttribute("airportList", airportList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("flight_inquiry.jsp");
@@ -241,24 +241,24 @@ public class ReservationServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
-            response.sendRedirect("login?rezervasyon=unsuccessful");
+            response.sendRedirect("login?reservation=unsuccessful");
         } else if ((Integer) session.getAttribute("user_authorization") != 1) {
             response.sendRedirect("flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Reservation ucusbilgileri = reservationDAO.ucusbilgileri(id);
-            request.setAttribute("ucusbilgileri", ucusbilgileri);
+            Reservation flightInformation = reservationDAO.flightInformation(id);
+            request.setAttribute("flightInformation", flightInformation);
 
-            List<Reservation> koltuk = reservationDAO.koltukbilgi(id);
-            request.setAttribute("koltuk", koltuk);
+            List<Reservation> seat = reservationDAO.seatinformation(id);
+            request.setAttribute("seat", seat);
 
-            Reservation koltuk_dolu = reservationDAO.dolukoltuk(id);
-            request.setAttribute("koltuk_dolu", koltuk_dolu);
+            Reservation seat_full = reservationDAO.fullseat(id);
+            request.setAttribute("seat_full", seat_full);
 
-            int yetiskin_sayi = Integer.parseInt(request.getParameter("yetiskin"));
-            int cocuk_sayi = Integer.parseInt(request.getParameter("cocuk"));
-            Reservation yolcusayi = new Reservation(yetiskin_sayi, cocuk_sayi);
-            request.setAttribute("yolcusayi", yolcusayi);
+            int adultNumber = Integer.parseInt(request.getParameter("adult"));
+            int childrenNumber = Integer.parseInt(request.getParameter("children"));
+            Reservation passengerNumber = new Reservation(adultNumber, childrenNumber);
+            request.setAttribute("passengerNumber", passengerNumber);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("makeReservation.jsp");
             dispatcher.forward(request, response);
@@ -268,19 +268,19 @@ public class ReservationServlet extends HttpServlet {
     private void reservationInquiry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         String pnr_no = request.getParameter("pnr_no");
-        String yolcu_soyad = new String((request.getParameter("yolcu_soyad")).getBytes("ISO-8859-1"), "UTF-8");
-        Reservation reservationLogin = new Reservation(pnr_no, yolcu_soyad);
+        String traveller_surname = new String((request.getParameter("traveller_surname")).getBytes("ISO-8859-1"), "UTF-8");
+        Reservation reservationLogin = new Reservation(pnr_no, traveller_surname);
         request.setAttribute("reservationLogin", reservationLogin);
 
-        Reservation rezervasyonsec = reservationDAO.rezervasyonsec(pnr_no, yolcu_soyad);
-        request.setAttribute("rezervasyon", rezervasyonsec);
+        Reservation selectReservation = reservationDAO.selectReservation(pnr_no, traveller_surname);
+        request.setAttribute("reservation", selectReservation);
 
-        if (rezervasyonsec == null) {
+        if (selectReservation == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("reservationInquiry.jsp?situation=unsuccessful");
             dispatcher.forward(request, response);
         } else {
-            Reservation rezervasyonbilgi = reservationDAO.rezervasyonbilgi(rezervasyonsec.getUcus_id(), rezervasyonsec.getReservation_id());
-            request.setAttribute("rezervasyonbilgi", rezervasyonbilgi);
+            Reservation reservationInformation = reservationDAO.reservationInformation(selectReservation.getFlight_id(), selectReservation.getReservation_id());
+            request.setAttribute("reservationInformation", reservationInformation);
             RequestDispatcher dispatcher = request.getRequestDispatcher("reservationInquiry.jsp");
             dispatcher.forward(request, response);
         }

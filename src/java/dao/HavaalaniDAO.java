@@ -17,13 +17,13 @@ public class AirportDAO {
     private final String jdbcPassword = "123456";  
     
     
-    private static final String HAVAALANI_SELECT_ALL = "SELECT airport_id, airport_name, airport_code, havaalani_ulke.airport_country_id, havaalani_ulke.airport_country_name, havaalani_sehir.havaalani_sehir_id, havaalani_sehir.airport_city_name  FROM havaalani INNER JOIN havaalani_ulke ON airport.airport_country_id= havaalani_ulke.airport_country_id INNER JOIN havaalani_sehir ON airport.havaalani_sehir_id= havaalani_sehir.havaalani_sehir_id;";
-    private static final String HAVAALANI_INSERT ="INSERT INTO havaalani (airport_name, airport_code, havaalani_sehir_id, airport_country_id) VALUES (?,?,?,?);";
-    private static final String HAVAALANI_SEHIR_SELECT_ALL ="select * from havaalani_sehir;";
+    private static final String HAVAALANI_SELECT_ALL = "SELECT airport_id, airport_name, airport_code, havaalani_ulke.airport_country_id, havaalani_ulke.airport_country_name, havaalani_city.havaalani_city_id, havaalani_city.airport_city_name  FROM havaalani INNER JOIN havaalani_ulke ON airport.airport_country_id= havaalani_ulke.airport_country_id INNER JOIN havaalani_city ON airport.havaalani_city_id= havaalani_city.havaalani_city_id;";
+    private static final String HAVAALANI_INSERT ="INSERT INTO havaalani (airport_name, airport_code, havaalani_city_id, airport_country_id) VALUES (?,?,?,?);";
+    private static final String HAVAALANI_SEHIR_SELECT_ALL ="select * from havaalani_city;";
     private static final String HAVAALANI_ULKE_SELECT_ALL ="select * from havaalani_ulke;";
     private static final String HAVAALANI_DELETE = "delete from havaalani where airport_id = ?;";
     private static final String HAVAALANI_SELECT_ID = "SELECT * FROM havaalani  where airport_id=?;";
-    private static final String HAVAALANI_UPDATE = "update havaalani set airport_name = ?, airport_code=?, airport_country_id=?, havaalani_sehir_id=? where airport_id = ?;";
+    private static final String HAVAALANI_UPDATE = "update havaalani set airport_name = ?, airport_code=?, airport_country_id=?, havaalani_city_id=? where airport_id = ?;";
     
     public AirportDAO() {}
     
@@ -49,14 +49,14 @@ public class AirportDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int havaalani_sehir_id = rs.getInt("havaalani_sehir_id");
+                int havaalani_city_id = rs.getInt("havaalani_city_id");
                 String airport_city_name = rs.getString("airport_city_name");
                 int airport_country_id = rs.getInt("airport_country_id");
                 String airport_country_name = rs.getString("airport_country_name");
                 String airport_name = rs.getString("airport_name");
                 String airport_code = rs.getString("airport_code");
                 int airport_id = rs.getInt("airport_id");
-                airport.add(new Airport(airport_id, airport_country_id, havaalani_sehir_id, airport_name, airport_code, airport_country_name, airport_city_name));
+                airport.add(new Airport(airport_id, airport_country_id, havaalani_city_id, airport_name, airport_code, airport_country_name, airport_city_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -71,9 +71,9 @@ public class AirportDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_SEHIR_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int havaalani_sehir_id = rs.getInt("havaalani_sehir_id");
+                int havaalani_city_id = rs.getInt("havaalani_city_id");
                 String airport_city_name = rs.getString("airport_city_name");
-                airportCity.add(new Airport_city(havaalani_sehir_id, airport_city_name));
+                airportCity.add(new Airport_city(havaalani_city_id, airport_city_name));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -103,7 +103,7 @@ public class AirportDAO {
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(HAVAALANI_INSERT)) {
             preparedStatement.setString(1, airport.getHavaalani_ad());
-            preparedStatement.setString(2, airport.getHavaalani_kod());
+            preparedStatement.setString(2, airport.getHavaalani_code());
             preparedStatement.setInt(3, airport.getAirport_city_id());
             preparedStatement.setInt(4, airport.getAirport_country_id());
             preparedStatement.executeUpdate();
@@ -131,9 +131,9 @@ public class AirportDAO {
                 String airport_name = rs.getString("airport_name");
                 String airport_code = rs.getString("airport_code");
                 int airport_country_id = rs.getInt("airport_country_id");
-                int havaalani_sehir_id = rs.getInt("havaalani_sehir_id");
+                int havaalani_city_id = rs.getInt("havaalani_city_id");
                 
-                havaalani = new Airport(id, airport_country_id, havaalani_sehir_id,airport_name, airport_code);
+                havaalani = new Airport(id, airport_country_id, havaalani_city_id,airport_name, airport_code);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -145,7 +145,7 @@ public class AirportDAO {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(HAVAALANI_UPDATE);) {
             statement.setString(1, airport.getHavaalani_ad());
-            statement.setString(2, airport.getHavaalani_kod());
+            statement.setString(2, airport.getHavaalani_code());
             statement.setInt(3, airport.getAirport_country_id());
             statement.setInt(4, airport.getAirport_city_id());
             statement.setInt(5, airport.getHavaalani_id());

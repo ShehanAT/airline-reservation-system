@@ -25,27 +25,27 @@
                         <form action="flight_inquiry" id="search_form_1" method="post" name="flight" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" onsubmit="return Kontrol()">
                             <div class="search_item">
                                 <div>Gidiş Yeri</div>
-                                <select class="search_input" id="gidis" name="gidis" required>
+                                <select class="search_input" id="departure" name="departure" required>
                                     <c:forEach var="havaalani" items="${airportList}">
-                                        <option value="<c:out value="${airport.airport_id}" />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /> | <c:out value="${airport.airport_city_ad}" /></option>
+                                        <option value="<c:out value="${airport.airport_id}" />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /> | <c:out value="${airport.airport_city_name}" /></option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="search_item">
                                 <div>Varış Yeri</div>
-                                <select class="search_input" id="varis" name="varis" required>
+                                <select class="search_input" id="arrival" name="arrival" required>
                                     <c:forEach var="havaalani" items="${airportList}">
-                                        <option value="<c:out value="${airport.airport_id}" />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /> | <c:out value="${airport.airport_city_ad}" /></option>
+                                        <option value="<c:out value="${airport.airport_id}" />"><c:out value="${airport.airport_name}" /> | <c:out value="${airport.airport_code}" /> | <c:out value="${airport.airport_city_name}" /></option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="search_item">
                                 <div>Gidiş Tarihi</div>
-                                <input type="date" class="search_input" name="gidis_tarih" id="gidis_tarih" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${today}" />" required>
+                                <input type="date" class="search_input" name="departure_date" id="departure_date" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${today}" />" required>
                             </div>
                             <div class="search_item">
                                 <div>Yetişkin</div>
-                                <select name="yetiskin" id="yetiskin" class="dropdown_item_select search_input" required>
+                                <select name="adult" id="adult" class="dropdown_item_select search_input" required>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="search_item">
                                 <div>Çocuk</div>
-                                <select name="cocuk" id="cocuk" class="dropdown_item_select search_input" required>
+                                <select name="children" id="children" class="dropdown_item_select search_input" required>
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="search_item">
                                 <div>Soyadınız</div>
-                                <input type="text" name="yolcu_soyad" id="yolcu_soyad" class="search_input" required="required">
+                                <input type="text" name="traveller_surname" id="traveller_surname" class="search_input" required="required">
                             </div>
                             <button type="submit" class="button search_button">Sorgula</button>
                         </form>
@@ -84,11 +84,11 @@
 <script>
     function Kontrol() {
         var formKontrol = document.forms["flight"];
-        var gidis = formKontrol["gidis"];
-        var varis = formKontrol["varis"];
-        gidis = gidis.value;
-        varis = varis.value;
-        if (gidis === varis) {
+        var departure = formKontrol["departure"];
+        var arrival = formKontrol["arrival"];
+        departure = departure.value;
+        arrival = arrival.value;
+        if (departure === arrival) {
             swal({
                 title: "Hata",
                 text: "Gidiş Yeri ve Varış Yeri aynı olamaz!",
@@ -105,7 +105,7 @@
 </script>
 <section class="pt-5">
     <div class="intro">
-        <h1 class="text-center intro_title">Gönül rahatlığıyla rezervasyon yapın</h1>
+        <h1 class="text-center intro_title">Gönül rahatlığıyla reservation yapın</h1>
         <p class="text-center intro_subtitle">Koşulsuz bilet canceli, online değişiklik, kayıtlı kart ve daha fazlası</p>
     </div>
     <div class="">
@@ -129,7 +129,7 @@
                     <img class="intro_card-img-top mx-auto" src="assets/images/kart-saklama-mobil-telefon.png" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title text-center">Kayıtlı Kart</h5>
-                            <p class="card-text text-center">Tüm bilgilerini bir kez kaydet, biletlerini hızlıca al.</p>
+                            <p class="card-text text-center">Tüm informationlerini bir kez kaydet, biletlerini hızlıca al.</p>
                         </div>
                 </div>
             </div>
@@ -251,14 +251,14 @@
                     <img class="intro_card-img-top mx-auto" src="assets/images/1.svg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title text-center">İstediğiniz yere gidin</h5>
-                            <p class="card-text text-center">Bu sizin dünyanız ve keşfetmenize yardımcı olacağız. En mükemmel seyahati planlamak için milyonlarca uçuş rezervasyon seçeneği arasından en iyi fiyatları bulun.</p>
+                            <p class="card-text text-center">Bu sizin dünyanız ve keşfetmenize yardımcı olacağız. En mükemmel seyahati planlamak için milyonlarca uçuş reservation seçeneği arasından en iyi fiyatları bulun.</p>
                         </div>
                 </div>
                 <div class="card">
                     <img class="intro_card-img-top mx-auto" src="assets/images/2.svg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title text-center">Karmaşaya yer yok</h5>
-                            <p class="card-text text-center">Hiçbir gizli ücret yok. Hiçbir gizli masraf yok. Hiçbir hile yok. Bizimle rezervasyon yaparken paranızı tam olarak nereye harcadığınızı her zaman bilirsiniz. Böylece daha seyahatiniz başlamadan rahatlayabilirsiniz.</p>
+                            <p class="card-text text-center">Hiçbir gizli ücret yok. Hiçbir gizli masraf yok. Hiçbir hile yok. Bizimle reservation yaparken paranızı tam olarak nereye harcadığınızı her zaman bilirsiniz. Böylece daha seyahatiniz başlamadan rahatlayabilirsiniz.</p>
                         </div>
                 </div>
                 <div class="card">

@@ -17,61 +17,61 @@ public class ReservationDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";    
     
-    private static final String TEKYON_SORGULAMA_SELECT1="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from flight JOIN havaalani JOIN airport_city\n" +
+    private static final String TEKYON_SORGULAMA_SELECT1="select distinct flight_id,(ucak.ucak_seat-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) as bos_seat, a.airport_city_name as departure_city, b.airport_city_name as arrival_city ,s.airport_name as departure_name,s.airport_code as departure_code, p.airport_name as arrival_name, p.airport_code as arrival_code, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_name, flight_fare from flight JOIN havaalani JOIN airport_city\n" +
                                     "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
                                     "INNER JOIN  havaalani p ON (p.airport_id = flight.end_heir_id)\n" +
                                     "INNER JOIN  airport_city a ON (a.airport_city_id = s.airport_city_id)\n" +
                                     "INNER JOIN  airport_city b ON (b.airport_city_id = p.airport_city_id)\n" +
-                                    "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND (ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) >= ?;";
-    private static final String TEKYON_SORGULAMA_SELECT2="select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, flight_fare from flight JOIN havaalani JOIN airport_city\n" +
+                                    "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND (ucak.ucak_seat-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) >= ?;";
+    private static final String TEKYON_SORGULAMA_SELECT2="select distinct flight_id,(ucak.ucak_seat-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) as bos_seat, a.airport_city_name as departure_city, b.airport_city_name as arrival_city ,s.airport_name as departure_name,s.airport_code as departure_code, p.airport_name as arrival_name, p.airport_code as arrival_code, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_name, flight_fare from flight JOIN havaalani JOIN airport_city\n" +
                                     "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
                                     "INNER JOIN  havaalani p ON (p.airport_id = flight.end_heir_id)\n" +
                                     "INNER JOIN  airport_city a ON (a.airport_city_id = s.airport_city_id)\n" +
-                                    "INNER JOIN  havaalani_sehir b ON (b.havaalani_sehir_id = p.havaalani_sehir_id)\n" +
-                                    "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND flight_hour > ? AND (ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) >= ?;";
-    private static final String REZERVASYON_SELECT_COUNT="SELECT COUNT(*) as conclusion FROM reservation WHERE rezervasyon_tarih BETWEEN ? AND ?;";
+                                    "INNER JOIN  havaalani_city b ON (b.havaalani_city_id = p.havaalani_city_id)\n" +
+                                    "WHERE s.airport_id = ? AND p.airport_id =? AND flight_date=? AND flight_hour > ? AND (ucak.ucak_seat-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) >= ?;";
+    private static final String REZERVASYON_SELECT_COUNT="SELECT COUNT(*) as conclusion FROM reservation WHERE reservation_date BETWEEN ? AND ?;";
     private static final String UCUS_SELECT_COUNT="SELECT count(*) as conclusion FROM flight WHERE flight_date >= ? ;";
     private static final String MESAJ_SELECT_COUNT="SELECT count(*) as conclusion FROM message WHERE message_notRead = 0;";
     private static final String REZERVASYON_DELETE = "delete from reservation where reservation_id = ?;";
-    private static final String REZERVASYON_SELECT_PNRNO="SELECT * FROM reservation where pnr_no=? and yolcu_soyad=?;";
-    private static final String REZERVASYON_SELECT_UCUS_ID="select DISTINCT k.ucak_ad, u.flight_hour, u.flight_date, u.flight_time, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tc, yolcu_tip, a.airport_city_name AS kalkis_sehir, s.airport_name as kalkis_ad, s.airport_code as kalkis_kod, b.airport_city_name as varis_sehir, p.airport_name as varis_ad, p.airport_code as varis_kod, f.company_name, f.company_logo from reservation JOIN havaalani JOIN havaalani_sehir JOIN flight JOIN company JOIN ucak\n" +
+    private static final String REZERVASYON_SELECT_PNRNO="SELECT * FROM reservation where pnr_no=? and traveller_surname=?;";
+    private static final String REZERVASYON_SELECT_UCUS_ID="select DISTINCT k.ucak_name, u.flight_hour, u.flight_date, u.flight_time, traveller_name, traveller_surname, traveller_email, traveller_tc, traveller_tip, a.airport_city_name AS departure_city, s.airport_name as departure_name, s.airport_code as departure_code, b.airport_city_name as arrival_city, p.airport_name as arrival_name, p.airport_code as arrival_code, f.company_name, f.company_logo from reservation JOIN havaalani JOIN havaalani_city JOIN flight JOIN company JOIN ucak\n" +
                                     "INNER JOIN  flight u ON (reservation.flight_id = flight.flight_id)\n" +
                                     "INNER JOIN  company f ON (f.company_id = u.company_id)\n" +
                                     "INNER JOIN  ucak k ON (k.plane_id = u.plane_id)\n" +
                                     "INNER JOIN  havaalani s ON (u.flight_departure_id = s.airport_id)\n" +
                                     "INNER JOIN  havaalani p ON (u.end_heir_id = p.airport_id)\n" +
-                                    "INNER JOIN  havaalani_sehir a ON (s.havaalani_sehir_id = a.havaalani_sehir_id )\n" +
-                                    "INNER JOIN  havaalani_sehir b ON (p.havaalani_sehir_id = b.havaalani_sehir_id)\n" +
-                                    "WHERE u.flight_id=? and rezervasyon.reservation_id=?;";
-    private static final String SELECT_UCUS_BILGILERI = "select distinct flight_id,(ucak.ucak_koltuk-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) as bos_koltuk, a.airport_city_name as kalkis_sehir, b.airport_city_name as varis_sehir ,s.airport_name as kalkis_ad,s.airport_code as kalkis_kod, p.airport_name as varis_ad, p.airport_code as varis_kod, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_ad, ucak.ucak_koltuk, flight_fare from flight JOIN havaalani JOIN havaalani_sehir\n" +
+                                    "INNER JOIN  havaalani_city a ON (s.havaalani_city_id = a.havaalani_city_id )\n" +
+                                    "INNER JOIN  havaalani_city b ON (p.havaalani_city_id = b.havaalani_city_id)\n" +
+                                    "WHERE u.flight_id=? and reservation.reservation_id=?;";
+    private static final String SELECT_UCUS_BILGILERI = "select distinct flight_id,(ucak.ucak_seat-(SELECT COUNT(flight_id) FROM reservation WHERE flight_id=flight.flight_id )) as bos_seat, a.airport_city_name as departure_city, b.airport_city_name as arrival_city ,s.airport_name as departure_name,s.airport_code as departure_code, p.airport_name as arrival_name, p.airport_code as arrival_code, flight_date, flight_hour, flight_time, company.company_name,company.company_logo , ucak.ucak_name, ucak.ucak_seat, flight_fare from flight JOIN havaalani JOIN havaalani_city\n" +
                                     "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                     "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                     "INNER JOIN  havaalani s ON (s.airport_id = flight.flight_departure_id)\n" +
                                     "INNER JOIN  havaalani p ON (p.airport_id = flight.end_heir_id)\n" +
-                                    "INNER JOIN  havaalani_sehir a ON (a.havaalani_sehir_id = s.havaalani_sehir_id)\n" +
-                                    "INNER JOIN  havaalani_sehir b ON (b.havaalani_sehir_id = p.havaalani_sehir_id)\n" +
+                                    "INNER JOIN  havaalani_city a ON (a.havaalani_city_id = s.havaalani_city_id)\n" +
+                                    "INNER JOIN  havaalani_city b ON (b.havaalani_city_id = p.havaalani_city_id)\n" +
                                     "WHERE flight_id=?;";
-    private static final String KOLTUK_BILGI_SELECT="SELECT koltuk_no FROM reservation \n" +
+    private static final String KOLTUK_BILGI_SELECT="SELECT seat_no FROM reservation \n" +
                                                 "WHERE flight_id=?\n" +
-                                                "ORDER BY koltuk_no ASC;";  
-    private static final String KOLTUK_DOLU_SELECT="SELECT COUNT(koltuk_no) as koltuk_dolu FROM reservation \n" +
+                                                "ORDER BY seat_no ASC;";
+    private static final String KOLTUK_DOLU_SELECT="SELECT COUNT(seat_no) as seat_full FROM reservation \n" +
                                                 "WHERE flight_id=?;";
-    private static final String REZERVASYON_INSERT ="INSERT INTO reservation (flight_id, user_id, pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_tarih, yolcu_ucret, koltuk_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
-    private static final String KOLTUK_NO_SELECT="SELECT * FROM reservation WHERE flight_id=? and koltuk_no=?;";
-    private static final String REZERVASYON_ISLEMLERIM_SELECT="SELECT r.reservation_id,r.situation ,r.rezervasyon_tarih, r.pnr_no, r.yolcu_ad, r.yolcu_soyad, r.yolcu_email, r.yolcu_tel, r.yolcu_tc, r.yolcu_tip, r.yolcu_tarih, r.yolcu_ucret, r.koltuk_no, u.flight_date, u.flight_hour, u.flight_time, k.airport_name as kalkis_ad, k.airport_code as kalkis_kod, v.airport_name as varis_ad, v.airport_code as varis_kod, s1.airport_city_name as kalkis_sehir, s2.airport_city_name as varis_sehir, f.company_name, f.company_logo, p.ucak_ad from reservation AS r\n" +
+    private static final String REZERVASYON_INSERT ="INSERT INTO reservation (flight_id, user_id, pnr_no, traveller_name, traveller_surname, traveller_email, traveller_tel, traveller_tc, traveller_tip, traveller_date, traveller_ucret, seat_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String KOLTUK_NO_SELECT="SELECT * FROM reservation WHERE flight_id=? and seat_no=?;";
+    private static final String REZERVASYON_ISLEMLERIM_SELECT="SELECT r.reservation_id,r.situation ,r.reservation_date, r.pnr_no, r.traveller_name, r.traveller_surname, r.traveller_email, r.traveller_tel, r.traveller_tc, r.traveller_tip, r.traveller_date, r.traveller_ucret, r.seat_no, u.flight_date, u.flight_hour, u.flight_time, k.airport_name as departure_name, k.airport_code as departure_code, v.airport_name as arrival_name, v.airport_code as arrival_code, s1.airport_city_name as departure_city, s2.airport_city_name as arrival_city, f.company_name, f.company_logo, p.ucak_name from reservation AS r\n" +
                                                 "JOIN flight AS u ON u.flight_id = r.flight_id\n" +
                                                 "JOIN havaalani AS k ON k.airport_id=u.flight_departure_id \n" +
                                                 "JOIN havaalani AS v ON v.airport_id=u.end_heir_id\n" +
-                                                "JOIN havaalani_sehir AS s1 ON s1.havaalani_sehir_id=k.havaalani_sehir_id\n" +
-                                                "JOIN havaalani_sehir AS s2 ON s2.havaalani_sehir_id=v.havaalani_sehir_id\n" +
+                                                "JOIN havaalani_city AS s1 ON s1.havaalani_city_id=k.havaalani_city_id\n" +
+                                                "JOIN havaalani_city AS s2 ON s2.havaalani_city_id=v.havaalani_city_id\n" +
                                                 "JOIN company AS f ON f.company_id=u.company_id\n" +
                                                 "JOIN ucak AS p ON p.plane_id=u.plane_id\n" +
                                                 "WHERE r.user_id=?\n"+
-                                                "ORDER BY r.rezervasyon_tarih DESC;";
+                                                "ORDER BY r.reservation_date DESC;";
     private static final String IPTAL_DURUM1="update reservation r\n" +
                                                 "join flight u on r.flight_id = u.flight_id\n" +
                                                 "set r.situation = '1'\n" +
@@ -80,17 +80,17 @@ public class ReservationDAO {
                                                 "join flight u on r.flight_id = u.flight_id\n" +
                                                 "set r.situation = '0'\n" +
                                                 "WHERE (r.user_id=? and u.flight_date < ?) OR (u.flight_date = ? and u.flight_hour < ?);";
-    private static final String REZERVASYON_UPDATE = "update reservation set yolcu_ad = ?, yolcu_soyad=?, yolcu_tc=?, yolcu_tarih=?, yolcu_email=?, yolcu_tel=? where reservation_id = ?;";
+    private static final String REZERVASYON_UPDATE = "update reservation set traveller_name = ?, traveller_surname=?, traveller_tc=?, traveller_date=?, traveller_email=?, traveller_tel=? where reservation_id = ?;";
     
-    private static final String RZERVASYON_INCELE="SELECT r.reservation_id,r.situation ,r.rezervasyon_tarih, r.pnr_no, r.yolcu_ad, r.yolcu_soyad, r.yolcu_email, r.yolcu_tel, r.yolcu_tc, r.yolcu_tip, r.yolcu_tarih, r.yolcu_ucret, r.koltuk_no, u.flight_date, u.flight_hour, u.flight_time, k.airport_name as kalkis_ad, k.airport_code as kalkis_kod, v.airport_name as varis_ad, v.airport_code as varis_kod, s1.airport_city_name as kalkis_sehir, s2.airport_city_name as varis_sehir, f.company_name, f.company_logo, p.ucak_ad from reservation AS r\n" +
+    private static final String RZERVASYON_INCELE="SELECT r.reservation_id,r.situation ,r.reservation_date, r.pnr_no, r.traveller_name, r.traveller_surname, r.traveller_email, r.traveller_tel, r.traveller_tc, r.traveller_tip, r.traveller_date, r.traveller_ucret, r.seat_no, u.flight_date, u.flight_hour, u.flight_time, k.airport_name as departure_name, k.airport_code as departure_code, v.airport_name as arrival_name, v.airport_code as arrival_code, s1.airport_city_name as departure_city, s2.airport_city_name as arrival_city, f.company_name, f.company_logo, p.ucak_name from reservation AS r\n" +
                                                 "JOIN flight AS u ON u.flight_id = r.flight_id\n" +
                                                 "JOIN havaalani AS k ON k.airport_id=u.flight_departure_id\n" +
                                                 "JOIN havaalani AS v ON v.airport_id=u.end_heir_id\n" +
-                                                "JOIN havaalani_sehir AS s1 ON s1.havaalani_sehir_id=k.havaalani_sehir_id\n" +
-                                                "JOIN havaalani_sehir AS s2 ON s2.havaalani_sehir_id=v.havaalani_sehir_id\n" +
+                                                "JOIN havaalani_city AS s1 ON s1.havaalani_city_id=k.havaalani_city_id\n" +
+                                                "JOIN havaalani_city AS s2 ON s2.havaalani_city_id=v.havaalani_city_id\n" +
                                                 "JOIN company AS f ON f.company_id=u.company_id\n" +
                                                 "JOIN ucak AS p ON p.plane_id=u.plane_id\n" +
-                                                "ORDER BY r.rezervasyon_tarih DESC;";
+                                                "ORDER BY r.reservation_date DESC;";
     
     public ReservationDAO() {}
     
@@ -114,7 +114,7 @@ public class ReservationDAO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now(); 
-        String tarih = now.format(formatter);
+        String date = now.format(formatter);
         String saat = now.format(timeformatter);
         
         String[] ARRAYsaat = saat.split(":");
@@ -138,8 +138,8 @@ public class ReservationDAO {
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(IPTAL_DURUM1);) {
             statement.setInt(1, id);
-            statement.setString(2, tarih);
-            statement.setString(3, tarih);
+            statement.setString(2, date);
+            statement.setString(3, date);
             statement.setString(4, flight_hour);
             guncellenenSatir = statement.executeUpdate() > 0;
         }
@@ -151,7 +151,7 @@ public class ReservationDAO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now(); 
-        String tarih = now.format(formatter);
+        String date = now.format(formatter);
         String saat = now.format(timeformatter);
         
         String[] ARRAYsaat = saat.split(":");
@@ -175,20 +175,20 @@ public class ReservationDAO {
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(IPTAL_DURUM0);) {
             statement.setInt(1, id);
-            statement.setString(2, tarih);
-            statement.setString(3, tarih);
+            statement.setString(2, date);
+            statement.setString(3, date);
             statement.setString(4, flight_hour);
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     }
     
-    public boolean seatControl(int id, String koltuk_no) {
+    public boolean seatControl(int id, String seat_no) {
 
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KOLTUK_NO_SELECT);) {
             preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, koltuk_no);
+            preparedStatement.setString(2, seat_no);
             ResultSet rs = preparedStatement.executeQuery();
             
             if (rs.next()) {
@@ -202,20 +202,20 @@ public class ReservationDAO {
         return false;
     }
     
-    public void rezervasyonekle(Reservation rez) throws SQLException {
+    public void addReservation(Reservation rez) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(REZERVASYON_INSERT)) {
-            preparedStatement.setInt(1, rez.getUcus_id());
+            preparedStatement.setInt(1, rez.getFlight_id());
             preparedStatement.setInt(2, rez.getKullanici_id());
             preparedStatement.setString(3, rez.getPnr_no());
-            preparedStatement.setString(4, rez.getYolcu_ad());
-            preparedStatement.setString(5, rez.getYolcu_soyad());
+            preparedStatement.setString(4, rez.getYolcu_name());
+            preparedStatement.setString(5, rez.getYolcu_surname());
             preparedStatement.setString(6, rez.getYolcu_email());
             preparedStatement.setString(7, rez.getYolcu_tel());
             preparedStatement.setString(8, rez.getYolcu_tc());
             preparedStatement.setInt(9, rez.getYolcu_tip());
-            preparedStatement.setString(10, rez.getYolcu_tarih());
+            preparedStatement.setString(10, rez.getYolcu_date());
             preparedStatement.setDouble(11, rez.getYolcu_ucret());
             preparedStatement.setString(12, rez.getKoltuk_no());
             preparedStatement.executeUpdate();
@@ -224,7 +224,7 @@ public class ReservationDAO {
         }
     } 
     
-    public List<Reservation> rezervasyonislem(int id) {
+    public List<Reservation> reservationProcess(int id) {
         List<Reservation> rez = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(REZERVASYON_ISLEMLERIM_SELECT);) {
@@ -234,15 +234,15 @@ public class ReservationDAO {
             while (rs.next()) {
                 int situation = rs.getInt("situation");
                 String pnr_no = rs.getString("pnr_no");
-                String yolcu_ad = rs.getString("yolcu_ad");
-                String yolcu_soyad = rs.getString("yolcu_soyad");
-                String yolcu_email = rs.getString("yolcu_email");
-                String yolcu_tel = rs.getString("yolcu_tel");
-                String yolcu_tc = rs.getString("yolcu_tc");
-                int yolcu_tip = rs.getInt("yolcu_tip");
-                String yolcu_tarih = rs.getString("yolcu_tarih");
-                Double yolcu_ucret=rs.getDouble("yolcu_ucret"); 
-                String koltuk_no = rs.getString("koltuk_no");
+                String traveller_name = rs.getString("traveller_name");
+                String traveller_surname = rs.getString("traveller_surname");
+                String traveller_email = rs.getString("traveller_email");
+                String traveller_tel = rs.getString("traveller_tel");
+                String traveller_tc = rs.getString("traveller_tc");
+                int traveller_tip = rs.getInt("traveller_tip");
+                String traveller_date = rs.getString("traveller_date");
+                Double traveller_ucret=rs.getDouble("traveller_ucret");
+                String seat_no = rs.getString("seat_no");
                 String flight_hour=rs.getString("flight_hour");
                 flight_hour=flight_hour.substring(0, 5);
                 String flight_date=rs.getString("flight_date");
@@ -267,19 +267,19 @@ public class ReservationDAO {
                 }else{                                    
                     Ssaat=String.valueOf(saat);
                 }
-                String varis_saat = Ssaat+":"+Sdakika;              
+                String arrival_saat = Ssaat+":"+Sdakika;
                 int reservation_id = rs.getInt("reservation_id");
-                String kalkis_sehir=rs.getString("kalkis_sehir");
-                String kalkis_ad=rs.getString("kalkis_ad");
-                String kalkis_kod=rs.getString("kalkis_kod");
-                String varis_sehir=rs.getString("varis_sehir");
-                String varis_ad=rs.getString("varis_ad");
-                String varis_kod=rs.getString("varis_kod");
+                String departure_city=rs.getString("departure_city");
+                String departure_name=rs.getString("departure_name");
+                String departure_code=rs.getString("departure_code");
+                String arrival_city=rs.getString("arrival_city");
+                String arrival_name=rs.getString("arrival_name");
+                String arrival_code=rs.getString("arrival_code");
                 String company_name=rs.getString("company_name");
                 String company_logo=rs.getString("company_logo");
-                String ucak_ad=rs.getString("ucak_ad");
-                String rezervasyon_tarih=rs.getString("rezervasyon_tarih");          
-                rez.add(new Reservation(situation, reservation_id, rezervasyon_tarih, pnr_no,yolcu_ad, yolcu_soyad,yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, koltuk_no, flight_date, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, flight_hour, flight_time, company_name, company_logo, flight_s, flight_d, varis_saat,ucak_ad, yolcu_tarih, yolcu_ucret));
+                String ucak_name=rs.getString("ucak_name");
+                String reservation_date=rs.getString("reservation_date");
+                rez.add(new Reservation(situation, reservation_id, reservation_date, pnr_no,traveller_name, traveller_surname,traveller_email, traveller_tel, traveller_tc, yolcu_tip, seat_no, flight_date, departure_city, departure_name, departure_code, arrival_city, arrival_name, arrival_code, flight_hour, flight_time, company_name, company_logo, flight_s, flight_d, arrival_saat,ucak_name, yolcu_date, yolcu_ucret));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -291,10 +291,10 @@ public class ReservationDAO {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement preparedStatement = connection.prepareStatement(REZERVASYON_UPDATE);) {
-            preparedStatement.setString(1, rez.getYolcu_ad());
-            preparedStatement.setString(2, rez.getYolcu_soyad());
+            preparedStatement.setString(1, rez.getYolcu_name());
+            preparedStatement.setString(2, rez.getYolcu_surname());
             preparedStatement.setString(3, rez.getYolcu_tc());
-            preparedStatement.setString(4, rez.getYolcu_tarih());
+            preparedStatement.setString(4, rez.getYolcu_date());
             preparedStatement.setString(5, rez.getYolcu_email());
             preparedStatement.setString(6, rez.getYolcu_tel());
             preparedStatement.setInt(7, rez.getReservation_id());
@@ -303,7 +303,7 @@ public class ReservationDAO {
         return guncellenenSatir;
     } 
     
-    public List<Reservation> tekyonsorgulama(Reservation reservation) {
+    public List<Reservation> oneWayQuery(Reservation reservation) {
         List<Reservation> rez = new ArrayList<>();
         DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now();
@@ -331,24 +331,24 @@ public class ReservationDAO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.now();
         String date1 = date.format(formatter);
-        if (reservation.getUcus_tarih().equals(date1)) {
+        if (reservation.getFlight_date().equals(date1)) {
             try (Connection connection = getConnection();
                     PreparedStatement statement = connection.prepareStatement(TEKYON_SORGULAMA_SELECT2);) {
-                statement.setInt(1, reservation.getHavaalani_kalkis_id());
-                statement.setInt(2, reservation.getHavaalani_varis_id());
-                statement.setString(3, reservation.getUcus_tarih());
+                statement.setInt(1, reservation.getHavaalani_departure_id());
+                statement.setInt(2, reservation.getHavaalani_arrival_id());
+                statement.setString(3, reservation.getFlight_date());
                 statement.setString(4, u_saat);
                 statement.setInt(5, (reservation.getCocuk_sayi() + reservation.getYetiskin_sayi()));
                 ResultSet rs = statement.executeQuery();
 
                 while (rs.next()) {
                     int flight_id = rs.getInt("flight_id");
-                    String kalkis_sehir = rs.getString("kalkis_sehir");
-                    String kalkis_ad = rs.getString("kalkis_ad");
-                    String kalkis_kod = rs.getString("kalkis_kod");
-                    String varis_sehir = rs.getString("varis_sehir");
-                    String varis_ad = rs.getString("varis_ad");
-                    String varis_kod = rs.getString("varis_kod");
+                    String departure_city = rs.getString("departure_city");
+                    String departure_name = rs.getString("departure_name");
+                    String departure_code = rs.getString("departure_code");
+                    String arrival_city = rs.getString("arrival_city");
+                    String arrival_name = rs.getString("arrival_name");
+                    String arrival_code = rs.getString("arrival_code");
                     String flight_hour = rs.getString("flight_hour");
                     flight_hour = flight_saat.substring(0, 5);
                     String flight_date = rs.getString("flight_date");
@@ -374,11 +374,11 @@ public class ReservationDAO {
                     } else {
                         Ssaat = String.valueOf(saat);
                     }
-                    String varis_saat = Ssaat + ":" + Sdakika;
+                    String arrival_saat = Ssaat + ":" + Sdakika;
                     String company_name = rs.getString("company_name");
                     String company_logo = rs.getString("company_logo");
                     Double flight_fare = rs.getDouble("flight_fare");
-                    rez.add(new Reservation(flight_date, flight_id, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, ucus_saat, flight_time, company_name, company_logo, flight_fare, ucus_s, ucus_d, varis_saat));
+                    rez.add(new Reservation(flight_date, flight_id, departure_city, departure_name, departure_code, arrival_city, arrival_name, arrival_code, ucus_saat, flight_time, company_name, company_logo, flight_fare, ucus_s, ucus_d, arrival_saat));
                 }
             } catch (SQLException e) {
                 printSQLException(e);
@@ -387,20 +387,20 @@ public class ReservationDAO {
         } else {
             try (Connection connection = getConnection();
                     PreparedStatement statement = connection.prepareStatement(TEKYON_SORGULAMA_SELECT1);) {
-                statement.setInt(1, reservation.getHavaalani_kalkis_id());
-                statement.setInt(2, reservation.getHavaalani_varis_id());
-                statement.setString(3, reservation.getUcus_tarih());
-                statement.setInt(4, (reservation.getCocuk_sayi() + rezervasyon.getYetiskin_sayi()));
+                statement.setInt(1, reservation.getHavaalani_departure_id());
+                statement.setInt(2, reservation.getHavaalani_arrival_id());
+                statement.setString(3, reservation.getFlight_date());
+                statement.setInt(4, (reservation.getCocuk_sayi() + reservation.getYetiskin_sayi()));
                 ResultSet rs = statement.executeQuery();
 
                 while (rs.next()) {
                     int flight_id = rs.getInt("flight_id");
-                    String kalkis_sehir = rs.getString("kalkis_sehir");
-                    String kalkis_ad = rs.getString("kalkis_ad");
-                    String kalkis_kod = rs.getString("kalkis_kod");
-                    String varis_sehir = rs.getString("varis_sehir");
-                    String varis_ad = rs.getString("varis_ad");
-                    String varis_kod = rs.getString("varis_kod");
+                    String departure_city = rs.getString("departure_city");
+                    String kalkis_name = rs.getString("kalkis_name");
+                    String kalkis_code = rs.getString("kalkis_code");
+                    String arrival_city = rs.getString("arrival_city");
+                    String arrival_name = rs.getString("arrival_name");
+                    String arrival_code = rs.getString("arrival_code");
                     String ucus_saat = rs.getString("ucus_saat");
                     ucus_saat = ucus_saat.substring(0, 5);
                     String flight_date = rs.getString("flight_date");
@@ -426,11 +426,11 @@ public class ReservationDAO {
                     } else {
                         Ssaat = String.valueOf(saat);
                     }
-                    String varis_saat = Ssaat + ":" + Sdakika;
+                    String arrival_saat = Ssaat + ":" + Sdakika;
                     String company_name = rs.getString("company_name");
                     String company_logo = rs.getString("company_logo");
                     Double flight_fare = rs.getDouble("flight_fare");
-                    rez.add(new Reservation(flight_date, flight_id, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, ucus_saat, flight_time, company_name, company_logo, flight_fare, ucus_s, ucus_d, varis_saat));
+                    rez.add(new Reservation(flight_date, flight_id, kalkis_city, kalkis_name, kalkis_code, arrival_city, arrival_name, arrival_code, ucus_saat, flight_time, company_name, company_logo, flight_fare, ucus_s, ucus_d, arrival_saat));
                 }
             } catch (SQLException e) {
                 printSQLException(e);
@@ -439,7 +439,7 @@ public class ReservationDAO {
         }
     }
     
-    public Reservation ucusbilgileri(int id) {
+    public Reservation flightInformation(int id) {
         Reservation rez=null;
         try (Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_UCUS_BILGILERI);) {
@@ -448,12 +448,12 @@ public class ReservationDAO {
             
             while (rs.next()) {
                 int flight_id = rs.getInt("flight_id");
-                String kalkis_sehir=rs.getString("kalkis_sehir");
-                String kalkis_ad=rs.getString("kalkis_ad");
-                String kalkis_kod=rs.getString("kalkis_kod");
-                String varis_sehir=rs.getString("varis_sehir");
-                String varis_ad=rs.getString("varis_ad");
-                String varis_kod=rs.getString("varis_kod");
+                String kalkis_city=rs.getString("kalkis_city");
+                String kalkis_name=rs.getString("kalkis_ad");
+                String kalkis_code=rs.getString("kalkis_code");
+                String arrival_city=rs.getString("arrival_city");
+                String arrival_ad=rs.getString("arrival_ad");
+                String arrival_code=rs.getString("arrival_code");
                 String ucus_saat=rs.getString("ucus_saat");
                 ucus_saat=ucus_saat.substring(0, 5);
                 String flight_date=rs.getString("flight_date");
@@ -479,13 +479,13 @@ public class ReservationDAO {
                 }else{                                    
                     Ssaat=String.valueOf(saat);
                 }
-                String varis_saat = Ssaat+":"+Sdakika;
+                String arrival_saat = Ssaat+":"+Sdakika;
                 String company_name=rs.getString("company_name");
                 String company_logo=rs.getString("company_logo");
                 Double flight_fare=rs.getDouble("flight_fare");
                 String ucak_ad=rs.getString("ucak_ad");
-                int ucak_koltuk = rs.getInt("ucak_koltuk");
-                rez = new Reservation(flight_date,flight_id, kalkis_sehir,kalkis_ad,kalkis_kod,varis_sehir,varis_ad,varis_kod,ucus_saat,flight_time,company_name,company_logo,flight_fare, ucus_s, ucus_d, varis_saat,ucak_ad,ucak_koltuk);
+                int ucak_seat = rs.getInt("ucak_seat");
+                rez = new Reservation(flight_date,flight_id, kalkis_city,kalkis_ad,kalkis_code,arrival_city,arrival_ad,arrival_code,ucus_saat,flight_time,company_name,company_logo,flight_fare, ucus_s, ucus_d, varis_saat,ucak_ad,ucak_seat);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -493,16 +493,16 @@ public class ReservationDAO {
         return rez;
     } 
     
-    public Reservation rezervasyonsec(String pnr_no, String yolcu_soyad) {
-        Reservation rezervasyon = null;
+    public Reservation selectReservation(String pnr_no, String yolcu_surname) {
+        Reservation reservation = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(REZERVASYON_SELECT_PNRNO);) {
             preparedStatement.setString(1, pnr_no);
-            preparedStatement.setString(2, yolcu_soyad);
+            preparedStatement.setString(2, yolcu_surname);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int reservation_id = rs.getInt("reservation_id");
-                String rezervasyon_tarih = rs.getString("rezervasyon_tarih");
+                String reservation_date = rs.getString("reservation_date");
                 int flight_id = rs.getInt("flight_id");
                 int user_id = rs.getInt("user_id");
                 String yolcu_ad = rs.getString("yolcu_ad");
@@ -510,17 +510,17 @@ public class ReservationDAO {
                 String yolcu_tel = rs.getString("yolcu_tel");
                 String yolcu_tc = rs.getString("yolcu_tc");
                 int yolcu_tip = rs.getInt("yolcu_tip"); 
-                String koltuk_no = rs.getString("koltuk_no");
-                rezervasyon = new Reservation(reservation_id, rezervasyon_tarih,pnr_no,yolcu_ad, yolcu_soyad,yolcu_email,yolcu_tel,yolcu_tc,yolcu_tip,koltuk_no,user_id, flight_id  );
+                String seat_no = rs.getString("seat_no");
+                reservation = new Reservation(reservation_id, reservation_date,pnr_no,yolcu_ad, yolcu_surname,yolcu_email,yolcu_tel,yolcu_tc,yolcu_tip,seat_no,user_id, flight_id  );
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyon;
+        return reservation;
     }
     
-    public Reservation rezervasyonbilgi(int flight_id, int reservation_id) {
-        Reservation rezervasyon = null;
+    public Reservation reservationInformation(int flight_id, int reservation_id) {
+        Reservation reservation = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(REZERVASYON_SELECT_UCUS_ID);) {
             preparedStatement.setInt(1, flight_id);
@@ -533,23 +533,23 @@ public class ReservationDAO {
                 String[] ARRAYflight_time = ucus_sure.split(":");
                 String ucus_s = ARRAYucus_sure[0];
                 String ucus_d = ARRAYucus_sure[1];
-                String flight_date = rs.getString("ucus_tarih");
+                String flight_date = rs.getString("ucus_date");
                 String ucak_ad = rs.getString("ucak_ad");
                 String company_name = rs.getString("company_name");
                 String company_logo = rs.getString("company_logo");
-                String kalkis_sehir = rs.getString("kalkis_sehir");
+                String kalkis_city = rs.getString("kalkis_city");
                 String kalkis_ad = rs.getString("kalkis_ad");
-                String kalkis_kod = rs.getString("kalkis_kod");
-                String varis_sehir = rs.getString("varis_sehir");
+                String kalkis_code = rs.getString("kalkis_code");
+                String varis_city = rs.getString("varis_city");
                 String varis_ad = rs.getString("varis_ad");
-                String varis_kod = rs.getString("varis_kod");
+                String varis_code = rs.getString("varis_code");
                 
-                rezervasyon = new Reservation(ucus_tarih, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, ucus_saat, company_name, company_logo, ucus_s, ucus_d, ucak_ad);
+                reservation = new Reservation(ucus_date, kalkis_city, kalkis_ad, kalkis_code, varis_city, varis_ad, varis_code, ucus_saat, company_name, company_logo, ucus_s, ucus_d, ucak_ad);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyon;
+        return reservation;
     }
     
     public boolean cancelReservation(int id) throws SQLException {
@@ -562,7 +562,7 @@ public class ReservationDAO {
     }
     
     public List<Reservation> numberOfReservations() {
-        List<Reservation> rezervasyon = new ArrayList<> ();
+        List<Reservation> reservation = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDate months = LocalDate.now().minusMonths(1);
         String date1 = months.format(formatter);
@@ -575,16 +575,16 @@ public class ReservationDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int conclusion = rs.getInt("conclusion");
-                rezervasyon.add(new Reservation(conclusion));
+                reservation.add(new Reservation(conclusion));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyon;
+        return reservation;
     }
     
     public List<Reservation> numberOfFlights() {
-        List<Reservation> rezervasyon = new ArrayList<> ();
+        List<Reservation> reservation = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDateTime now = LocalDateTime.now(); 
         String date1 = now.format(formatter);
@@ -594,27 +594,27 @@ public class ReservationDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int conclusion = rs.getInt("conclusion");
-                rezervasyon.add(new Reservation(conclusion));
+                reservation.add(new Reservation(conclusion));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyon;
+        return reservation;
     }
     
     public List<Reservation>numberOfMessages() {
-        List<Reservation> rezervasyon = new ArrayList<> ();
+        List<Reservation> reservation = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(MESAJ_SELECT_COUNT);) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int conclusion = rs.getInt("conclusion");
-                rezervasyon.add(new Reservation(conclusion));
+                reservation.add(new Reservation(conclusion));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyon;
+        return reservation;
     }
     
     public List<Reservation> reservationList() {
@@ -627,17 +627,17 @@ public class ReservationDAO {
                 int situation = rs.getInt("situation");
                 String pnr_no = rs.getString("pnr_no");
                 String yolcu_ad = rs.getString("yolcu_ad");
-                String yolcu_soyad = rs.getString("yolcu_soyad");
+                String yolcu_surname = rs.getString("yolcu_surname");
                 String yolcu_email = rs.getString("yolcu_email");
                 String yolcu_tel = rs.getString("yolcu_tel");
                 String yolcu_tc = rs.getString("yolcu_tc");
                 int yolcu_tip = rs.getInt("yolcu_tip");
-                String yolcu_tarih = rs.getString("yolcu_tarih");
+                String yolcu_date = rs.getString("yolcu_date");
                 Double yolcu_ucret=rs.getDouble("yolcu_ucret"); 
-                String koltuk_no = rs.getString("koltuk_no");
+                String seat_no = rs.getString("seat_no");
                 String ucus_saat=rs.getString("ucus_saat");
                 ucus_saat=ucus_saat.substring(0, 5);
-                String ucus_tarih=rs.getString("ucus_tarih");
+                String ucus_date=rs.getString("ucus_date");
                 String ucus_sure=rs.getString("ucus_sure");
                 String[] ARRAYucus_sure = ucus_sure.split(":"); 
                 String ucus_s = ARRAYucus_sure[0];
@@ -661,53 +661,53 @@ public class ReservationDAO {
                 }
                 String varis_saat = Ssaat+":"+Sdakika;              
                 int reservation_id = rs.getInt("reservation_id");
-                String kalkis_sehir=rs.getString("kalkis_sehir");
+                String kalkis_city=rs.getString("kalkis_city");
                 String kalkis_ad=rs.getString("kalkis_ad");
-                String kalkis_kod=rs.getString("kalkis_kod");
-                String varis_sehir=rs.getString("varis_sehir");
+                String kalkis_code=rs.getString("kalkis_code");
+                String varis_city=rs.getString("varis_city");
                 String varis_ad=rs.getString("varis_ad");
-                String varis_kod=rs.getString("varis_kod");
+                String varis_code=rs.getString("varis_code");
                 String company_name=rs.getString("company_name");
                 String company_logo=rs.getString("company_logo");
                 String ucak_ad=rs.getString("ucak_ad");
-                String rezervasyon_tarih=rs.getString("rezervasyon_tarih");          
-                rez.add(new Reservation(situation, reservation_id, rezervasyon_tarih, pnr_no,yolcu_ad, yolcu_soyad,yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, koltuk_no, ucus_tarih, kalkis_sehir, kalkis_ad, kalkis_kod, varis_sehir, varis_ad, varis_kod, ucus_saat, ucus_sure, company_name, company_logo, ucus_s, ucus_d, varis_saat,ucak_ad, yolcu_tarih, yolcu_ucret));
+                String reservation_date=rs.getString("reservation_date");
+                rez.add(new Reservation(situation, reservation_id, reservation_date, pnr_no,yolcu_ad, yolcu_surname,yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, seat_no, ucus_date, kalkis_city, kalkis_ad, kalkis_code, varis_city, varis_ad, varis_code, ucus_saat, ucus_sure, company_name, company_logo, ucus_s, ucus_d, varis_saat,ucak_ad, yolcu_date, yolcu_ucret));
             }
         } catch (SQLException e) {
             printSQLException(e);
         } return rez;
     }  
     
-    public List<Reservation> koltukbilgi(int id) {
-        List<Reservation> rezervasyonlar = new ArrayList<> ();
+    public List<Reservation> seatinformation(int id) {
+        List<Reservation> reservations = new ArrayList<> ();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KOLTUK_BILGI_SELECT);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int koltuk_no = rs.getInt("koltuk_no");
-                rezervasyonlar.add(new Reservation(koltuk_no));
+                int seat_no = rs.getInt("seat_no");
+                reservations.add(new Reservation(seat_no));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyonlar;
+        return reservations;
     }
     
-    public Reservation dolukoltuk(int id) {
-        Reservation rezervasyonlar = new Reservation();
+    public Reservation fullseat(int id) {
+        Reservation reservations = new Reservation();
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KOLTUK_DOLU_SELECT);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int koltuk_dolu = rs.getInt("koltuk_dolu");
-                rezervasyonlar = new Reservation(koltuk_dolu);
+                int seat_full = rs.getInt("seat_full");
+                reservations = new Reservation(seat_full);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return rezervasyonlar;
+        return reservations;
     }
     
     private void printSQLException(SQLException ex) {

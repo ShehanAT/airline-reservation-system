@@ -71,11 +71,11 @@
 <script>
     function Kontrol() {
         var formKontrol = document.forms["flight"];
-        var gidis = formKontrol["flight_departure_id"];
+        var departure = formKontrol["flight_departure_id"];
         var varis = formKontrol["end_heir_id"];
-        gidis = gidis.value;
+        departure = departure.value;
         varis = varis.value;
-        if (gidis === varis) {
+        if (departure === varis) {
             swal({
                 title: "Hata",
                 text: "Gidiş Yeri ve Varış Yeri aynı olamaz!",

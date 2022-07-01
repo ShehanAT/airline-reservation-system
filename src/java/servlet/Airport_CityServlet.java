@@ -70,7 +70,7 @@ public class Airport_CityServlet extends HttpServlet {
         } else {
             List<AirportCity> cityList = airportCitDAO.cityLists();
             request.setAttribute("cityList", cityList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("sehirlistele.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("citylistele.jsp");
             dispatcher.forward(request, response);
         }
     }

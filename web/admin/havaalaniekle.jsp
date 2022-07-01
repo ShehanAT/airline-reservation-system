@@ -19,10 +19,10 @@
                         <input type="text" class="form-control" id="airport_code" name="airport_code" placeholder="Havaalanı Kodu" required>
                     </div>
                     <div class="form-group">
-                        <label for="havaalani_sehir_id">Şehir</label>
-                        <select class="form-control" id="havaalani_sehir_id" name="havaalani_sehir_id" required>
-                            <c:forEach var="sehir" items="${airportCity}">
-                                <option value="<c:out value='${sehir.havaalani_sehir_id}' />"><c:out value="${sehir.airport_city_name}" /></option>
+                        <label for="havaalani_city_id">Şehir</label>
+                        <select class="form-control" id="havaalani_city_id" name="havaalani_city_id" required>
+                            <c:forEach var="city" items="${airportCity}">
+                                <option value="<c:out value='${city.havaalani_city_id}' />"><c:out value="${city.airport_city_name}" /></option>
                             </c:forEach>
                         </select>
                     </div>

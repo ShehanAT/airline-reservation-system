@@ -14,7 +14,7 @@
                             </div>
                             <div class="search_item">
                                 <div>Soyadınız</div>
-                                <input type="text" name="yolcu_soyad" id="yolcu_soyad" class="search_input" value="<c:out value='${reservationLogin.yolcu_soyad}' />" required="required">
+                                <input type="text" name="traveller_soyad" id="traveller_soyad" class="search_input" value="<c:out value='${reservationLogin.traveller_soyad}' />" required="required">
                             </div>
                             <button class="search_button">Yeniden Sorgula</button>
                         </form>
@@ -25,7 +25,7 @@
     </div>
 </main>
 <c:choose>
-    <c:when test="${empty rezervasyon}">
+    <c:when test="${empty reservation}">
         <div class="text-center" style="margin-bottom: 130px; margin-top: 100px;">
             <i class="fas fa-exclamation text-dark fa-4x mt-3" style="margin-left: 40px;"></i>
             <h2 class="mb-3 mt-4">Reservation Bulunamadı</h2>
@@ -37,23 +37,23 @@
                 <h5 class="card-header text-center" style="background-color: #F1F2F8">REZERVASYON BİLGİLERİ</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${rezervasyonbilgi.company_logo}' />" style="width: 1.5em"> <c:out value='${rezervasyonbilgi.company_name}' /> - <c:out value='${rezervasyonbilgi.ucak_ad}' /></h5>
-                        <h5 class="card-title">PNR NUMARASI : <span class="text-white bg-dark"><c:out value='${rezervasyon.pnr_no}' /></span></h5>
+                        <h5 class="card-title"><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value='${reservationinformation.company_logo}' />" style="width: 1.5em"> <c:out value='${reservationinformation.company_name}' /> - <c:out value='${reservationinformation.ucak_name}' /></h5>
+                        <h5 class="card-title">PNR NUMARASI : <span class="text-white bg-dark"><c:out value='${reservation.pnr_no}' /></span></h5>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.flight_date}' /></span></p>
+                        <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value='${reservationinformation.flight_date}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Nereden : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.kalkis_sehir}' /> | <c:out value='${rezervasyonbilgi.kalkis_ad}' /> [<c:out value='${rezervasyonbilgi.kalkis_kod}' />]</span></p>
+                        <p>Nereden : <span class="font-weight-bold"><c:out value='${reservationinformation.departure_city}' /> | <c:out value='${reservationinformation.departure_name}' /> [<c:out value='${reservationinformation.departure_code}' />]</span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Nereye : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.varis_sehir}' /> | <c:out value='${rezervasyonbilgi.varis_ad}' /> [<c:out value='${rezervasyonbilgi.varis_kod}' />]</span></p>
+                        <p>Nereye : <span class="font-weight-bold"><c:out value='${reservationinformation.arrival_city}' /> | <c:out value='${reservationinformation.arrival_ad}' /> [<c:out value='${reservationinformation.arrival_code}' />]</span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Kalkış Saati : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.flight_hour}' /></span></p>
+                        <p>Kalkış Saati : <span class="font-weight-bold"><c:out value='${reservationinformation.flight_hour}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Uçuş süresi : <span class="font-weight-bold"><c:out value='${rezervasyonbilgi.ucus_s}' /> sa <c:out value='${rezervasyonbilgi.ucus_d}' /> dk</span></p>
+                        <p>Uçuş süresi : <span class="font-weight-bold"><c:out value='${reservationinformation.ucus_s}' /> sa <c:out value='${reservationinformation.ucus_d}' /> dk</span></p>
                     </div>
                 </div>
             </div>
@@ -62,11 +62,11 @@
                 <h5 class="card-header text-center" style="background-color: #F1F2F8">YOLCU BİLGİLERİ</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <p>Ad Soyad : <span class="font-weight-bold"><c:out value='${rezervasyon.yolcu_ad}' /> <c:out value='${rezervasyon.yolcu_soyad}' /></span></p>
+                        <p>Ad Soyad : <span class="font-weight-bold"><c:out value='${reservation.traveller_ad}' /> <c:out value='${reservation.traveller_soyad}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <c:choose>
-                            <c:when test= "${rezervasyon.yolcu_tip == 1}">
+                            <c:when test= "${reservation.traveller_tip == 1}">
                                 <p>Yolcu Tipi : <span class="font-weight-bold">Çocuk</span></p>
                             </c:when>
                             <c:otherwise>
@@ -75,13 +75,13 @@
                         </c:choose>    
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>TC Kimlik No : <span class="font-weight-bold"><c:out value='${rezervasyon.yolcu_tc}' /></span></p>
+                        <p>TC Kimlik No : <span class="font-weight-bold"><c:out value='${reservation.traveller_tc}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>E-mail : <span class="font-weight-bold"><c:out value='${rezervasyon.yolcu_email}' /></span></p>
+                        <p>E-mail : <span class="font-weight-bold"><c:out value='${reservation.traveller_email}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>Telefon : <span class="font-weight-bold"><c:out value='${rezervasyon.yolcu_tel}' /></span></p>
+                        <p>Telefon : <span class="font-weight-bold"><c:out value='${reservation.traveller_tel}' /></span></p>
                     </div>
                 </div>
             </div>

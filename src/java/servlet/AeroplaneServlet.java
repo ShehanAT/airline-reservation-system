@@ -100,9 +100,9 @@ public class AeroplaneServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int company_id = Integer.parseInt(request.getParameter("company_id"));
-            String ucak_ad = new String((request.getParameter("ucak_ad")).getBytes("ISO-8859-1"), "UTF-8");
-            int ucak_koltuk = Integer.parseInt(request.getParameter("ucak_koltuk"));
-            Ucak yeniucak = new Ucak(ucak_ad, ucak_koltuk, company_id);
+            String ucak_name = new String((request.getParameter("ucak_name")).getBytes("ISO-8859-1"), "UTF-8");
+            int ucak_seat = Integer.parseInt(request.getParameter("ucak_seat"));
+            Ucak yeniucak = new Ucak(ucak_name, ucak_seat, company_id);
             ucakDAO.addFlight(yeniucak);
             response.sendRedirect("ucakliste");
         }

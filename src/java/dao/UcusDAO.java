@@ -12,7 +12,7 @@ import java.util.List;
 import model.Company;
 import model.Airport;
 import model.Ucak;
-import model.Ucus;
+import model.Flight;
 
 public class FlightDAO {
     
@@ -24,14 +24,14 @@ public class FlightDAO {
     private static final String FIRMA_SELECT_ALL = "select * from company;";
     private static final String HAVAALANI_SELECT_ALL = "select * from airport;";
     private static final String UCAK_SELECT_ALL = "select * from ucak;";
-    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from flight\n" +
+    private static final String GUNCELUCUS_SELECT_ALL="select flight_id, s.airport_name as departure_name, p.airport_name as varis_name, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_name, flight_fare from flight\n" +
                                 "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
                                 "INNER JOIN  airport p ON (p.airport_id = flight.end_heir_id)\n" +
                                 "WHERE flight_date >= ? ;";
     
-    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as kalkis_ad, p.airport_name as varis_ad, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_ad, flight_fare from flight\n" +
+    private static final String GECMISUCUS_SELECT_ALL="select flight_id, s.airport_name as departure_name, p.airport_name as varis_name, flight_date, flight_hour, flight_time, company.company_name, ucak.ucak_name, flight_fare from flight\n" +
                                 "INNER JOIN  ucak ON (ucak.plane_id = flight.plane_id)\n" +
                                 "INNER JOIN  company ON (company.company_id = flight.company_id)\n" +
                                 "INNER JOIN  airport s ON (s.airport_id = flight.flight_departure_id)\n" +
@@ -71,26 +71,26 @@ public class FlightDAO {
         return silinenSatir;
     }
     
-    public boolean updateFlight(Ucus flight) throws SQLException {
+    public boolean updateFlight(Flight flight) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
             PreparedStatement statement = connection.prepareStatement(UCUS_UPDATE);) {
-            statement.setInt(1, flight.getUcus_kalkis_id());
-            statement.setInt(2, flight.getUcus_varis_id());
-            statement.setString(3, flight.getUcus_tarih());
-            statement.setString(4, flight.getUcus_saat());
-            statement.setString(5, flight.getUcus_sure());
+            statement.setInt(1, flight.getFlight_departure_id());
+            statement.setInt(2, flight.getFlight_varis_id());
+            statement.setString(3, flight.getFlight_date());
+            statement.setString(4, flight.getFlight_saat());
+            statement.setString(5, flight.getFlight_sure());
             statement.setInt(6, flight.getFirma_id());
             statement.setInt(7, flight.getUcak_id());
-            statement.setDouble(8, flight.getUcus_ucret());
-            statement.setInt(9, flight.getUcus_id());
+            statement.setDouble(8, flight.getFlight_ucret());
+            statement.setInt(9, flight.getFlight_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     }
     
-    public Ucus ucussec(int id) {
-        Ucus ucus = null;
+    public Flight ucussec(int id) {
+        Flight ucus = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UCUS_SELECT_ID);) {
             preparedStatement.setInt(1, id);
@@ -105,17 +105,17 @@ public class FlightDAO {
                 int company_id = rs.getInt("company_id");
                 int plane_id = rs.getInt("plane_id");
                 Double flight_fare = rs.getDouble("flight_fare");
-                ucus = new Ucus(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,company_id,plane_id,flight_fare);
+                ucus = new Flight(id,flight_departure_id,end_heir_id,flight_date,flight_hour,flight_time,company_id,plane_id,flight_fare);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return ucus;
     }
-    public boolean flightControl(Ucus ucus)throws SQLException {
-        String flight_hour = flight.getUcus_saat();
+    public boolean flightControl(Flight ucus)throws SQLException {
+        String flight_hour = flight.getFlight_saat();
         flight_hour = flight_hour.substring(0, 5);
-        String flight_time = flight.getUcus_sure();
+        String flight_time = flight.getFlight_sure();
         String[] ARRAYflight_time = flight_time.split(":");
         String ucus_s = ARRAYflight_time[0];
         String ucus_d = ARRAYflight_time[1];
@@ -140,7 +140,7 @@ public class FlightDAO {
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UCUS_KONTROL);) {
             preparedStatement.setInt(1, flight.getUcak_id());
-            preparedStatement.setString(2, flight.getUcus_tarih());
+            preparedStatement.setString(2, flight.getFlight_date());
             preparedStatement.setString(3, flight_hour);
             preparedStatement.setString(4, varis_saat);
             preparedStatement.setString(5, flight_hour);
@@ -157,26 +157,26 @@ public class FlightDAO {
         return true;     
     }
     
-    public void createFlight(Ucus ucus) throws SQLException {
+    public void createFlight(Flight ucus) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(UCUS_INSERT)) {
-            preparedStatement.setInt(1, flight.getUcus_kalkis_id());
-            preparedStatement.setInt(2, flight.getUcus_varis_id());
-            preparedStatement.setString(3, flight.getUcus_tarih());
-            preparedStatement.setString(4, flight.getUcus_saat());
-            preparedStatement.setString(5, flight.getUcus_sure());
+            preparedStatement.setInt(1, flight.getFlight_departure_id());
+            preparedStatement.setInt(2, flight.getFlight_varis_id());
+            preparedStatement.setString(3, flight.getFlight_date());
+            preparedStatement.setString(4, flight.getFlight_saat());
+            preparedStatement.setString(5, flight.getFlight_sure());
             preparedStatement.setInt(6, flight.getFirma_id());
             preparedStatement.setInt(7, flight.getUcak_id());
-            preparedStatement.setDouble(8, flight.getUcus_ucret());
+            preparedStatement.setDouble(8, flight.getFlight_ucret());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     
-    public List<Ucus> currentFlightList() {
-        List<Ucus> ucuslar = new ArrayList<> ();
+    public List<Flight> currentFlightList() {
+        List<Flight> ucuslar = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDateTime now = LocalDateTime.now(); 
         String str = now.format(formatter);
@@ -187,15 +187,15 @@ public class FlightDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int flight_id = rs.getInt("flight_id");
-                String ucus_kalkis = rs.getString("kalkis_ad");
-                String ucus_varis = rs.getString("varis_ad");
+                String ucus_departure = rs.getString("departure_name");
+                String ucus_varis = rs.getString("varis_name");
                 String flight_date = rs.getString("flight_date");
                 String flight_hour = rs.getString("flight_hour");
                 String flight_time = rs.getString("flight_time");
                 String company_name = rs.getString("company_name");
-                String ucak_ad = rs.getString("ucak_ad");
+                String ucak_name = rs.getString("ucak_name");
                 Double flight_fare = rs.getDouble("flight_fare");
-                ucuslar.add(new Ucus(flight_id, flight_date,flight_hour, flight_time, flight_fare,company_name,ucak_ad,ucus_kalkis,ucus_varis));
+                ucuslar.add(new Flight(flight_id, flight_date,flight_hour, flight_time, flight_fare,company_name,ucak_name,ucus_departure,ucus_varis));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -203,8 +203,8 @@ public class FlightDAO {
         return ucuslar;
     }  
     
-    public List<Ucus> pastFlightList() {
-        List<Ucus> ucuslar = new ArrayList<> ();
+    public List<Flight> pastFlightList() {
+        List<Flight> ucuslar = new ArrayList<> ();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
         LocalDateTime now = LocalDateTime.now(); 
         String str = now.format(formatter);
@@ -215,16 +215,16 @@ public class FlightDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int flight_id = rs.getInt("flight_id");
-                String ucus_kalkis = rs.getString("kalkis_ad");
-                String ucus_varis = rs.getString("varis_ad");
+                String ucus_departure = rs.getString("departure_name");
+                String ucus_varis = rs.getString("varis_name");
                 String flight_date = rs.getString("flight_date");
                 String flight_hour = rs.getString("flight_hour");
                 ucus_saat=ucus_saat.substring(0, 5);
                 String flight_time = rs.getString("flight_time");
                 String company_name = rs.getString("company_name");
-                String ucak_ad = rs.getString("ucak_ad");
+                String ucak_name = rs.getString("ucak_name");
                 Double flight_fare = rs.getDouble("flight_fare");
-                ucuslar.add(new Ucus(flight_id, flight_date,ucus_saat, flight_time, flight_fare,company_name,ucak_ad,ucus_kalkis,ucus_varis));
+                ucuslar.add(new Flight(flight_id, flight_date,ucus_saat, flight_time, flight_fare,company_name,ucak_name,ucus_departure,ucus_varis));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -255,8 +255,8 @@ public class FlightDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int plane_id = rs.getInt("plane_id");
-                String ucak_ad = rs.getString("ucak_ad");               
-                ucak.add(new Ucak(plane_id, ucak_ad));
+                String ucak_name = rs.getString("ucak_name");
+                ucak.add(new Ucak(plane_id, ucak_name));
             }
         } catch (SQLException e) {
             printSQLException(e);

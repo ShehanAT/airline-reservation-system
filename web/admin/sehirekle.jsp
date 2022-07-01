@@ -8,7 +8,7 @@
                 <h3 class="mb-0 text-white">Şehir Ekle</h3>
             </div>
             <div class="card-body">
-                <form class="form" role="form" method="post" autocomplete="off" action="gostersehirekle">
+                <form class="form" role="form" method="post" autocomplete="off" action="gostercityekle">
                     <div class="form-group">
                         <label for="airport_city_name">Şehir Adı</label>
                         <input type="text" class="form-control" id="airport_city_name" name="airport_city_name" placeholder="Şehir Adı" required>

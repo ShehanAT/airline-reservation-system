@@ -1,0 +1,24 @@
+
+HWeb:TableWithoutCaptionCheck" Add a description to this table.(ÛšòÌ
+>	Web:S1827")Remove this deprecated "width" attribute.(ÛšòÌ
+D	Web:S1827"/Remove this deprecated "cellspacing" attribute.(ÛšòÌ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+f Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(ƒøà
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(¿ë°®şÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(Ó¡Äó
+g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©€É›
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
+f Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(ƒøà
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(¿ë°®şÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(Ó¡Äó
+g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©€É›
+l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
+HWeb:BoldAndItalicTagsCheck+"Replace this <i> tag by <em>.(îèªûÿÿÿÿ
+CWeb:BoldAndItalicTagsCheck."Replace this <i> tag by <em>.(Ä¯ ¾
+HWeb:BoldAndItalicTagsCheck1"Replace this <i> tag by <em>.(ö¾Ñğÿÿÿÿÿ
+HWeb:BoldAndItalicTagsCheck8"Replace this <i> tag by <em>.(‹¶·Ãûÿÿÿÿ
+CWeb:BoldAndItalicTagsCheck;"Replace this <i> tag by <em>.(Ä¯ ¾
+HWeb:BoldAndItalicTagsCheck>"Replace this <i> tag by <em>.(ö¾Ñğÿÿÿÿÿ
+HWeb:BoldAndItalicTagsCheckF"Replace this <i> tag by <em>.(îÎÌÈúÿÿÿÿ
+HWeb:BoldAndItalicTagsCheckI"Replace this <i> tag by <em>.(ÚÃÖûıÿÿÿÿ

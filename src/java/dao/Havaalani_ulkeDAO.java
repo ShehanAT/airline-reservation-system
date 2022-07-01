@@ -61,7 +61,7 @@ public class Airport_countryDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(ULKE_INSERT)) {
-            preparedStatement.setString(1, ulke.getAirport_country_ad());
+            preparedStatement.setString(1, ulke.getAirport_country_name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -80,7 +80,7 @@ public class Airport_countryDAO {
     public boolean updateCountry(Airport_country ulke) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(ULKE_UPDATE);) {
-            statement.setString(1, ulke.getAirport_country_ad());
+            statement.setString(1, ulke.getAirport_country_name());
             statement.setInt(2, ulke.getAirport_country_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }

@@ -16,8 +16,8 @@
                         <input type="text" class="form-control" id="message_surname" name="message_surname" value="<c:out value='${message.message_surname}' />" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="message_tarih">Tarih</label>
-                        <input type="text" class="form-control" id="message_tarih" name="message_tarih" value="<c:out value='${message.message_tarih}' />" readonly>
+                        <label for="message_date">Tarih</label>
+                        <input type="text" class="form-control" id="message_date" name="message_date" value="<c:out value='${message.message_date}' />" readonly>
                     </div>
                     <div class="form-group">
                         <label for="message_email">Gönderen Email</label>

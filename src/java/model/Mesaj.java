@@ -69,11 +69,11 @@ public class Message {
         this.message_content = message_content;
     }
 
-    public String getMessage_tarih() {
+    public String getMessage_date() {
         return message_date;
     }
 
-    public void setMessage_tarih(String message_date) {
+    public void setMessage_date(String message_date) {
         this.message_date = message_date;
     }
 

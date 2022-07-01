@@ -53,14 +53,14 @@ public class ReplyDAO {
                 int message_id = rs.getInt("message_id");
                 String reply_contents = rs.getString("reply_contents");
                 String reply_title = rs.getString("reply_title");
-                String reply_tarih = rs.getString("reply_tarih");
+                String reply_date = rs.getString("reply_date");
                 String message_surname = rs.getString("message_surname");
                 String message_email = rs.getString("message_email");
                 String message_konu = rs.getString("message_konu");
                 String message_contents = rs.getString("message_contents");
-                String message_tarih = rs.getString("message_tarih");
+                String message_date = rs.getString("message_date");
                 
-                answers.add(new Reply(reply_id,message_id,reply_contents,reply_title,reply_tarih,message_surname,message_email, message_konu, message_contents,message_tarih));
+                answers.add(new Reply(reply_id,message_id,reply_contents,reply_title,reply_date,message_surname,message_email, message_konu, message_contents,message_date));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -79,10 +79,10 @@ public class ReplyDAO {
                 String message_email = rs.getString("message_email");
                 String message_konu = rs.getString("message_konu");
                 String message_contents = rs.getString("message_contents");
-                String message_tarih = rs.getString("message_tarih");
+                String message_date = rs.getString("message_date");
                 int message_notRead = rs.getInt("message_notRead");
                 int message_reply = rs.getInt("message_reply");
-                message = new Message(id, message_surname, message_email, message_konu, message_contents, message_tarih,message_notRead,message_reply);
+                message = new Message(id, message_surname, message_email, message_konu, message_contents, message_date,message_notRead,message_reply);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -101,13 +101,13 @@ public class ReplyDAO {
                 int message_id = rs.getInt("message_id");
                 String review_contents = rs.getString("review_contents");
                 String review_title = rs.getString("review_title");
-                String review_tarih = rs.getString("reply_tarih");
+                String review_date = rs.getString("reply_date");
                 String message_surname = rs.getString("message_surname");
                 String message_email = rs.getString("message_email");
                 String message_konu = rs.getString("message_subject");
                 String message_content = rs.getString("message_content");
                 String message_date = rs.getString("message_date");
-                reply = new Reply(reply_id,message_id,reply_contents,reply_title,reply_tarih,message_surname,message_email, message_subject, message_content,message_date);
+                reply = new Reply(reply_id,message_id,reply_contents,reply_title,reply_date,message_surname,message_email, message_subject, message_content,message_date);
             }
         } catch (SQLException e) {
             printSQLException(e);

@@ -16,8 +16,8 @@
                 }
             }
         %>
-        <label for="user_ad" class="sr-only">Ad</label>
-        <input type="text" id="user_ad" name="user_ad" class="form-control mb-3" placeholder="Ad" required autofocus>
+        <label for="user_name" class="sr-only">Ad</label>
+        <input type="text" id="user_name" name="user_name" class="form-control mb-3" placeholder="Ad" required autofocus>
         
         <label for="user_soyad" class="sr-only">Soyad</label>
         <input type="text" id="user_soyad" name="user_soyad" class="form-control mb-3" placeholder="Soyad" required>

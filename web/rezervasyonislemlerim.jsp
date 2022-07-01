@@ -19,7 +19,7 @@
             if (req.equals("successful")) {
                 out.print("<div class=' alert alert-success mt-3' role='alert'>Rezervasyonunuz oluşturulmuştur.</div>");
             } else {
-                out.print("<div class=' alert alert-warning mt-3' role='alert'>Reservation oluşturma işlemi tamamlanamadı. Seçili koltuklar rezervedir.</div>");
+                out.print("<div class=' alert alert-warning mt-3' role='alert'>Reservation oluşturma işlemi tamamlanamadı. Seçili seatlar rezervedir.</div>");
             }
         }
     String re = request.getParameter("guncelleme");
@@ -58,16 +58,16 @@
                             <p>Uçuş Tarihi: <span class="font-weight-bold"><c:out value="${rez.flight_date}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p>Nereden : <span class="font-weight-bold"><c:out value="${rez.kalkis_ad}" /></span></p>
+                            <p>Nereden : <span class="font-weight-bold"><c:out value="${rez.departure_ad}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p>Nereye : <span class="font-weight-bold"><c:out value="${rez.varis_ad}" /></p>
+                            <p>Nereye : <span class="font-weight-bold"><c:out value="${rez.arrival_ad}" /></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>Kalkış Saati : <span class="font-weight-bold"><c:out value="${rez.flight_hour}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p>Varış Saati : <span class="font-weight-bold"><c:out value="${rez.varis_saat}" /></span></p>
+                            <p>Varış Saati : <span class="font-weight-bold"><c:out value="${rez.arrival_saat}" /></span></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>Uçuş süresi : <span class="font-weight-bold"><c:out value="${rez.ucus_s}" /> sa <c:out value="${rez.ucus_d}" />  dk</span></p>
@@ -87,7 +87,7 @@
                             </c:choose>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p class="card-title mt-2">Değişiklik Hakkı <br> Uçuş süresinden 2 saat önceye kadar bilgilerinizi değiştirebilirsiniz.</p>     
+                            <p class="card-title mt-2">Değişiklik Hakkı <br> Uçuş süresinden 2 saat önceye kadar informationlerinizi değiştirebilirsiniz.</p>
                                 <c:choose>
                                     <c:when test= "${rez.situation > 0}">
                                     <a style="color:#FF7F00" data-toggle="modal" href="#exampleModal0<c:out value="${rez.reservation_id}" />">Bilgileri Değiştir</a>
@@ -139,39 +139,39 @@
                                     <form method="post" action="updateReservation">
                                             <input type="hidden" name="id" value="<c:out value='${rez.reservation_id}' />" />
                                             <div class="form-group row">
-                                                <label for="yolcu_ad<c:out value="${rez.reservation_id}" />" class="col-sm-2 col-form-label">Ad :  </label>
+                                                <label for="traveller_ad<c:out value="${rez.reservation_id}" />" class="col-sm-2 col-form-label">Ad :  </label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="yolcu_ad<c:out value="${rez.reservation_id}" />" name="yolcu_ad<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.yolcu_ad}" />" required>
+                                                    <input type="text" class="form-control" id="traveller_ad<c:out value="${rez.reservation_id}" />" name="traveller_ad<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.traveller_ad}" />" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="yolcu_soyad<c:out value="${rez.reservation_id}" />" class="col-sm-2 col-form-label">Soyad :  </label>
+                                                <label for="traveller_surname<c:out value="${rez.reservation_id}" />" class="col-sm-2 col-form-label">Soyad :  </label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="yolcu_soyad<c:out value="${rez.reservation_id}" />" name="yolcu_soyad<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.yolcu_soyad}" />" required>
+                                                    <input type="text" class="form-control" id="traveller_surname<c:out value="${rez.reservation_id}" />" name="traveller_surname<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.traveller_surname}" />" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="yolcu_tc<c:out value="${rez.reservation_id}" />" class="col-sm-3 col-form-label">TC Kimlik :  </label>
+                                                <label for="traveller_tc<c:out value="${rez.reservation_id}" />" class="col-sm-3 col-form-label">TC Kimlik :  </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" pattern="[0-9]{11}" id="yolcu_tc<c:out value="${rez.reservation_id}" />" name="yolcu_tc<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.yolcu_tc}" />" required>
+                                                    <input type="text" class="form-control" pattern="[0-9]{11}" id="traveller_tc<c:out value="${rez.reservation_id}" />" name="traveller_tc<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.traveller_tc}" />" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="yolcu_tarih<c:out value="${rez.reservation_id}" />" class="col-sm-4 col-form-label">Doğum Tarihi :  </label>
+                                                <label for="traveller_date<c:out value="${rez.reservation_id}" />" class="col-sm-4 col-form-label">Doğum Tarihi :  </label>
                                                 <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="yolcu_tarih<c:out value="${rez.reservation_id}" />" name="yolcu_tarih<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.yolcu_tarih}" />" required>
+                                                    <input type="date" class="form-control" id="traveller_date<c:out value="${rez.reservation_id}" />" name="traveller_date<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.traveller_date}" />" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="yolcu_email<c:out value="${rez.reservation_id}" />" class="col-sm-2 col-form-label">Email :  </label>
+                                                <label for="traveller_email<c:out value="${rez.reservation_id}" />" class="col-sm-2 col-form-label">Email :  </label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="yolcu_email<c:out value="${rez.reservation_id}" />" name="yolcu_email<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.yolcu_email}" />" required>
+                                                    <input type="text" class="form-control" id="traveller_email<c:out value="${rez.reservation_id}" />" name="traveller_email<c:out value="${rez.reservation_id}" />" value="<c:out value="${rez.traveller_email}" />" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="yolcu_tel<c:out value="${rez.reservation_id}" />" class="col-sm-3 col-form-label">Telefon :  </label>
+                                                <label for="traveller_tel<c:out value="${rez.reservation_id}" />" class="col-sm-3 col-form-label">Telefon :  </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="yolcu_tel<c:out value="${rez.reservation_id}" />" name="yolcu_tel<c:out value="${rez.reservation_id}" />" pattern="[0-9]{11}" title="05554443322 biçiminde yazınız." value="<c:out value="${rez.yolcu_tel}" />" required>
+                                                    <input type="text" class="form-control" id="traveller_tel<c:out value="${rez.reservation_id}" />" name="traveller_tel<c:out value="${rez.reservation_id}" />" pattern="[0-9]{11}" title="05554443322 biçiminde yazınız." value="<c:out value="${rez.traveller_tel}" />" required>
                                                 </div>
                                             </div>
                                             </div>
@@ -193,11 +193,11 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Ad Soyad: <c:out value="${rez.yolcu_ad}" /> <c:out value="${rez.yolcu_soyad}" /></p>
-                                        <p>TC Kimlik No: <c:out value="${rez.yolcu_tc}" /></p>
-                                        <p>Doğum Tarihi: <c:out value="${rez.yolcu_tarih}" /></p>
+                                        <p>Ad Soyad: <c:out value="${rez.traveller_ad}" /> <c:out value="${rez.traveller_surname}" /></p>
+                                        <p>TC Kimlik No: <c:out value="${rez.traveller_tc}" /></p>
+                                        <p>Doğum Tarihi: <c:out value="${rez.traveller_date}" /></p>
                                         <p>Bilet Ücreti: <c:out value="${rez.yolcu_ucret}" /> ₺</p>
-                                        <p>Koltuk No: <c:out value="${rez.koltuk_no}" /></p>
+                                        <p>Koltuk No: <c:out value="${rez.seat_no}" /></p>
                                         <br><br>
                                         <h5 style="color:orange">Contact Information</h5>
                                         <p>Email : <c:out value="${rez.yolcu_email}" /></p>

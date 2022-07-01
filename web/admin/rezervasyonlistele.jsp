@@ -29,47 +29,47 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="rezervasyon" items="${reservationList}">
+                        <c:forEach var="reservation" items="${reservationList}">
                             <tr>
-                                <td><c:out value="${rezervasyon.reservation_id}" /></td>
-                                <td><c:out value="${rezervasyon.rezervasyon_tarih}" /></td>
-                                <td><c:out value="${rezervasyon.pnr_no}" /></td>
-                                <td><c:out value="${rezervasyon.yolcu_soyad}" /></td>
+                                <td><c:out value="${reservation.reservation_id}" /></td>
+                                <td><c:out value="${reservation.reservation_date}" /></td>
+                                <td><c:out value="${reservation.pnr_no}" /></td>
+                                <td><c:out value="${reservation.yolcu_soyad}" /></td>
                                 <td>
-                                    <a data-toggle="modal" href="#modal<c:out value="${rezervasyon.reservation_id}" />">
+                                    <a data-toggle="modal" href="#modal<c:out value="${reservation.reservation_id}" />">
                                         <button class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> İncele</button>
                                     </a>
-                                    <a href="cancelReservation?id=<c:out value="${rezervasyon.reservation_id}" />">
+                                    <a href="cancelReservation?id=<c:out value="${reservation.reservation_id}" />">
                                         <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> İptal</button>
                                     </a>
                                 </td>
                             </tr>
-                        <div class="modal fade" id="modal<c:out value="${rezervasyon.reservation_id}" />" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal<c:out value="${reservation.reservation_id}" />" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modal<c:out value="${rezervasyon.reservation_id}" />">İncele</h5>
+                                        <h5 class="modal-title" id="modal<c:out value="${reservation.reservation_id}" />">İncele</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <p style="color:#FF7F00">Uçuş Bilgileri</p>
-                                        <p><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value="${rezervasyon.company_logo}" />" style="width: 1.5em"> <c:out value="${rezervasyon.company_name}" /> - <c:out value="${rezervasyon.ucak_ad}" /></p>
-                                            <p><b>PNR No : </b><c:out value="${rezervasyon.pnr_no}" /></p>
-                                            <p><b>Uçuş Tarihi : </b><c:out value="${rezervasyon.flight_date}" /></p>
-                                            <p><b>Nereden : </b><c:out value="${rezervasyon.kalkis_ad}" /> - <c:out value="${rezervasyon.kalkis_sehir}" /> - <c:out value="${rezervasyon.kalkis_kod}" /></p>
-                                            <p><b>Nereye : </b><c:out value="${rezervasyon.varis_ad}" /> - <c:out value="${rezervasyon.varis_sehir}" /> - <c:out value="${rezervasyon.varis_kod}" /></p>
-                                            <p><b>Kalkış Saati : </b><c:out value="${rezervasyon.flight_hour}" /></p>
-                                            <p><b>Varış Saati : </b><c:out value="${rezervasyon.varis_saat}" /></p>
-                                            <p><b>Uçuş Saati : </b><c:out value="${rezervasyon.ucus_s}" /> sa <c:out value="${rezervasyon.ucus_d}" />  dk</p>
-                                            <p><b>Koltuk No : </b><c:out value="${rezervasyon.koltuk_no}" /></p>
+                                        <p><img class="img-fluid" src="<%=request.getContextPath()%>/assets/data/<c:out value="${reservation.company_logo}" />" style="width: 1.5em"> <c:out value="${reservation.company_name}" /> - <c:out value="${reservation.ucak_name}" /></p>
+                                            <p><b>PNR No : </b><c:out value="${reservation.pnr_no}" /></p>
+                                            <p><b>Uçuş Tarihi : </b><c:out value="${reservation.flight_date}" /></p>
+                                            <p><b>Nereden : </b><c:out value="${reservation.departure_name}" /> - <c:out value="${reservation.departure_city}" /> - <c:out value="${reservation.departure_code}" /></p>
+                                            <p><b>Nereye : </b><c:out value="${reservation.varis_name}" /> - <c:out value="${reservation.varis_city}" /> - <c:out value="${reservation.varis_code}" /></p>
+                                            <p><b>Kalkış Saati : </b><c:out value="${reservation.flight_hour}" /></p>
+                                            <p><b>Varış Saati : </b><c:out value="${reservation.varis_saat}" /></p>
+                                            <p><b>Uçuş Saati : </b><c:out value="${reservation.ucus_s}" /> sa <c:out value="${reservation.ucus_d}" />  dk</p>
+                                            <p><b>Koltuk No : </b><c:out value="${reservation.koltuk_no}" /></p>
                                             <p style="color:#FF7F00">Yolcu Bilgileri</p>
-                                            <p><b>Ad Soyad : </b><c:out value="${rezervasyon.yolcu_ad}" /> <c:out value="${rezervasyon.yolcu_soyad}" /></p>
-                                            <p><b>TC Kimlik : </b><c:out value="${rezervasyon.yolcu_tc}" /></p>
-                                            <p><b>Doğum Tarihi : </b><c:out value="${rezervasyon.yolcu_tarih}" /></p>
+                                            <p><b>Ad Soyad : </b><c:out value="${reservation.yolcu_name}" /> <c:out value="${reservation.yolcu_soyad}" /></p>
+                                            <p><b>TC Kimlik : </b><c:out value="${reservation.yolcu_tc}" /></p>
+                                            <p><b>Doğum Tarihi : </b><c:out value="${reservation.yolcu_date}" /></p>
                                             <c:choose>
-                                                <c:when test= "${rezervasyon.yolcu_tip > 0}">
+                                                <c:when test= "${reservation.yolcu_tip > 0}">
                                                     <p><b>Yolcu Tip : </b>Çocuk</p>
                                                 </c:when>
                                                 <c:otherwise>
@@ -78,8 +78,8 @@
                                             </c:choose>
 
                                             <p style="color:#FF7F00">Contact Information</p>
-                                            <p><b>Telefon : </b><c:out value="${rezervasyon.yolcu_tel}" /></p>
-                                            <p><b>Email : </b><c:out value="${rezervasyon.yolcu_email}" /></p>
+                                            <p><b>Telefon : </b><c:out value="${reservation.yolcu_tel}" /></p>
+                                            <p><b>Email : </b><c:out value="${reservation.yolcu_email}" /></p>
                                     </div>
                                 </div>
                             </div>

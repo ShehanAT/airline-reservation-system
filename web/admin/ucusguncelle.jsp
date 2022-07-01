@@ -74,10 +74,10 @@
                             <c:forEach var="plane" items="${ucak}">
                                 <c:choose>
                                     <c:when test= "${ucak.plane_id == flight.plane_id}">
-                                        <option value="<c:out value='${ucak.plane_id }' />" selected><c:out value='${ucak.ucak_ad}' /></option>
+                                        <option value="<c:out value='${ucak.plane_id }' />" selected><c:out value='${ucak.ucak_name}' /></option>
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="<c:out value='${ucak.plane_id}' />"><c:out value='${ucak.ucak_ad}' /></option>
+                                        <option value="<c:out value='${ucak.plane_id}' />"><c:out value='${ucak.ucak_name}' /></option>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>

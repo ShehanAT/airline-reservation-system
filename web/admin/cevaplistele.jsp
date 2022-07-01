@@ -33,8 +33,8 @@
                             <tr>
                                 <td><c:out value="${review.review_id}" /></td>
                                 <td><c:out value="${review.message_konu}" /></td>
-                                <td><c:out value="${review.message_tarih}" /></td>
-                                <td><c:out value="${review.review_tarih}" /></td>
+                                <td><c:out value="${review.message_date}" /></td>
+                                <td><c:out value="${review.review_date}" /></td>
                                 <td>
                                     <a href="reviewAnswer?id=<c:out value='${review.review_id}' />">
                                         <button class="btn btn-success btn-sm"><i class="far fa-file-alt"></i> İncele</button>

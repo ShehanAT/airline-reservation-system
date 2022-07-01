@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <span class="m-0 font-weight-bold text-white">Şehir Listesi</span>
-            <a href="sehirekle" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Şehir Ekle</a>                      
+            <a href="cityekle" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i> Şehir Ekle</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -26,15 +26,15 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="sehir" items="${sehirliste}">
+                        <c:forEach var="city" items="${cityliste}">
                             <tr>
-                                <td><c:out value="${sehir.airport_city_id}" /></td>
-                                <td><c:out value="${sehir.airport_city_name}" /></td>
+                                <td><c:out value="${city.airport_city_id}" /></td>
+                                <td><c:out value="${city.airport_city_name}" /></td>
                                 <td>
-                                    <a href="sehirguncelle?id=<c:out value='${sehir.airport_city_id}' />">
+                                    <a href="cityguncelle?id=<c:out value='${city.airport_city_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                     </a>
-                                    <a href="deleteCity?id=<c:out value='${sehir.airport_city_id}' />">
+                                    <a href="deleteCity?id=<c:out value='${city.airport_city_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

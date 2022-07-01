@@ -60,7 +60,7 @@ public class CompanyDAO {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(FIRMA_INSERT)) {
-            preparedStatement.setString(1, company.getFirma_ad());
+            preparedStatement.setString(1, company.getFirma_name());
             preparedStatement.setString(2, company.getFirma_logo());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -97,7 +97,7 @@ public class CompanyDAO {
     public boolean companyUpdate(Company company) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(FIRMA_UPDATE);) {
-            statement.setString(1, company.getFirma_ad());
+            statement.setString(1, company.getFirma_name());
             statement.setString(2, company.getFirma_logo());
             statement.setInt(3, company.getFirma_id());
             guncellenenSatir = statement.executeUpdate() > 0;

@@ -7,7 +7,7 @@
             String req = request.getParameter("situation");
             if (req != null) {
                 if (req.equals("unsuccessful")) {
-                    out.print("<div class='alert alert-warning' role='alert'>Uçuş oluşturulamadı. Seçilen uçak için belirtilen saatler dolu.</div>");
+                    out.print("<div class='alert alert-warning' role='alert'>Uçuş oluşturulamadı. Seçilen uçak için belirtilen saatler full.</div>");
                 } 
             }
     %>
@@ -51,13 +51,13 @@
                         <c:forEach var="currentFlightList" items="${currentFlightList}">
                             <tr>
                                 <td><c:out value="${currentFlightList.flight_id}" /></td>
-                                <td><c:out value="${currentFlightList.ucus_kalkis}" /></td>
+                                <td><c:out value="${currentFlightList.ucus_departure}" /></td>
                                 <td><c:out value="${currentFlightList.ucus_varis}" /></td>
                                 <td><c:out value="${currentFlightList.flight_date}" /></td>
                                 <td><c:out value="${currentFlightList.flight_hour}" /></td>
                                 <td><c:out value="${currentFlightList.flight_time}" /></td>
                                 <td><c:out value="${currentFlightList.company_name}" /></td>
-                                <td><c:out value="${currentFlightList.ucak_ad}" /></td>
+                                <td><c:out value="${currentFlightList.ucak_name}" /></td>
                                 <td><c:out value="${currentFlightList.flight_fare}" /></td>
                                 <td>
                                     <a href="updateFlight?id=<c:out value='${currentFlightList.flight_id}' />">

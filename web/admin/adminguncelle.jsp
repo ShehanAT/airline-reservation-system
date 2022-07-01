@@ -12,8 +12,8 @@
                 <form class="form" action="gosteradminUpdate" method="post" autocomplete="off">
                     <input type="hidden" name="user_id" id="user_id" value="<c:out value='${user.user_id}' />" />
                     <div class="form-group">
-                        <label for="user_ad">Ad</label>
-                        <input type="text" class="form-control" id="user_ad" name="user_ad" placeholder="Ad" value="<c:out value='${user.user_ad}' />" required>
+                        <label for="user_name">Ad</label>
+                        <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Ad" value="<c:out value='${user.user_name}' />" required>
                     </div>
                     <div class="form-group">
                         <label for="user_soyad">Soyad</label>
