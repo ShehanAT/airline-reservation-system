@@ -15,11 +15,11 @@
                 out.print("<div class='alert alert-warning' role='alert'>Reservation işlemini gerçekleştirmek için giriş yapınız.</div>");
             }
         %>
-        <label for="kullanici_email" class="sr-only">E-mail</label>
-        <input type="email" id="kullanici_email" name="kullanici_email" class="form-control mb-3" placeholder="E-mail" required autofocus>
+        <label for="user_email" class="sr-only">E-mail</label>
+        <input type="email" id="user_email" name="user_email" class="form-control mb-3" placeholder="E-mail" required autofocus>
         
-        <label for="kullanici_password" class="sr-only">Şifre</label>
-        <input type="password" id="kullanici_password" name="kullanici_password" class="form-control" placeholder="Şifre" required>
+        <label for="user_password" class="sr-only">Şifre</label>
+        <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Şifre" required>
                 
         <button class="btn btn-lg btn-warning btn-block shadow-none" type="submit">Giriş Yap</button>
     </form>

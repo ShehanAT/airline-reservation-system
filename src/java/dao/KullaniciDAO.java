@@ -16,21 +16,21 @@ public class KullaniciDAO {
     private final String jdbcKullaniciname = "root";
     private final String jdbcPassword = "123456";    
     
-    private static final String KULLANICI_INSERT = "INSERT INTO kullanicilar" +
+    private static final String KULLANICI_INSERT = "INSERT INTO users" +
             "  (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES " +
         " (?, ?, ?, ?,"+1+");";
-    private static final String KULLANICI_SELECT_ID = "select * from kullanicilar where user_id=?;";
-    private static final String KULLANICI_DELETE = "delete from kullanicilar where user_id = ?;";
-    private static final String KULLANICI_SELECT_EMAIL = "select * from kullanicilar where user_email = ?;";
-    private static final String KULLANICI_SELECT_ALL = "select * from kullanicilar;";
-    private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_password = ?;";
-    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO kullanicilar (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES (?,?,?,?,"+2+");";
-    private static final String KULLANICI_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ?, user_password = ? where user_id = ?;";
-    private static final String PROFIL_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ? where user_id = ?;";
-    private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_password = ? and user_authorization=2;";
-    private static final String SIFRE_KONTROL_SELECT = "select * from kullanicilar where user_id=? and user_password=?;";
-    private static final String SIFRE_UPDATE = "update kullanicilar set kullanici_password = ? where kullanici_id = ?;";
-    private static final String HESAP_DELETE = "delete from kullanicilar where kullanici_id = ?;";
+    private static final String KULLANICI_SELECT_ID = "select * from users where user_id=?;";
+    private static final String KULLANICI_DELETE = "delete from users where user_id = ?;";
+    private static final String KULLANICI_SELECT_EMAIL = "select * from users where user_email = ?;";
+    private static final String KULLANICI_SELECT_ALL = "select * from users;";
+    private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from users where user_email = ? and user_password = ?;";
+    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO users (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES (?,?,?,?,"+2+");";
+    private static final String KULLANICI_UPDATE = "update users set user_ad = ?, user_soyad = ?, user_email = ?, user_password = ? where user_id = ?;";
+    private static final String PROFIL_UPDATE = "update users set user_ad = ?, user_soyad = ?, user_email = ? where user_id = ?;";
+    private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from users where user_email = ? and user_password = ? and user_authorization=2;";
+    private static final String SIFRE_KONTROL_SELECT = "select * from users where user_id=? and user_password=?;";
+    private static final String SIFRE_UPDATE = "update users set user_password = ? where user_id = ?;";
+    private static final String HESAP_DELETE = "delete from users where user_id = ?;";
     public KullaniciDAO() {}
 
     protected Connection getConnection() {
@@ -54,12 +54,12 @@ public class KullaniciDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_ALL);) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int kullanici_id = rs.getInt("kullanici_id");
-                String kullanici_ad = rs.getString("kullanici_ad");
-                String kullanici_soyad = rs.getString("kullanici_soyad");
-                String kullanici_email = rs.getString("kullanici_email");
+                int user_id = rs.getInt("user_id");
+                String user_ad = rs.getString("user_ad");
+                String user_soyad = rs.getString("user_soyad");
+                String user_email = rs.getString("user_email");
                 int user_authorization = rs.getInt("user_authorization");
-                uyeler.add(new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, user_authorization));
+                uyeler.add(new Kullanici(user_id, user_ad, user_soyad, user_email, user_authorization));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -67,12 +67,12 @@ public class KullaniciDAO {
         return uyeler;
     }
     
-    public boolean sifrekontrol(int id, String kullanici_password) {
+    public boolean sifrekontrol(int id, String user_password) {
 
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SIFRE_KONTROL_SELECT);) {
             preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, kullanici_password);
+            preparedStatement.setString(2, user_password);
             ResultSet rs = preparedStatement.executeQuery();
             
             if (rs.next()) {
@@ -106,112 +106,112 @@ public class KullaniciDAO {
         return silinenSatir;
     }
     
-    public Kullanici kullanicisec(int id) {
-        Kullanici kullanici = null;
+    public Kullanici usersec(int id) {
+        Kullanici user = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String kullanici_ad = rs.getString("kullanici_ad");
-                String kullanici_soyad = rs.getString("kullanici_soyad");
-                String kullanici_email = rs.getString("kullanici_email");
-                String kullanici_password = rs.getString("kullanici_password");
-                kullanici = new Kullanici(id, kullanici_ad,kullanici_soyad,kullanici_email, kullanici_password);
+                String user_ad = rs.getString("user_ad");
+                String user_soyad = rs.getString("user_soyad");
+                String user_email = rs.getString("user_email");
+                String user_password = rs.getString("user_password");
+                user = new Kullanici(id, user_ad,user_soyad,user_email, user_password);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return kullanici;
+        return user;
     }
     
-    public Kullanici sifreal(String kullanici_email) {
-        Kullanici kullanici = null;
+    public Kullanici sifreal(String user_email) {
+        Kullanici user = null;
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL);) {
-            preparedStatement.setString(1, kullanici_email);
+            preparedStatement.setString(1, user_email);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String kullanici_password = rs.getString("kullanici_password");
-                kullanici = new Kullanici(kullanici_email, kullanici_password);
+                String user_password = rs.getString("user_password");
+                user = new Kullanici(user_email, user_password);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return kullanici;
+        return user;
     }
     
-    public boolean adminUpdate(Kullanici kullanici) throws SQLException {
+    public boolean adminUpdate(Kullanici user) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(KULLANICI_UPDATE);) {
-            statement.setString(1, kullanici.getKullanici_ad()); 
-            statement.setString(2, kullanici.getKullanici_soyad());
-            statement.setString(3, kullanici.getKullanici_email());
-            statement.setString(4, kullanici.getKullanici_password());
-            statement.setInt(5, kullanici.getKullanici_id());
+            statement.setString(1, user.getKullanici_ad());
+            statement.setString(2, user.getKullanici_soyad());
+            statement.setString(3, user.getKullanici_email());
+            statement.setString(4, user.getKullanici_password());
+            statement.setInt(5, user.getKullanici_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     }
     
-    public boolean updatePassword(Kullanici kullanici) throws SQLException {
+    public boolean updatePassword(Kullanici user) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(SIFRE_UPDATE);) {
-            statement.setString(1, kullanici.getKullanici_sifre());
-            statement.setInt(2, kullanici.getKullanici_id());
+            statement.setString(1, user.getKullanici_sifre());
+            statement.setInt(2, user.getKullanici_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     } 
     
-    public boolean updateProfile(Kullanici kullanici) throws SQLException {
+    public boolean updateProfile(Kullanici user) throws SQLException {
         boolean guncellenenSatir;
         try (Connection connection = getConnection(); 
                 PreparedStatement statement = connection.prepareStatement(PROFIL_UPDATE);) {
-            statement.setString(1, kullanici.getKullanici_ad()); 
-            statement.setString(2, kullanici.getKullanici_soyad());
-            statement.setString(3, kullanici.getKullanici_email());
-            statement.setInt(4, kullanici.getKullanici_id());
+            statement.setString(1, user.getKullanici_ad());
+            statement.setString(2, user.getKullanici_soyad());
+            statement.setString(3, user.getKullanici_email());
+            statement.setInt(4, user.getKullanici_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
         return guncellenenSatir;
     }
     
-    public void signUp(Kullanici kullanici) throws SQLException {
+    public void signUp(Kullanici user) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_INSERT)) {
-            preparedStatement.setString(1, kullanici.getKullanici_ad());
-            preparedStatement.setString(2, kullanici.getKullanici_soyad());
-            preparedStatement.setString(3, kullanici.getKullanici_email());
-            preparedStatement.setString(4, kullanici.getKullanici_sifre());
+            preparedStatement.setString(1, user.getKullanici_ad());
+            preparedStatement.setString(2, user.getKullanici_soyad());
+            preparedStatement.setString(3, user.getKullanici_email());
+            preparedStatement.setString(4, user.getKullanici_sifre());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     
-    public void addAdmin(Kullanici kullanici) throws SQLException {
+    public void addAdmin(Kullanici user) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_INSERT_ADMIN)) {
-            preparedStatement.setString(1, kullanici.getKullanici_ad());
-            preparedStatement.setString(2, kullanici.getKullanici_soyad());
-            preparedStatement.setString(3, kullanici.getKullanici_email());
-            preparedStatement.setString(4, kullanici.getKullanici_sifre());
+            preparedStatement.setString(1, user.getKullanici_ad());
+            preparedStatement.setString(2, user.getKullanici_soyad());
+            preparedStatement.setString(3, user.getKullanici_email());
+            preparedStatement.setString(4, user.getKullanici_sifre());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     
-    public boolean uyekontrol(String kullanici_email) {
+    public boolean uyekontrol(String user_email) {
 
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL);) {
-            preparedStatement.setString(1, kullanici_email);
+            preparedStatement.setString(1, user_email);
             ResultSet rs = preparedStatement.executeQuery();
             
             if (rs.next()) {
@@ -225,12 +225,12 @@ public class KullaniciDAO {
         return true;
     }
     
-    public boolean uyegiriskontrol(String kullanici_email, String kullanici_sifre) {
+    public boolean uyegiriskontrol(String user_email, String user_sifre) {
         
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL_SIFRE);) {
-            preparedStatement.setString(1, kullanici_email);
-            preparedStatement.setString(2, kullanici_sifre);
+            preparedStatement.setString(1, user_email);
+            preparedStatement.setString(2, user_sifre);
             
             ResultSet rs = preparedStatement.executeQuery();
             
@@ -265,34 +265,34 @@ public class KullaniciDAO {
         return false;
     }
     
-    public Kullanici uyegiris(String kullanici_email, String kullanici_sifre) {
+    public Kullanici uyegiris(String user_email, String user_sifre) {
          
-        Kullanici kullanici = null;
+        Kullanici user = null;
         
         try (Connection connection = getConnection();
                 
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_SELECT_EMAIL_SIFRE);) {
-            preparedStatement.setString(1, kullanici_email);
-            preparedStatement.setString(2, kullanici_sifre);
+            preparedStatement.setString(1, user_email);
+            preparedStatement.setString(2, user_sifre);
             
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                int kullanici_id = rs.getInt("kullanici_id");
-                String kullanici_ad = rs.getString("kullanici_ad");
-                String kullanici_soyad = rs.getString("kullanici_soyad");
+                int user_id = rs.getInt("user_id");
+                String user_ad = rs.getString("user_ad");
+                String user_soyad = rs.getString("user_soyad");
                 int user_authorization = rs.getInt("user_authorization");
-                kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, kullanici_email, user_authorization);
+                user = new Kullanici(user_id, user_ad, user_soyad, user_email, user_authorization);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return kullanici;
+        return user;
     }
     
     public Kullanici admingiris(String admin_email, String admin_sifre) {
          
-        Kullanici kullanici = null;
+        Kullanici user = null;
         
         try (Connection connection = getConnection();
                 
@@ -303,16 +303,16 @@ public class KullaniciDAO {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                int kullanici_id = rs.getInt("kullanici_id");
-                String kullanici_ad = rs.getString("kullanici_ad");
-                String kullanici_soyad = rs.getString("kullanici_soyad");
+                int user_id = rs.getInt("user_id");
+                String user_ad = rs.getString("user_ad");
+                String user_soyad = rs.getString("user_soyad");
                 int user_authorization = rs.getInt("user_authorization");
-                kullanici = new Kullanici(kullanici_id, kullanici_ad, kullanici_soyad, admin_email, user_authorization);
+                user = new Kullanici(user_id, user_ad, user_soyad, admin_email, user_authorization);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return kullanici;
+        return user;
     }
     
     private void printSQLException(SQLException ex) {

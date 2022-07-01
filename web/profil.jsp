@@ -27,7 +27,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="deleteAccount" method="post">
-                        <input type="hidden" id="password_id" name="password_id" value="<c:out value="${kullanici.kullanici_id}" />">
+                        <input type="hidden" id="password_id" name="password_id" value="<c:out value="${user.user_id}" />">
                             <p>Bu işlem geri alınamaz. Emin misiniz ?</p>
                             <div class="form-group">
                                 <label for="sil_sifre" class="col-form-label">Şifreniz: </label>
@@ -62,23 +62,23 @@
                     <p class="card-header text-center" style="background-color: #F1F2F8;">Üyelik Bilgilerim</p>
                     <div class="card-body">
                         <form class="text-muted" action="updateProfile" method="post">
-                            <input type="hidden" id="kullanici_id" name="kullanici_id" value="<c:out value="${kullanici.kullanici_id}" />">
+                            <input type="hidden" id="user_id" name="user_id" value="<c:out value="${user.user_id}" />">
                                 <div class="form-group row">
-                                    <label for="kullanici_ad" class="col-sm-4 col-form-label">Ad</label>
+                                    <label for="user_ad" class="col-sm-4 col-form-label">Ad</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="kullanici_ad" name="kullanici_ad" value="<c:out value="${kullanici.kullanici_ad}" />" placeholder="Ad" required>
+                                        <input type="text" class="form-control" id="user_ad" name="user_ad" value="<c:out value="${user.user_ad}" />" placeholder="Ad" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kullanici_soyad" class="col-sm-4 col-form-label">Soyad</label>
+                                    <label for="user_soyad" class="col-sm-4 col-form-label">Soyad</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="kullanici_soyad" name="kullanici_soyad" value="<c:out value="${kullanici.kullanici_soyad}" />" placeholder="Soyad" required>
+                                        <input type="text" class="form-control" id="user_soyad" name="user_soyad" value="<c:out value="${user.user_soyad}" />" placeholder="Soyad" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kullanici_email" class="col-sm-4 col-form-label">Email Adres</label>
+                                    <label for="user_email" class="col-sm-4 col-form-label">Email Adres</label>
                                     <div class="col-sm-8">
-                                        <input type="email" class="form-control" id="kullanici_email" name="kullanici_email" value="<c:out value="${kullanici.kullanici_email}" />" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="user_email" name="user_email" value="<c:out value="${user.user_email}" />" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-outline-warning">Güncelle</button>
@@ -91,23 +91,23 @@
                     <p class="card-header text-center" style="background-color: #F1F2F8;">Şifre Güncelleme</p>
                     <div class="card-body">
                         <form class="text-muted" id="sifreguncelleme" name="sifreguncelleme" method="POST" action="updatePassword" onsubmit="return Kontrol()">
-                            <input type="hidden" id="kullanici_id_sifre" name="kullanici_id_sifre" value="<c:out value="${kullanici.kullanici_id}" />">
+                            <input type="hidden" id="user_id_sifre" name="user_id_sifre" value="<c:out value="${user.user_id}" />">
                                 <div class="form-group row">
-                                    <label for="kullanici_suan_sifre" class="col-sm-4 col-form-label">Şu anki Şifre</label>
+                                    <label for="user_suan_sifre" class="col-sm-4 col-form-label">Şu anki Şifre</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="kullanici_suan_sifre" name="kullanici_suan_sifre" autocomplete="current-password" placeholder="Şu anki Şifre" required>
+                                        <input type="password" class="form-control" id="user_suan_sifre" name="user_suan_sifre" autocomplete="current-password" placeholder="Şu anki Şifre" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kullanici_sifre1" class="col-sm-4 col-form-label">Yeni Şifre</label>
+                                    <label for="user_sifre1" class="col-sm-4 col-form-label">Yeni Şifre</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="kullanici_sifre1" name="kullanici_sifre1" autocomplete="new-password" placeholder="Yeni Şifre" required>
+                                        <input type="password" class="form-control" id="user_sifre1" name="user_sifre1" autocomplete="new-password" placeholder="Yeni Şifre" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kullanici_sifre2" class="col-sm-4 col-form-label">Yeni Şifre Tekrar</label>
+                                    <label for="user_sifre2" class="col-sm-4 col-form-label">Yeni Şifre Tekrar</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="kullanici_sifre2" name="kullanici_sifre2" autocomplete="new-password" placeholder="Yeni Şifre Tekrar" required>
+                                        <input type="password" class="form-control" id="user_sifre2" name="user_sifre2" autocomplete="new-password" placeholder="Yeni Şifre Tekrar" required>
                                     </div>
                                 </div>
                                 <div class="alert alert-warning" role="alert" id="1" style="display:none">Şifre en az 8 karakter uzunluğunda olmalıdır.</div>
@@ -123,8 +123,8 @@
 <script>
     function Kontrol() {
         var formUyeOl = document.forms["sifreguncelleme"];
-        var sifre1 = formUyeOl["kullanici_sifre1"];
-        var sifre2 = formUyeOl["kullanici_sifre2"];
+        var sifre1 = formUyeOl["user_sifre1"];
+        var sifre2 = formUyeOl["user_sifre2"];
         sifre1 = sifre1.value;
         sifre2 = sifre2.value;
         if (sifre1.length < 8) {

@@ -29,26 +29,26 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <c:forEach var="rezervasyon" items="${rezervasyonliste}">
+                        <c:forEach var="rezervasyon" items="${reservationList}">
                             <tr>
-                                <td><c:out value="${rezervasyon.rezervasyon_id}" /></td>
+                                <td><c:out value="${rezervasyon.reservation_id}" /></td>
                                 <td><c:out value="${rezervasyon.rezervasyon_tarih}" /></td>
                                 <td><c:out value="${rezervasyon.pnr_no}" /></td>
                                 <td><c:out value="${rezervasyon.yolcu_soyad}" /></td>
                                 <td>
-                                    <a data-toggle="modal" href="#modal<c:out value="${rezervasyon.rezervasyon_id}" />">
+                                    <a data-toggle="modal" href="#modal<c:out value="${rezervasyon.reservation_id}" />">
                                         <button class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> İncele</button>
                                     </a>
-                                    <a href="cancelReservation?id=<c:out value="${rezervasyon.rezervasyon_id}" />">
+                                    <a href="cancelReservation?id=<c:out value="${rezervasyon.reservation_id}" />">
                                         <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> İptal</button>
                                     </a>
                                 </td>
                             </tr>
-                        <div class="modal fade" id="modal<c:out value="${rezervasyon.rezervasyon_id}" />" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal<c:out value="${rezervasyon.reservation_id}" />" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modal<c:out value="${rezervasyon.rezervasyon_id}" />">İncele</h5>
+                                        <h5 class="modal-title" id="modal<c:out value="${rezervasyon.reservation_id}" />">İncele</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>

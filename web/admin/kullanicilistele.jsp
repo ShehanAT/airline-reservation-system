@@ -42,12 +42,12 @@
                     <tbody>
                         <c:forEach var="user" items="${userliste}">
                             <tr>
-                                <td><c:out value="${user.kullanici_id}" /></td>
-                                <td><c:out value="${kullanici.kullanici_ad}" /></td>
-                                <td><c:out value="${kullanici.kullanici_soyad}" /></td>
-                                <td><c:out value="${kullanici.kullanici_email}" /></td>
+                                <td><c:out value="${user.user_id}" /></td>
+                                <td><c:out value="${user.user_ad}" /></td>
+                                <td><c:out value="${user.user_soyad}" /></td>
+                                <td><c:out value="${user.user_email}" /></td>
                                 <c:choose>
-                                    <c:when test= "${kullanici.user_authorization == 1}">
+                                    <c:when test= "${user.user_authorization == 1}">
                                         <td>Üye</td>
                                     </c:when>
                                     <c:otherwise>
@@ -55,12 +55,12 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <td>
-                                    <c:if test="${kullanici.user_authorization > 1}">
-                                        <a href="adminUpdate?id=<c:out value='${kullanici.kullanici_id}' />">
+                                    <c:if test="${user.user_authorization > 1}">
+                                        <a href="adminUpdate?id=<c:out value='${user.user_id}' />">
                                             <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
                                         </a>
                                     </c:if>                                               
-                                    <a href="deleteUser?id=<c:out value='${kullanici.kullanici_id}' />">
+                                    <a href="deleteUser?id=<c:out value='${user.user_id}' />">
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
                                     </a>
                                 </td>

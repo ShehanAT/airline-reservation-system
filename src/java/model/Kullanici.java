@@ -2,118 +2,118 @@ package model;
 
 public class Kullanici {
 
-    protected int kullanici_id;
-    protected String kullanici_ad;
-    protected String kullanici_soyad;
-    protected String kullanici_email;
-    protected String kullanici_password;
+    protected int user_id;
+    protected String user_ad;
+    protected String user_soyad;
+    protected String user_email;
+    protected String user_password;
     protected int user_authorization;
 
     public Kullanici() {
     }
 
-    public Kullanici(int kullanici_id, String kullanici_password) {
-        this.kullanici_id = kullanici_id;
-        this.kullanici_sifre = kullanici_sifre;
+    public Kullanici(int user_id, String user_password) {
+        this.user_id = user_id;
+        this.user_sifre = user_sifre;
     }
 
-    public Kullanici(String kullanici_email, String kullanici_sifre) {
-        this.kullanici_email = kullanici_email;
-        this.kullanici_sifre = kullanici_sifre;
+    public Kullanici(String user_email, String user_sifre) {
+        this.user_email = user_email;
+        this.user_sifre = user_sifre;
     }
 
-    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre) {
-        this.kullanici_id = kullanici_id;
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
-        this.kullanici_sifre = kullanici_sifre;
+    public Kullanici(int user_id, String user_ad, String user_soyad, String user_email, String user_sifre) {
+        this.user_id = user_id;
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
+        this.user_sifre = user_sifre;
     }
 
-    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, int user_authorization) {
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
+    public Kullanici(String user_ad, String user_soyad, String user_email, int user_authorization) {
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
         this.user_authorization = user_authorization;
     }
 
-    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre, int user_authorization) {
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
-        this.kullanici_sifre = kullanici_sifre;
+    public Kullanici(String user_ad, String user_soyad, String user_email, String user_sifre, int user_authorization) {
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
+        this.user_sifre = user_sifre;
         this.user_authorization = user_authorization;
     }
 
-    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, int user_authorization) {
-        this.kullanici_id = kullanici_id;
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
+    public Kullanici(int user_id, String user_ad, String user_soyad, String user_email, int user_authorization) {
+        this.user_id = user_id;
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
         this.user_authorization = user_authorization;
     }
 
-    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre, int user_authorization) {
-        this.kullanici_id = kullanici_id;
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
-        this.kullanici_sifre = kullanici_sifre;
+    public Kullanici(int user_id, String user_ad, String user_soyad, String user_email, String user_sifre, int user_authorization) {
+        this.user_id = user_id;
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
+        this.user_sifre = user_sifre;
         this.user_authorization = user_authorization;
     }
 
-    public Kullanici(String kullanici_ad, String kullanici_soyad, String kullanici_email, String kullanici_sifre) {
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
-        this.kullanici_sifre = kullanici_sifre;
+    public Kullanici(String user_ad, String user_soyad, String user_email, String user_sifre) {
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
+        this.user_sifre = user_sifre;
     }
     
-    public Kullanici(int kullanici_id, String kullanici_ad, String kullanici_soyad, String kullanici_email) {
-        this.kullanici_id = kullanici_id;
-        this.kullanici_ad = kullanici_ad;
-        this.kullanici_soyad = kullanici_soyad;
-        this.kullanici_email = kullanici_email;
+    public Kullanici(int user_id, String user_ad, String user_soyad, String user_email) {
+        this.user_id = user_id;
+        this.user_ad = user_ad;
+        this.user_soyad = user_soyad;
+        this.user_email = user_email;
     }
     
     public int getKullanici_id() {
-        return kullanici_id;
+        return user_id;
     }
 
-    public void setKullanici_id(int kullanici_id) {
-        this.kullanici_id = kullanici_id;
+    public void setKullanici_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getKullanici_ad() {
-        return kullanici_ad;
+        return user_ad;
     }
 
-    public void setKullanici_ad(String kullanici_ad) {
-        this.kullanici_ad = kullanici_ad;
+    public void setKullanici_ad(String user_ad) {
+        this.user_ad = user_ad;
     }
 
     public String getKullanici_soyad() {
-        return kullanici_soyad;
+        return user_soyad;
     }
 
-    public void setKullanici_soyad(String kullanici_soyad) {
-        this.kullanici_soyad = kullanici_soyad;
+    public void setKullanici_soyad(String user_soyad) {
+        this.user_soyad = user_soyad;
     }
 
     public String getKullanici_email() {
-        return kullanici_email;
+        return user_email;
     }
 
-    public void setKullanici_email(String kullanici_email) {
-        this.kullanici_email = kullanici_email;
+    public void setKullanici_email(String user_email) {
+        this.user_email = user_email;
     }
 
     public String getKullanici_sifre() {
-        return kullanici_sifre;
+        return user_sifre;
     }
 
-    public void setKullanici_sifre(String kullanici_sifre) {
-        this.kullanici_sifre = kullanici_sifre;
+    public void setKullanici_sifre(String user_sifre) {
+        this.user_sifre = user_sifre;
     }
 
     public int getKullanici_yetki() {

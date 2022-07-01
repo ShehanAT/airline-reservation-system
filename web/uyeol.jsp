@@ -16,20 +16,20 @@
                 }
             }
         %>
-        <label for="kullanici_ad" class="sr-only">Ad</label>
-        <input type="text" id="kullanici_ad" name="kullanici_ad" class="form-control mb-3" placeholder="Ad" required autofocus>
+        <label for="user_ad" class="sr-only">Ad</label>
+        <input type="text" id="user_ad" name="user_ad" class="form-control mb-3" placeholder="Ad" required autofocus>
         
-        <label for="kullanici_soyad" class="sr-only">Soyad</label>
-        <input type="text" id="kullanici_soyad" name="kullanici_soyad" class="form-control mb-3" placeholder="Soyad" required>
+        <label for="user_soyad" class="sr-only">Soyad</label>
+        <input type="text" id="user_soyad" name="user_soyad" class="form-control mb-3" placeholder="Soyad" required>
         
-        <label for="kullanici_email" class="sr-only">E-mail</label>
-        <input type="email" id="kullanici_email" name="kullanici_email" class="form-control mb-3" placeholder="E-mail" required>
+        <label for="user_email" class="sr-only">E-mail</label>
+        <input type="email" id="user_email" name="user_email" class="form-control mb-3" placeholder="E-mail" required>
         
-        <label for="kullanici_password1" class="sr-only">Şifre</label>
-        <input type="password" id="kullanici_password1" name="kullanici_password1" class="form-control mb-3" placeholder="Şifre" required>
+        <label for="user_password1" class="sr-only">Şifre</label>
+        <input type="password" id="user_password1" name="user_password1" class="form-control mb-3" placeholder="Şifre" required>
         
-        <label for="kullanici_password2" class="sr-only">Şifre Onayla</label>
-        <input type="password" id="kullanici_password2" name="kullanici_password2" class="form-control mb-3" placeholder="Şifre Onayla" required>
+        <label for="user_password2" class="sr-only">Şifre Onayla</label>
+        <input type="password" id="user_password2" name="user_password2" class="form-control mb-3" placeholder="Şifre Onayla" required>
                             
         <div class="alert alert-warning" role="alert" id="1" style="display:none">Şifre en az 8 karakter uzunluğunda olmalıdır.</div>
         <div class="alert alert-warning" role="alert" id="2" style="display:none">Şifreler uyuşmuyor.</div>
@@ -44,8 +44,8 @@
 <script>
     function UyeolKontrol() {
         var formUyeOl = document.forms["UyeOl"];
-        var password1 = formUyeOl["kullanici_password1"];
-        var password2 = formUyeOl["kullanici_password2"];
+        var password1 = formUyeOl["user_password1"];
+        var password2 = formUyeOl["user_password2"];
         password1 = sifre1.value;
         sifre2 = sifre2.value;
         if (sifre1.length < 8) {

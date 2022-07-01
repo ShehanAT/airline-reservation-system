@@ -86,10 +86,10 @@ CREATE TABLE `havaalani_ulke` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `kullanicilar`
+-- Tablo için tablo yapısı `users`
 --
 
-CREATE TABLE `kullanicilar` (
+CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_ad` varchar(100) DEFAULT NULL,
   `user_soyad` varchar(100) DEFAULT NULL,
@@ -99,10 +99,10 @@ CREATE TABLE `kullanicilar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Tablo döküm verisi `kullanicilar`
+-- Tablo döküm verisi `users`
 --
 
-INSERT INTO `kullanicilar` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `user_password`, `user_authorization`) VALUES
+INSERT INTO `users` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `user_password`, `user_authorization`) VALUES
 (3, 'Kullanıcı', 'Admin', 'admin@hawkeye.com', '123456', 2),
 (4, 'Kullanıcı', 'Üye', 'user@hawkeye.com', '123456', 1);
 
@@ -130,7 +130,7 @@ CREATE TABLE `message` (
 --
 
 CREATE TABLE `reservation` (
-  `rezervasyon_id` int(11) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `rezervasyon_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
   `flight_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -213,9 +213,9 @@ ALTER TABLE `havaalani_ulke`
   ADD PRIMARY KEY (`airport_country_id`);
 
 --
--- Tablo için indeksler `kullanicilar`
+-- Tablo için indeksler `users`
 --
-ALTER TABLE `kullanicilar`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
@@ -277,10 +277,10 @@ ALTER TABLE `havaalani_ulke`
   MODIFY `airport_country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Tablo için AUTO_INCREMENT değeri `kullanicilar`
+-- Tablo için AUTO_INCREMENT değeri `users`
 --
-ALTER TABLE `kullanicilar`
-  MODIFY `kullanici_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `message`

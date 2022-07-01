@@ -1,7 +1,7 @@
 package model;
 
 public class Reservation  {
-    int rezervasyon_id;
+    int reservation_id;
     String rezervasyon_tarih;
     String pnr_no;
     String yolcu_ad;
@@ -11,7 +11,7 @@ public class Reservation  {
     String yolcu_tc;
     int yolcu_tip;
     String koltuk_no;
-    int kullanici_id;
+    int user_id;
     int airport_departure_id;
     int airport_heir_id;
     String flight_date;
@@ -40,8 +40,8 @@ public class Reservation  {
     Double yolcu_ucret;
     int situation;
 
-    public Reservation(int rezervasyon_id, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, String yolcu_tarih) {
-        this.rezervasyon_id = rezervasyon_id;
+    public Reservation(int reservation_id, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, String yolcu_tarih) {
+        this.reservation_id = reservation_id;
         this.yolcu_ad = yolcu_ad;
         this.yolcu_soyad = yolcu_soyad;
         this.yolcu_email = yolcu_email;
@@ -51,9 +51,9 @@ public class Reservation  {
     }
     
     
-    public Reservation(int situation, int rezervasyon_id, String rezervasyon_tarih, String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, String flight_date, String kalkis_sehir, String kalkis_ad, String kalkis_kod, String varis_sehir, String varis_ad, String varis_kod, String flight_hour, String flight_time, String company_name, String company_logo, String ucus_s, String ucus_d, String varis_saat, String ucak_ad, String yolcu_tarih, Double yolcu_ucret) {
+    public Reservation(int situation, int reservation_id, String rezervasyon_tarih, String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, String flight_date, String kalkis_sehir, String kalkis_ad, String kalkis_kod, String varis_sehir, String varis_ad, String varis_kod, String flight_hour, String flight_time, String company_name, String company_logo, String ucus_s, String ucus_d, String varis_saat, String ucak_ad, String yolcu_tarih, Double yolcu_ucret) {
         this.situation = situation;
-        this.rezervasyon_id = rezervasyon_id;
+        this.reservation_id = reservation_id;
         this.rezervasyon_tarih = rezervasyon_tarih;
         this.pnr_no = pnr_no;
         this.yolcu_ad = yolcu_ad;
@@ -82,7 +82,7 @@ public class Reservation  {
         this.yolcu_ucret = yolcu_ucret;
     }
     
-    public Reservation(String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, int kullanici_id, int flight_id, String yolcu_tarih, Double yolcu_ucret) {
+    public Reservation(String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, int user_id, int flight_id, String yolcu_tarih, Double yolcu_ucret) {
         this.pnr_no = pnr_no;
         this.yolcu_ad = yolcu_ad;
         this.yolcu_soyad = yolcu_soyad;
@@ -91,7 +91,7 @@ public class Reservation  {
         this.yolcu_tc = yolcu_tc;
         this.yolcu_tip = yolcu_tip;
         this.koltuk_no = koltuk_no;
-        this.kullanici_id = kullanici_id;
+        this.user_id = user_id;
         this.flight_id = flight_id;
         this.yolcu_tarih = yolcu_tarih;
         this.yolcu_ucret = yolcu_ucret;
@@ -154,8 +154,8 @@ public class Reservation  {
         this.cocuk_sayi = cocuk_sayi;
     }
     
-    public Reservation(int rezervasyon_id, String rezervasyon_tarih, String pnr_no, String yolcu_soyad) {
-        this.rezervasyon_id = rezervasyon_id;
+    public Reservation(int reservation_id, String rezervasyon_tarih, String pnr_no, String yolcu_soyad) {
+        this.reservation_id = reservation_id;
         this.rezervasyon_tarih = rezervasyon_tarih;
         this.pnr_no = pnr_no;
         this.yolcu_soyad = yolcu_soyad;
@@ -169,8 +169,8 @@ public class Reservation  {
         this.cocuk_sayi = cocuk_sayi;
     }
 
-    public Reservation(int rezervasyon_id, String rezervasyon_tarih, String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, int kullanici_id, int flight_id) {
-        this.rezervasyon_id = rezervasyon_id;
+    public Reservation(int reservation_id, String rezervasyon_tarih, String pnr_no, String yolcu_ad, String yolcu_soyad, String yolcu_email, String yolcu_tel, String yolcu_tc, int yolcu_tip, String koltuk_no, int user_id, int flight_id) {
+        this.reservation_id = reservation_id;
         this.rezervasyon_tarih = rezervasyon_tarih;
         this.pnr_no = pnr_no;
         this.yolcu_ad = yolcu_ad;
@@ -180,7 +180,7 @@ public class Reservation  {
         this.yolcu_tc = yolcu_tc;
         this.yolcu_tip = yolcu_tip;
         this.koltuk_no = koltuk_no;
-        this.kullanici_id = kullanici_id;
+        this.user_id = user_id;
         this.flight_id = flight_id;
     }
 
@@ -300,19 +300,19 @@ public class Reservation  {
     }
 
     public int getKullanici_id() {
-        return kullanici_id;
+        return user_id;
     }
 
-    public void setKullanici_id(int kullanici_id) {
-        this.kullanici_id = kullanici_id;
+    public void setKullanici_id(int user_id) {
+        this.user_id = user_id;
     }
     
     public int getReservation_id() {
-        return rezervasyon_id;
+        return reservation_id;
     }
 
-    public void setReservation_id(int rezervasyon_id) {
-        this.rezervasyon_id = rezervasyon_id;
+    public void setReservation_id(int reservation_id) {
+        this.reservation_id = reservation_id;
     }
 
     public String getRezervasyon_tarih() {

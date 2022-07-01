@@ -95,11 +95,11 @@
             KULLANICI
         </div>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="kullanici">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="user">
                 <i class="fas fa-fw fa-users-cog"></i>
                 <span>Kullanıcı İşlemleri</span>
             </a>
-            <div id="kullanici" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="user" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="addAdmin">Admin Ekle</a>
                     <a class="collapse-item" href="userList">Kullanıcı Listele</a>
@@ -118,7 +118,7 @@
             </a>
             <div id="rezervasyon" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="rezervasyonliste">Reservation Listele</a>
+                    <a class="collapse-item" href="reservationList">Reservation Listele</a>
                 </div>
             </div>
         </li>       

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import model.Reply;
 import model.Message;
 
-@WebServlet(urlPatterns = {"/admin/replyMessage", "/admin/showreplyMessage", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
+@WebServlet(urlPatterns = {"/admin/replyMessage", "/admin/showReplyMessage", "/admin/reviewList", "/admin/deleteAnswer", "/admin/reviewAnswer"})
 
 public class ReplyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

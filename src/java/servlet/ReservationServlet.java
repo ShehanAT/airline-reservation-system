@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Airport;
 import model.Reservation;
 
-@WebServlet(urlPatterns = {"/flight_inquiry", "/admin/rezervasyonliste", "/admin/cancelReservation", "/reservationInquiry", "/makeReservation", "/myReservationTransactions", "/showMyReservationTransactions", "/rezervasyonguncelle", "/residual"})
+@WebServlet(urlPatterns = {"/flight_inquiry", "/admin/reservationList", "/admin/cancelReservation", "/reservationInquiry", "/makeReservation", "/myReservationTransactions", "/showMyReservationTransactions", "/updateReservation", "/residual"})
 public class ReservationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -41,8 +41,8 @@ public class ReservationServlet extends HttpServlet {
                 case "/flight_inquiry":
                     flight_inquiry(request, response);
                     break;
-                case "/admin/rezervasyonliste":
-                    rezervasyonlistele(request, response);
+                case "/admin/reservationList":
+                    reservationList(request, response);
                     break;
                 case "/admin/cancelReservation":
                     cancelReservation(request, response);
@@ -59,8 +59,8 @@ public class ReservationServlet extends HttpServlet {
                 case "/showMyReservationTransactions":
                     showMyReservationTransactions(request, response);
                     break;
-                case "/rezervasyonguncelle":
-                    rezervasyonguncelle(request, response);
+                case "/updateReservation":
+                    updateReservation(request, response);
                     break;
                 case "/residual":
                     residual(request, response);
@@ -80,11 +80,11 @@ public class ReservationServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 1) {
             response.sendRedirect("flight_ticket");
         } else {
-            int rezervasyon_id = Integer.parseInt(request.getParameter("rezervasyon_id"));
-            String kullanici_password = (String) session.getAttribute("kullanici_password");
-            String password = request.getParameter("sil_password");
-            if (kullanici_password.equals(password)) {
-                reservationDAO.cancelReservation(rezervasyon_id);
+            int reservation_id = Integer.parseInt(request.getParameter("reservation_id"));
+            String user_password = (String) session.getAttribute("user_password");
+            String password = request.getParameter("password_delete");
+            if (user_password.equals(password)) {
+                reservationDAO.cancelReservation(reservation_id);
                 response.sendRedirect("myReservationTransactions?cancel=successful");
             } else {
                 response.sendRedirect("myReservationTransactions?cancel=unsuccessful");
@@ -92,7 +92,7 @@ public class ReservationServlet extends HttpServlet {
         }
     }
 
-    private void rezervasyonguncelle(HttpServletRequest request, HttpServletResponse response)
+    private void updateReservation(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -108,7 +108,7 @@ public class ReservationServlet extends HttpServlet {
             String yolcu_email = request.getParameter("yolcu_email" + id);
             String yolcu_tel = request.getParameter("yolcu_tel" + id);
             Reservation rez = new Reservation(id, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tarih);
-            reservationDAO.rezervasyonguncelle(rez);
+            reservationDAO.updateReservation(rez);
             response.sendRedirect("myReservationTransactions?guncelleme=successful");
         }
     }
@@ -121,10 +121,10 @@ public class ReservationServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 1) {
             response.sendRedirect("flight_ticket");
         } else {
-            int kullanici_id = (int) session.getAttribute("kullanici_id");
-            reservationDAO.cancellationStatus1(kullanici_id);
-            reservationDAO.cancellationStatus0(kullanici_id);
-            List<Reservation> rezervasyonislem = reservationDAO.rezervasyonislem(kullanici_id);
+            int user_id = (int) session.getAttribute("user_id");
+            reservationDAO.cancellationStatus1(user_id);
+            reservationDAO.cancellationStatus0(user_id);
+            List<Reservation> rezervasyonislem = reservationDAO.rezervasyonislem(user_id);
             request.setAttribute("rezervasyonislem", rezervasyonislem);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("myReservationTransactions.jsp");
@@ -141,7 +141,7 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect("flight_ticket");
         } else {
             int flight_id = Integer.parseInt(request.getParameter("flight_id"));
-            int kullanici_id = (int) session.getAttribute("kullanici_id");
+            int user_id = (int) session.getAttribute("user_id");
             String yolcu_email = request.getParameter("yolcu_email");
             String yolcu_tel = request.getParameter("yolcu_tel");
             String pnr_no;
@@ -170,7 +170,7 @@ public class ReservationServlet extends HttpServlet {
                     yolcu_tc = request.getParameter("yolcu_tc" + i);
                     yolcu_tarih = request.getParameter("yolcu_tarih" + i);
                     yolcu_koltuk = request.getParameter("yolcu_koltuk" + i);
-                    Reservation rezervasyon = new Reservation(pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_koltuk, kullanici_id, flight_id, yolcu_tarih, u_ucret);
+                    Reservation rezervasyon = new Reservation(pnr_no, yolcu_ad, yolcu_soyad, yolcu_email, yolcu_tel, yolcu_tc, yolcu_tip, yolcu_koltuk, user_id, flight_id, yolcu_tarih, u_ucret);
                     reservationDAO.rezervasyonekle(rezervasyon);
                 }
 
@@ -198,9 +198,9 @@ public class ReservationServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            int rezervasyon_id = Integer.parseInt(request.getParameter("id"));
-            reservationDAO.cancelReservation(rezervasyon_id);
-            response.sendRedirect("rezervasyonliste");
+            int reservation_id = Integer.parseInt(request.getParameter("id"));
+            reservationDAO.cancelReservation(reservation_id);
+            response.sendRedirect("reservationList");
         }
     }
 
@@ -222,7 +222,7 @@ public class ReservationServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void rezervasyonlistele(HttpServletRequest request, HttpServletResponse response)
+    private void reservationList(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         if ((Integer) session.getAttribute("user_authorization") == null) {
@@ -230,9 +230,9 @@ public class ReservationServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Reservation> rezervasyonliste = reservationDAO.rezervasyonlistele();
-            request.setAttribute("rezervasyonliste", rezervasyonliste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("rezervasyonlistele.jsp");
+            List<Reservation> reservationList = reservationDAO.reservationList();
+            request.setAttribute("reservationList", reservationList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("reservationList.jsp");
             dispatcher.forward(request, response);
         }
     }
