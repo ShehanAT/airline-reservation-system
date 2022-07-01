@@ -27,7 +27,7 @@
                                                id="admin_email" name="admin_email" placeholder="E-mail">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="admin_sifre" name="admin_sifre" placeholder="Şifre">
+                                        <input type="password" class="form-control form-control-user" id="admin_password" name="admin_password" placeholder="Şifre">
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-user btn-block">
                                         Giriş Yap

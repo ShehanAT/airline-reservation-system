@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `review` (
   `review_id` int(11) NOT NULL,
   `message_id` int(11) NOT NULL,
-  `review_icerik` text NOT NULL,
+  `review_contents` text NOT NULL,
   `review_title` varchar(500) NOT NULL,
   `review_tarih` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -94,7 +94,7 @@ CREATE TABLE `kullanicilar` (
   `user_ad` varchar(100) DEFAULT NULL,
   `user_soyad` varchar(100) DEFAULT NULL,
   `user_email` varchar(100) DEFAULT NULL,
-  `user_sifre` varchar(100) DEFAULT NULL,
+  `user_password` varchar(100) DEFAULT NULL,
   `user_authorization` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -102,7 +102,7 @@ CREATE TABLE `kullanicilar` (
 -- Tablo döküm verisi `kullanicilar`
 --
 
-INSERT INTO `kullanicilar` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `user_sifre`, `user_authorization`) VALUES
+INSERT INTO `kullanicilar` (`user_id`, `user_ad`, `user_soyad`, `user_email`, `user_password`, `user_authorization`) VALUES
 (3, 'Kullanıcı', 'Admin', 'admin@hawkeye.com', '123456', 2),
 (4, 'Kullanıcı', 'Üye', 'user@hawkeye.com', '123456', 1);
 
@@ -117,7 +117,7 @@ CREATE TABLE `message` (
   `message_surname` varchar(500) NOT NULL,
   `message_email` varchar(500) NOT NULL,
   `message_konu` varchar(500) NOT NULL,
-  `message_icerik` text NOT NULL,
+  `message_contents` text NOT NULL,
   `message_tarih` timestamp NOT NULL DEFAULT current_timestamp(),
   `message_notRead` int(2) NOT NULL DEFAULT 0,
   `message_review` int(2) NOT NULL DEFAULT 0

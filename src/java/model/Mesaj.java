@@ -61,11 +61,11 @@ public class Message {
         this.message_subject = message_subject;
     }
 
-    public String getMessage_icerik() {
+    public String getMessage_contents() {
         return message_content;
     }
 
-    public void setMessage_icerik(String message_content) {
+    public void setMessage_contents(String message_content) {
         this.message_content = message_content;
     }
 

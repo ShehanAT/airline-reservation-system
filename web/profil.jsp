@@ -27,7 +27,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="deleteAccount" method="post">
-                        <input type="hidden" id="sifre_id" name="sifre_id" value="<c:out value="${kullanici.kullanici_id}" />">
+                        <input type="hidden" id="password_id" name="password_id" value="<c:out value="${kullanici.kullanici_id}" />">
                             <p>Bu işlem geri alınamaz. Emin misiniz ?</p>
                             <div class="form-group">
                                 <label for="sil_sifre" class="col-form-label">Şifreniz: </label>

@@ -235,10 +235,10 @@
 </section>
 <section>
     <div class="cta mt-5 mb-5">
-        <form action="uyeol" method="post">
+        <form action="signUp" method="post">
             <div class="intro text-center">
                 <h1 style="font-size: 26px">Üye Ol ve Fırsatları Yakala</h1>
-                <a href="uyeol" style="padding-bottom: 15px; padding-top: 15px;" class="search_button">Hemen Üye Ol</a>
+                <a href="signUp" style="padding-bottom: 15px; padding-top: 15px;" class="search_button">Hemen Üye Ol</a>
         </form>
     </div>
 </div>

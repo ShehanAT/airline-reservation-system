@@ -28,16 +28,16 @@
                         <input type="text" class="form-control" id="message_konu" name="message_konu" value="<c:out value='${message.message_konu}' />" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="message_icerik">İçerik</label>
-                        <textarea class="form-control" id="message_icerik" name="message_icerik" rows="5" readonly><c:out value='${message.message_icerik}' /></textarea>
+                        <label for="message_contents">İçerik</label>
+                        <textarea class="form-control" id="message_contents" name="message_contents" rows="5" readonly><c:out value='${message.message_contents}' /></textarea>
                     </div>
                     <div class="form-group">
                         <label for="reply_title">Reply Başlığı</label>
                         <input type="text" class="form-control" id="reply_title" name="reply_title" required>
                     </div>
                     <div class="form-group">
-                        <label for="reply_icerik">Reply İçeriği</label>
-                        <textarea class="form-control" id="reply_icerik" name="reply_icerik" rows="5" required></textarea>
+                        <label for="reply_contents">Reply İçeriği</label>
+                        <textarea class="form-control" id="reply_contents" name="reply_contents" rows="5" required></textarea>
                     </div>    
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Replyla</button>

@@ -34,8 +34,8 @@
                         <input type="text" class="form-control" id="review_title" name="review_title" value="<c:out value='${review.review_title}' />" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="review_icerik">Reply İçeriği</label>
-                        <textarea class="form-control" id="review_icerik" name="review_icerik" rows="5" disabled><c:out value='${review.review_icerik}' /></textarea>
+                        <label for="review_contents">Reply İçeriği</label>
+                        <textarea class="form-control" id="review_contents" name="review_contents" rows="5" disabled><c:out value='${review.review_contents}' /></textarea>
                     </div>
             </div>
         </div>

@@ -25,11 +25,11 @@
         <label for="kullanici_email" class="sr-only">E-mail</label>
         <input type="email" id="kullanici_email" name="kullanici_email" class="form-control mb-3" placeholder="E-mail" required>
         
-        <label for="kullanici_sifre1" class="sr-only">Şifre</label>
-        <input type="password" id="kullanici_sifre1" name="kullanici_sifre1" class="form-control mb-3" placeholder="Şifre" required>
+        <label for="kullanici_password1" class="sr-only">Şifre</label>
+        <input type="password" id="kullanici_password1" name="kullanici_password1" class="form-control mb-3" placeholder="Şifre" required>
         
-        <label for="kullanici_sifre2" class="sr-only">Şifre Onayla</label>
-        <input type="password" id="kullanici_sifre2" name="kullanici_sifre2" class="form-control mb-3" placeholder="Şifre Onayla" required>        
+        <label for="kullanici_password2" class="sr-only">Şifre Onayla</label>
+        <input type="password" id="kullanici_password2" name="kullanici_password2" class="form-control mb-3" placeholder="Şifre Onayla" required>
                             
         <div class="alert alert-warning" role="alert" id="1" style="display:none">Şifre en az 8 karakter uzunluğunda olmalıdır.</div>
         <div class="alert alert-warning" role="alert" id="2" style="display:none">Şifreler uyuşmuyor.</div>
@@ -44,9 +44,9 @@
 <script>
     function UyeolKontrol() {
         var formUyeOl = document.forms["UyeOl"];
-        var sifre1 = formUyeOl["kullanici_sifre1"];
-        var sifre2 = formUyeOl["kullanici_sifre2"];
-        sifre1 = sifre1.value;
+        var password1 = formUyeOl["kullanici_password1"];
+        var password2 = formUyeOl["kullanici_password2"];
+        password1 = sifre1.value;
         sifre2 = sifre2.value;
         if (sifre1.length < 8) {
             $("#1").css("display", "");

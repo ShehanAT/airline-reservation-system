@@ -3,13 +3,13 @@ package model;
 public class Reply {
     int reply_id;
     int message_id;
-    String reply_icerik;
+    String reply_contents;
     String reply_title;
     String reply_tarih;
     String message_surname;
     String message_email;
     String message_konu;
-    String message_icerik;
+    String message_contents;
     String message_tarih;
     int message_notRead;
     int message_reply;
@@ -17,22 +17,22 @@ public class Reply {
     public Reply() {
     }
 
-    public Reply(int reply_id, int message_id, String reply_icerik, String reply_title, String reply_tarih, String message_surname, String message_email, String message_konu, String message_icerik, String message_tarih) {
+    public Reply(int reply_id, int message_id, String reply_contents, String reply_title, String reply_tarih, String message_surname, String message_email, String message_konu, String message_contents, String message_tarih) {
         this.reply_id = reply_id;
         this.message_id = message_id;
-        this.reply_icerik = reply_icerik;
+        this.reply_contents = reply_contents;
         this.reply_title = reply_title;
         this.reply_tarih = reply_tarih;
         this.message_surname = message_surname;
         this.message_email = message_email;
         this.message_konu = message_konu;
-        this.message_icerik = message_icerik;
+        this.message_contents = message_contents;
         this.message_tarih = message_tarih;
     }
     
-    public Reply(int message_id, String reply_icerik, String reply_title) {
+    public Reply(int message_id, String reply_contents, String reply_title) {
         this.message_id = message_id;
-        this.reply_icerik = reply_icerik;
+        this.reply_contents = reply_contents;
         this.reply_title = reply_title;
     }
 
@@ -60,11 +60,11 @@ public class Reply {
         this.message_subject = message_subject;
     }
 
-    public String getMessage_icerik() {
+    public String getMessage_contents() {
         return message_content;
     }
 
-    public void setMessage_icerik(String message_content) {
+    public void setMessage_contents(String message_content) {
         this.message_content = message_content;
     }
 
@@ -108,12 +108,12 @@ public class Reply {
         this.message_id = message_id;
     }
 
-    public String getReply_icerik() {
-        return review_icerik;
+    public String getReply_contents() {
+        return review_contents;
     }
 
-    public void setReply_icerik(String review_icerik) {
-        this.review_icerik = review_icerik;
+    public void setReply_contents(String review_contents) {
+        this.review_contents = review_contents;
     }
 
     public String getReply_title() {

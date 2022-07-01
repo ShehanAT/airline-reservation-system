@@ -62,7 +62,7 @@
                 <%
                     if (session.getAttribute("user_authorization")==null) {
                         out.print("<li class='nav-item active'>"
-                                + "<a class='nav-link btn btn-outline-warning shadow-none px-4' href='uyeol'>Üye Ol</a>"
+                                + "<a class='nav-link btn btn-outline-warning shadow-none px-4' href='signUp'>Sign Up</a>"
                                 + "<li>");
                     }
                 %>

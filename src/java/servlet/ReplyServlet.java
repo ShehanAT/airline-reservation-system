@@ -135,14 +135,14 @@ public class ReplyServlet extends HttpServlet {
             int message_id = Integer.parseInt(request.getParameter("message_id"));
             String message_email = request.getParameter("message_email");
             String reply_title = new String((request.getParameter("reply_title")).getBytes("ISO-8859-1"), "UTF-8");
-            String reply_icerik = new String((request.getParameter("reply_icerik")).getBytes("ISO-8859-1"), "UTF-8");
-            Reply newReply = new Reply(message_id,reply_icerik,reply_title);
+            String reply_contents = new String((request.getParameter("reply_contents")).getBytes("ISO-8859-1"), "UTF-8");
+            Reply newReply = new Reply(message_id,reply_contents,reply_title);
 
             final String to = message_email;
             final String subject = reply_title;
-            final String messg = reply_icerik;
+            final String messg = reply_contents;
             final String from = "mail@gmail.com";
-            final String pass = "sifre";
+            final String pass = "password";
 
             Properties props = new Properties();    
             props.put("mail.smtp.host", "smtp.gmail.com");    

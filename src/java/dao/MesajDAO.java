@@ -66,7 +66,7 @@ public class MessageDAO {
             preparedStatement.setString(1, message.getMessage_surname());
             preparedStatement.setString(2, message.getMessage_email());
             preparedStatement.setString(3, message.getMessage_konu());
-            preparedStatement.setString(4, message.getMessage_icerik());
+            preparedStatement.setString(4, message.getMessage_contents());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);

@@ -18,17 +18,17 @@
         <label for="kullanici_email" class="sr-only">E-mail</label>
         <input type="email" id="kullanici_email" name="kullanici_email" class="form-control mb-3" placeholder="E-mail" required autofocus>
         
-        <label for="kullanici_sifre" class="sr-only">Şifre</label>
-        <input type="password" id="kullanici_sifre" name="kullanici_sifre" class="form-control" placeholder="Şifre" required>
+        <label for="kullanici_password" class="sr-only">Şifre</label>
+        <input type="password" id="kullanici_password" name="kullanici_password" class="form-control" placeholder="Şifre" required>
                 
         <button class="btn btn-lg btn-warning btn-block shadow-none" type="submit">Giriş Yap</button>
     </form>
         
     <div class="mt-3 mb-3" style="font-weight: 600" >
-        <a href="sifremiunuttum" class="text-decoration-none" style="color: darkblue">Şifrenizi mi unuttunuz ?</a>
+        <a href="passwordmiunuttum" class="text-decoration-none" style="color: darkblue">Şifrenizi mi unuttunuz ?</a>
     </div>
     <div class="mt-3 mb-3">
-        <span>Henüz üye olmadın mı ? </span><a href="uyeol" class="text-decoration-none" style="color: #FF7F00">Üye Ol</a>
+        <span>Henüz üye olmadın mı ? </span><a href="signUp" class="text-decoration-none" style="color: #FF7F00">Üye Ol</a>
     </div>
         
 </section>

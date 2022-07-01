@@ -22,8 +22,8 @@
                         <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <label for="user_sifre">Şifre</label>
-                        <input type="password" class="form-control" id="user_sifre" name="user_sifre" placeholder="Şifre" required>
+                        <label for="user_password">Şifre</label>
+                        <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Şifre" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Ekle</button>

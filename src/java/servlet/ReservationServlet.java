@@ -81,9 +81,9 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect("flight_ticket");
         } else {
             int rezervasyon_id = Integer.parseInt(request.getParameter("rezervasyon_id"));
-            String kullanici_sifre = (String) session.getAttribute("kullanici_sifre");
-            String sifre = request.getParameter("sil_sifre");
-            if (kullanici_sifre.equals(sifre)) {
+            String kullanici_password = (String) session.getAttribute("kullanici_password");
+            String password = request.getParameter("sil_password");
+            if (kullanici_password.equals(password)) {
                 reservationDAO.cancelReservation(rezervasyon_id);
                 response.sendRedirect("myReservationTransactions?cancel=successful");
             } else {

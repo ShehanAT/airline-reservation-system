@@ -17,19 +17,19 @@ public class KullaniciDAO {
     private final String jdbcPassword = "123456";    
     
     private static final String KULLANICI_INSERT = "INSERT INTO kullanicilar" +
-            "  (user_ad, user_soyad, user_email, user_sifre, user_authorization) VALUES " +
+            "  (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES " +
         " (?, ?, ?, ?,"+1+");";
     private static final String KULLANICI_SELECT_ID = "select * from kullanicilar where user_id=?;";
     private static final String KULLANICI_DELETE = "delete from kullanicilar where user_id = ?;";
     private static final String KULLANICI_SELECT_EMAIL = "select * from kullanicilar where user_email = ?;";
     private static final String KULLANICI_SELECT_ALL = "select * from kullanicilar;";
-    private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_sifre = ?;";
-    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO kullanicilar (user_ad, user_soyad, user_email, user_sifre, user_authorization) VALUES (?,?,?,?,"+2+");";
-    private static final String KULLANICI_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ?, user_sifre = ? where user_id = ?;";
+    private static final String KULLANICI_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_password = ?;";
+    private static final String KULLANICI_INSERT_ADMIN ="INSERT INTO kullanicilar (user_ad, user_soyad, user_email, user_password, user_authorization) VALUES (?,?,?,?,"+2+");";
+    private static final String KULLANICI_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ?, user_password = ? where user_id = ?;";
     private static final String PROFIL_UPDATE = "update kullanicilar set user_ad = ?, user_soyad = ?, user_email = ? where user_id = ?;";
-    private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_sifre = ? and user_authorization=2;";
-    private static final String SIFRE_KONTROL_SELECT = "select * from kullanicilar where user_id=? and user_sifre=?;";
-    private static final String SIFRE_UPDATE = "update kullanicilar set kullanici_sifre = ? where kullanici_id = ?;";
+    private static final String ADMIN_SELECT_EMAIL_SIFRE = "select * from kullanicilar where user_email = ? and user_password = ? and user_authorization=2;";
+    private static final String SIFRE_KONTROL_SELECT = "select * from kullanicilar where user_id=? and user_password=?;";
+    private static final String SIFRE_UPDATE = "update kullanicilar set kullanici_password = ? where kullanici_id = ?;";
     private static final String HESAP_DELETE = "delete from kullanicilar where kullanici_id = ?;";
     public KullaniciDAO() {}
 
@@ -67,12 +67,12 @@ public class KullaniciDAO {
         return uyeler;
     }
     
-    public boolean sifrekontrol(int id, String kullanici_sifre) {
+    public boolean sifrekontrol(int id, String kullanici_password) {
 
         try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SIFRE_KONTROL_SELECT);) {
             preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, kullanici_sifre);
+            preparedStatement.setString(2, kullanici_password);
             ResultSet rs = preparedStatement.executeQuery();
             
             if (rs.next()) {
@@ -116,8 +116,8 @@ public class KullaniciDAO {
                 String kullanici_ad = rs.getString("kullanici_ad");
                 String kullanici_soyad = rs.getString("kullanici_soyad");
                 String kullanici_email = rs.getString("kullanici_email");
-                String kullanici_sifre = rs.getString("kullanici_sifre");
-                kullanici = new Kullanici(id, kullanici_ad,kullanici_soyad,kullanici_email, kullanici_sifre);
+                String kullanici_password = rs.getString("kullanici_password");
+                kullanici = new Kullanici(id, kullanici_ad,kullanici_soyad,kullanici_email, kullanici_password);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -132,8 +132,8 @@ public class KullaniciDAO {
             preparedStatement.setString(1, kullanici_email);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String kullanici_sifre = rs.getString("kullanici_sifre");
-                kullanici = new Kullanici(kullanici_email, kullanici_sifre);
+                String kullanici_password = rs.getString("kullanici_password");
+                kullanici = new Kullanici(kullanici_email, kullanici_password);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -148,7 +148,7 @@ public class KullaniciDAO {
             statement.setString(1, kullanici.getKullanici_ad()); 
             statement.setString(2, kullanici.getKullanici_soyad());
             statement.setString(3, kullanici.getKullanici_email());
-            statement.setString(4, kullanici.getKullanici_sifre());
+            statement.setString(4, kullanici.getKullanici_password());
             statement.setInt(5, kullanici.getKullanici_id());
             guncellenenSatir = statement.executeUpdate() > 0;
         }
@@ -179,7 +179,7 @@ public class KullaniciDAO {
         return guncellenenSatir;
     }
     
-    public void uyeol(Kullanici kullanici) throws SQLException {       
+    public void signUp(Kullanici kullanici) throws SQLException {
         try (           
             Connection connection = getConnection();                                
             PreparedStatement preparedStatement = connection.prepareStatement(KULLANICI_INSERT)) {

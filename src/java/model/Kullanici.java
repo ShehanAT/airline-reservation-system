@@ -6,13 +6,13 @@ public class Kullanici {
     protected String kullanici_ad;
     protected String kullanici_soyad;
     protected String kullanici_email;
-    protected String kullanici_sifre;
+    protected String kullanici_password;
     protected int user_authorization;
 
     public Kullanici() {
     }
 
-    public Kullanici(int kullanici_id, String kullanici_sifre) {
+    public Kullanici(int kullanici_id, String kullanici_password) {
         this.kullanici_id = kullanici_id;
         this.kullanici_sifre = kullanici_sifre;
     }

@@ -113,8 +113,8 @@
                                     <input type="hidden" id="reservation_id" name="reservation_id" value="<c:out value="${rez.reservation_id}" />">
                                         <p>Bu işlem geri alınamaz. Emin misiniz ?</p>
                                         <div class="form-group">
-                                            <label for="sil_sifre" class="col-form-label">Şifreniz: </label>
-                                            <input type="password" class="form-control" id="sil_sifre" name="sil_sifre" required>
+                                            <label for="sil_password" class="col-form-label">Şifreniz: </label>
+                                            <input type="password" class="form-control" id="sil_password" name="sil_password" required>
                                         </div>
                                         </div>
                                         <div class="modal-footer">

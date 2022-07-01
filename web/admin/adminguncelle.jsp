@@ -24,8 +24,8 @@
                         <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Email" value="<c:out value='${user.user_email}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="user_sifre">Şifre</label>
-                        <input type="password" class="form-control" id="user_sifre" name="user_sifre" placeholder="Şifre" value="<c:out value='${user.user_sifre}' />" required>
+                        <label for="user_password">Şifre</label>
+                        <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Şifre" value="<c:out value='${user.user_password}' />" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark btn-block">Güncelle</button>
