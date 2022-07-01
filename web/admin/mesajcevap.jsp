@@ -24,8 +24,8 @@
                         <input type="text" class="form-control" id="message_email" name="message_email" value="<c:out value='${message.message_email}' />" readonly>
                     </div>                           
                     <div class="form-group">
-                        <label for="message_konu">Konu</label>
-                        <input type="text" class="form-control" id="message_konu" name="message_konu" value="<c:out value='${message.message_konu}' />" readonly>
+                        <label for="message_subject">Konu</label>
+                        <input type="text" class="form-control" id="message_subject" name="message_subject" value="<c:out value='${message.message_subject}' />" readonly>
                     </div>
                     <div class="form-group">
                         <label for="message_contents">İçerik</label>

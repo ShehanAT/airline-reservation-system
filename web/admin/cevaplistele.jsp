@@ -32,7 +32,7 @@
                         <c:forEach var="review" items="${reviewliste}">
                             <tr>
                                 <td><c:out value="${review.review_id}" /></td>
-                                <td><c:out value="${review.message_konu}" /></td>
+                                <td><c:out value="${review.message_subject}" /></td>
                                 <td><c:out value="${review.message_date}" /></td>
                                 <td><c:out value="${review.review_date}" /></td>
                                 <td>

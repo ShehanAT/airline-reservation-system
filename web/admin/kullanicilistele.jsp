@@ -44,7 +44,7 @@
                             <tr>
                                 <td><c:out value="${user.user_id}" /></td>
                                 <td><c:out value="${user.user_name}" /></td>
-                                <td><c:out value="${user.user_soyad}" /></td>
+                                <td><c:out value="${user.user_surname}" /></td>
                                 <td><c:out value="${user.user_email}" /></td>
                                 <c:choose>
                                     <c:when test= "${user.user_authorization == 1}">

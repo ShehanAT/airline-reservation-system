@@ -1,27 +1,0 @@
-
-HWeb:BoldAndItalicTagsCheck"Replace this <i> tag by <em>.(–ÃÀúıÿÿÿÿ
-HWeb:TableWithoutCaptionCheck" Add a description to this table.(ÛšòÌ
->	Web:S1827")Remove this deprecated "width" attribute.(ÛšòÌ
-D	Web:S1827"/Remove this deprecated "cellspacing" attribute.(ÛšòÌ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
-g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÂÒÏÀ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(õ•ò£ùÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(ˆ»™‹ıÿÿÿÿ
-g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(šˆ¯‹
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(‹—â ûÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(² ªşÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(õùÄƒûÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck ";Add either an 'id' or a 'scope' attribute to this <th> tag.(ø«¿ûÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck!";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck&";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
-g Web:TableHeaderHasIdOrScopeCheck'";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÂÒÏÀ
-l Web:TableHeaderHasIdOrScopeCheck(";Add either an 'id' or a 'scope' attribute to this <th> tag.(õ•ò£ùÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck)";Add either an 'id' or a 'scope' attribute to this <th> tag.(ˆ»™‹ıÿÿÿÿ
-g Web:TableHeaderHasIdOrScopeCheck*";Add either an 'id' or a 'scope' attribute to this <th> tag.(šˆ¯‹
-l Web:TableHeaderHasIdOrScopeCheck+";Add either an 'id' or a 'scope' attribute to this <th> tag.(‹—â ûÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck,";Add either an 'id' or a 'scope' attribute to this <th> tag.(² ªşÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck-";Add either an 'id' or a 'scope' attribute to this <th> tag.(õùÄƒûÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck.";Add either an 'id' or a 'scope' attribute to this <th> tag.(ø«¿ûÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck/";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üıÿÿÿÿ
-CWeb:BoldAndItalicTagsCheck@"Replace this <i> tag by <em>.(«»‡¼
-HWeb:BoldAndItalicTagsCheckC"Replace this <i> tag by <em>.(ÚÃÖûıÿÿÿÿ

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UcakDAO;
 import javax.servlet.http.HttpSession;
 import model.Company;
-import model.Ucak;
+import model.Airplane;
 
 @WebServlet(urlPatterns = {"/admin/ucakliste", "/admin/addFlight", "/admin/showAddFlight", "/admin/ucaksil", "/admin/ucakguncelle", "/admin/showucakguncelle"})
 
@@ -69,7 +69,7 @@ public class AeroplaneServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Ucak> ucakliste = ucakDAO.ucaklistele();
+            List<Airplane> ucakliste = ucakDAO.ucaklistele();
             request.setAttribute("ucakliste", ucakliste);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucaklistele.jsp");
             dispatcher.forward(request, response);
@@ -102,7 +102,7 @@ public class AeroplaneServlet extends HttpServlet {
             int company_id = Integer.parseInt(request.getParameter("company_id"));
             String ucak_name = new String((request.getParameter("ucak_name")).getBytes("ISO-8859-1"), "UTF-8");
             int ucak_seat = Integer.parseInt(request.getParameter("ucak_seat"));
-            Ucak yeniucak = new Ucak(ucak_name, ucak_seat, company_id);
+            Airplane yeniucak = new Airplane(ucak_name, ucak_seat, company_id);
             ucakDAO.addFlight(yeniucak);
             response.sendRedirect("ucakliste");
         }
@@ -131,11 +131,11 @@ public class AeroplaneServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Ucak ucak = ucakDAO.ucaksec(id);
+            Airplane airplane = ucakDAO.ucaksec(id);
             List<Company> company = ucakDAO.company();
             request.setAttribute("company", company);
             RequestDispatcher dispatcher = request.getRequestDispatcher("ucakguncelle.jsp");
-            request.setAttribute("plane", ucak);
+            request.setAttribute("plane", airplane);
             dispatcher.forward(request, response);
         }
     }

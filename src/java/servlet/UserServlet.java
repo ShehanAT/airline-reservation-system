@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.KullaniciDAO;
+import dao.UserDAO;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,17 +20,17 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import model.Kullanici;
+import model.User;
 
 @WebServlet(urlPatterns = {"/signUp", "/showMember", "/forgotMyPassword", "/showForgotInformation", "/login", "/showLogin", "/login", "/admin/giris", "/admin/showLogin", "/admin/userList", "/admin/addAdmin", "/admin/showAddAdmin", "/admin/deleteUser", "/admin/adminUpdate", "/admin/gosteradminUpdate", "/profil", "/updateProfile", "/updatePassword", "/deleteAccount", "/admin/login", "/admin/myInformation"})
 
 public class UserServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private KullaniciDAO userDAO;
+    private UserDAO userDAO;
 
     public void init() {
-        userDAO = new KullaniciDAO();
+        userDAO = new UserDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -140,7 +140,7 @@ public class UserServlet extends HttpServlet {
             String user_password1 = new String((request.getParameter("user_password1")).getBytes("ISO-8859-1"), "UTF-8");
             Boolean kontrol = userDAO.passwordkontrol(user_id, user_password);
             if (kontrol == true) {
-                Kullanici user = new Kullanici(user_id, user_password1);
+                User user = new User(user_id, user_password1);
                 userDAO.updatePassword(user);
                 session.setAttribute("user_password", user_password1);
                 response.sendRedirect("profil?situation=successful");
@@ -165,7 +165,7 @@ public class UserServlet extends HttpServlet {
             String user_email = request.getParameter("user_email");
             Boolean kontrol = userDAO.uyekontrol(user_email);
             if (kontrol == true || user_email.equals(kontrol_email)) {
-                Kullanici user = new Kullanici(user_id, user_name, user_surname, user_email);
+                User user = new User(user_id, user_name, user_surname, user_email);
                 userDAO.updateProfile(user);
                 session.setAttribute("user_name", user_name);
                 session.setAttribute("user_surname", user_surname);
@@ -189,7 +189,7 @@ public class UserServlet extends HttpServlet {
             String user_name = (String) session.getAttribute("user_name");
             String user_email = (String) session.getAttribute("user_email");
             String user_surname = (String) session.getAttribute("user_surname");
-            Kullanici user = new Kullanici(user_id, user_name, user_surname, user_email);
+            User user = new User(user_id, user_name, user_surname, user_email);
             request.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("profil.jsp");
             dispatcher.forward(request, response);
@@ -237,7 +237,7 @@ public class UserServlet extends HttpServlet {
             String user_password = new String((request.getParameter("user_password")).getBytes("ISO-8859-1"), "UTF-8");
             Boolean kontrol = userDAO.uyekontrol(user_email);
             if (kontrol == true) {
-                Kullanici yeniuser = new Kullanici(user_name, user_surname, user_email, user_password);
+                User yeniuser = new User(user_name, user_surname, user_email, user_password);
                 userDAO.addAdmin(yeniuser);
                 response.sendRedirect("userList");
             } else {
@@ -254,7 +254,7 @@ public class UserServlet extends HttpServlet {
         } else if ((Integer) session.getAttribute("user_authorization") != 2) {
             response.sendRedirect("../flight_ticket");
         } else {
-            List<Kullanici> userList = userDAO.uyelistele();
+            List<User> userList = userDAO.uyelistele();
             request.setAttribute("userList", userList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("userListle.jsp");
             dispatcher.forward(request, response);
@@ -270,7 +270,7 @@ public class UserServlet extends HttpServlet {
             response.sendRedirect("../flight_ticket");
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            Kullanici user = userDAO.usersec(id);
+            User user = userDAO.usersec(id);
             RequestDispatcher dispatcher = request.getRequestDispatcher("adminUpdate.jsp");
             request.setAttribute("user", user);
             dispatcher.forward(request, response);
@@ -290,7 +290,7 @@ public class UserServlet extends HttpServlet {
             String user_surname = new String((request.getParameter("user_surname")).getBytes("ISO-8859-1"), "UTF-8");
             String user_email = request.getParameter("user_email");
             String user_password = new String((request.getParameter("user_password")).getBytes("ISO-8859-1"), "UTF-8");
-            Kullanici user = new Kullanici(user_id, user_name, user_surname, user_email, user_password);
+            User user = new User(user_id, user_name, user_surname, user_email, user_password);
             userDAO.adminUpdate(user);
             response.sendRedirect("userList");
         }
@@ -303,7 +303,7 @@ public class UserServlet extends HttpServlet {
             String user_email = request.getParameter("user_email");
             Boolean kontrol = userDAO.uyekontrol(user_email);
             if (kontrol == false) {
-                Kullanici user = userDAO.sifreal(user_email);
+                User user = userDAO.sifreal(user_email);
                 String user_password = user.getKullanici_password();
                 final String to = user_email;
                 final String subject = "HAWKEYE Giriş Şifresi";
@@ -355,7 +355,7 @@ public class UserServlet extends HttpServlet {
             String user_password = new String((request.getParameter("user_password1")).getBytes("ISO-8859-1"), "UTF-8");
             Boolean kontrol = userDAO.uyekontrol(user_email);
             if (kontrol == true) {
-                Kullanici yeniKullanici = new Kullanici(user_name, user_surname, user_email, user_password);
+                User yeniKullanici = new User(user_name, user_surname, user_email, user_password);
                 userDAO.signUp(yeniKullanici);
                 response.sendRedirect("signUp?situation=successful");
             } else {
@@ -408,15 +408,15 @@ public class UserServlet extends HttpServlet {
 
             Boolean kontrol = userDAO.uyegiriskontrol(user_email, user_password);
             if (kontrol == true) {
-                Kullanici uye = userDAO.uyegiris(user_email, user_password);
+                User uye = userDAO.uyegiris(user_email, user_password);
                 int user_authorization = uye.getKullanici_yetki();
                 String user_name = uye.getKullanici_name();
-                String user_soyad = uye.getKullanici_soyad();
+                String user_surname = uye.getKullanici_surname();
                 int user_id = uye.getKullanici_id();
 
                 session.setAttribute("user_id", user_id);
                 session.setAttribute("user_name", user_name);
-                session.setAttribute("user_soyad", user_soyad);
+                session.setAttribute("user_surname", user_surname);
                 session.setAttribute("user_email", user_email);
                 session.setAttribute("user_authorization", user_authorization);
                 session.setAttribute("user_password", user_password);
@@ -450,16 +450,16 @@ public class UserServlet extends HttpServlet {
 
             Boolean kontrol = userDAO.admingiriskontrol(admin_email, admin_password);
             if (kontrol == true) {
-                Kullanici uye = userDAO.admingiris(admin_email, admin_password);
+                User uye = userDAO.admingiris(admin_email, admin_password);
 
                 int user_authorization = uye.getKullanici_yetki();
                 String user_name = uye.getKullanici_name();
-                String user_soyad = uye.getKullanici_soyad();
+                String user_surname = uye.getKullanici_surname();
                 int user_id = uye.getKullanici_id();
 
                 session.setAttribute("user_id", user_id);
                 session.setAttribute("user_name", user_name);
-                session.setAttribute("user_soyad", user_soyad);
+                session.setAttribute("user_surname", user_surname);
                 session.setAttribute("user_email", admin_email);
                 session.setAttribute("user_authorization", user_authorization);
 

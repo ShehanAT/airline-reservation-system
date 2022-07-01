@@ -35,7 +35,7 @@
                                 <td><c:out value="${ucak.plane_id}" /></td>
                                 <td><c:out value="${ucak.ucak_ad}" /></td>
                                 <td><c:out value="${ucak.company_name}" /></td>
-                                <td><c:out value="${ucak.ucak_koltuk}" /></td>
+                                <td><c:out value="${ucak.ucak_seat}" /></td>
                                 <td>
                                     <a href="ucakguncelle?id=<c:out value='${ucak.plane_id}' />">
                                         <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Düzenle</button>

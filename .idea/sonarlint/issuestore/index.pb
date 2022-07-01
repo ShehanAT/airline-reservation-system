@@ -17,14 +17,10 @@ J
 web/admin/ulkeguncelle.jsp,e\f\ef74d0cd501accc29eff352505581c45a55f8451
 I
 web/admin/ulkelistele.jsp,f\2\f2240eb3202eb9743e8e4afa55aa2e1f68e6c917
-I
-src/java/model/Firma.java,e\3\e33323aff4f3dd562ce46509ab5b92117169c3a5
 K
 web/admin/firmaguncelle.jsp,7\1\7146ec372398bc25f3b5856f13bae08614191332
 J
 web/admin/firmalistele.jsp,e\4\e4cf6fbcb6660cc063884f497055a0e312f3070c
-I
-web/admin/ucaklistele.jsp,8\4\841ebff0ab943843224a103fa6c3603610f78665
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 T

@@ -1,13 +1,0 @@
-
-CWeb:BoldAndItalicTagsCheck	"Replace this <i> tag by <em>.(¹¸ÿ
-HWeb:TableWithoutCaptionCheck" Add a description to this table.(ÛšòÌ
->	Web:S1827")Remove this deprecated "width" attribute.(ÛšòÌ
-D	Web:S1827"/Remove this deprecated "cellspacing" attribute.(ÛšòÌ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
-g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(Î´èï
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üýÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(©Ã¿ºÿÿÿÿÿ
-g Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(Î´èï
-l Web:TableHeaderHasIdOrScopeCheck";Add either an 'id' or a 'scope' attribute to this <th> tag.(òô™Üýÿÿÿÿ
-CWeb:BoldAndItalicTagsCheck#"Replace this <i> tag by <em>.(«»‡¼
-HWeb:BoldAndItalicTagsCheck&"Replace this <i> tag by <em>.(ÚÃÖûýÿÿÿÿ

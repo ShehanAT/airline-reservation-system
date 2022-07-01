@@ -16,8 +16,8 @@
                         <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Ad" value="<c:out value='${user.user_name}' />" required>
                     </div>
                     <div class="form-group">
-                        <label for="user_soyad">Soyad</label>
-                        <input type="text" class="form-control" id="user_soyad" name="user_soyad" placeholder="Soyad" value="<c:out value='${user.user_soyad}' />" required>
+                        <label for="user_surname">Soyad</label>
+                        <input type="text" class="form-control" id="user_surname" name="user_surname" placeholder="Soyad" value="<c:out value='${user.user_surname}' />" required>
                     </div>
                     <div class="form-group">
                         <label for="user_email">Email</label>

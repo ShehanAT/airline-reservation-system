@@ -70,9 +70,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="user_soyad" class="col-sm-4 col-form-label">Soyad</label>
+                                    <label for="user_surname" class="col-sm-4 col-form-label">Soyad</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="user_soyad" name="user_soyad" value="<c:out value="${user.user_soyad}" />" placeholder="Soyad" required>
+                                        <input type="text" class="form-control" id="user_surname" name="user_surname" value="<c:out value="${user.user_surname}" />" placeholder="Soyad" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">

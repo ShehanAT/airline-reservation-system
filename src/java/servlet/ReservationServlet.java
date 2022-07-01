@@ -147,7 +147,7 @@ public class ReservationServlet extends HttpServlet {
             String pnr_no;
             int c_sayi = Integer.parseInt(request.getParameter("c_sayi"));
             int y_sayi = Integer.parseInt(request.getParameter("y_sayi"));
-            Double u_ucret = Double.parseDouble(request.getParameter("u_ucret"));
+            Double u_fee = Double.parseDouble(request.getParameter("u_fee"));
             int traveller_tip;
             String traveller_name;
             String traveller_surname;
@@ -170,7 +170,7 @@ public class ReservationServlet extends HttpServlet {
                     traveller_tc = request.getParameter("traveller_tc" + i);
                     traveller_date = request.getParameter("traveller_date" + i);
                     traveller_seat = request.getParameter("traveller_seat" + i);
-                    Reservation reservation = new Reservation(pnr_no, traveller_name, traveller_surname, traveller_email, traveller_tel, traveller_tc, traveller_tip, traveller_seat, user_id, flight_id, traveller_date, u_ucret);
+                    Reservation reservation = new Reservation(pnr_no, traveller_name, traveller_surname, traveller_email, traveller_tel, traveller_tc, traveller_tip, traveller_seat, user_id, flight_id, traveller_date, u_fee);
                     reservationDAO.addReservation(reservation);
                 }
 

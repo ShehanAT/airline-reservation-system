@@ -14,7 +14,7 @@
                             </div>
                             <div class="search_item">
                                 <div>Soyadınız</div>
-                                <input type="text" name="traveller_soyad" id="traveller_soyad" class="search_input" value="<c:out value='${reservationLogin.traveller_soyad}' />" required="required">
+                                <input type="text" name="traveller_surname" id="traveller_surname" class="search_input" value="<c:out value='${reservationLogin.traveller_surname}' />" required="required">
                             </div>
                             <button class="search_button">Yeniden Sorgula</button>
                         </form>
@@ -62,15 +62,15 @@
                 <h5 class="card-header text-center" style="background-color: #F1F2F8">YOLCU BİLGİLERİ</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <p>Ad Soyad : <span class="font-weight-bold"><c:out value='${reservation.traveller_ad}' /> <c:out value='${reservation.traveller_soyad}' /></span></p>
+                        <p>Ad Soyad : <span class="font-weight-bold"><c:out value='${reservation.traveller_ad}' /> <c:out value='${reservation.traveller_surname}' /></span></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <c:choose>
                             <c:when test= "${reservation.traveller_tip == 1}">
-                                <p>Yolcu Tipi : <span class="font-weight-bold">Çocuk</span></p>
+                                <p>Traveller Type : <span class="font-weight-bold">Çocuk</span></p>
                             </c:when>
                             <c:otherwise>
-                                <p>Yolcu Tipi : <span class="font-weight-bold">Yetişkin</span></p>
+                                <p>Traveller Type : <span class="font-weight-bold">Yetişkin</span></p>
                             </c:otherwise>
                         </c:choose>    
                     </div>

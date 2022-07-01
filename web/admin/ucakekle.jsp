@@ -23,8 +23,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="ucak_koltuk">Uçak Koltuk Sayısı</label>
-                                    <input type="number" min="0" class="form-control" id="ucak_koltuk" name="ucak_koltuk" placeholder="Uçak Koltuk Sayısı" required>
+                                    <label for="ucak_seat">Uçak Koltuk Sayısı</label>
+                                    <input type="number" min="0" class="form-control" id="ucak_seat" name="ucak_seat" placeholder="Uçak Koltuk Sayısı" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-dark btn-block">Ekle</button>

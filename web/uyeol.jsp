@@ -19,8 +19,8 @@
         <label for="user_name" class="sr-only">Ad</label>
         <input type="text" id="user_name" name="user_name" class="form-control mb-3" placeholder="Ad" required autofocus>
         
-        <label for="user_soyad" class="sr-only">Soyad</label>
-        <input type="text" id="user_soyad" name="user_soyad" class="form-control mb-3" placeholder="Soyad" required>
+        <label for="user_surname" class="sr-only">Soyad</label>
+        <input type="text" id="user_surname" name="user_surname" class="form-control mb-3" placeholder="Soyad" required>
         
         <label for="user_email" class="sr-only">E-mail</label>
         <input type="email" id="user_email" name="user_email" class="form-control mb-3" placeholder="E-mail" required>

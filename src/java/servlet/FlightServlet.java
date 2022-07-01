@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Company;
 import model.Airport;
-import model.Ucak;
+import model.Airplane;
 import model.Flight;
 
 @WebServlet(urlPatterns = {"/admin/deleteFlight", "/admin/createFlight", "/admin/showCreateFlight", "/admin/currentFlightList", "/admin/pastFlightList", "/admin/updateFlight", "/admin/showUpdateFlight"})
@@ -124,8 +124,8 @@ public class FlightServlet extends HttpServlet {
             List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
 
-            List<Ucak> ucak = flightDAO.ucak();
-            request.setAttribute("plane", ucak);
+            List<Airplane> airplane = flightDAO.airplane();
+            request.setAttribute("plane", airplane);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("createFlight.jsp");
             dispatcher.forward(request, response);
@@ -172,8 +172,8 @@ public class FlightServlet extends HttpServlet {
             Flight flight = flightDAO.ucussec(id);
             List<Company> company = flightDAO.company();
             request.setAttribute("company", company);
-            List<Ucak> ucak = flightDAO.ucak();
-            request.setAttribute("plane", ucak);
+            List<Airplane> airplane = flightDAO.ucak();
+            request.setAttribute("plane", airplane);
             List<Airport> airport = flightDAO.airport();
             request.setAttribute("airport", airport);
             RequestDispatcher dispatcher = request.getRequestDispatcher("updateFlight.jsp");

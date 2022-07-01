@@ -34,7 +34,7 @@
                                 <td><c:out value="${reservation.reservation_id}" /></td>
                                 <td><c:out value="${reservation.reservation_date}" /></td>
                                 <td><c:out value="${reservation.pnr_no}" /></td>
-                                <td><c:out value="${reservation.yolcu_soyad}" /></td>
+                                <td><c:out value="${reservation.passenger_surname}" /></td>
                                 <td>
                                     <a data-toggle="modal" href="#modal<c:out value="${reservation.reservation_id}" />">
                                         <button class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> İncele</button>
@@ -63,23 +63,23 @@
                                             <p><b>Kalkış Saati : </b><c:out value="${reservation.flight_hour}" /></p>
                                             <p><b>Varış Saati : </b><c:out value="${reservation.varis_saat}" /></p>
                                             <p><b>Uçuş Saati : </b><c:out value="${reservation.ucus_s}" /> sa <c:out value="${reservation.ucus_d}" />  dk</p>
-                                            <p><b>Koltuk No : </b><c:out value="${reservation.koltuk_no}" /></p>
-                                            <p style="color:#FF7F00">Yolcu Bilgileri</p>
-                                            <p><b>Ad Soyad : </b><c:out value="${reservation.yolcu_name}" /> <c:out value="${reservation.yolcu_soyad}" /></p>
-                                            <p><b>TC Kimlik : </b><c:out value="${reservation.yolcu_tc}" /></p>
-                                            <p><b>Doğum Tarihi : </b><c:out value="${reservation.yolcu_date}" /></p>
+                                            <p><b>Koltuk No : </b><c:out value="${reservation.seat_no}" /></p>
+                                            <p style="color:#FF7F00">Traveller Bilgileri</p>
+                                            <p><b>Ad Soyad : </b><c:out value="${reservation.passenger_name}" /> <c:out value="${reservation.passenger_surname}" /></p>
+                                            <p><b>TC Kimlik : </b><c:out value="${reservation.passenger_tc}" /></p>
+                                            <p><b>Doğum Tarihi : </b><c:out value="${reservation.passenger_date}" /></p>
                                             <c:choose>
-                                                <c:when test= "${reservation.yolcu_tip > 0}">
-                                                    <p><b>Yolcu Tip : </b>Çocuk</p>
+                                                <c:when test= "${reservation.passenger_tip > 0}">
+                                                    <p><b>Traveller Tip : </b>Çocuk</p>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <p><b>Yolcu Tip : </b>Yetişkin</p>
+                                                    <p><b>Traveller Tip : </b>Yetişkin</p>
                                                 </c:otherwise>
                                             </c:choose>
 
                                             <p style="color:#FF7F00">Contact Information</p>
-                                            <p><b>Telefon : </b><c:out value="${reservation.yolcu_tel}" /></p>
-                                            <p><b>Email : </b><c:out value="${reservation.yolcu_email}" /></p>
+                                            <p><b>Telefon : </b><c:out value="${reservation.passenger_tel}" /></p>
+                                            <p><b>Email : </b><c:out value="${reservation.passenger_email}" /></p>
                                     </div>
                                 </div>
                             </div>

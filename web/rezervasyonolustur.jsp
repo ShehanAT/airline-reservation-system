@@ -50,7 +50,7 @@
                                         <table class="table table-borderless" style=" margin-bottom:0px !important;">
                                             <tbody>
                                                 <tr>
-                                                    <th class="text-left py-0"><span id="adult_ucret" name="adult_ucret"><c:out value='${passengerNumber.adultNumber}' /></span> Yetişkin</th>
+                                                    <th class="text-left py-0"><span id="adult_fee" name="adult_fee"><c:out value='${passengerNumber.adultNumber}' /></span> Yetişkin</th>
                                                     <td class="text-right py-0"><c:out value='${passengerNumber.adultNumber*flightInformation.flight_fare}' /> ₺</td>
                                                 </tr>
                                                 <c:if test="${passengerNumber.childrenNumber!=0}">
@@ -80,7 +80,7 @@
                 <input type="hidden" id="flight_id" name="flight_id" value="<c:out value='${flightInformation.flight_id}' />">
                 <input type="hidden" id="y_sayi" name="y_sayi" value="<c:out value='${passengerNumber.adultNumber}' />">
                 <input type="hidden" id="c_sayi" name="c_sayi" value="<c:out value='${passengerNumber.childrenNumber}' />">
-                <input type="hidden" id="u_ucret" name="u_ucret" value="<c:out value='${flightInformation.flight_fare}' />">
+                <input type="hidden" id="u_fee" name="u_fee" value="<c:out value='${flightInformation.flight_fare}' />">
                 <div class="row mb-2">
                     <div class="col-12 mb-2">
                         <div class="card shadow-sm">
@@ -91,12 +91,12 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="yolcu_email" class="active">E-mail</label>
-                                    <input type="email" class="form-control" id="yolcu_email" name="yolcu_email" placeholder="Email" required>
+                                    <label for="passenger_email" class="active">E-mail</label>
+                                    <input type="email" class="form-control" id="passenger_email" name="passenger_email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="yolcu_tel" class="">Cep Telefonu</label>
-                                    <input type="text" class="form-control" id="yolcu_tel" name="yolcu_tel" pattern="[0-9]{11}" title="05554443322 biçiminde yazınız." placeholder="Telefon" required>
+                                    <label for="passenger_tel" class="">Cep Telefonu</label>
+                                    <input type="text" class="form-control" id="passenger_tel" name="passenger_tel" pattern="[0-9]{11}" title="05554443322 biçiminde yazınız." placeholder="Telefon" required>
                                 </div>
                             </div>
                         </div>
@@ -107,38 +107,38 @@
                         <div class="card shadow-sm">
                             <div class="card-header white card-header-payment pb-1">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <p class="font-weight-normal card-title-payment f-16 card-text-payment-bold">Yolcu Bilgileri</p>
+                                    <p class="font-weight-normal card-title-payment f-16 card-text-payment-bold">Traveller Bilgileri</p>
                                 </div>
                             </div>
                             <c:forEach var = "i" begin = "1" end="${passengerNumber.adultNumber}">
                                 <div class="card-body">
                                     <div class="row mb-4">
                                         <div class="col-md-12 col-12"> 
-                                            <input type="hidden" id="yolcu_tip<c:out value = "${i}"/>" name="yolcu_tip<c:out value = "${i}"/>" value="0">
-                                                <p class="font-weight-bold text-black-50"><c:out value = "${i}"/>.Yolcu(Yetişkin)</p>
+                                            <input type="hidden" id="passenger_tip<c:out value = "${i}"/>" name="passenger_tip<c:out value = "${i}"/>" value="0">
+                                                <p class="font-weight-bold text-black-50"><c:out value = "${i}"/>.Traveller(Yetişkin)</p>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="yolcu_name<c:out value = "${i}"/>">Adı</label>
-                                                <input type="text" class="form-control" id="yolcu_name<c:out value = "${i}"/>" name="yolcu_name<c:out value = "${i}"/>" required>
+                                                <label for="passenger_name<c:out value = "${i}"/>">Adı</label>
+                                                <input type="text" class="form-control" id="passenger_name<c:out value = "${i}"/>" name="passenger_name<c:out value = "${i}"/>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="yolcu_soyad<c:out value = "${i}"/>">Soyadı</label>
-                                                <input type="text" class="form-control" id="yolcu_soyad<c:out value = "${i}"/>" name="yolcu_soyad<c:out value = "${i}"/>" required>
+                                                <label for="passenger_surname<c:out value = "${i}"/>">Soyadı</label>
+                                                <input type="text" class="form-control" id="passenger_surname<c:out value = "${i}"/>" name="passenger_surname<c:out value = "${i}"/>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2 col-12">
                                             <div class="form-group">
-                                                <label for="yolcu_tc<c:out value = "${i}"/>" class="">TC Kimlik Numarası</label>
-                                                <input type="text" class="form-control" id="yolcu_tc<c:out value = "${i}"/>" pattern="[0-9]{11}" name="yolcu_tc<c:out value = "${i}"/>" required>
+                                                <label for="passenger_tc<c:out value = "${i}"/>" class="">TC Kimlik Numarası</label>
+                                                <input type="text" class="form-control" id="passenger_tc<c:out value = "${i}"/>" pattern="[0-9]{11}" name="passenger_tc<c:out value = "${i}"/>" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4 mb-lg-4 col-12">
                                             <div class="form-group">
-                                                <label for="yolcu_date<c:out value = "${i}"/>" class="">Doğum Tarihi</label>
-                                                <input type="date" class="form-control" name="yolcu_date<c:out value = "${i}"/>" id="yolcu_date<c:out value = "${i}"/>" required>
+                                                <label for="passenger_date<c:out value = "${i}"/>" class="">Doğum Tarihi</label>
+                                                <input type="date" class="form-control" name="passenger_date<c:out value = "${i}"/>" id="passenger_date<c:out value = "${i}"/>" required>
                                             </div>
                                         </div>     
                                     </div>   
@@ -149,31 +149,31 @@
                                     <div class="card-body">
                                         <div class="row mb-4">
                                             <div class="col-md-12 col-12"> 
-                                                <input type="hidden" id="yolcu_tip<c:out value = "${k}"/>" name="yolcu_tip<c:out value = "${k}"/>" value="1">
-                                                    <p class="font-weight-bold text-black-50"><c:out value = "${k}"/>.Yolcu(Çocuk)</p>
+                                                <input type="hidden" id="passenger_tip<c:out value = "${k}"/>" name="passenger_tip<c:out value = "${k}"/>" value="1">
+                                                    <p class="font-weight-bold text-black-50"><c:out value = "${k}"/>.Traveller(Çocuk)</p>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="yolcu_name<c:out value = "${k}"/>" class="">Adı</label>
-                                                    <input type="text" class="form-control" id="yolcu_name<c:out value = "${k}"/>" name="yolcu_name<c:out value = "${k}"/>" required>
+                                                    <label for="passenger_name<c:out value = "${k}"/>" class="">Adı</label>
+                                                    <input type="text" class="form-control" id="passenger_name<c:out value = "${k}"/>" name="passenger_name<c:out value = "${k}"/>" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="yolcu_soyad<c:out value = "${k}"/>" class="">Soyadı</label>
-                                                    <input type="text" class="form-control" id="yolcu_soyad<c:out value = "${k}"/>" name="yolcu_soyad<c:out value = "${k}"/>"required>
+                                                    <label for="passenger_surname<c:out value = "${k}"/>" class="">Soyadı</label>
+                                                    <input type="text" class="form-control" id="passenger_surname<c:out value = "${k}"/>" name="passenger_surname<c:out value = "${k}"/>"required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-2 col-12">
                                                 <div class="form-group">
-                                                    <label for="yolcu_tc<c:out value = "${k}"/>" class="">TC Kimlik Numarası</label>
-                                                    <input type="text" class="form-control" id="yolcu_tc<c:out value = "${k}"/>" pattern="[0-9]{11}" name="yolcu_tc<c:out value = "${k}"/>"required>
+                                                    <label for="passenger_tc<c:out value = "${k}"/>" class="">TC Kimlik Numarası</label>
+                                                    <input type="text" class="form-control" id="passenger_tc<c:out value = "${k}"/>" pattern="[0-9]{11}" name="passenger_tc<c:out value = "${k}"/>"required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4 mb-lg-4 col-12">
                                                 <div class="form-group">
-                                                    <label for="yolcu_date<c:out value = "${k}"/>" class="">Doğum Tarihi</label>
-                                                    <input type="date" class="form-control" name="yolcu_date<c:out value = "${k}"/>" id="yolcu_date<c:out value = "${k}"/>"required>
+                                                    <label for="passenger_date<c:out value = "${k}"/>" class="">Doğum Tarihi</label>
+                                                    <input type="date" class="form-control" name="passenger_date<c:out value = "${k}"/>" id="passenger_date<c:out value = "${k}"/>"required>
                                                 </div>
                                             </div>     
                                         </div>   
@@ -231,8 +231,8 @@
                                             <c:forEach var = "k" begin = "1" end="${passengerNumber.childrenNumber+passengerNumber.adultNumber}">
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
-                                                        <label for="yolcu_seat<c:out value = "${k}"/>" class="col-form-label"><c:out value = "${k}"/>. Yolcu</label>
-                                                        <input type="text" id="yolcu_seat<c:out value = "${k}"/>" name="yolcu_seat<c:out value = "${k}"/>" class="form-control" required onkeypress="return false;">
+                                                        <label for="passenger_seat<c:out value = "${k}"/>" class="col-form-label"><c:out value = "${k}"/>. Traveller</label>
+                                                        <input type="text" id="passenger_seat<c:out value = "${k}"/>" name="passenger_seat<c:out value = "${k}"/>" class="form-control" required onkeypress="return false;">
                                                     </div>
                                                     <div class="col-auto" style="padding-top:40px;">
                                                         <button type="button" id="<c:out value = "${k}"/>" onClick="seat_sec(this.id)" class="btn btn-dark">Seç</button>
@@ -252,7 +252,7 @@
             <script type="text/javascript">
                 function seat_sec(id) {
                     var value = document.querySelector('input[name="seat"]:checked').value;
-                    document.getElementById("yolcu_seat" + id).value = value;
+                    document.getElementById("passenger_seat" + id).value = value;
                     document.getElementById("seat" + value).disabled = true;
                     document.getElementById(id).disabled = true;
                 }

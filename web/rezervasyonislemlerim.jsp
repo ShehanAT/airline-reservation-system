@@ -196,12 +196,12 @@
                                         <p>Ad Soyad: <c:out value="${rez.traveller_ad}" /> <c:out value="${rez.traveller_surname}" /></p>
                                         <p>TC Kimlik No: <c:out value="${rez.traveller_tc}" /></p>
                                         <p>Doğum Tarihi: <c:out value="${rez.traveller_date}" /></p>
-                                        <p>Bilet Ücreti: <c:out value="${rez.yolcu_ucret}" /> ₺</p>
+                                        <p>Bilet Ücreti: <c:out value="${rez.passenger_fee}" /> ₺</p>
                                         <p>Koltuk No: <c:out value="${rez.seat_no}" /></p>
                                         <br><br>
                                         <h5 style="color:orange">Contact Information</h5>
-                                        <p>Email : <c:out value="${rez.yolcu_email}" /></p>
-                                        <p>Telefon : <c:out value="${rez.yolcu_tel}" /></p>
+                                        <p>Email : <c:out value="${rez.passenger_email}" /></p>
+                                        <p>Telefon : <c:out value="${rez.passenger_tel}" /></p>
                                     </div>
                                 </div>
                             </div>

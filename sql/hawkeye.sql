@@ -116,7 +116,7 @@ CREATE TABLE `message` (
   `message_id` int(11) NOT NULL,
   `message_surname` varchar(500) NOT NULL,
   `message_email` varchar(500) NOT NULL,
-  `message_konu` varchar(500) NOT NULL,
+  `message_subject` varchar(500) NOT NULL,
   `message_contents` text NOT NULL,
   `message_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `message_notRead` int(2) NOT NULL DEFAULT 0,
@@ -135,14 +135,14 @@ CREATE TABLE `reservation` (
   `flight_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `pnr_no` varchar(11) NOT NULL DEFAULT '45645',
-  `yolcu_name` varchar(500) NOT NULL,
-  `yolcu_surname` varchar(500) NOT NULL,
-  `yolcu_email` varchar(500) NOT NULL,
-  `yolcu_tel` varchar(11) NOT NULL,
-  `yolcu_tc` varchar(11) NOT NULL,
-  `yolcu_tip` int(5) NOT NULL,
-  `yolcu_date` varchar(20) NOT NULL,
-  `yolcu_ucret` decimal(6,2) NOT NULL,
+  `passenger_name` varchar(500) NOT NULL,
+  `passenger_surname` varchar(500) NOT NULL,
+  `passenger_email` varchar(500) NOT NULL,
+  `passenger_tel` varchar(11) NOT NULL,
+  `passenger_tc` varchar(11) NOT NULL,
+  `passenger_tip` int(5) NOT NULL,
+  `passenger_date` varchar(20) NOT NULL,
+  `passenger_fee` decimal(6,2) NOT NULL,
   `seat_no` varchar(10) NOT NULL,
   `situation` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -150,13 +150,13 @@ CREATE TABLE `reservation` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `ucak`
+-- Tablo için tablo yapısı `airplane`
 --
 
-CREATE TABLE `ucak` (
+CREATE TABLE `airplane` (
   `plane_id` int(11) NOT NULL,
-  `ucak_name` varchar(500) NOT NULL,
-  `ucak_seat` int(10) NOT NULL,
+  `airplane_name` varchar(500) NOT NULL,
+  `airplane_seat` int(10) NOT NULL,
   `company_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -231,9 +231,9 @@ ALTER TABLE `reservation`
   ADD PRIMARY KEY (`reservation_id`);
 
 --
--- Tablo için indeksler `ucak`
+-- Tablo için indeksler `airplane`
 --
-ALTER TABLE `ucak`
+ALTER TABLE `airplane`
   ADD PRIMARY KEY (`plane_id`);
 
 --
@@ -295,9 +295,9 @@ ALTER TABLE `reservation`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- Tablo için AUTO_INCREMENT değeri `ucak`
+-- Tablo için AUTO_INCREMENT değeri `airplane`
 --
-ALTER TABLE `ucak`
+ALTER TABLE `airplane`
   MODIFY `plane_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --

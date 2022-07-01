@@ -94,9 +94,9 @@ public class MessageServlet extends HttpServlet {
             throws SQLException, IOException {
         String message_surname = new String((request.getParameter("message_surname")).getBytes("ISO-8859-1"), "UTF-8");
         String message_email = request.getParameter("message_email");
-        String message_konu = new String((request.getParameter("message_konu")).getBytes("ISO-8859-1"), "UTF-8");
+        String message_subject = new String((request.getParameter("message_subject")).getBytes("ISO-8859-1"), "UTF-8");
         String message_contents = new String((request.getParameter("message_contents")).getBytes("ISO-8859-1"), "UTF-8");
-        Message newMessage = new Message(message_surname, message_email, message_konu, message_contents);
+        Message newMessage = new Message(message_surname, message_email, message_subject, message_contents);
         messageDAO.addMessage(newMessage);
         response.sendRedirect("contact?situation=successful");
     }
